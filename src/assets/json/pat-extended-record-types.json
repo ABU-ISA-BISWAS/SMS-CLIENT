@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "message": "Patient Extended Record Type",
+    "items": [
+        {
+            "recordType": 1,
+            "recordTitle": "Case Summary",
+            "tinymceEditorHeight": 258
+        },
+        {
+            "recordType": 2,
+            "recordTitle": "Medical Board",
+            "tinymceEditorHeight": 258
+        }
+    ]
+}

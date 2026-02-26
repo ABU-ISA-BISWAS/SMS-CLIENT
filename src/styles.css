@@ -1,0 +1,591 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html, body, *{
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Inter", sans-serif;
+}
+
+
+/* =================================== */
+        /* Input Custom Css */
+/* =================================== */
+.form-check-label{
+    font-size: 13px !important;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.input-group > *,
+.form-control,
+.form-check-label {
+    font-size: 13px!important;
+}
+
+input[type=radio]:focus-within,
+input[type=checkbox]:focus-within,
+.form-control:focus-within{
+    box-shadow: none;
+}
+
+.input-group > .form-control:focus,
+.input-group > .form-floating:focus-within,
+.input-group > .form-select:focus {
+    box-shadow: none;
+}
+
+.form-check {
+    cursor: pointer;
+}
+.form-check-input{
+    width: 17px;
+    height: 17px;
+    border-color:#959799;
+    
+}
+.form-check-input:checked {
+    background-color: var(--base-primary);
+    border-color: var(--base-primary);
+}
+.form-check .form-check-input{
+    margin-left: -1.3em;
+}
+
+.form-select{
+        padding: .375rem 2rem .375rem .75rem;
+}
+
+
+.form-group label,
+.form-group .form-label{
+    font-size: 13px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+
+/* ================ */
+.card-header {
+    color: var(--base-primary);
+    background-color: var(--base-primary-subtle);
+}
+
+.info-caption{
+    font-size: 14px;
+}
+
+.fs-14px{
+    font-size: 14px;
+}
+.fs-13px{
+    font-size: 13px;
+}
+.min-h-200px{
+    min-height: 200px;
+}
+
+
+.action-bar button {
+    font-size: 13px;
+}
+
+/* ========= Filter Bar ========= */
+
+
+.filter-bar .input-group .input-group-text{
+    min-width: 60px; /* this width will change according to needs */
+    text-align: center;
+    display: inline;
+    font-weight: 500;
+}
+
+.filter-bar .input-group select {
+    color: #252525;
+}
+
+.filter-bar .input-group .select option[selected]{
+    color: gray;
+}
+.filter-bar .input-group .form-select::placeholder,
+.filter-bar .input-group select::placeholder{
+    color: gray;
+}
+
+
+.filter-bar .input-group select option:checked {
+  color: gray; /* Color for the selected option */
+}
+
+/* Fallback for browsers that don't support styling the selected option directly */
+.filter-bar .input-group select:focus option:checked {
+  color: gray;
+}
+
+
+/* =================================== */
+    /* Patient Info Custom Theme */
+/* =================================== */
+
+.info-label,
+.patient-info .info-label {
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-left: 3px;
+    color: #7d7979;
+}
+
+.info-value,
+.patient-info .info-value {
+    font-size: 13px;
+    font-weight: 600;
+    /* color: #4D5E80; */
+    color: var(--base-primary);
+}
+
+
+/* =================================== */
+           /* Ngx Custom Theme */
+/* =================================== */
+
+/* Your custom ngx-bootstrap datepicker theme */
+.bs-datepicker.brand-theme {
+    background-color: #fefefe;
+    border: 1px solid var(--primay-color);
+    color: #212529;
+}
+.bs-datepicker-container{
+    padding: 5px!important;
+}
+
+.bs-datepicker.brand-theme .bs-datepicker-head {
+    background-color:  var(--primay-color);
+    color: #fff;
+}
+
+.bs-datepicker.brand-theme .bs-datepicker-body td span.selected,
+.bs-datepicker.brand-theme .bs-datepicker-body td span:hover {
+    background-color: var(--primay-color);
+    color: #fff;
+}
+
+.bs-datepicker.brand-theme .bs-datepicker-body {
+    /* background-color: #f8f9fa; */
+    background-color: var(--bg-primary);
+}
+
+.bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span,
+.bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected){
+    background-color: #89b3d3;
+    /* color: var(--primay-color); */
+    /* border: 1px solid var(--primay-color); */
+}
+
+
+/* =================================== */
+      /* Raw table Custom Theme */
+        /* .base-table */
+/* =================================== */
+
+table.base-table thead tr th {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    background-color: #ebebeb !important;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+table.base-table > tbody > tr > th,
+table.base-table > tbody > tr > td {
+    padding: 8px 10px;
+    vertical-align: middle;
+}
+
+table.base-table tr > * {
+    font-size: 13px;
+    color: #252525;
+}
+
+
+/* =================================== */
+      /* Data table Custom Theme */
+/* =================================== */
+div.dt-container div.dt-layout-row{
+    font-size: 14px;
+}
+
+table.dataTable thead tr th {
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    background-color: #ebebeb!important;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+table.dataTable tr > * {
+    font-size: 13px;
+    color: #252525;
+}
+
+table.dataTable > tbody > tr:nth-of-type(odd) > * {
+    background-color: #F9FAFC!important;
+}
+table.dataTable > tbody > tr:nth-of-type(even) > * {
+    background-color: white!important;
+}
+
+table.dataTable tr th,
+table.dataTable tr td{
+    vertical-align: middle;
+}
+
+table.dataTable.table-hover > tbody > tr:hover > * {
+    /* background-color: #d7e1f5!important; */
+    background-color: var(--base-primary-subtle)!important;
+    box-shadow: none!important;
+}
+table.dataTable.table-hover > tbody > tr > td{
+    position: relative;
+}
+table.dataTable.table-hover > tbody > tr:hover > td:first-child::after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    bottom:0;
+    width: 3px;
+    background-color: var(--base-primary);
+    /* border-left: 2px solid var(--base-primary); */
+}
+
+
+table.dataTabletable .form-check-input{
+    width: 1.2em;
+    height: 1.2em;
+    border: var(--bs-border-width) solid #a5b0bc;
+}
+
+
+table.table.dataTable.table-striped > tbody > tr:nth-of-type(2n+1) > *{
+    box-shadow: none!important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover{
+    background-color: var(--base-primary);
+    color: white !important;
+}
+
+table.table.dataTable tr td img.avatar-img{
+    height: 40px;
+    width: 40px;
+}
+
+div.dt-container .dt-paging .dt-paging-button{
+        padding: 2px 10px;
+}
+
+
+/* =================================== */
+        /* Tabs Custom Theme */
+/* =================================== */
+
+.nav.nav-pills{
+    padding: 5px;
+    background-color: var(--base-primary-subtle);
+    border-radius: 10px 10px 0px 0px;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--base-primary);
+}
+
+.nav-pills .nav-link{
+    padding: 6px 15px;
+    font-size: 15px;
+    /* line-height: 1.2; */
+}
+
+.tab-content{
+    border: 1px solid var(--base-primary-subtle);
+    min-height: 400px;
+    border-radius:  0px 0px 10px 10px;
+
+}
+
+/* tab-menu-style */
+.tab-menu-style .nav-tabs{
+    border-bottom: 1px solid var(--base-primary-subtle);
+}
+
+.tab-menu-style .nav-item{
+    font-size: 14px;
+    border: 0px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.tab-menu-style .nav-item:not(.active){
+    background-color: white;
+    border-radius: 5px;
+}
+
+.tab-menu-style .nav-item:not(.active) a{
+    color: #666c6c;
+}
+.tab-menu-style .nav-item:not(.active):hover{
+    background-color: rgb(240, 239, 239);
+}
+
+.tab-menu-style :not(.nav-pills) .nav-item .nav-link{
+    color: gray;
+    border: 2px solid transparent;
+    transition: 0.15s;
+    font-weight: 500;
+}
+
+.tab-menu-style :not(.nav-pills) .nav-item .nav-link:hover{
+    color: #252525;
+    transition: 0.15s;
+}
+
+.tab-menu-style :not(.nav-pills) .nav-item .nav-link.active,
+.tab-menu-style :not(.nav-pills) .nav-item.active .nav-link.active{
+    color: var(--base-primary);
+    border-bottom: 2px solid var(--base-primary);
+}
+
+.tab-menu-style .tab-content{
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    padding-top: 1.5rem !important;
+    padding-bottom: 0rem !important;
+}
+
+
+/* =================================== */
+        /* Fieldset custom design */
+/* =================================== */
+
+.legend-title {
+    color: var(--base-primary);
+    /* color: #617284; */
+    font-size: 14px;
+    border-radius: 30px;
+    padding: 4px 15px;
+    top: -25px;
+    position: relative;
+    /* background: #f2f2f2; */
+    background: var(--base-primary-subtle);
+    border: solid 1px #FFF;
+    box-shadow: 0px 0px 2px #5a5757;
+    min-width: 100px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* =================================== */
+        /* Modal custom design */
+/* =================================== */
+
+.base-modal .modal-content{
+    border-radius: 16px;
+    /* overflow: hidden; */
+}
+
+.base-modal .modal-header{
+    /* background-color: #F5F5F5 !important; */
+    background-color: var(--base-primary-subtle)!important;
+    padding: 14px 20px;
+}
+
+
+.base-modal .modal-body{
+    padding: 14px 20px;
+}
+
+
+.base-modal .modal-footer{
+    /* background-color: #F5F5F5 !important; */
+    background-color: var(--base-primary-subtle)!important;
+    padding: 12px 20px;
+}
+
+/* *************Sub Modal*********** */
+
+.sub-modal .modal-content{
+    border-radius: 16px;
+    /* overflow: hidden; */
+}
+
+.sub-modal .modal-header{
+    /* background-color: #F5F5F5 !important; */
+    background-color: var(--base-primary-subtle-for-sub-modal)!important;
+    padding: 10px 14px;
+}
+
+
+.sub-modal .modal-body{
+    padding: 14px 20px;
+}
+
+
+.sub-modal .modal-footer{
+    /* background-color: #F5F5F5 !important; */
+    background-color: var(--base-primary-subtle-for-sub-modal)!important;
+    padding: 4px 14px;
+}
+
+
+/* =================================== */
+    /* NGX Date Picker custom design */
+/* =================================== */
+
+.bs-datepicker div.bs-datepicker-head {
+    background-color: var(--base-primary);
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+    color: var(--base-primary);
+}
+
+.bs-datepicker .bs-datepicker-body table td.ng-star-inserted span.selected {
+    background-color: var(--base-primary);
+}
+
+.bs-datepicker .bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span,
+.bs-datepicker .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected){
+    background-color: var(--base-primary-subtle);
+}
+
+
+
+
+/* =================================== */
+    /* ng Select custom design */
+/* =================================== */
+/* .ng-select{
+    border: 1px;
+} */
+
+.ng-dropdown-panel.ng-select-top {
+    bottom: 100%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-color: hsl(0, 0%, 90%);
+    margin-bottom: -1px;
+}
+
+.ng-dropdown-panel {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+    left: 0;
+}
+
+.ng-dropdown-panel.ng-select-top .ng-dropdown-panel-items .ng-option:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    background-color: rgb(244.8, 249.84, 255);
+    color: #333;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    background-color: #fff;
+    color: rgba(0, 0, 0, .87);
+    padding: 8px 10px;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ng-dropdown-panel{
+    top: calc(100% + 2px);
+}
+
+.ng-placeholder{    
+    color: gray;
+}
+
+
+/* ========== Base Accordion =========== */
+/* ==== class name: base-accordion ==== */
+
+/* .base-accordion{
+
+} */
+
+.base-accordion .panel{
+    margin-bottom: 15px;
+}
+
+.base-accordion .panel-heading{
+    padding: 2px;
+}
+
+.base-accordion .panel-heading .accordion-toggle button.btn-link {
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--base-primary);
+}
+
+/* ========== flags Card =========== */
+/* ==== class name: .card.flags ==== */
+/* flags is the design for boxy checkboxes */
+.card{
+    border-color: #dddddd;
+}
+.card.flags .card-header{
+    background-color: #f1f1f1;
+    padding: .5rem 1rem;
+    border-color: #dddddd;
+}
+.card.flags .card-body{
+    padding: .5rem 1rem;
+}
+
+/* Others */
+.ng-select-container.ng-has-value .ng-placeholder{
+    display: none;
+}
+
+
+/* Custom spinner */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #6f42c1;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .modal,
+.modal-dialog,
+.modal-content {
+  overflow: visible !important;
+} */
+.ng-dropdown-panel {
+  z-index: 1061 !important; 
+  position: absolute !important;
+}

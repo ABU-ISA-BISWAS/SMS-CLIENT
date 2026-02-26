@@ -1,0 +1,200 @@
+[
+    {
+        "id": 0,
+        "name": "Default",
+        "className": "theme-default",
+        "colorCode": "#003367",
+        "bgColor": "#003367",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#0a61b9",
+        "activeColor": "#004387"
+    },
+    {
+        "id": 1,
+        "name": "Primary",
+        "className": "theme-primary",
+        "colorCode": "#727CF5",
+        "bgColor": "#727CF5",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#9D8DFF",
+        "activeColor": "#9D8DFF"
+    },
+    {
+        "id": 2,
+        "name": "Secondary",
+        "className": "theme-secondary",
+        "colorCode": "#6C757D",
+        "bgColor": "#6C757D",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#585858",
+        "activeColor": "#585858"
+    },
+    {
+        "id": 3,
+        "name": "Info",
+        "className": "theme-info",
+        "colorCode": "#0097A7",
+        "bgColor": "#0097A7",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#00BCD4",
+        "activeColor": "#00BCD4"
+    },
+    {
+        "id": 4,
+        "name": "Warning",
+        "className": "theme-warning",
+        "colorCode": "#FFA000",
+        "bgColor": "#FFA000",
+        "textColor": "#252525",
+        "hoverTextColor": "#252525",
+        "hoverColor": "#FFC107",
+        "activeColor": "#FFC107"
+    },
+    {
+        "id": 5,
+        "name": "Danger",
+        "className": "theme-danger",
+        "colorCode": "#F95E7D",
+        "bgColor": "#F95E7D",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#C24961",
+        "activeColor": "#C24961"
+    },
+    {
+        "id": 6,
+        "name": "Dark",
+        "className": "theme-dark",
+        "colorCode": "#313A46",
+        "bgColor": "#313A46",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#576678",
+        "activeColor": "#576678"
+    },
+    {
+        "id": 7,
+        "name": "Seaside blue",
+        "className": "theme-seaside-blue",
+        "colorCode": "#333D79",
+        "bgColor": "#333D79",
+        "textColor": "#FAEBEF",
+        "hoverTextColor": "#FAEBEF",
+        "hoverColor": "#4D4D4D",
+        "activeColor": "#4D4D4D"
+    },
+    {
+        "id": 8,
+        "name": "Material Green",
+        "className": "theme-mat-green",
+        "colorCode": "#388E3C",
+        "bgColor": "#388E3C",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#4CAF50",
+        "activeColor": "#4CAF50"
+    },
+    {
+        "id": 9,
+        "name": "Material Deep Purple",
+        "className": "theme-mat-deep-purple",
+        "colorCode": "#512DA8",
+        "bgColor": "#512DA8",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#673AB7",
+        "activeColor": "#673AB7"
+    },
+    {
+        "id": 10,
+        "name": "Material Indigo",
+        "className": "theme-mat-indigo",
+        "colorCode": "#3F51B5",
+        "bgColor": "#3F51B5",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#303F9F",
+        "activeColor": "#303F9F"
+    },
+    {
+        "id": 11,
+        "name": "Material Pink",
+        "className": "theme-mat-pink",
+        "colorCode": "#C2185B",
+        "bgColor": "#C2185B",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#E91E63",
+        "activeColor": "#E91E63"
+    },
+    {
+        "id": 12,
+        "name": "Material Teal",
+        "className": "theme-mat-teal",
+        "colorCode": "#00796B",
+        "bgColor": "#00796B",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#009688",
+        "activeColor": "#009688"
+    },
+    {
+        "id": 13,
+        "name": "Material Blue",
+        "className": "theme-mat-blue",
+        "colorCode": "#1976D2",
+        "bgColor": "#1976D2",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#2196F3",
+        "activeColor": "#2196F3"
+    },
+    {
+        "id": 14,
+        "name": "Material Blue Gray",
+        "className": "theme-mat-blue-gray",
+        "colorCode": "#455A64",
+        "bgColor": "#455A64",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#607D8B",
+        "activeColor": "#607D8B"
+    },
+    {
+        "id": 15,
+        "name": "Material Brown",
+        "className": "theme-mat-brown",
+        "colorCode": "#5D4037",
+        "bgColor": "#5D4037",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#795548",
+        "activeColor": "#795548"
+    },
+    {
+        "id": 16,
+        "name": "Material Deep Orange",
+        "className": "theme-mat-deep-orange",
+        "colorCode": "#E64A19",
+        "bgColor": "#E64A19",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#FF5722",
+        "activeColor": "#FF5722"
+    },
+    {
+        "id": 17,
+        "name": "Material Lite Green",
+        "className": "theme-mat-lite-green",
+        "colorCode": "#689F38",
+        "bgColor": "#689F38",
+        "textColor": "#ffffff",
+        "hoverTextColor": "#ffffff",
+        "hoverColor": "#8BC34A",
+        "activeColor": "#8BC34A"
+    }
+]

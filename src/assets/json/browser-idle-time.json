@@ -1,0 +1,8 @@
+
+{
+    "Description"             : "Configure Auto Logout Time(Baesd on Second) For User Inactivity",
+    "Time Converter"          : "15min = 900 , 20min = 1200, 30min = 1800 1Hrs = 3600",
+    "maxInactiveTime"         : 28800, 
+    "logoutTimeAfterInactive" : 0.1,
+    "anyActionDuringIdleTime" : 0
+}

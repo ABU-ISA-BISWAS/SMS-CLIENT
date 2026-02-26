@@ -1,0 +1,87 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark mt-0" id="accordionSidebar" [class.collapsed]=" isCollapse">
+   <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" >
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div> -->
+        <div class="sidebar-brand-text mx-3 fs-13px">CMH Central System</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+
+
+
+
+<div class="nav-item" *ngFor="let item of newNavItems; let i = index">
+  <!-- Single nav item -->
+  <ng-container *ngIf="(item?.children?.length ?? 0) === 0">
+    <a class="nav-link" [routerLink]="'/' + item.route" routerLinkActive="activeNav" [routerLinkActiveOptions]="{ exact: true }">
+      <span class="nav-icon-holder">
+        <i class="{{ item.iconName }} nav-icon"></i>
+      </span>
+      {{ item.displayName }}
+    </a>
+  </ng-container>
+
+  <!-- Dropdown nav item -->
+  <ng-container *ngIf="(item?.children?.length ?? 0) > 0">
+    <a class="nav-link dropdown-container dropdown-toggle collapsed" [attr.href]="'#collapse' + i" role="button"
+       data-bs-toggle="collapse" [attr.aria-controls]="'collapse' + i" aria-expanded="false">
+      <span class="nav-icon-holder">
+        <i class="{{ item.iconName }} nav-icon"></i>
+      </span>
+      <span class="nav-link-title">{{ item.displayName }}</span>
+    </a>
+
+    <div [id]="'collapse' + i" class="nav-collapse collapse" data-bs-parent="#navbarVerticalMenu" hs-parent-area="#navbarVerticalMenu" style="top: 0px;">
+      <div>
+        <ng-container *ngFor="let child of item.children; let j = index">
+          <!-- Child without children -->
+          <div class="nav-item" *ngIf="(child?.children?.length ?? 0) === 0">
+            <a class="nav-link" [routerLink]="'/' + child.route" routerLinkActive="activeNav" [routerLinkActiveOptions]="{ exact: true }">
+              <span class="nav-icon-holder">
+                <i class="{{ child.iconName }} nav-icon"></i>
+              </span>
+              {{ child.displayName }}
+            </a>
+          </div>
+
+          <!-- Nested dropdown -->
+          <div class="nav-item" *ngIf="(child?.children?.length ?? 0) > 0">
+            <a class="nav-link dropdown-container dropdown-toggle collapsed" [attr.href]="'#subCollapse' + i + '-' + j" role="button"
+               data-bs-toggle="collapse" [attr.aria-controls]="'subCollapse' + i + '-' + j" aria-expanded="false">
+              <span class="nav-icon-holder">
+                <i class="{{ child.iconName }} nav-icon"></i>
+              </span>
+              <span class="nav-link-title">{{ child.displayName }}</span>
+            </a>
+
+            <div [id]="'subCollapse' + i + '-' + j" class="nav-collapse collapse" data-bs-parent="#navbarVerticalMenu" hs-parent-area="#navbarVerticalMenu" style="top: 0px;">
+              <div>
+                <ng-container *ngFor="let subChild of child.children">
+                  <div class="nav-item">
+                    <a class="nav-link" [routerLink]="'/' + subChild.route" routerLinkActive="activeNav" [routerLinkActiveOptions]="{ exact: true }">
+                      <span class="nav-icon-holder">
+                        <i class="{{ subChild.iconName }} nav-icon"></i>
+                      </span>
+                      {{ subChild.displayName }}
+                    </a>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+
+
+
+ 
+</ul>

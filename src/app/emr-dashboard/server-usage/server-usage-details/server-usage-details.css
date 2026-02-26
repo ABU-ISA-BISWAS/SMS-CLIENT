@@ -1,0 +1,64 @@
+
+/* ============ Tabs Css ============ */
+::ng-deep app-server-usage-details #server-usage-details .nav.nav-tabs {
+    border: 1px solid #D8DAE0;
+    border-radius: 8px;
+    background-color: white;
+}
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-link {
+    font-size: 14px;
+    color: #6D7081;
+    font-weight: 700;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-item.show .nav-link,
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-link.active {
+    color: var(--base-purple);
+    background-color: transparent;
+    border-color: transparent;
+    position: relative;
+}
+
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    width: 80%;
+    transform: translateX(-50%);
+    background-color: var(--base-purple);
+    border-radius: 5px;
+}
+
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-link:focus, 
+::ng-deep app-server-usage-details #server-usage-details .nav-tabs .nav-link:hover{
+    color: var(--base-purple);
+    border-color: transparent;
+}
+
+
+
+/* ============ Accordion Css ============ */
+
+::ng-deep app-server-usage-details #server-usage-details .panel .panel-heading {
+    background-color: #f7f7f7;
+}
+
+
+::ng-deep app-server-usage-details #server-usage-details .panel .panel-heading button {
+    padding: 0px;
+    font-size: 14px;
+    color: #252525;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+
+
+
+

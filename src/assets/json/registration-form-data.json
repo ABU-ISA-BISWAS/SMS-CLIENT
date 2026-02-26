@@ -1,0 +1,38 @@
+{
+    "success": true,
+    "message": "Registration Form Data Found.",
+    "obj": {
+        "registrationFormPrint":[
+            {
+                "srNo": 1,
+                "id": "seviceHolder",
+                "formName": "Service Holder Form",
+                "fileName": "SERVICE_HOLDER.pdf"
+            },
+           {
+            "srNo": 2,
+            "id": "FamilyMember",
+            "formName": "Family Member Form",
+            "fileName": "FAMILY.pdf"
+           },
+           {
+            "srNo": 3,
+            "id": "RE",
+            "formName": "RE Form",
+            "fileName": "RE.pdf"
+           },
+           {
+            "srNo": 4,
+            "id": "CNE",
+            "formName": "CNE Form",
+            "fileName": "CNE.pdf"
+           },
+           {
+            "srNo": 5,
+            "id": "miscellaneous",
+            "formName": "Miscellaneous Form",
+            "fileName": "CNE.pdf"
+           }
+        ]
+}
+}

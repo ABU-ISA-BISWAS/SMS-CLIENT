@@ -1,0 +1,34 @@
+{
+    "success": true,
+    "message": "Eye Glass Type List Found.",
+    "items": [
+        {
+            "preDiagnosisVal": "Unifocal",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10001,
+            "activeStatus": 1
+        },
+        {
+            "preDiagnosisVal": "Bifocal",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10002,
+            "activeStatus": 1
+        },
+        {
+            "preDiagnosisVal": "Progresive",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10003,
+            "activeStatus": 1
+        },
+        {
+            "preDiagnosisVal": "Reading Glass",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10004,
+            "activeStatus": 1
+        }
+    ]
+}

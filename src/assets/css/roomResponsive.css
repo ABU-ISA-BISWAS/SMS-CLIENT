@@ -1,0 +1,78 @@
+@media (min-width:1270px) and (max-width:1345px) {
+    /* .photoTitle {
+        width: 64px !important;
+    } */
+ 
+}
+@media (min-width:200px) and (max-width:1304px) {
+.opdPlus{
+    width: auto !important;
+}
+.patientQu{
+    width: 140px !important;
+}
+.dateAppointmentP{
+    top: 3px  !important;
+}
+}
+
+@media (min-width:200px) and (max-width:1100px) {
+.deparmentTitle {
+    position: inherit;
+    float: left;
+    padding-bottom: 14px;
+    padding-top: 11px;
+}
+.changeRoom {
+    position: inherit !important;
+    float: right;
+    right: 0px !important;
+    top: 0px !important;
+}
+.deparmentTitle{
+    top:-12px !important;
+}
+}
+
+@media (min-width:200px) and (max-width:767px) {
+    .pl-custom{
+        padding-right: 41px;
+    
+    }
+    .plCustomN{
+        padding-left: 41px; 
+    }
+    .paddingRiRow{
+        padding-right: 2px;
+    }
+    .continueMedicineArea p {
+        width: 100%;
+        height: auto;
+    }
+    .borderRight{
+        border-right: 0px !important;
+    }
+    .col-md-1.col-sm-6.spanInfo {
+        text-align: right;
+        max-width: 100%;
+        flex: 0 0 100%;
+    
+    }
+    .col-md-1.col-sm-6.spanInfo a {
+        top: -27px;
+        position: relative;
+        right: -15px;
+    }
+    .modalAuto {
+        max-width:100% !important;
+    }
+}
+
+@media (min-width:200px) and (max-width:700px) {
+.departmentArea{ width: 100% !important;}
+.doctorRoomArea{
+    width: 100% !important;
+    border-top: solid 1px #dededede !important;
+    border-left: 0px !important;
+}
+} 

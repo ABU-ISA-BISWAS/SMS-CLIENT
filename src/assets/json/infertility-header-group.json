@@ -1,0 +1,32 @@
+{
+  "name": "Infertility Report Header Group List",
+  "lookupGroupList": [
+    { "slNo": 1, "title": "Basic Information", "isSelected": true, "isDisabled": true, "lookupNoList": []},
+    { "slNo": 2, "title": "Chief Complaints", "isSelected": false, "isDisabled": false, "lookupNoList": [10621, 10622, 10623, 10624, 10625]},
+    { "slNo": 3, "title": "Medical History", "isSelected": false, "isDisabled": false, "lookupNoList": [10766, 10914, 10916]},
+    { "slNo": 4, "title": "Surgical History", "isSelected": false, "isDisabled": false, "lookupNoList": [10767, 10924, 10925]},
+    { "slNo": 5, "title": "Personal Habit & Drugs", "isSelected": false, "isDisabled": false, "lookupNoList": [10768, 10770, 10931, 10932, 10937]},
+    { "slNo": 6, "title": "Contraceptive History", "isSelected": false, "isDisabled": false, "lookupNoList": [10771, 10772, 10773, 10774, 10775]},
+    { "slNo": 7, "title": "Previous Fertility Treatment", "isSelected": false, "isDisabled": false, "lookupNoList": [146421, 138876, 138877, 138878, 138879]},
+    { "slNo": 8, "title": "Female Partners Inv.", "isSelected": false, "isDisabled": false, "lookupNoList": [10776, 10886, 10887]},
+    { "slNo": 9, "title": "Hormone Assay", "isSelected": false, "isDisabled": false, "lookupNoList": [10777]},
+    { "slNo": 10, "title": "Genetic & Endoscopy", "isSelected": false, "isDisabled": false, "lookupNoList": [10778, 10779]},
+    { "slNo": 11, "title": "Laproscopy Findings", "isSelected": false, "isDisabled": false, "lookupNoList": [10780, 10781]},
+    { "slNo": 12, "title": "Previous IVF Cycle", "isSelected": false, "isDisabled": false, "lookupNoList": [10782]},
+    { "slNo": 13, "title": "Office Hystreoscopy", "isSelected": false, "isDisabled": false, "lookupNoList": [10783]},
+    { "slNo": 14, "title": "Semen Analysis Report", "isSelected": false, "isDisabled": false, "lookupNoList": [10784, 10785, 10786, 10787, 10788, 10789, 10790, 10791, 10792]},
+    { "slNo": 15, "title": "Andrology", "isSelected": false, "isDisabled": false, "lookupNoList": [111287, 146396, 146397, 146398, 146400, 146401, 146402, 146403, 146404, 146405, 146407]},
+    { "slNo": 16, "title": "Embryology", "isSelected": false, "isDisabled": false, "lookupNoList": [146395, 110875, 111285]},
+    { "slNo": 17, "title": "Semen Culture", "isSelected": false, "isDisabled": false, "lookupNoList": [10793, 10794, 12256]},
+    { "slNo": 18, "title": "Diagnosis", "isSelected": false, "isDisabled": false, "lookupNoList": [10795]},
+    { "slNo": 19, "title": "Plan of Management", "isSelected": false, "isDisabled": false, "lookupNoList": [10796]},
+    { "slNo": 20, "title": "IUI Cycle-1", "isSelected": false, "isDisabled": false, "lookupNoList": [12509, 12513, 12512]},
+    { "slNo": 21, "title": "IUI Cycle-2", "isSelected": false, "isDisabled": false, "lookupNoList": [12510, 12514, 12516]},
+    { "slNo": 22, "title": "IUI Cycle-3", "isSelected": false, "isDisabled": false, "lookupNoList": [12511, 12515, 12517]},
+    { "slNo": 23, "title": "Folliculometry", "isSelected": false, "isDisabled": false, "lookupNoList": []},
+    { "slNo": 24, "title": "Drug Protocol", "isSelected": false, "isDisabled": false, "lookupNoList": []},
+    { "slNo": 25, "title": "IVF ET Cycle No. 1", "isSelected": false, "isDisabled": false, "lookupNoList": [12636, 12637, 12638, 12257, 12258, 12259, 12260, 12639, 12644, 12640, 12645, 12646, 12641, 12823, 12824, 12642, 12833, 12834, 12643, 12835]},
+    { "slNo": 26, "title": "IVF ET Cycle No. 2", "isSelected": false, "isDisabled": false, "lookupNoList": [12991, 12992, 12993, 138075, 138076, 140970, 140971, 12994, 13007, 12995, 12996, 12997, 13001, 12999, 13000, 13002, 13003, 13004, 13005, 13006]},
+    { "slNo": 27, "title": "IVF ET Cycle No. 3", "isSelected": false, "isDisabled": false, "lookupNoList": [13008, 13009, 13010, 138077, 138078, 140973, 140975, 13011, 13012, 13013, 13014, 13015, 13016, 13017, 13018, 13019, 13020, 13021, 13022, 13023]}
+  ]
+}

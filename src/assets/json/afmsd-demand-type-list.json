@@ -1,0 +1,102 @@
+{
+  "success": true,
+  "message": "Afmsd Demand type List Found.",
+  "items": [
+    {
+      "id": null,
+      "name": "Select demand type",
+      "pradhikerFlag": 0,
+      "indentFlag": 0,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 1,
+      "name": "1st Quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 2,
+      "name": "2nd Quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 3,
+      "name": "3rd Quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 4,
+      "name": "4th Quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 5,
+      "name": "Signal",
+      "pradhikerFlag": 0,
+      "indentFlag": 0,
+      "signalFlag": 1,
+      "activeStatus": 1
+    },
+    {
+      "id": 6,
+      "name": "Initial",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 7,
+      "name": "Others",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 8,
+      "name": "Replacement",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 9,
+      "name": "Emergent",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 10,
+      "name": "Against 1st quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    },
+    {
+      "id": 11,
+      "name": "Against 2nd quarter",
+      "pradhikerFlag": 1,
+      "indentFlag": 1,
+      "signalFlag": 0,
+      "activeStatus": 1
+    }
+  ]
+}

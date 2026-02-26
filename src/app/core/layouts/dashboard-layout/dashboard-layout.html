@@ -1,0 +1,28 @@
+<div id="wrapper">
+
+    <!-- Side Bar -->
+    <!-- <app-side-nav [isCollapse]="isSidebarCollapsed" (toggleCollapse)="toggleSidebar()"></app-side-nav> -->
+     <app-navigation [isCollapse]="isSidebarCollapsed" (toggleCollapse)="toggleSidebar()" [navData]="navData"></app-navigation>
+
+    <div id="content-wrapper" class="d-flex flex-column" [class.collapsed]="isSidebarCollapsed">
+
+        <div id="content">
+
+            <!-- Top Bar -->
+            <app-top-nav (toggleSidebar)="toggleSidebar()"></app-top-nav>
+
+            <!-- custom top navigation over pages -->
+            <ng-content select="[custom-top-nav]"></ng-content>
+            
+            
+            <!-- Routing Area for Pages -->
+            <div class="w-100 py-3">
+                <router-outlet></router-outlet>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

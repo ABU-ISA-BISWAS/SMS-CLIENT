@@ -1,0 +1,91 @@
+
+  <div *ngFor="let item of navItems">
+
+    <div *ngIf="item?.children.length > 0">
+      <button class="nav-link">
+        <span class="nav-icon-holder">
+          <i class="{{item.iconName}}"></i>
+        </span>
+        {{item.displayName}}
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div>
+        <div *ngFor="let item2 of item.children">
+          <div *ngIf="item2?.children.length > 0">
+            <button class="nav-link">
+              <span class="nav-icon-holder">
+                <i class="{{item.iconName}}"></i>
+              </span>
+              {{item2.displayName}}
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div>
+              <div *ngFor="let item3 of item2.children">
+                <div *ngIf="item3?.children.length > 0">
+                  <button class="nav-link">
+                    <span class="nav-icon-holder">
+                      <i class="{{item.iconName}}"></i>
+                    </span>
+                    {{item3.displayName}}
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div>
+                    <div *ngFor="let item4 of item3.children">
+                      <div class="nav-item" *ngIf="item4?.children.length > 0">
+                        <button class="nav-link">
+                          <span class="nav-icon-holder">
+                            <i class="{{item.iconName}}"></i>
+                          </span>
+                          {{item4.displayName}}
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+
+                      </div>
+                      <div class="nav-item" *ngIf="item4?.children.length == 0">
+                        <a class="nav-link" [routerLink]="'/' + item4.route" routerLinkActive="activeNav"
+                          [routerLinkActiveOptions]="{exact: true}">
+                          <span class="nav-icon-holder">
+                            <i class="{{item4.iconName}}"></i>
+                          </span>
+                          {{item4.displayName}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="nav-item" *ngIf="item3?.children.length == 0">
+                  <a class="nav-link" [routerLink]="'/' + item3.route" routerLinkActive="activeNav"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <span class="nav-icon-holder">
+                      <i class="{{item3.iconName}}"></i>
+                    </span>
+                    {{item3.displayName}}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item" *ngIf="item2?.children.length == 0">
+            <a class="nav-link" [routerLink]="'/' + item2.route" routerLinkActive="activeNav"
+              [routerLinkActiveOptions]="{exact: true}">
+              <span class="nav-icon-holder">
+                <i class="{{item2.iconName}}"></i>
+              </span>
+              {{item2.displayName}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item" *ngIf="item?.children.length == 0">
+      <a class="nav-link" [routerLink]="'/' + item.route" routerLinkActive="activeNav"
+        [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon-holder">
+          <i class="{{item.iconName}}"></i>
+        </span>
+        {{item.displayName}}
+      </a>
+    </div>
+
+  </div>

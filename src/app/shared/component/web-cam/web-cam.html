@@ -1,0 +1,33 @@
+<!-- <div class="modal-header">
+  <h5 class=" m-0">Capture a Image</h5>
+  <button class="close text-danger" (click)="modalRef.hide()" >X</button>
+</div> -->
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+    <button type="button" class="close text-danger" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ng-container *ngIf="errors.length>0">
+        <h4 class="text-danger">Error Messages:</h4>
+        <ul *ngFor="let error of errors">
+            <li>{{error.message}}</li>
+        </ul>
+    </ng-container>
+    <ng-container *ngIf="errors.length<1">
+        <!-- <webcam *ngIf="showWebcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+        </webcam> -->
+        
+    </ng-container>
+
+    <div class="text-center">
+        <button class="btn btn-success" (click)="triggerSnapshot();" title="Take Picture">📸 Capture</button>
+        <!-- <button class="btn btn-success" (click)="showNextWebcam(true);" title="Switch Camera">🔁</button> -->
+    </div>
+</div>
+<!-- <div class="modal-footer">
+    <button class="btn btn-success">OK</button>
+  </div> -->

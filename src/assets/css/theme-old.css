@@ -1,0 +1,3159 @@
+ul.theme-ul {
+	width: 100%;
+	height: 120px;
+	border: dashed 1px #929191;
+	padding: 2px;
+	margin-top: 12px;
+}
+.theme-ul li {
+	width: 14%;
+	float: left;
+	border: dashed 1px #607D8B;
+	margin: 3px;
+}
+.theme-ul li p {
+	color: #fff;
+	text-align: center;
+	line-height: 78px;
+	float: left;
+	width: 100%;
+	text-shadow: 0px 0px 2px #442200;
+	margin: 0px;
+	font-size: 19px;
+	cursor: pointer;
+}
+#themeNero {
+	background: #2a2a2a;
+}
+#themeMaroon{
+	background: #6e3d02;/* background: var(--orange); */
+}
+#themeTiber {
+	background: #0c1427;
+}
+#theme3Button {
+	background: #003366;
+}
+#theme4Button {
+	background: #fff;
+}
+#themeDefault {
+	background: #003366;
+}
+/*================================================== theme-nero ==================================================*/
+.theme-nero .chiller-theme .sidebar-wrapper {
+	background: #2a2a2a;
+}
+.theme-nero .chiller-theme .sidebar-wrapper .sidebar-brand {
+	background: #373737;
+	border-bottom: solid 4px #373737;
+	box-shadow: 0px 1px 3px #000 !important;
+}
+.theme-nero .page-wrapper.chiller-theme.toggled #close-sidebar {
+	background: #373737;
+}
+.theme-nero .page-wrapper.chiller-theme.toggled #close-sidebar {
+	color: #fff;
+}
+.theme-nero #show-sidebar {
+	background: #0a1123;
+}
+.theme-nero .sidebar-wrapper .sidebar-brand #close-sidebar {
+	color: #373737;
+}
+.theme-nero #show-sidebar {
+	background: #373737;
+}
+.theme-nero .chiller-theme .sidenav .dropdown-btn {
+	border-bottom: 0px;
+	box-shadow: none;
+	color: #bcbcbc !important;
+}
+.theme-nero .dropdown-btn {
+	color: #bcbcbc !important;
+	text-shadow: none;
+	font-size: 16px !important;
+}
+.theme-nero .sidebar-wrapper .dropdown-btn i {
+	color: #bcbcbc;
+}
+.theme-nero .chiller-theme header.headerTop {
+	background: #ffffff;
+	border-top: solid 2px #ffffff;
+}
+.theme-nero .notifiactionArea li i {
+	color: #a0a0a0 !important;
+}
+.theme-nero .userInfoAll h5 {
+	color: #424a44 !important;
+}
+.theme-nero .userInfoAll h6 {
+	color: #28a745 !important;
+}
+.theme-nero .dropDownModule button {
+	text-shadow: none !important;
+}
+.theme-nero .dropDownModule button i {
+	color: #1FAE5B;
+}
+.theme-nero .body{
+	background: #e3e3e3 !important;
+}
+.theme-nero .sidebar-menu .active {
+	background: #373737 !important;
+	border-left: solid 3px #1FAE5B;
+}
+.theme-nero .dropdown-container {
+	background: #373737;
+}
+.theme-nero .dropdown-container a {
+	border-bottom: solid 1px #373737;
+	box-shadow: 0px 1px 0px #373737;
+}
+.theme-nero .chiller-theme .sidebar-wrapper {
+	border-left: 0px !important;
+}
+.theme-nero .activeNav {
+	background: #404040 !important;
+	border-left: solid 3px #26a05a;
+}
+.theme-nero .notifiactionArea p {
+	background-color: #eceaea !important;
+	color: #039825 !important;
+	border-bottom: solid 1px #d0caca !important;
+}
+.theme-nero .notifiactionArea .dropdown-item span {
+	color: #fff !important;
+	background-color: #619bf2 !important;
+	border-color: #619bf2 !important;
+}
+.theme-nero .notifiactionArea li.dropdown-item i {
+	color: #fff !important;
+}
+.theme-nero .notifiactionArea p i {
+	color: #000 !important;
+}
+.theme-nero .headerTop .dropdown-menu.show {
+	box-shadow: -2px 0px 8px rgba(0,0,0,.5) !important;
+}
+.theme-nero .notifiactionArea .dropdown-item a {
+	color: #0c1427;
+}
+.theme-nero .settingTop {
+	background: #eceaea !important;
+	color: #08a74a !important;
+	border-bottom: solid 1px #bfbfbf !important;
+}
+.theme-nero .notifiactionArea p:before {
+	border-bottom: solid 10px #eceaea !important;
+}
+.theme-nero .settingTop:before {
+	border-bottom: solid 10px #eceaea !important;
+}
+.theme-nero .moduleuL {
+	border: solid 1px #d0cece !important
+}
+.theme-nero .moduleuL li {
+	background: transparent !important;
+	border-radius: 40px !important;
+}
+.theme-nero .moduleuL li:nth-child(1) {
+	border: solid 1px #2b752e;
+}
+.theme-nero .opdBg {
+	border: solid 1px #03A9F4 !important;
+}
+.theme-nero .pharmacyBg {
+	border: solid 1px #e6673f !important;
+}
+.theme-nero .diagnosticBg {
+	border: solid 1px #919c1e !important;
+}
+.theme-nero .moduleuL li {
+	color: #0c1427 !important;
+}
+.theme-nero .moduleuL li a {
+	color: #0c1427 !important;
+}
+.theme-nero .settingHeader {
+	color: #1fae5b !important;
+}
+.theme-nero .show > .btn-info.dropdown-toggle.settingHeader {
+	color: #1fae5b;
+}
+.theme-nero .dropDownPosition {
+	border: 0px !important;
+}
+.theme-nero .userProfilebtn {
+	border: solid 1px #048239 !important;
+	background: #1FAE5B;
+	border-radius: 50px;
+}
+.theme-nero .pannelHeading {
+	border-top: solid 1px #ddd !important;
+	border: solid 1px #ddd !important;
+	color: #333 !important;
+	background: #f1f1f1 !important;
+
+}
+.theme-nero .crudArea {
+	border-top: solid 1px #ddd !important;
+	border: solid 1px #ddd !important;
+	color: #333 !important;
+	background: #f1f1f1 !important;
+
+}
+.theme-nero .crudArea h4{
+	color: #100f0f !important;
+}
+
+.theme-nero .tab-content .pannelHeading {
+	border-left: 0px !important;
+	border-right: 0px !important;
+}
+.theme-nero .subHeading {
+	color: #0c1427;
+	border-right: 1px solid #e2dfdf;
+	box-shadow: 1px 0px 1px -1px #ffffff;
+}
+.theme-nero .pannelArea {
+	border: solid 1px #ddd;
+}
+.theme-nero ul.theme-ul {
+	border: 0px;
+}
+.theme-nero .all_content_wrapper .form-control {
+	border-color: #cbd5dd !important;
+}
+.theme-nero .typeAheadNurser .ng-select .ng-select-container {
+	border-color: #cbd5dd !important;
+}
+.theme-nero .all_content_wrapper .input-group-text {
+	border: 1px solid #cbd5dd !important;
+}
+.theme-nero .lebelBg {
+	background: #eee !important;
+	color: #171616 !important;
+}
+/* .theme-nero .all_content_wrapper {
+	margin-top: 7px;
+} */
+.theme-nero .colorB0 {
+	background: #18a252 !important;
+	border: solid 1px #18a252 !important;
+}
+.theme-nero .colorB1 {
+	background: #18a252 !important;
+	border: solid 1px #18a252 !important;
+}
+.theme-nero .colorB2 {
+	background: #18a252 !important;
+	border: solid 1px #18a252 !important;
+}
+.theme-nero .colorB3 {
+	background: #18a252 !important;
+	border: solid 1px #18a252 !important;
+}
+.theme-nero .colorB4 {
+	background: #18a252 !important;
+	border: solid 1px #18a252 !important;
+}
+.theme-nero .btn-danger {
+	background-color: #aa3d2a !important;
+	border-color: #aa3d2a !important;
+	border-radius: 40px;
+}
+.theme-nero .btn-primary{
+	border-radius: 40px;
+}
+.theme-nero .btn-secondary{
+	border-radius: 40px;
+}
+.theme-nero .btn-info{
+	border-radius: 40px;
+	border-color: #17a2b8 !important;
+}
+.theme-nero .btn-warning{
+	border-radius: 40px;
+	border-color: #ffc107 !important;
+}
+.theme-nero .btn-dark{
+	border-radius: 40px;
+}
+
+.theme-nero .lebelBgA {
+	background: #eeeeee !important;
+	color: #171616 !important;
+}
+.theme-nero .pannelBody {
+	padding: 0px;
+}
+.theme-nero .gridArea {
+	border: solid 1px #ddd !important;
+	border-radius: 0px !important;
+}
+.theme-nero .btnAllRow button {
+	border: solid 1px #fff !important;
+	border-radius: 40px !important;
+	box-shadow: none !important;
+}
+.theme-nero .dataTables_length select {
+	border: solid 1px #cbd5dd;
+	border-radius: 40px;
+}
+.theme-nero .dataTables_length label {
+	color: #28a745;
+}
+.theme-nero .dataTables_filter input {
+	border: solid 1px #cbd5dd;
+}
+.theme-nero .dataTables_filter label {
+	color: #28a745;
+}
+.theme-nero button.searhbtnClr {
+	background-color: #e0e0e0 !important;
+	color: #2e3330 !important;
+}
+.theme-nero .btn-reset {
+	background: #e0e0e0 !important;
+	border-left: solid 1px #580008 !important;
+	color: #aa3d2a !important;
+}
+.theme-nero .legend-title2 {
+	background: #d0cdcd !important;
+	background: linear-gradient(to bottom, #eeeeee 51%, #eeeeee 51%, #d0cdcd 51%, #e0dddd 51%, #a7a7a7 100%) !important;
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#daa520', endColorstr='#c2921b', GradientType=0 ) !important;
+	box-shadow: 0px 0px 4px #615b5b !important;
+	color: #000  !important; 
+
+}
+.theme-nero .legend-title {
+	background: #d0cdcd !important;
+	background: linear-gradient(to bottom, #eeeeee 51%, #eeeeee 51%, #d0cdcd 51%, #e0dddd 51%, #a7a7a7 100%) !important;
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#daa520', endColorstr='#c2921b', GradientType=0 ) !important;
+	box-shadow: 0px 0px 4px #615b5b !important;color: #000  !important; 
+}
+.theme-nero .fieldSet {
+	background: #ffffff !important;
+	box-shadow: 0px 0px 3px #797676 !important;
+}
+.theme-nero .fieldSet2 {
+	background: #ffffff !important;
+	box-shadow: 0px 0px 3px #797676 !important;
+}
+.theme-nero .opdQueueFooter {
+	background: #f1f1f1 !important;
+	border-top: solid 1px #e6e1e1 !important;
+}
+.theme-nero .modal-header {
+	background: #f4f8fa !important;
+	color: #101010 !important;
+}
+.theme-nero .pannelBody{
+	border-color:#e0e0e0 !important;
+	
+}
+.theme-nero .changeRoom select {
+	border: solid 1px #cbd5dd !important;
+	border-radius: 40px !important;
+}
+.theme-nero .changeRoom p label {
+	color: #279a41;
+}
+.theme-nero .savebutton {
+	border: 0px !important;
+	box-shadow: none !important;
+	background: #199c50 !important;
+}
+.theme-nero .clearOpd {
+	border: 0px !important;
+	box-shadow: none !important;
+}
+.theme-nero .clearOpd {
+	background: #aa3d2a !important;
+}
+.theme-nero .pannelArea {
+	border: solid 1px #dddddd !important;
+}
+.theme-nero .addressBolock {
+	background: #dbe5e8 !important;
+	border: solid 1px #8f9a92 !important;
+}
+.theme-nero .btn-primary {
+	border-radius: 40px;
+}
+.theme-nero .btn-success {
+	border-radius: 40px;
+}
+.theme-nero .marginTopFieldset .btn-success {
+	border-radius: 6px !important;
+}
+.theme-nero .registartionTab ul.nav.nav-tabs {
+	background: #f4f8fa !important;
+	border: solid 1px #c4dae4 !important;
+	border-bottom: 0px !important;
+}
+.theme-nero .registartionTab .tab-content {
+	border: solid 1px #c4dae4;
+}
+.theme-nero .registartionTab .nav-tabs li a {
+	border: solid 1px #8db8cc !important;
+	background: #ecf9ff !important;
+	border-bottom: solid 1px #fff !important;
+}
+.theme-nero .registartionTab .nav-tabs .nav-link.active {
+	color: #020202 !important;
+	background-color: #d5e9f3 !important;
+	border: solid 1px #8db8cc !important;
+	border-bottom: solid 1px #fff !important;
+}
+.theme-nero app-prescription-all-statistics .date-group .date-group-input{
+	border: 1px solid #1fae5b !important;
+}
+.theme-nero app-prescription-all-statistics .date-group .date-group-span{
+	border-top: 1px solid #1fae5b !important;
+	border-bottom: 1px solid #1fae5b !important;
+	background-color: #18a252 !important;
+}
+.theme-nero .subHeadingDocSetup button{
+	box-shadow: none !important;
+}
+.theme-nero .bgImgAll {
+	background: #fff !important;
+	border: solid 3px #cee0e0 !important;
+}
+.theme-nero .bgImgAll label {
+	color: #000 !important;
+}
+.theme-nero .bgImgAll .form-control {
+	background-color: #fff !important;
+	border: solid 1px #425437 !important;
+	color: #000 !important;
+	border-color: #cbd5dd !important;
+}
+.theme-nero .bgImgAll th {
+	color: #000 !important;
+}
+.theme-nero .bgImgAll td {
+	color: #000 !important;
+}
+.theme-nero .btnShadow .btn{
+	box-shadow:none !important;
+}
+.theme-nero .invoiceF{
+	border: solid 1px #cac1c1 !important;
+}
+.theme-nero .legTitlein{
+	background: #d0cdcd !important;
+	background: linear-gradient(to bottom, #eeeeee 51%, #eeeeee 51%, #d0cdcd 51%, #e0dddd 51%, #a7a7a7 100%) !important;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#daa520', endColorstr='#c2921b', GradientType=0 ) !important;
+	box-shadow: 0px 0px 4px #615b5b !important;
+	color: #000 !important;
+}
+.theme-nero .continueMedicineArea p {
+	background: #f4f8fa !important; 
+}
+.theme-nero app-user-preference .crudArea{
+	border: solid 1px #ddd !important;
+	border-left: 0px !important;
+	border-right: 0px !important;
+	color: #333 !important;
+	background: #f1f1f1 !important;
+}
+
+.theme-nero .topheader {
+	background: #f3f1f1 !important;
+}
+.theme-nero .patientDemo {
+    background: #ffffff !important;
+    border-bottom: solid 1px #dddddd !important;
+}
+.theme-nero  .rowmargin .searchHeader {
+	background: #f5f0f0 !important;
+}
+.theme-nero .tab-content.tab_custom_area {
+	border: solid 1px #c4dae4 !important;
+}
+.theme-nero .pannel_left h6 {
+    color: #010101 !important;
+	background-image: linear-gradient(135deg, #eaf0f3 0, #adbaba 100%) !important;
+}
+
+.theme-nero .investigation_area {
+	border-top: solid 1px #c4dae4 !important;
+}
+.theme-nero .bgLefrPres {
+    background: #f6fbfc !important;
+    border-right: solid 1px #c4dae4 !important;
+
+}
+.theme-nero .pannel_left {
+    height: 264px !important;
+    background: #f6fbfc !important;
+}
+.theme-nero .investigationleft h3{
+	color: #010101 !important;
+	background-image: linear-gradient(135deg, #eaf0f3 0, #adbaba 100%) !important;
+}
+.theme-nero .tab-color .tab-content {
+	border: solid 1px #cdd6d8 !important;
+}
+.theme-nero .prescriptionTab .btn-warning {
+    border-radius: 5px !important;
+  
+}
+.theme-nero .prescriptionTab #allBtnArea .btn-primary{
+	border-radius: 5px !important;
+}
+.theme-nero .roomStatus {
+    background: #ecf3f5 !important;
+	border: solid 1px #d5dddf !important;
+}
+.theme-nero .color_grid_one {
+    background: #f7f7f7 !important;
+    border-right: solid 1px #cad3d5 !important;
+}
+.theme-nero .vitalAreaTop {
+	border: solid 1px #d2dadc !important;
+	background: #ecf3f5 !important;
+}
+.theme-nero .border-left-color {
+    border-left: solid 1px #ccd5d6 !important;
+	border-top: solid 1px #cad3d5 !important;
+}
+.theme-nero .border-top-color {
+	border-top: solid 1px #cbd4d5 !important;
+}
+
+.theme-nero .main_table_content {
+	border-top: solid 1px #cad3d4 !important;
+}
+.theme-nero .fullWidth {
+	background: #f4f8fa !important;
+    border: solid 1px #cbd4d5 !important;
+}
+.theme-nero button.btnAllModal {
+    background: #dce4e7 !important;
+	border: 1px #ced7d8 solid !important;
+}
+
+.theme-nero .registartionTab .tab-color ul.nav.nav-tabs {
+	background: #5e8e9729 !important;
+    border: solid 1px #d6e3e5 !important;
+    border-bottom: 0px!important;
+}
+.theme-nero .registartionTab .tab-color .nav-tabs .nav-link.active {
+	color: #030303 !important;
+    background-color: #d0e5eb !important;
+    border: solid 1px #a9bfc4 !important;
+}
+.theme-nero .registartionTab .tab-color .nav-tabs li a {
+	border: solid 1px #a4bdc0 !important;
+    border-bottom: 1px solid #fff !important;
+    background: #fcffff5e!important;
+}
+.theme-nero .diagnosticsystem  .tox :not(svg) {
+	color: black !important;
+}
+.theme-nero .editorDischarge .tox-menubar{
+	background-image: linear-gradient(135deg, #eaf0f3 0, #adbaba 100%) !important;
+}
+
+.theme-nero .editorDischarge2 .tox-tinymce {
+	border: solid 1px #c7d1d2 !important;
+}
+
+.theme-nero .pacsBtn { 
+    border: solid 1px #ffffff !important;
+    background-image: linear-gradient(135deg, #ffffff 0, #ffffff 100%) !important;
+    color: #000000 !important;
+}
+.theme-nero .patientInfo{
+    background-image: linear-gradient(135deg, #e3ecf1 0, #d1d9dd 100%) !important;
+	color: #000 !important;
+}
+
+.theme-nero div#patient_demograph {
+	border: solid 1px #c9d2d3 !important;
+}
+.theme-nero #right-sidebar {
+  
+	border: solid 1px #c2cdce !important;
+}
+.theme-nero .editorDischarge .tox .tox-mbtn--active {
+    background: #f4f8fa !important;
+}
+
+.theme-nero .resultEntrySetting .reportBtn {
+    background-color: #ffffff !important;
+    border-color: #bec9ca !important;
+    border-radius: 4px !important;
+    color: black !important;
+}
+.theme-nero .leftPannelLab .tab-content {
+    background: #ffffff !important;
+}
+.theme-nero div#reportButton {
+	border: solid 1px #cbd4d5 !important;
+}
+.theme-nero .searchPannel {
+	background: #c8d1d2 !important;
+}
+.theme-nero  .tox :not(svg) {
+	color: black !important;
+}
+.theme-nero .template-list th{
+	background-image: linear-gradient(135deg, #eaf0f3 0, #adbaba 100%) !important;
+	color: #000 !important;
+}
+.theme-nero .editorDischarge editor {
+	border: solid 1px #c5cfd0 !important;
+}
+.theme-nero .template-list {
+	border: solid 1px #bac5c6 !important;
+}
+.theme-nero .post-pre-ot h3 {
+	border: solid 1px #c1cbcc !important;
+}
+.theme-nero .post-pre-ot .hisbtn {
+    border: solid 1px #ffffff !important;
+    background-image: linear-gradient(135deg, #ffffff 0, #ffffff 100%)!important;
+	color: #000000 !important;
+}
+.theme-nero .bg-other-info {
+    background: #dde4e77d !important;
+}
+.theme-nero .accordionCustom .card-header {
+	border: solid 1px #dbdbdb !important;
+}
+.theme-nero .accordionCustom .panel-title {
+    background: #ffffff !important;
+    color: #FFF !important;
+}
+.theme-nero .borderColor { 
+    border: solid 1px #e3e0e0 !important;
+}
+.theme-nero .pannelHeadi{
+    border-bottom: solid 1px #ddd !important;
+    background: #ededed !important;
+	
+}
+.theme-nero .subHeading {
+	color: #000 !important;
+}
+.theme-nero .fieldsetBgPatient {
+    background-color: #f9f7f7 !important;
+    border: solid 1px #a4adb1 !important;
+}
+.theme-nero .fieldsetBgEmargencyTop {
+    background: #f1eeee !important;
+    border-bottom: solid 1px #d6d6d6 !important;
+}
+.theme-nero .signH4 {
+    border: solid 1px #c3c8be !important;
+    background: #eef3f3 !important
+}
+.theme-nero .borderTable{
+  border: solid 1px #f5f1f1 !important;
+}
+
+.theme-nero  app-setup .allInner {
+	border: solid 1px #d6d3d3 !important;
+}
+.theme-nero  app-setup .allTitle {
+
+	border: solid 1px #d8dadd !important;
+}
+.theme-nero app-policy-setup .allInner{
+	border: 0px !important;
+}
+.theme-nero app-policy-bill .allInner{
+	border: 0px !important;
+}
+.theme-nero app-policy-rank-years .allInner{
+	border: 0px !important;
+}
+.theme-nero app-add-user .btnAcc {
+	background: #ffffff !important;
+	border-color: #e3e3e3 !important;
+    border: 2px solid #e3e3e3 !important;
+    border-radius: 4px 4px 0 0 !important;
+}
+.theme-nero .color_two h4 {
+    background: #f1f1f1 !important;
+	position: relative !important;
+    color: #000 !important;
+}
+.theme-nero .color_two {
+    border: 1px solid #e1dddd !important;
+}
+.theme-nero .color_two h4 span {
+	background: #f1f1f1 !important;
+    border-right: solid 1px #d0d8d8 !important;
+    box-shadow: 1px 0px 0px #f4f7f7 !important;
+	color: black !important;
+}
+.theme-nero .block_all h4 {
+	background: #f1f1f1 !important;
+}
+.theme-nero .block_all h4 span {
+   
+	color: #050505 !important;
+    background: #f1f1f1 !important;
+    border-right: solid 1px #f1f1f1 !important;
+    box-shadow: 1px 0px 0px #c8c4c4 !important;
+}
+.theme-nero .color_one {
+    border: 1px solid #e3e1e1 !important;
+}
+
+.theme-nero .typeAhead .ng-select .ng-select-container {
+	border: solid 1px #dfdada !important;
+}
+.theme-nero .tab-content {
+	border: solid 1px #dbd5d5 !important;
+}
+.theme-nero .nav-tabs {
+	border-bottom : solid 1px #dbd5d5 !important;
+}
+.theme-nero  .nav-tabs .nav-link.active {
+	border: solid 1px #dbd7d7 !important;
+}
+.theme-nero .bgGray {
+	background: #ffffff !important;
+}
+.theme-nero .tablePres {
+	background: #f1f1f1 !important;
+}
+.theme-nero .customW4 {
+    background: #ffffff !important;
+}
+.theme-nero .report-page{
+	border: solid 1px #d4d6d8 !important;
+}
+.theme-nero  .emergencyTab .nav-tabs {
+    border-bottom: solid 1px #f1f1f1 !important;
+}
+.theme-nero  app-step-reverse .allInner {
+	border: solid 1px #cad3d6;
+}
+
+.theme-nero .borderAu {
+    border: solid 1px #c3c8be;
+}
+
+.theme-nero .persoanlInfoArea .form-control {
+    border: solid 1px #cabebe !important;
+  
+}
+/* table.dataTable thead .sorting_asc {
+  background-color: #f1f1f1 !important;
+} */
+
+
+/*================================================== theme 1 yellow ==================================================*/
+.theme-maroon header.headerTop {
+	background: #6e3d02!important;
+}
+.theme-maroon .userProfilebtn {
+	padding: 3px 42px;
+	border: solid 1px #ebb101!important;
+	margin: 9px;
+	margin-bottom: 20px;
+	background: transparent!important;
+	color: #a37b01;
+}
+.theme-maroon .notifiactionArea p {
+	background-color: #a77f05!important;
+	color: #000!important;
+}
+.theme-maroon .notifiactionArea a {
+	color: #000 !important;
+}
+.theme-maroon .notifiactionArea p:before {
+	border-bottom: solid 10px #a77f05!important;
+}
+.theme-maroon .notifiactionArea .dropdown-item span {
+	color: #fff;
+	background-color: #a77f05!important;
+	border-color: #a77f05 !important;
+}
+.theme-maroon .settingTop {
+	background: #a77f05!important;
+	border-bottom: solid 10px #a77f05!important;
+}
+.theme-maroon .settingTop:before {
+	border-bottom: solid 10px #a77f05!important;
+}
+.theme-maroon .dropDownPosition {
+	border: solid 1px #a77f05!important;
+}
+.theme-maroon .userProfilebtn {
+	border: solid 1px #2582c8;
+	background-color: #2583c8;
+}
+.theme-maroon .chiller-theme .sidebar-wrapper {
+	background: #6e3d02 url(../images/navbg.png) right bottom no-repeat;
+	box-shadow: 0px 0px 28px #694920 inset;
+}
+.theme-maroon .chiller-theme .sidenav .dropdown-btn {
+	border-bottom: solid 1px #5d3503;
+	box-shadow: 0px 1px 0px #804a07;
+}
+.theme-maroon .chiller-theme .sidebar-wrapper .sidebar-brand {
+	background: #6e3d02;
+	box-shadow: 0px 0px 2px #512e04;
+	border-bottom: solid 2px #6e3d02;
+}
+.theme-maroon .page-wrapper.chiller-theme.toggled #close-sidebar {
+	background: #6e3d02;
+}
+.theme-maroon .chiller-theme header.headerTop {
+	background: #6e3d02;
+}
+.theme-maroon #show-sidebar {
+	background: #6e3d02;
+}
+.theme-maroon .sidebar-wrapper .sidebar-brand #close-sidebar {
+	color: #6e3d02;
+}
+.theme-maroon .page-wrapper.chiller-theme.toggled #close-sidebar {
+	color: #fff;
+}
+.theme-maroon .sidebar-wrapper .dropdown-btn i {
+	color: #fff;
+}
+.theme-maroon .sidebar-menu .active {
+	background: #ab5f00 !important;
+	border-left: solid 2px #ec890c;
+}
+.theme-maroon .activeNav {
+	background: #8c4e01 !important;
+	border-left: solid 2px #e88307;
+}
+.theme-maroon .dropdown-container {
+	background: #ab6106;
+}
+.theme-maroon .dropdown-container a {
+	border-bottom: solid 1px #8e4f01;
+	box-shadow: 0px 1px 0px #da7e0c;
+}
+.theme-maroon .dropdown-btn {
+	color: #fff !important;
+	text-shadow: 0px 1px 1px #6f4005;
+	font-size: 16px !important;
+}
+.theme-maroon .pannelArea {
+	border: solid 1px #a05903 !important;
+}
+.theme-maroon .pannelHeading {
+	background: #6d3c00;
+	/* Old browsers */
+	background: linear-gradient(to bottom, #6d3c00 0%, #794402 44%, #9c5805 78%);
+}
+.theme-maroon .subHeading {
+	border-right: 1px solid #5f3500 !important;
+	box-shadow: 1px 0px 1px -1px #a55b02 !important;
+}
+.theme-maroon .fieldSet2 {
+	background: #2b5365 !important;
+}
+.theme-maroon .legend-title {
+	color: #fffdfd !important;
+	background: #154196 !important;
+	background: linear-gradient(to bottom, #37445d 51%, #3a5a69 51%, #283246 51%) !important;
+}
+.theme-maroon .registartionTab .nav-tabs .nav-link.active {
+	background-color: #5f460c !important;
+	border: solid 1px #382c11 !important;
+	border-bottom: 1px solid #fff !important;
+	color: #fff!important;
+}
+.theme-maroon .registartionTab ul.nav.nav-tabs {
+	background: #937e46;
+	border: solid 1px #4c3c0d;
+}
+.theme-maroon .registartionTab .nav-tabs li a {
+	border: solid 1px #463d27 !important;
+	background: #7c6736 !important;
+	color: #fff !important;
+	border-bottom: 1px solid #fff !important;
+}
+.theme-maroon .registartionTab .tab-content {
+	border: solid 1px #5d3b07;
+}
+.theme-maroon .registartionTab .tab-color ul.nav.nav-tabs {
+	background: #4b84ad !important;
+}
+.theme-maroon .registartionTab .tab-color .nav-tabs li a {
+	border: solid 1px #172e3e !important;
+	background: #356486 !important;
+	color: #fff !important;
+	border-bottom: 1px solid #fff !important;
+}
+.theme-maroon .registartionTab .tab-color .nav-tabs .nav-link.active {
+	background-color: #1a4c70 !important;
+	border: solid 1px #172e3e !important;
+	border-bottom: 1px solid #fff !important;
+	color: #fffdfd !important;
+}
+.theme-maroon .btnAllRow button {
+	border-radius: 50px;
+}
+.theme-maroon .btnAllRow button {
+	border-radius: 35px;
+}
+.theme-maroon .btn-success {
+	background: linear-gradient(to top, #28a745 13%, #16732c 67%);
+}
+.theme-maroon .btn-danger {
+	background: linear-gradient(to top, #dc3545 13%, #a22733 67%);
+}
+.theme-maroon .btn-warning {
+	background: linear-gradient(to top, #c3b208 13%, #dac622 67%);
+}
+.theme-maroon .btn-primary {
+	background-color: #0074a2;
+	border: 1px solid #eff5f7 !important;
+}
+.theme-maroon .prescriptionTab .btn-primary {
+	background-color: #0074a2!important;
+	border: 1px solid #1473a2 !important;
+}
+
+
+ .theme-maroon .lebelBg .form-control {
+	border: 1px solid #39676d !important;
+}
+/* .theme-maroon .all_content_wrapper .form-control {
+	border: 1px solid #39676d;
+} */
+
+.theme-maroon .all_content_wrapper .input-group-text {
+	border: 1px solid #39676d;
+	border-left: 1px solid #39676d!important;
+}
+.theme-maroon .searchHeaderField .input-group-text {
+	border-left: 0px;
+	background: linear-gradient(to top, #2e6e76 13%, #39686e 67%);
+}
+.theme-maroon .lebelBgA {
+	background: linear-gradient(to top, #2e6e76 13%, #39686e 67%);
+}
+.theme-maroon .lebelBg {
+	background: linear-gradient(to top, #2e6e76 13%, #39686e 67%);
+}
+.theme-maroon .modify-form .input-group .input-group-text {
+	background: linear-gradient(to top, #2e6e76 13%, #39686e 67%);
+}
+.theme-maroon .departmentGo {
+	background: #2c6daf !important;
+}
+.theme-maroon .doctorContent:after {
+	background: #07427e !important;
+}
+.theme-maroon .departmentArea h4 {
+	color: #07427e !important;
+}
+.theme-maroon .doctorContent {
+	border-top: solid 2px #07427e !important;
+	border-bottom: solid 2px #07427e!important;
+}
+.theme-maroon .roomAvater {
+	background: #c97205 !important;
+}
+/* .theme-maroon .allTitle{
+    border: solid 1px #784302!important;
+    border-bottom: solid 1px #ffffff !important;
+  }
+   
+  .theme-maroon  .allInner{
+    border: solid 1px #784302!important;
+  }    */
+
+.theme-maroon .employeeArea .form-control {
+	border: 1px solid #6bb5d2!important;
+}
+/* opd prescription */
+ 
+
+.theme-maroon .departmentGo:after {
+	background: #2c6daf!important;
+}
+.theme-maroon .departmentArea h4 a {
+	color: #2c6daf !important;
+}
+.theme-maroon .roomStatus {
+	background: #ceab7829!important;
+}
+.theme-maroon .vitalAreaTop {
+	background: #c2973a1a;
+}
+.theme-maroon .tab-content.tab_custom_area {
+	border: solid 1px #937c46 !important;
+	border-top: 0px!important;
+}
+.theme-maroon .tab-color .tab-content {
+	border: solid 1px #4b84ad !important;
+	border-top: 0px!important;
+}
+.theme-maroon .continueMedicineArea p {
+	background: #937d46;
+	color: white;
+}
+.theme-maroon .prescriptionTab ul.nav.nav-tabs {
+	border-bottom: solid 1px #4d3d0d !important;
+}
+.theme-maroon .pannel_left h6 {
+	background-image: linear-gradient(135deg, #c49c29 0, #3c2f09 100%);
+}
+.theme-maroon .pannel_left {
+	background: #e9e6e00d !important;
+}
+.theme-maroon .bgLefrPres {
+	background: #f3eee1c4 !important;
+	border-right: solid 1px #7e6318ab !important;
+}
+.theme-maroon .investigationleft h3 {
+	background-image: linear-gradient(135deg, #c49c29 0, #3c2f09 100%)!important;
+}
+.theme-maroon .investigation_area {
+	border-top: solid 1px #7e6318ab;
+}
+.theme-maroon .fullWidth {
+	background: #f7f4f0a6!important;
+}
+.theme-maroon .modal-header {
+	background: #6e3d02;
+}
+.theme-maroon #saveTemplate2 {
+	border: solid 1px #be9160a1!important;
+}
+.theme-maroon #collapseTemplate {
+	border: solid 1px #be9160a1!important;
+}
+.theme-maroon .opdQueueFooter {
+	background: #efedd36b !important;
+	border-top: solid 2px #ade9fd!important;
+}
+.theme-maroon .fieldSet {
+	background: #f7ede2a6!important;
+}
+.theme-maroon .diagnosticTop2 {
+	background-color: #ebefe9;
+	border: solid 1px #dfe7db !important;
+}
+.theme-maroon .addressBolock {
+	background: #f7d6b71f;
+}
+.theme-maroon .allprescriptionBlock-Row .form-control {
+	border-color: #a8d7ea !important;
+}
+.theme-maroon .vitalAreaTop .form-control {
+	border-color: #a8d7ea !important;
+}
+.theme-maroon .fullWidth .form-control {
+	border-color: #a8d7ea !important;
+}
+.theme-maroon .investigationleft .btnLab {
+	background-color: #009688;
+	border-color: #17a2b8;
+}
+.theme-maroon .opd-registration-tab .btn-primary {
+	background-color: #3F51B5 !important;
+	border-color: #3F51B5 !important;
+}
+.theme-maroon .bg-custom1 {
+	background: #ff980017!important;
+}
+.theme-maroon .Condiscount {
+	border-bottom: solid 1px #6e3d02 !important;
+}
+.theme-maroon .invoiceF {
+	border: solid 1px #6e3d02 !important;
+}
+.theme-maroon .tableBorder {
+	border: 1px solid #6e3d02!important;
+}
+.theme-maroon .patientDetailTop {
+	border: solid 1px #6e3d02!important;
+	border-bottom: 0px!important;
+}
+.theme-maroon .searhbtnClr {
+	background-color: #fb8264 !important;
+	color: #fff;
+	border: 1px solid #fb8264 !important;
+}
+.theme-maroon .btn-reset {
+	border: 1px solid #b62d39 !important;
+}
+.theme-maroon .rightPannelHeader {
+	background: #8f955a14!important;
+	border-bottom: solid 1px #764812!important;
+}
+.theme-maroon span.invoiceSpan {
+	border: solid 2px #884949!important;
+	color: #151514 !important;
+}
+.theme-maroon .disArea {
+	border: solid 1px #c0a380!important;
+}
+.theme-maroon .gridArea {
+	border: solid 1px #6e3d02!important;
+}
+.theme-maroon .heightDateInput {
+	border: 1px solid #6bb5d2!important;
+}
+.theme-maroon .quickReistration ul.nav.nav-tabs {
+	border-bottom: 1px solid #6e3d02 !important;
+}
+.theme-maroon .dataTable2 th {
+	background: #f4f3dfd1 !important;
+}
+/* pathlogoy */
+.theme-maroon .paddingSearch {
+	background-color: #fb8264!important;
+}
+.theme-maroon .theme-maroon .all_content_wrapper .input-group-text .paddingSearch {
+	border: 1px solid #fa8263!important;
+	border-left: 1px solid #fa8263!important;
+}
+/* radiology */
+.theme-maroon .crudArea {
+	background: #6d3c00;
+	background: linear-gradient(to bottom, #6d3c00 0%, #794402 44%, #9c5805 78%);
+}
+.theme-maroon .editorDischarge2 .tox-tinymce {
+	border: solid 1px #b99326;
+}
+.theme-maroon #right-sidebar {
+	border: solid 1px #b99326!important;
+}
+.theme-maroon #patient_demograph {
+	border: solid 1px #b99326!important;
+}
+.theme-maroon .editorDischarge .tox-menubar {
+	background-image: linear-gradient(135deg, #c49c29 0, #3c2f09 100%) !important;
+}
+.theme-maroon .pacsBtn {
+	background-image: linear-gradient(135deg, #ffd65b 0, #2b3e10 ) !important;
+}
+.theme-maroon .patientInfo {
+	background-image: linear-gradient(135deg, #fb9807 0, #011917 100%)!important;
+}
+.theme-maroon .patientDemo {
+	background: #bcdbe7b0!important;
+}
+.theme-maroon .btnAllResulRightSide .form-control {
+	border-color: #51a7b6 !important;
+}
+.theme-maroon .margBotomC .form-control {
+	border: 1px solid #6bb5d2!important;
+}
+.theme-maroon div#reportButton {
+	border: solid 1px #de8a0d!important;
+}
+.theme-maroon .colone {
+	border: solid 1px #9a8554 !important;
+}
+.theme-maroon .paddingDashboard .allInner{
+	border: solid 1px #a05903;
+}
+.theme-maroon .allTitle{
+	border-color: #a05903 !important;
+    border-bottom: solid 1px #fff !important;color: #b76706 !important;
+}
+.theme-maroon .allInner{
+	border-color: #a05903 !important;
+}
+
+.theme-maroon .color_two h4 span {
+    background: #22666b !important;
+    border-right: solid 1px #22666b !important;
+    box-shadow: 1px 0px 0px #8ccfd4 !important;
+}
+.theme-maroon .color_two h4 {
+    background: #22666b !important;
+    position: relative;
+    color: #fff;
+}
+.theme-maroon .color_two {
+    border: 1px solid #22666b !important;
+}
+
+.theme-maroon .block_all h4 span {
+
+    color: #f9f5f5;
+	background: #22666b;
+	border-right: solid 1px #8ccfd4;
+	box-shadow: 0px 0px 0px #8ccfd4;
+}
+
+.theme-maroon .color_one {
+	border: 1px solid #45a0a7 !important;
+}
+
+.theme-maroon .block_all h4 {
+	background: #22666b;
+    color: white;
+}
+
+.theme-maroon .accordionCustom .panel-title {
+	background: #e0d0a1 !important;
+}
+
+.theme-maroon .accordionCustom .card-header {
+	border: solid 1px #9e9167 !important;
+}
+
+.theme-maroon .accordionCustom accordion-group:before {
+	background: #6d6446 !important;
+	border-right: solid 1px #38311e !important;
+}
+.theme-maroon .btnAcc {
+	background: #e0d7bb !important;
+	border: 2px solid #9e9167 !important;
+}
+
+.theme-maroon .h5SubModule {
+	border-left: solid 2px #7c6736 !important;
+}
+
+.theme-maroon .tab-content {
+	border: solid 1px #804804 !important;
+	border-top: none !important;
+}
+
+.theme-maroon .nav-tabs {
+	border-bottom : solid 1px #804804!important;
+}
+.theme-maroon .nav-tabs .nav-link.active {
+	border: solid 1px #804804 !important;
+	border-bottom: solid 1px #f7f7f7 !important;
+}
+.theme-maroon .template-list th {
+	background-image: linear-gradient(135deg, #b58f26 0, #57460f 100%) !important;
+}
+.theme-maroon .template-list {
+	border: solid 1px #795f16 !important;
+	border-right: solid 1px #fff9e8 !important;
+}
+.theme-maroon app-discharge-certificate .editorDischarge editor {
+	border: solid 1px #836718 !important;
+}
+.theme-maroon .post-pre-ot h3{
+	border: solid 1px #93741d !important;
+	border-bottom: solid 1px #f9f8f4 !important;
+}
+.theme-maroon .post-pre-ot .hisbtn {
+	border: solid 1px #ad8923 !important;
+	background-image: linear-gradient(135deg, #a9913a 0, #443812 100%) !important;
+}
+ .theme-maroon .bgImgAll {
+    background: #fff !important;
+    border: solid 3px #cee0e0 !important;
+}
+
+/* theme 2 dark*/
+
+.theme-tiber {
+	background: #070d19 !important;
+}
+.theme-tiber .headerTop .dropdown-menu.show {
+	background: rgb(36, 52, 77);
+	border: 1px solid rgb(40, 62, 113);
+}
+.theme-tiber .dropdown-item:focus {
+	background-color: #24344d;
+}
+.theme-tiber .dropdown-item:hover {
+	background-color: #24344d;
+}
+.theme-tiber .patientAvatarIcon2 h5 {
+	color: #f9f6f6 !important;
+}
+.theme-tiber .patientAvatarIcon2 p {
+	color: #838dff !important;
+}
+.theme-tiber .userProfilebtn {
+	border: solid 1px #5180ca !important;
+	background: transparent;
+}
+.theme-tiber .logOut {
+	background-color: #16253c !important;
+	border-top: solid 1px #2c4771 !important;
+}
+.theme-tiber .patientAvatarIcon2 p {
+	color: #8890f1;
+}
+.theme-tiber .settingTop {
+	background: #16253c !important;
+	border-radius: 4px 4px 0 0;
+}
+.theme-tiber .settingTop:before {
+	border-bottom: solid 10px #243856 !important;
+}
+.theme-tiber .moduleuL {
+	border: solid 1px #476694 !important;
+}
+.theme-tiber .notifiactionArea p {
+	background-color: #16253c !important;
+}
+.theme-tiber .notifiactionArea p:before {
+	border-bottom: solid 10px #16253c !important;
+}
+.theme-tiber .notifiactionArea .dropdown-item span {
+	background-color: #0c1427 !important;
+	border-color: #3b5379 !important;
+}
+.theme-tiber .notifiactionArea .dropdown-item {
+	border-bottom: solid 1px #2a4267 !important;
+}
+.theme-tiber .checkAll a {
+	color: #6e82b3 !important;
+}
+.theme-tiber .dropdown-item a {
+	color: #8cb3dc;
+}
+.theme-tiber .tab-content {
+	border: solid 1px #172340 !important;
+	background: #0c1427 !important;
+}
+.theme-tiber .border-bottom {
+	border-bottom: 1px solid #172340 !important;
+}
+.theme-tiber .searchHeaderField {
+	background: #0c1427 !important;
+}
+.theme-tiber .chiller-theme .sidebar-wrapper {
+	background: #0c1427;
+	box-shadow: 0px 0px 28px #080706 inset;
+	box-shadow: 0 8px 10px 0 #03060b;
+	border-right: 1px solid #172340;
+}
+.theme-tiber .chiller-theme .sidenav .dropdown-btn {
+	border-bottom: solid 1px #03050a;
+	box-shadow: 0px 1px 0px #131e38;
+}
+.theme-tiber .chiller-theme .sidebar-wrapper .sidebar-brand {
+	background: #0a1123;
+	box-shadow: 0px 0px 2px #000000;
+	border-bottom: solid 2px #10172b;
+}
+.theme-tiber .page-wrapper.chiller-theme.toggled #close-sidebar {
+	background: #0a1123;
+}
+.theme-tiber .chiller-theme header.headerTop {
+	background: #0c1427;
+	border-bottom: 1px solid #172340;
+	box-shadow: 0px 0px 3px #020101;
+}
+.theme-tiber .headerTop:after {
+	background-color: hsla(0, 0%, 100%, .05);
+	top: -24px !important;
+}
+.theme-tiber .moduleuL li {
+	background: transparent !important;
+}
+.theme-tiber .moduleuL li:nth-child(1) {
+	border: solid 1px #2b752e;
+}
+.theme-tiber .opdBg {
+	border: solid 1px #03A9F4 !important;
+}
+.theme-tiber .pharmacyBg {
+	border: solid 1px #e6673f !important;
+}
+.theme-tiber .diagnosticBg {
+	border: solid 1px #919c1e !important;
+}
+.theme-tiber #show-sidebar {
+	background: #0a1123;
+}
+.theme-tiber .sidebar-wrapper .sidebar-brand #close-sidebar {
+	color: #0a1123;
+}
+.page-wrapper.chiller-theme.toggled #close-sidebar {
+	color: #fff;
+}
+.theme-tiber .sidebar-wrapper .dropdown-btn i {
+	color: #fff;
+}
+.theme-tiber .sidebar-menu .active {
+	background: #060a15 !important;
+	border-left: solid 2px #1f3363;
+}
+.theme-tiber .activeNav {
+	background: #0e1529 !important;
+	border-left: solid 2px #3b4f8a;
+}
+.theme-tiber .dropdown-container {
+	background: #04050a;
+}
+.theme-tiber .dropdown-container a {
+	border-bottom: solid 1px #060505;
+	box-shadow: 0px 1px 0px #0a0907;
+}
+.theme-tiber .dropdown-btn {
+	color: #fff !important;
+}
+.theme-tiber .pannelArea {
+	border: solid 1px #172340 !important;
+	background-color: #0c1427 !important;
+}
+.theme-tiber .pannelHeading {
+	background: #24344d !important;
+	border: solid 1px #2e4261 !important;
+}
+.theme-tiber .subHeading {
+	border-right: 1px solid #162233;
+	box-shadow: 1px 0px 1px -1px #364d71;
+}
+.theme-tiber fieldset.fieldSet2 {
+	background: #0c1427 !important;
+	border: solid 3px #24344d !important;
+}
+.theme-tiber .legend-title {
+	color: #fffdfd !important;
+	background: linear-gradient(to bottom, #0f4058 51%, #1b6082 51%, #124c69 51%) !important;
+	border: solid 2px #1f607f !important;
+}
+.theme-tiber .registartionTab .nav-tabs .nav-link.active {
+	background-color: #24556d !important;
+	border: solid 1px #397d9e !important;
+	border-bottom: 1px solid #0c1427 !important;
+}
+.theme-tiber .registartionTab ul.nav.nav-tabs {
+	background: #1b3b4a;
+	border: solid 1px #284858;
+}
+.theme-tiber .registartionTab .nav-tabs li a {
+	border: solid 1px #335a6b !important;
+	background: #1b3b4a;
+	color: #fff !important;
+	border-bottom: 1px solid #0c1427 !important;
+}
+.theme-tiber .dataTables_wrapper .dataTables_processing {
+	background-color: transparent;
+	background: transparent;
+}
+.theme-tiber .dataGridTable table tr:nth-child(2n+1) {
+	background: #0c1427 !important;
+	color: #b1b1b1 !important;
+}
+.theme-tiber .dataGridTable table tr:nth-child(2n+2) {
+	background: #121a2b !important;
+	color: #b1b1b1 !important;
+}
+.theme-tiber table.dataTable tbody tr {
+	background-color: #0c1427;
+	color: #b1b1b1;
+}
+.theme-tiber table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+	background-color: #1e2b46 !important;
+	color: #e0d2d2 !important;
+}
+.theme-tiber table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+	background-color: #1e2b46 !important;
+	color: #b1b1b1;
+}
+.theme-tiber .gridArea {
+	background: #0c1427 !important;
+	border: solid 1px #172340 !important;
+}
+.theme-tiber .registartionTab .tab-content {
+	border: solid 1px #1f3946 !important;
+	border-radius: 0px -0px 6px 6px;
+}
+.theme-tiber .duty-date-area-inner .btn {
+	background: #3a0501 !important;
+	border: solid 1px #2e4261 !important;
+}
+.theme-tiber .btn-reset {
+	background: #3a0501 !important;
+	border: 0px !important;
+}
+.theme-tiber button.searhbtnClr {
+	background-color: #1f2c42 !important;
+}
+.theme-tiber .dataTables_filter input {
+	color: #c2cbcc;
+}
+.theme-tiber .btnAllRow button {
+	border-radius: 50px;
+}
+.theme-tiber .btnAllRow button {
+	border-radius: 35px;
+}
+.theme-tiber .btn-warning {
+	background: transparent;
+	border: solid 1px #ffc107 !important;
+	color: #fff;
+}
+.theme-tiber .btn-success {
+	background: transparent;
+	border: solid 1px #4CAF50 !important;
+}
+.theme-tiber .btn-primary {
+	background-color: transparent !important;
+	border: solid 1px #007bff !important;
+}
+.theme-tiber .btn-danger {
+	background: transparent;
+	border: solid 1px #c55850 !important;
+}
+.theme-tiber .all_content_wrapper .form-control {
+	border-color: #2e4261 !important;
+	background: #0c1427;
+	color: #7c858a;
+}
+.theme-tiber .typeAheadNurser .ng-select .ng-select-container {
+	border: solid 1px #2e4261;
+}
+.theme-tiber input.datePicker {
+	background: #0c1427 url(../images/dateicon.png) no-repeat right center !important;
+}
+.theme-tiber .dataTables_filter input {
+	border: solid 1px #2e4261;
+	background: #0c1427;
+}
+.theme-tiber .dataTables_length select {
+	border: solid 1px #2e4261;
+	background: #0c1427;
+	color: #a3abaf;
+}
+.theme-tiber table.dataTable thead .sorting {
+	background-color: #415677 !important;
+	color: #e3e4e1 !important;
+}
+.theme-tiber table.dataTable.no-footer {
+	border-bottom: 1px solid #415677 !important;
+}
+.theme-tiber .dataGridTable .dataTable.no-footer {
+	border-bottom: 0px;
+	border: solid 1px #2e4261;
+}
+.theme-tiber table.dataTable thead th {
+	border-bottom: 1px solid #415677 !important;
+}
+.theme-tiber table.dataTable thead th {
+	border-top: solid 1px #415677 !important;
+	border-left: solid 1px #556d92 !important;
+	border-right: solid 1px #415677 !important;
+}
+.theme-tiber .employeeTable table {
+	border: solid 1px #415677 !important;
+}
+.theme-tiber .all_content_wrapper .input-group-text {
+	border: 1px solid #2e4261;
+	border-left: 1px solid #2e4261 !important;
+}
+.theme-tiber .searchHeaderField .input-group-text {
+	background: #1f2c42;
+}
+.theme-tiber .lebelBg {
+	background: #1f2c42;
+}
+.theme-tiber .lebelBgA {
+	background: #1f2c42;
+}
+.theme-tiber .ng-select .ng-select-container {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+	background-color: #305692 !important;
+}
+.theme-tiber .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+	background-color: #24344d !important;
+	color: rgba(226, 220, 220, 0.87) !important;
+}
+.theme-tiber .modify-form .input-group .input-group-text {
+	background: linear-gradient(to top, #004660 13%, #1c7596 67%);
+}
+.theme-tiber .departmentGo {
+	background: #2c6daf !important;
+}
+.theme-tiber .doctorContent:after {
+	background: #2c6daf !important;
+}
+.theme-tiber .departmentArea h4 {
+	color: #2c6daf !important;
+}
+.theme-tiber .doctorContent {
+	border-top: solid 2px #204a8a !important;
+	border-bottom: solid 2px #204a8a !important;
+	box-shadow: 0px 0px 1px #f2f7ff !important;
+}
+.theme-tiber .roomAvater {
+	background: #114e14 !important;
+}
+.theme-tiber fieldset.fieldSet {
+	background: #0c1427 !important;
+	border: solid 3px #24344d !important;
+}
+.theme-tiber .registartionWraperOpd label {
+	color: #87919a !important;
+}
+.theme-tiber .extentionField li span {
+	color: #87919a;
+}
+.theme-tiber .photoTitle {
+	border-color: #344a6d !important;
+	background: #0c1427 !important;
+}
+.theme-tiber .spanImageSelectSize {
+	color: #bbc0cc !important;
+}
+.theme-tiber .addressBolock {
+	background: #131f3a;
+	border: solid 1px #24344d;
+}
+.theme-tiber .ng-select .ng-select-container {
+	color: #87919a !important;
+}
+.theme-tiber .typeAheadRegistration .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+	color: #7c858a;
+}
+.theme-tiber .addressRightContent .form-check-label {
+	text-shadow: none;
+}
+ .theme-tiber textarea:-internal-autofill-selected {
+ background: #0c1427 !important;
+}
+.theme-tiber .modal-body {
+	background: #121a27;
+	border: solid 1px #4c5e88;
+	border-top: 0px;
+}
+.theme-tiber .modal-header {
+	background: #32415a;
+	color: #cfd6e2;
+	border-bottom: solid 1px #4c5e88;
+}
+.theme-tiber .modal-footer {
+	background-color: #32415a;
+	border-top: 0;
+}
+.theme-tiber .patientDetailTop {
+	border: solid 1px #314158 !important;
+	border-bottom: 0px !important;
+}
+.theme-tiber .patientDetailTop .picFrame {
+	width: 116px !important;
+}
+.theme-tiber .picFrame img {
+	border-color: #4c6384 !important;
+}
+.theme-tiber .patientDetailTop table th {
+	color: #cac4c4;
+}
+.theme-tiber .patientDetailTop table td {
+	color: #cac4c4;
+}
+.theme-tiber .border-left {
+	border-left: 1px solid #344a6d !important;
+}
+.theme-tiber .dataTable2 th {
+	background: #121c35 !important;
+	color: #c6ccd0 !important;
+}
+.theme-tiber table.table-bordered th {
+	border: 1px solid #677a96 !important;
+}
+.theme-tiber table.table-bordered td {
+	border: 1px solid #1e293a !important;
+}
+.theme-tiber .dataTable2 {
+	background: #0c1427 !important;
+}
+.theme-tiber .tableBorder {
+	border: 1px solid #314158 !important;
+}
+.theme-tiber .form-check-label {
+	color: #bcc1ca;
+}
+.theme-tiber div.dataTables_wrapper div.dataTables_paginate {
+	border: solid 1px #3d4e67;
+}
+.theme-tiber .paginate_button {
+	border-right: solid 1px #3d4e67 !important;
+}
+.theme-tiber .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+	background: #234375 !important;
+}
+.theme-tiber .dataTables_wrapper .dataTables_paginate .paginate_button {
+	color: #8c8d8e !important;
+}
+.theme-tiber .searchHeader {
+	background: #0c1427 !important;
+	border-bottom: solid 1px #172340 !important;
+}
+.theme-tiber .searchAllField {
+	color: #b8bcc1;
+}
+.theme-tiber table.dataTable thead .sorting_asc {
+	background-color: #415677 !important;
+	color: #e3e4e1 !important;
+}
+.theme-tiber table.dataTable thead th {
+	background: #415677 !important;
+	color: #b9b9b9 !important;
+}
+.theme-tiber .dataTables_wrapper table {
+	border: solid 1px #172340 !important;
+}
+.theme-tiber fieldset.fieldset-basic {
+	background: #121a27 !important;
+	border: 1px solid #2e3b58 !important;
+}
+.theme-tiber th {
+	color: #b9b9b9 !important;
+}
+.theme-tiber td {
+	color: #b9b9b9 !important;
+}
+.theme-tiber .form-control {
+	/* border: 1px solid #2e4261 !important; */
+	border-color: #2e4261 !important;
+	background: #121a27 !important;
+	color: #c2c3c0 !important;
+}
+.theme-tiber .border {
+	border: 1px solid #2f3e56 !important;
+}
+.theme-tiber timepicker .btn {
+	color: #a5a0a0;
+}
+.theme-tiber timepicker a.btn {
+	color: #a5a0a0;
+}
+.theme-tiber a:not([href]):not([tabindex]):hover {
+	color: #fff;
+}
+.theme-tiber .roomUl li {
+	border: solid 1px #2d3f69 !important;
+	background: #0c1427 !important
+}
+.theme-tiber .doctorRoomArea {
+	border-left: solid 1px #2d3f69 !important;
+}
+.theme-tiber .departmentGo:after {
+	background: #1a3d73 !important;
+}
+.theme-tiber .departmentArea h4 a {
+	color: #23529a !important;
+}
+.theme-tiber .departmentArea p label i {
+	color: #94ab95 !important;
+}
+.theme-tiber .departmentArea p span {
+	color: #c3c3c3 !important;
+}
+.theme-tiber .doctorRoomArea h5 span {
+	color: #b6b8bb !important;
+}
+.theme-tiber .footerDoct {
+	color: #e65d5d !important;
+	border-top: solid 1px #1a3d73 !important;
+}
+.theme-tiber .add_list {
+	color: #bdb9b9 !important;
+}
+.theme-tiber .bg_div {
+	color: #bdb9b9 !important;
+}
+.theme-tiber .borderRight {
+	border-right: solid 1px #24344d !important;
+}
+.theme-tiber .opdQueueFooter {
+	background: #1a2638 !important;
+	border-top: solid 2px #24344d !important;
+	border-right: solid 3px #24344d !important;
+	border-left: solid 2px #24344d !important;
+	border-bottom: solid 2px #24344d !important;
+}
+.theme-tiber .patientInoOpd p label {
+	color: #009688 !important;
+}
+.theme-tiber .colorB1 {
+	background: transparent !important;
+	border: solid 1px #CDDC39 !important;
+}
+.theme-tiber .colorB2 {
+	background: transparent !important;
+	border: solid 1px #058c80 !important;
+}
+.theme-tiber .colorB3 {
+	background: transparent !important;
+	border: solid 1px #3F51B5 !important;
+}
+.theme-tiber .colorB4 {
+	background: transparent !important;
+	border: solid 1px #4a7c94 !important;
+}
+.theme-tiber .bg-custom1 {
+	background: #04070d !important;
+	background: #121a27 !important;
+}
+.theme-tiber .typeAhead .ng-select .ng-select-container {
+	border: solid 1px #2e4261;
+}
+.theme-tiber .changeRoom p label {
+	color: #0f87a2;
+}
+.theme-tiber .btn-info {
+	border-color: #17a2b8;
+	background: transparent;
+}
+.theme-tiber .doctorRoomArea h5 a {
+	color: #b6b8bb !important
+}
+.theme-tiber .legTitle {
+	color: #fffdfd !important;
+	background: linear-gradient(to bottom, #0f4058 51%, #1b6082 51%, #124c69 51%) !important;
+	border: solid 2px #1f607f !important
+}
+.theme-tiber .paddingField {
+	padding: 2px;
+	background: #070d19;
+}
+.theme-tiber div.billItemTable .table-bordered th {
+	border-top: solid 1px #415677 !important;
+	background-color: #415677 !important;
+	color: #e3e4e1 !important;
+	border-right: solid 1px #566c90 !important;
+}
+.theme-tiber div.billItemTable .table-bordered td {
+	border: solid 1px #1a2638 !important;
+	color: #d2d5d6 !important;
+}
+.theme-tiber .paddingField {
+	background: #070d19 !important;
+}
+.theme-tiber fieldset.invoiceF {
+	border: solid 1px #24344d !important;
+}
+.theme-tiber .bgPayment {
+	background: #0c1427 !important;
+	border-bottom: solid 1px #172340 !important;
+}
+.theme-tiber .payment_details {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .commnetRight {
+	background: #24344d !important;
+	border: solid 1px #384e71 !important;
+	border-radius: 0px 0px 6px 6px;
+}
+.theme-tiber .borderResponsive {
+	border: solid 2px #0c1427 !important;
+}
+.theme-tiber table th.thDiscount {
+	background: #03293c !important;
+	color: #c1ced0 !important;
+}
+.theme-tiber .disArea {
+	background: #0c1427 !important;
+	border: solid 1px #364c6f !important;
+}
+.theme-tiber .disArea .bg-white {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .tableOrder td {
+	color: #5ea1d6 !important;
+}
+.theme-tiber span.invoiceSpan {
+	border: solid 2px #b7453f !important;
+	color: #d46560 !important;
+}
+.theme-tiber .hrDueC {
+	border-top: dashed 1px #607D8B !important;
+}
+.theme-tiber header.headerTop {
+	background: #0c1427 !important;
+	border-bottom: 1px solid #172340 !important;
+	box-shadow: 0px 0px 3px #020101 !important;
+}
+.theme-tiber .allInner {
+	/* border: solid 1px #172340 !important; */
+	background-color: #0c1427 !important;
+	border-color: #172340 !important;
+}
+.theme-tiber .allTitle {
+	border: solid 1px #172340 !important;
+	color: #b7c3c5 !important;
+	border-bottom: solid 1px #0c1427 !important;
+	background: #0c1427 !important;
+}
+.theme-tiber .subHeader {
+	background: #070d19 !important;
+	box-shadow: none !important;
+	border-bottom: 0px !important;
+}
+.theme-tiber #allTitle h4 {
+	color: #b1a32b !important;
+}
+.theme-tiber .subHeading {
+	border-right: 1px solid #16202f !important;
+	box-shadow: 1px 0px 1px -1px #3e5e7d !important;
+}
+.theme-tiber .persoanlInfoArea label {
+	color: #b7c3c5 !important;
+}
+.theme-tiber .fieldsetBg {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .bgImgAll3 {
+	border: solid 3px #1f3946 !important;
+	box-shadow: none !important;
+}
+.theme-tiber .searchDiv label {
+	color: #b9b9b9 !important;
+}
+.theme-tiber .footer_Table {
+	border-top: solid 1px #465e98 !important;
+	background-color: #32415a !important;
+}
+.theme-tiber .topheader {
+	border-top: solid 1px #172340 !important;
+}
+.theme-tiber .borderLef {
+	border-left: solid 1px #3f4e5f !important;
+}
+.theme-tiber .invoiceDetails2 table {
+	background: #0c1427 !important;
+}
+.theme-tiber .searchPannel {
+	background: #0c1427 !important;
+}
+.theme-tiber .leftPannelLab {
+	border-top: solid 1px #2e4261 !important;
+}
+.theme-tiber .invoiceDetails {
+	background: #0c1427 !important;
+}
+.theme-tiber .radiologyExamList .ng-select .ng-select-container {
+	border: 1px solid #2e4261 !important;
+}
+.theme-tiber .leftPannelLab .tab-content table th {
+	background-color: #415677 !important;
+	color: #fff !important;
+}
+.theme-tiber .editorDischarge2 .tox-tinymce {
+	border: solid 1px #435c82 !important;
+}
+.theme-tiber .editorDischarge .tox-menubar {
+	background-image: linear-gradient(135deg, #25576f 0, #0e2733 100%) !important;
+}
+.theme-tiber .pacsBtn {
+	border: solid 1px #435c82 !important;
+	background-image: linear-gradient(135deg, #003e5d 0, #006fa5 100%) !important;
+}
+.theme-tiber .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+	background-color: #0c1427 !important;
+	border-top: 1px solid #6f7f96 !important;
+}
+.theme-tiber .tox .tox-toolbar__group:not(:last-of-type) {
+	border-right: 1px solid #6f7f96 !important;
+}
+.theme-tiber .tox .tox-tbtn {
+	color: #b9b9b9 !important
+}
+.theme-tiber .tox .tox-tbtn__select-chevron svg {
+	fill: rgba(220, 226, 232, 0.6) !important;
+}
+.theme-tiber .tox .tox-tbtn:hover {
+	background: #0c1427 !important;
+	color: #c6ccd4 !important;
+}
+.theme-tiber .tox .tox-tbtn:focus {
+	background: #0c1427 !important;
+	color: #c6ccd4 !important;
+}
+.theme-tiber .tox .tox-menu {
+	background-color: #0c1427 !important;
+	border: 1px solid #6f7f96 !important;
+}
+.theme-tiber .tox .tox-collection--list .tox-collection__item--active {
+	background-color: #133140 !important;
+	color: #c9d4e0 !important;
+}
+.theme-tiber .tox .tox-collection__item {
+	color: #c9d4e0 !important;
+}
+.theme-tiber .tox .tox-tbtn svg {
+	fill: #c9d4e0 !important;
+}
+.theme-tiber .tox .tox-tbtn:focus {
+	background: #133140 !important;
+}
+.theme-tiber .tox .tox-split-button__chevron svg {
+	fill: rgba(210, 215, 220, 0.6) !important;
+}
+.theme-tiber .tox .tox-tbtn:active {
+	background: #133140 !important;
+}
+.theme-tiber .tox .tox-collection--toolbar .tox-collection__item--enabled {
+	background-color: #133140 !important;
+}
+.theme-tiber .tox .tox-tbtn--enabled {
+	background: #133140 !important;
+}
+.theme-tiber tox .tox-split-button:hover {
+	box-shadow: none !important;
+}
+.theme-tiber .tox .tox-collection--toolbar .tox-collection__item--active {
+	background-color: #133140 !important;
+}
+.theme-tiber .tox .tox-split-button:hover {
+	box-shadow: none !important;
+}
+.theme-tiber .tox .tox-edit-area__iframe {
+	background-color: #0c1427 !important;
+}
+body#tinymce {
+	color: #fff !important;
+}
+.theme-tiber #right-sidebar {
+	background: #0c1427 !important;
+	border: solid 1px #1f3946 !important;
+}
+.theme-tiber .resultEntrySetting .reportBtn {
+	border: solid 1px #287ca5 !important;
+}
+.theme-tiber .radiologyExamList .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+	color: #c2c3c0 !important;
+}
+.theme-tiber .ng-select .ng-select-container .ng-value-container .ng-input>input {
+	color: #c2c3c0 !important;
+}
+.theme-tiber .headerDocrRoom {
+	border-bottom: solid 1px #1f3946 !important;
+}
+.theme-tiber div#patient_demograph {
+	background: #0c1427 !important;
+	border: solid 1px #435c82 !important;
+}
+.theme-tiber div#patient_demograph td {
+	border: solid 1px #2e4261 !important;
+	color: #d8d6d6 !important;
+}
+.theme-tiber .btnAllResulRightSide .form-group label {
+	color: #b9b9b9 !important;
+}
+.theme-tiber div#reportButton {
+	border: solid 1px #435c82 !important;
+	background: #0c1427 !important;
+}
+.theme-tiber .patientInfo {
+	background-image: linear-gradient(135deg, #2f53a5 0, #031025 100%) !important;
+}
+.theme-tiber .continueMedicineArea p {
+	color: #f3f3f3 !important;
+	background: #1b3b4a !important;
+}
+.theme-tiber .prescriptionTab ul.nav.nav-tabs {
+	border-bottom: solid 1px #284858 !important;
+}
+.theme-tiber .prescriptionTab .tab-content {
+	border: solid 1px #344a6d !important;
+	border-top: 0px !important;
+}
+/* .theme-tiber #teamplate-area {
+	background-color: transparent !important;
+	border: solid 1px #17a2b8;
+} */
+
+.theme-tiber .bg-blight {
+	background-color: #0f4058 !important;
+	color: #fff;
+}
+.theme-tiber .ipd-doctor-prescription .tab-content {
+	top: -3px;
+	position: relative;
+}
+.theme-tiber .ipd-doctor-prescription .fieldsetBg {
+	border-radius: 10px;
+}
+.theme-tiber fieldset.borderPatient {
+	border: solid 3px #344a6d !important;
+}
+.theme-tiber p.roomStatusRight {
+	background: #24344d !important;
+	border: solid 1px #2e4261 !important;
+}
+.theme-tiber .roomStatus {
+	background: #24344d !important;
+	border: solid 1px #36566f !important;
+}
+.theme-tiber .roomStatusLeft span {
+	color: #17d0be !important;
+	text-shadow: none !important;
+
+}
+.theme-tiber .border-left-color {
+	border-left: solid 1px #344a6d !important;
+	border-top: solid 1px #344a6d !important;
+}
+.theme-tiber .roomStatusRight button {
+	background: #075277 !important;
+}
+.theme-tiber .vitalAreaTop {
+	background: #24344d !important;
+	border: solid 1px #36566f !important;
+}
+.theme-tiber .vitalAreaTop span {
+	color: #b9b9b9 !important;
+}
+.theme-tiber .color_grid_one {
+	background: #0c1427 !important;
+	border-right: solid 1px #344a6d !important;
+}
+.theme-tiber .main_table_content {
+	border-top: solid 1px #344a6d !important;
+}
+.theme-tiber .border-top-color {
+	border-top: solid 1px #344a6d !important;
+}
+.theme-tiber .activetableTable th {
+	background: #24344d !important;
+}
+.theme-tiber .searchPannelPatient input {
+	background: #0c1427 !important;
+
+	border-color: #344a6d !important;
+}
+.theme-tiber .registartionTab .tab-color ul.nav.nav-tabs {
+	background: #134761 !important;
+	border: solid 1px #1b6488 !important;
+}
+.theme-tiber .pannel_left h6 {
+	background-image: linear-gradient(135deg, #0066a0 0, #1b3b4a 100%) !important;
+}
+.theme-tiber .bgLefrPres {
+	background: #0c1427 !important;
+	border-right: solid 1px #5f7dad !important;
+}
+.theme-tiber .investigation_area {
+	border-top: solid 1px #435e88 !important;
+}
+.theme-tiber .pannel_left {
+	background: #0c1427 !important;
+}
+.theme-tiber .investigation_areaHomeCmh {
+	background: linear-gradient(to bottom, #0c1427 4%, #0c1427 41%, #0c1427 100%) !important;
+}
+.theme-tiber .top_section_all label {
+	color: #d6d6cf !important;
+}
+.theme-tiber .btn-all-list {
+	border-left: solid 1px #2e4261 !important;
+	color: #b2bbbf !important;
+}
+.theme-tiber .footerAreaHome {
+	background: #1b3b4a !important;
+	border: solid 1px #384965 !important;
+	box-shadow: none;
+}
+.theme-tiber .footerBtnPres {
+	border: solid 2px #4085a7 !important;
+}
+.theme-tiber .medicationTitle table {
+	background: #0c1427 !important;
+}
+.theme-tiber .main_table_content thead th {
+	background: #23334c !important;
+}
+.theme-tiber .tab_custom_area th {
+	background: #0c1427 !important;
+}
+.theme-tiber .bg-white {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .table-bordered {
+	border: 1px solid #2e4261 !important;
+}
+.theme-tiber .searchAll th {
+	background: #0c1427 !important;
+}
+.theme-tiber #saveTemplate2 {
+	background: #32415a !important;
+	border: 0px !important;
+}
+.theme-tiber #collapseTemplate {
+	box-shadow: 0px 0px 16px #0c0c0c !important;
+}
+.theme-tiber #saveTemplate2 {
+	box-shadow: 0px 0px 16px #0c0c0c !important;
+}
+.theme-tiber #collapseTemplate .btn-danger {
+	border: 0px !important;
+}
+.theme-tiber #saveTemplate2 .btn-danger {
+	border: 0px !important;
+}
+.theme-tiber #collapseTemplate .btn-danger {
+	border: 0px !important;
+}
+.theme-tiber #collapseTemplate .closeBtn {
+	color: #540500 !important;
+}
+.theme-tiber #saveTemplate2 .closeBtn {
+	color: #540500 !important;
+}
+.theme-tiber #collapseTemplate .closeBtn {
+	color: #540500 !important;
+}
+.theme-tiber #collapseTemplate th {
+	background: #121a27 !important;
+}
+.theme-tiber #saveTemplate2 th {
+	background: #121a27 !important;
+}
+.theme-tiber .templateListArea tbody tr:nth-of-type(even) {
+	background-color: #162131 !important;
+}
+.theme-tiber #collapseTemplate table.table-bordered th {
+	border: 1px solid #2d3c54 !important;
+}
+.theme-tiber .modal-body .tab_custom_area {
+	border: solid 1px #394769 !important;
+}
+.theme-tiber .tableArea {
+	border: solid 1px #394769 !important;
+}
+.theme-tiber .color_grid_onephy {
+	border-right: solid 1px #394769 !important;
+}
+.theme-tiber typeahead-container.dropdown.open.dropdown-menu {
+	background-color: #0c1427 !important;
+	border: 1px solid rgb(67, 98, 146) !important;
+}
+.theme-tiber typeahead-container.dropdown.open.dropdown-menu .dropdown-item {
+	color: #fff !important;
+	border-bottom: solid 1px #3c5a8a !important;
+}
+.theme-tiber .dropdown-item.active {
+	background-color: #064563 !important;
+}
+.theme-tiber .dropdown-item:active {
+	background-color: #064563 !important;
+}
+.theme-tiber .edit-title {
+	border: solid 1px #2e4261 !important;
+	background: #121a27 !important;
+	color: #b6bbc3 !important;
+}
+.theme-tiber .pannel_left table {
+	background: #121a27 !important;
+}
+.theme-tiber .tab_custom_area input {
+	border: solid 1px #2e4261 !important;
+	background: #121a27 !important;
+	color: #d0d0c8 !important;
+}
+.theme-tiber .crudArea {
+	background: #24344d !important;
+	border: solid 1px #2e4261 !important;
+}
+.theme-tiber .color_two h4 {
+	background: #184e52 !important;
+	color: #fff !important;
+}
+.theme-tiber .color_two {
+	border: 1px solid #15565a !important;
+}
+.theme-tiber .searchAll label {
+	color: #fff !important;
+}
+.theme-tiber .color_two h4 span {
+	background: #11464a !important;
+	border-right: solid 1px #0b292b !important;
+	box-shadow: 1px 0px 0px #297d84 !important;
+}
+.theme-tiber .block_all h4 {
+	background: #184e52 !important;
+	color: #fff !important;
+}
+.theme-tiber .block_all h4 span {
+	background: #194e52 !important;
+    border-right: solid 1px #3c767a !important;
+    box-shadow: 1px 0px 0px #194E59 !important;           
+}
+.theme-tiber .color_one { 
+	border: 1px solid #194e52 !important;
+}
+.theme-tiber .medicationTitle label {
+	color: #fff !important;
+}
+.theme-tiber .medicationTh th {
+	background: #193d40 !important;
+	color: #fff !important;
+}
+.theme-tiber .sticky2 th {
+	background: #0c1427 !important;
+}
+.theme-tiber .typeAheadphy .input-group-text {
+	background-color: #24344d !important;
+	color: #fff !important;
+}
+.theme-tiber .userDataThead {
+	background: #143544 !important;
+	color: #6dc1d0 !important;
+	border-top: solid 1px #3f6171 !important;
+}
+.theme-tiber .userData {
+	border: solid 1px #3f6171 !important;
+	border-top: 0px !important;
+}
+.theme-tiber #UserPreference .sortable-item:nth-child(2n+2) {
+	background: #000000 !important;
+	color: #fff !important;
+}
+.theme-tiber #UserPreference .sortable-item {
+	color: #fff !important;
+}
+.theme-tiber div.borderColorB {
+	border-bottom: solid 1px #2e4261 !important;
+}
+.theme-tiber .employeeArea {
+	background: #0c1427 !important;
+	border-bottom: solid 1px #2e4261 !important;
+}
+.theme-tiber .resetBtnSecurity {
+	background: transparent !important;
+}
+.theme-tiber .btn-secondary {
+	background: transparent !important;
+}
+.theme-tiber .userInfoTop {
+	background: #121a27 !important;
+	border: solid 1px #2c4061 !important;
+}
+.theme-tiber .btnUserInfo {
+	border-top: solid 1px #2c4061 !important;
+	background: #121a27 !important;
+}
+.theme-tiber .borderPatient {
+	border: solid 3px #2e4261 !important;
+}
+.theme-tiber .border-right {
+	border-right: 1px solid #2e4261 !important;
+}
+.theme-tiber .btnListH {
+	background: transparent !important;
+	border: solid 1px #009688 !important;
+}
+.theme-tiber .btnAcc {
+	color: #fff !important;
+}
+.theme-tiber .accordionCustom .panel-title {
+	background: #1e2911 !important;
+	color: #FFF !important;
+}
+.theme-tiber .accordionCustom .card-header {
+	border: solid 1px #32441c !important;
+}
+.theme-tiber .accordionCustom .panel-title .btn-link {
+	color: #fbf1f1 !important;
+	text-decoration: none !important;
+}
+.theme-tiber .notfound .notfound-404 h1 {
+	color: #000000 !important;
+	text-shadow: 1px 5px 1px #5d5a5a !important;
+}
+.theme-tiber .notfound .notfound-404 h2 {
+	color: #cec2be !important;
+	background: #030408 !important;
+}
+/* ==================================================theme-tiber step 2==================================================*/
+
+.theme-tiber .investigationleft h3 {
+	background-image: linear-gradient(135deg, #0066a0 0, #1b3b4a 100%) !important;
+}
+.theme-tiber .mac-window .window {
+	background: #0c1427!important;
+}
+.theme-tiber .mac-window .title-bar {
+	background: linear-gradient(to top, #132140, #1c2a4b)!important;
+	border-bottom: 1px solid #363d4d !important;
+}
+.theme-tiber .window .fullWidth {
+	background: #0c1427!important;
+	border: solid 1px #314667 !important;
+}
+.theme-tiber .colone {
+	border: solid 1px #2c3f5e !important;
+}
+.theme-tiber .colone th {
+	background: #0c1427 !important;
+}
+.theme-tiber .window button.btnAllModal {
+	background: #243255 !important;
+	border: 1px #4c5770 solid !important;
+}
+.theme-tiber .window button.btnAllModal i {
+	color: white!important;
+}
+.theme-tiber .window .tabArea {
+	padding-right: 6px!important;
+}
+.theme-tiber .window .tox-tinymce {
+	border: none!important;
+}
+.theme-tiber .window .tox .tox-edit-area {
+	border-top: 1px solid #314667!important;
+}
+.theme-tiber .window rect.highcharts-background {
+	fill: rgba(27, 37, 60, 0.87)!important;
+}
+.theme-tiber .window text.highcharts-title {
+	fill: #f5f5f5!important;
+}
+.theme-tiber .quickReistration ul.nav.nav-tabs {
+	border-bottom: 1px solid #42464f !important;
+}
+.theme-tiber .fieldsetbg {
+	background: #060a13 !important;
+}
+.theme-tiber .fieldsetbg2 {
+	background: #060a13!important;
+}
+.theme-tiber #patientArea {
+	border: solid 1px #131f39!important;
+	background: #060a13!important;
+}
+.theme-tiber .doctorProInner {
+	background: #080d19!important;
+	border: solid 1px #0c1427!important;
+}
+.theme-tiber #patientArea .border-color {
+	border-top: 1px solid #131f39 !important;
+	box-shadow: 0px -1px 0px #131f39 !important;
+}
+.theme-tiber .topInfo {
+	background: #060a13!important;
+	border-bottom: solid 1px #0c1427!important;
+}
+.theme-tiber .patietTop {
+	color: white!important;
+}
+.theme-tiber .bodyType {
+	color: #bcc1ca!important;
+}
+.theme-tiber .border-top {
+	border-top: 1px solid #162340!important;
+}
+.theme-tiber .footerMultistep {
+	border: solid 1px #2e4260!important;
+	background: #0c1427!important;
+}
+.theme-tiber p.patientInfo {
+	color: white!important;
+}
+.theme-tiber .leftPanel {
+	background: #0c1427!important;
+	border: solid 1px #233765 !important;
+}
+.theme-tiber .stepReTable tr:nth-child(2n+2) {
+	background: #192032!important;
+}
+.theme-tiber .customTable th {
+	background: #415677!important;
+}
+.theme-tiber .tableInner {
+	border: solid 1px #2e4260!important;
+}
+.theme-tiber .tableAddress {
+	background: #0c1427!important;
+}
+.theme-tiber .allTableCustom table th {
+	background: #415677;
+}
+.theme-tiber table.table-bordered .reportingTime td {
+	border: none !important;
+}
+.theme-tiber #apgeTitle {
+	border: solid 1px #17233e;
+	color: #ffffff;
+	border-bottom: solid 1px #293b57;
+	background: #0c1427;
+}
+.theme-tiber .allGridArea {
+	border: solid 1px #243253 !important;
+}
+.theme-tiber .accordion_custom {
+	border: 1px solid #32415a !important;
+	background: #121a27 !important;
+}
+.theme-tiber .accordion_custom .card-header {
+	border: 1px solid #32415a !important;
+	background: #32415a !important;
+}
+.theme-tiber .card {
+	background: #121a27 !important;
+}
+.theme-tiber .customForm {
+	color: white !important;
+}
+.theme-tiber .label1 {
+	color: white !important;
+}
+.theme-tiber .searchCheckArea {
+	background: #0c1427 !important;
+	border: none !important
+}
+.theme-tiber .checkPannel {
+	background: #0c1427;
+	border: solid 1px #1f2b3c;
+}
+.theme-tiber .diagnosticTop2 {
+	background-color: #0c1427 !important;
+	border: solid 1px #29384f !important;
+}
+.theme-tiber .radiloPannel {
+	border: solid 1px #1f2b3c;
+}
+.theme-tiber .bgDoctorInfo {
+	background: #0c1427;
+}
+.theme-tiber .addForm {
+	border-bottom: solid 1px #2a3c575c !important;
+}
+.theme-tiber .tableGridAll {
+	background: #0c1427 !important;
+	border: solid 1px #15243e !important;
+}
+.theme-tiber #payment_details {
+	background-color: #0c1427 !important;
+}
+.theme-tiber .bottomBtnOrder {
+	background: #0c1427 !important;
+}
+.theme-tiber .billItemTable th {
+	background: #0c1427 !important;
+	border-top: solid 1px #162340 !important;
+}
+.theme-tiber .billItemTable td {
+	border: solid 1px #151f32 !important; 
+}
+.theme-tiber .bgPr {
+    background: #11192e !important;
+}
+
+.theme-tiber fieldset {
+    background: #0b1325 !important;
+}
+
+.theme-tiber .informationBlock{
+	background: #24344d !important;
+	box-shadow: 0px 0px 5px #000000 !important;
+	border: solid 1px #465469;
+}
+
+.theme-tiber .infoTop{
+	background: #070d19 !important;
+	border-color:#33445f !important;
+}
+.theme-tiber .infoTop img{
+	box-shadow: 0 0 0 14px rgb(51, 68, 95) !important;
+}
+.theme-tiber .departnetDetails h4 {
+	color: #7d8fad;
+}
+
+.theme-tiber .custom-control-label {
+    color: white !important;
+} 
+
+.theme-tiber .date-group .date-group-input :disabled {
+    color: white !important;
+}
+.theme-tiber .pannelBody {
+	 border: 0px solid #3a4b65 !important;
+}
+.theme-tiber app-report-delivery .searchHeader {
+	border-top: solid 1px #1a294b !important;
+}
+
+.theme-tiber app-report-print-from-delivery .theme-tiber fieldset {
+		border-color: #24344d !important;
+}
+.theme-tiber table.patDemoGraphy th {
+    color: #f7f0f0 !important;
+}
+.theme-tiber .borderT {
+    border: solid 3px #2a374b !important;
+}
+.theme-tiber .tabAreaVertical .nav-tabs {
+	background: #0c1427 !important;
+	border-right: solid 1px #384f72 !important;
+    border-bottom: solid 1px #24344d !important;
+}
+.theme-tiber app-reception-list .nav-tabs li a {
+	color: #fbfbfb !important;
+}
+.theme-tiber app-reception-list .nav-tabs .nav-link.active {
+    color: #495057;
+	background-color: #24344d;
+}
+.theme-tiber app-reception-list .tabAreaVertical li.nav-item a.active:after {
+    border-right: solid 10px #415676 !important;
+    border-left: solid 10px #415676 !important;
+    border-top: solid 22px #415676 !important;
+    border-bottom: solid 10px #415676 !important;
+}
+.theme-tiber .colorT {
+	background-color: #31415b !important;
+}
+.theme-tiber .receptioTop {
+	background: #24344d !important;
+}
+.theme-tiber .searchId {
+	background: #0c1427 !important;
+}
+.theme-tiber .tabletki-tree_item {
+    border: 1px solid #546b8e !important;
+    border-radius: 5px !important;
+	background: #3e506e !important;
+	color: white !important;
+}
+.theme-tiber .tabAreaVertical li a:hover {
+    border-top: solid 1px #24344d !important;
+    border-left: solid 1px #24344d !important;
+    border-bottom: solid 1px #24344d !important;
+    border-radius: 0px !important;
+}
+.theme-tiber .tabletki-tree_item :hover {
+    background-color: #3e506d !important;
+}
+.theme-tiber .bgL {
+    background: #121a27 !important;
+}
+.theme-tiber .colorBorder2 {
+    border-right: 1px solid #364b6b !important;
+}
+.theme-tiber .template-list th {
+    background-image: linear-gradient(135deg, #24546b 0, #0f2b39 100%) !important;
+}
+.theme-tiber .tox-tinymce {
+	border: 1px solid #1f2c42 !important ;
+}
+.theme-tiber .template-list {
+	border: solid 1px #1f2c42 !important;
+}
+.theme-tiber .post-pre-ot h3 {
+    border: solid 1px #1f2c42 !important;
+    background: #1f2c42 !important;
+    color: white !important;
+}
+.theme-tiber .bg-other-info {
+    background: #24344d !important;
+}
+.theme-tiber .post-pre-ot .hisbtn {
+    border: solid 1px #4e607e !important;
+    background-image: linear-gradient(135deg, #43697c 0, #143342 100%)!important;
+    color: #FFFFFF !important;
+}
+
+.theme-tiber .editorDischarge editor {
+    border: solid 1px #24344d !important;
+    background: #0c1427 !important;
+}
+
+.theme-tiber .mce-content-body {
+    color: white !important;
+}
+
+.theme-tiber  .tox .tox-edit-area {
+	border-top: 1px solid #1f2c42 !important;
+}
+.theme-tiber .main_table_content thead th {
+    background: #24344d !important;
+    color: #ffffff !important;
+}
+/* .theme-tiber .allTableCustom table tr :nth-child(2n+2) {
+    background: #222f42 !important;
+} */
+
+.theme-tiber .sticky2 td {
+    background: #0c1427 !important;
+}
+.theme-tiber .searTo {
+    box-shadow: 0px 1px 4px #24344d !important;
+    border-bottom: solid 2px #24344d !important;
+}
+.theme-tiber .nav-tabs li a {
+    color: #f1f1f1 !important;
+    font-size: 15px;
+}
+.theme-tiber .nav-tabs .nav-link.active {
+    border: solid 1px #40516e !important;
+	border-bottom: solid 1px #404c59 !important;
+	background-color: #24344d !important;
+	color: #ffffff !important;
+}
+.theme-tiber .nav-tabs {
+    border-bottom: 1px solid #37455b !important;
+}
+.theme-tiber .nav-tabs .nav-link {
+	border: 1px solid #24344d !important;
+}
+.theme-tiber h5.subHeading {
+    background: #0c1427 !important;
+    border: 1px solid #354763 !important;
+}
+.theme-tiber .bgGray {
+	border: solid 3px #24344d !important;
+}
+.theme-tiber .borderAu {
+    border: solid 1px #324563 !important;
+}
+.theme-tiber .bgR {
+    background: #0c1427 !important;
+}
+.theme-tiber .bdT {
+    background: #0c1427 !important;
+}
+.theme-tiber .fieldSet2 {
+    border: solid 3px #415676 !important;
+	box-shadow: 0px 0px 3px #000 !important;
+}
+.theme-tiber .bgImg {
+	border: solid 2px #33455f !important;
+	background: none !important;
+}
+.theme-tiber .customW4 {
+    background: #0c1427 !important;
+    border: solid 3px #415676 !important;
+	box-shadow: 0px 0px 4px #0c3340 !important;
+}
+.theme-tiber .bgSearch {
+    background: #070d18 !important;
+}
+
+.theme-tiber .topSectionReq {
+    background: #121a27 !important;
+    border-bottom: solid 1px #24304deb !important;
+}
+.theme-tiber .search-pane {
+    background: #0c1427 !important;
+}
+.theme-tiber .report-page {
+    background-color: #070d18 !important;
+    border: solid 1px #1c2a4b !important;
+}
+.theme-tiber .report-param {
+    background-color: #070d18 !important;
+    box-shadow: 0px 0px 2px #293a61 !important;
+}
+.theme-tiber .report-param h3 {
+  color:white !important;
+}
+.theme-tiber .height_table_278 {
+    background: none !important;
+}
+.theme-tiber table.patDemoGraphy th{
+    color: #f5f0f0 !important;
+}
+.theme-tiber .borderPannel {
+    border: solid 1px #243349 !important;
+}
+
+.theme-tiber .dataGridTable {
+    border: solid 1px #273751 !important;
+}
+.theme-tiber .discountTable th {
+    background: #0c1427 !important;
+
+}
+.theme-tiber .borderArea {
+    border: solid 1px #1c2334 !important;
+}
+.theme-tiber .marginTop {
+    border-top: solid 1px #253555 !important;
+}
+.theme-tiber .pendingTable th {
+	background: #32415a !important;
+}
+.theme-tiber .searTo {
+    border-bottom: solid 3px #24344d !important;
+}
+.theme-tiber app-template-list .pannelBody {
+	border: 0px solid #3a4b65 !important;
+}
+
+.theme-tiber .birthField .form-control {
+    border-bottom: dashed 1px #2d3a59 !important;
+    background: #0c1427!important;
+}
+.theme-tiber app-death-certificate .footerAreaHome {
+    background: #131e3885 !important;
+    border: solid 1px #252f40 !important;
+    box-shadow: none;
+}
+.theme-tiber .PText {
+    color: white !important;
+}
+.theme-tiber app-death-certificate2 h6 {
+    color: white !important;
+}
+.theme-tiber app-death-certificate2 .footerAreaHome {
+    background: #131e3885 !important;
+    border: solid 1px #252f40 !important;
+    box-shadow: none;
+}
+.theme-tiber app-birth-certificate .footerAreaHome {
+    background: #131e3885 !important;
+    border: solid 1px #252f40 !important;
+    box-shadow: none;
+}
+.theme-tiber  .allTableCustom table tr:nth-child(2n+2) {
+    background: #1c2738 !important;
+}
+
+.theme-tiber app-ot-schedule .allTableCustom table tr:nth-child(2n+2) {
+    background: #1c2738 !important;
+}
+.theme-tiber app-ot-schedule .allTableCustom table .reportingTime tr:nth-child(2n+2) {
+    background: none !important;
+}
+
+.theme-tiber .ward-title {
+    border-bottom: 1px solid #2d4569!important;
+    background-color: #24344d !important;
+    text-align: center!important;
+    color: white !important;
+}
+.theme-tiber .patientAdmittedBed span{
+	color: white !important;
+}
+.theme-tiber .patientAdmittedBed{
+    border-top: solid 2px #394b67 !important;
+    border-bottom: solid 2px #394b67 !important;
+	box-shadow: 0px 0px 1px #999 !important;
+}
+
+.theme-tiber app-purchase-approval-list tfoot {
+    background: #2c394d !important;
+}
+.theme-tiber .commentArea {
+    background: #0c1427 !important;
+    border-top: solid 1px #192646 !important;
+    color: white !important;
+}
+.theme-tiber .genericTabTop {
+
+    border: solid 1px #223053 !important;
+   
+}
+.theme-tiber .tab_custom3 {
+    border-left: solid 1px #1a2234 !important;
+    border-right: solid 1px #0c1427 !important;
+
+}
+.theme-tiber .genericList h5 {
+    background: #24344d !important;
+    color: #f1f1f1 !important;
+	border-bottom: solid 1px #36465f !important;
+}
+.theme-tiber .font20{
+    color: white !important;
+}
+.theme-tiber .report-title {
+
+    border-bottom: 1px solid #0c1427 !important;
+}
+/* .theme-tiber .table th {
+    border-top: 1px solid #15203c !important;
+} */
+ 
+.theme-tiber .modal-body1{
+	background: #0b1325 !important;
+}
+.theme-tiber .bgFoterDis {
+    background: #0c1427 !important;
+}
+.theme-tiber .bgFoterDis2 {
+	background: #0c1427 !important;
+}
+.theme-tiber .bgF {
+    background: #0b1325 !important;
+}
+.theme-tiber .bgF2 {
+    background: #0b1325 !important;
+}
+ .theme-tiber app-ipd-bill-vewer .table th {
+    border-top: 1px solid #15203c !important;
+} 
+
+.theme-tiber app-death-certificate2 .h4text {
+    border: 3px solid #192643;
+    background: #202f45;
+    box-shadow: 0px 1px 4px #050605ee;
+    color: white;
+}
+.theme-tiber .search-heading-pacs {
+    box-shadow: 0px 1px 4px #192639 !important;
+    border-bottom: solid 3px #1a2639 !important;
+    background: #0c1427 !important;
+}
+.theme-tiber .bg-gray {
+    background: #0c1427 !important;
+}
+.theme-tiber .pacs-status-block-area li {
+    color: white !important;
+}
+
+
+.theme-tiber .border-inferti {
+    background: #0b1325 !important;
+    border: solid 1px #76a9af;
+    
+}
+.theme-tiber app-patient-information  .form-control {
+    background: #0b1325 !important;
+}
+.theme-tiber app-patient-information   td {
+  
+    background: #0b1325 !important;
+}
+.theme-tiber app-patient-information .modal-footer {
+    background-color: #1c2b42;
+    padding: 3px 12px !important;
+}
+.theme-tiber app-ivf-cycle1  .form-control {
+    background: #0b1325 !important;
+}
+
+.theme-tiber app-ivf-cycle1  td {
+    background: #0b1325 !important;
+}
+
+.theme-tiber app-iui-cycle  .form-control {
+    background: #0b1325 !important;
+}
+.theme-tiber  app-iui-cycle  td {
+    background: #0b1325 !important;
+}
+
+.theme-tiber app-ivf-cycle2  .form-control {
+    background: #0b1325 !important;
+}
+.theme-tiber app-ivf-cycle2  td {
+     background: #0b1325 !important;
+}
+
+.theme-tiber app-ivf-cycle3  .form-control {
+    background: #0b1325 !important;
+}
+
+.theme-tiber app-ivf-cycle3 td {
+       background: #0b1325 !important;
+}
+
+.theme-tiber app-folliculomery-drug .form-control {
+        background: #0b1325 !important;
+}
+
+.theme-tiber app-folliculomery-drug td {
+        background: #0b1325 !important;
+}
+.theme-tiber app-infertility-report h4{
+	   color: white !important;
+}
+
+ 
+
+
+
+/*================================================== theme3 ================================================== */
+.theme3 .fieldSet2{
+    background: #4e75ef !important;
+}
+
+.theme3 .bgImg{
+	background: #4e75ef !important;	
+}
+.theme3 .custom8 {
+	background: #fff !important;	
+}
+
+.theme3  label.entry-label-registation {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+/* ==================================================theme4==================================================*/
+.est-navy{
+	visibility: hidden;
+}
+.theme4 .est-navy{
+	visibility: visible;
+}
+.theme4 .fieldSet2{
+    background: #4e75ef !important;
+}
+
+.theme4 .bgImg{
+	background: #4e75ef !important;	
+}
+.theme4 .custom8 {
+	background: #fff !important;	
+}
+
+.theme4  label.entry-label-registation {
+     opacity: 0 !important;
+    display: none !important;
+}
+
+.theme4 .display-none-block{
+display: none;
+}
+
+.theme4 .block-full-width {
+    max-width: 100%;
+    flex: 100%;
+    padding-right: 17px !important;
+}
+
+.theme4 .fieldSet{
+	background: #4e75ef !important;
+}
+
+.theme4 .registartionWraperOpd label {
+    color: #fff;
+}
+.theme4 .addressBolock {
+	background: #3053c1;
+    border: solid 1px #1f3d9c;
+}
+.theme4 .addressRightContent .form-check-label {
+	color: #ffffff;
+	text-shadow: none;
+}
+
+ .theme4 .spanInfo i{
+    color: #030304 !important;
+}
+
+.theme4 .registartionTab ul.nav.nav-tabs {
+    background: #302d34;
+	border: solid 1px #000000;
+}
+
+.theme4 .registartionTab .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #080808 !important;
+	border: solid 1px #5e5c63 !important;
+	border-bottom: solid 1px #fff !important;
+}
+.theme4 .registartionTab .nav-tabs li a {
+    border: solid 1px #545652 !important;
+    background: #292929  !important;
+	color: #FFF !important;
+	border-bottom: solid 1px #fff !important;
+}
+.theme4 .registartionTab .tab-content {
+    border-color:#000 !important;
+}
+.theme4 .opdQueueFooter{
+    background: #3052bd !important; 
+    border-top: solid 2px #2040a2 !important;
+}
+
+.theme4 .add_list{
+	color: #efefef !important;
+}
+.theme4 .bg_div{
+    color: #fff !important;
+	
+}
+
+.theme4 .continueMedicineArea p {
+    background: #302d34  !important;
+    color: #fff !important;
+}
+.theme4 .resultEntrySetting .reportBtn {
+    background-color: #d47e01 !important;
+    border-color: #ea9415 !important;
+}
+
+.theme4 .pacsBtn{
+    border: solid 1px #ef9d28 !important;
+    background-image: linear-gradient(135deg, #b16a02 0, #d28007 100%) !important;
+}
+.theme4 .patientInfo{
+	background-image: linear-gradient(135deg, #d47e01 0, #693f03 100%) !important;
+}
+.theme4 div#patient_demograph{
+	border: solid 1px #000000 !important;
+}
+.theme4 #right-sidebar{
+	border: solid 1px #000000 !important;	
+}
+.theme4 div#reportButton{
+	border: solid 1px #000000 !important;	
+}
+
+.theme4 .title-color-group .add_list {
+    color: #000 !important;
+}
+
+.theme4 .template-list th{
+    background-image: linear-gradient(135deg, #0a0a0a 0, #363438 100%)  !important;
+}
+.theme4 .template-list{
+	border-color: #0c0c0c !important;
+}
+.theme4 .editorDischarge editor {
+	border-color: #0c0c0c !important;
+}
+.theme4 .post-pre-ot h3 {
+	border-color: #0c0c0c !important;
+}
+.theme4 .post-pre-ot .hisbtn {
+    border: solid 1px #debe6b !important;
+	background-image: linear-gradient(135deg, #926f01 0, #dca316 100%) !important;
+}
+.theme4 .demandPannel{
+    background: #4e75ef !important;
+}
+
+.theme4 .demandPannel th{
+color: #fff !important;
+}
+.theme4 .pannel_left h6 {
+    background-image: linear-gradient(135deg, #0a0a0a 0, #676565 100%) !important;
+}
+.theme4 .bgLefrPres{
+	border-color: #000 !important;
+}
+.theme4 .investigation_area{
+	border-color: #000 !important;
+}
+.theme4 .pannel_left {
+    background: #e1f2f5 !important;
+}
+.theme4 .bgLefrPres{
+	background: #e1f2f5 !important;
+}
+.theme4 .onoffswitch-inner:after {
+    border-color:#7c8d9e;
+    background-image:linear-gradient(135deg, #6e727b 0, #080808 100%);
+}
+.theme4 .onoffswitch-switch {
+	background: #41cc47;
+}
+
+.theme4 .registartionTab .tab-color .nav-tabs .nav-link.active {
+    background-color: #5b948f !important;
+    border: solid 1px #2d736d !important;border-bottom: solid 1px #fff !important;
+}
+.theme4 .registartionTab .tab-color ul li a {
+	background: transparent !important;
+	border: solid 1px #2d736d !important;border-bottom: solid 1px #fff !important;
+}
+.theme4 .tab-color .tab-content {
+	border: solid 1px #3d8c85 !important;border-top: solid 1px #fff !important;
+}

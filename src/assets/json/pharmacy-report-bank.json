@@ -1,0 +1,12 @@
+{
+    "success": true,
+    "message": "Billing Report Bank List Found.",
+    "items": [
+        {
+            "serialNo": 1,
+            "code": "lpmedicine",
+            "name": "Lp Medicine Report",
+            "activeStatus": 1
+        }
+    ]
+}

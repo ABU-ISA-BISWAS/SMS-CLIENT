@@ -1,0 +1,230 @@
+{
+    "success": true,
+    "message": "Pre-Anaesthetic check-up form",
+    "items": [
+        {
+            "serialNo": 1,
+            "checkUpData": "HTN",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 2,
+            "checkUpData": "DM",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 3,
+            "checkUpData": "DAN",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 4,
+            "checkUpData": "COPD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 5,
+            "checkUpData": "BA",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 6,
+            "checkUpData": "ILD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 7,
+            "checkUpData": "OSA",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 8,
+            "checkUpData": "MI",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 9,
+            "checkUpData": "Angina",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 10,
+            "checkUpData": "CABG",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 11,
+            "checkUpData": "VHD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 12,
+            "checkUpData": "PTCA",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 13,
+            "checkUpData": "Pacemaker",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 14,
+            "checkUpData": "Stroke",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 15,
+            "checkUpData": "CVD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 16,
+            "checkUpData": "PD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 17,
+            "checkUpData": "AD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 18,
+            "checkUpData": "Jaundice",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },   
+        {
+            "serialNo": 19,
+            "checkUpData": "HELLP",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 20,
+            "checkUpData": "Hypothyroidism",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 21,
+            "checkUpData": "Hyperthyroidism",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 22,
+            "checkUpData": "CKD",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 23,
+            "checkUpData": "AKI",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 24,
+            "checkUpData": "Dialysis",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 25,
+            "checkUpData": "Anticoagulants",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 26,
+            "checkUpData": "Smoking",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 27,
+            "checkUpData": "Betel Nut",
+            "activeStatus": 1,
+            "enableDuplicate": false,
+            "dynamicInput": false,
+            "clearDefault": false
+        },
+        {
+            "serialNo": 28,
+            "checkUpData": "Others",
+            "activeStatus": 1,
+            "enableDuplicate": true,
+            "dynamicInput": true,
+            "clearDefault": true
+        }
+    ]
+}

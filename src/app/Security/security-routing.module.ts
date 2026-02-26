@@ -1,0 +1,82 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/_guard/auth-guard';
+import { EmployeesComponent } from './setup/employee/employees.component';
+import { FeaturesComponent } from './setup/features/features.component';
+import { ModulesComponent } from './setup/modules/modules.component';
+import { RoleManagementComponent } from './setup/role-management/role-management.component';
+import { SetupComponent } from './setup/setup.component';
+import { UsersComponent } from './setup/users/users.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'setup',
+    canActivate: [AuthGuard],
+    component: SetupComponent,
+    data: {
+      featureId: 'SAS001',
+      title: 'Setup',
+    },
+  },
+
+  {
+    path: 'setup/feature',
+    canActivate: [AuthGuard],
+    component: FeaturesComponent,
+    data: {
+      featureId: 'SAS002',
+      title: 'Feature Setup',
+    },
+  },
+  {
+    path: 'setup/employee',
+    canActivate: [AuthGuard],
+    component: EmployeesComponent,
+    data: {
+      featureId: 'SAS003',
+      title: 'Employee Setup',
+    },
+  },
+  {
+    path: 'setup/user',
+    canActivate: [AuthGuard],
+    component: UsersComponent,
+    data: {
+      featureId: 'SAS004',
+      title: 'User List',
+    },
+  },
+
+  {
+    path: 'setup/module',
+    canActivate: [AuthGuard],
+    component: ModulesComponent,
+    data: {
+      featureId: 'SAS009',
+      title: 'Module Setup',
+    },
+  },
+
+  {
+    path: 'setup/role',
+    canActivate: [AuthGuard],
+    component: RoleManagementComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+
+  exports: [RouterModule],
+})
+export class SecurityRoutingModule {}

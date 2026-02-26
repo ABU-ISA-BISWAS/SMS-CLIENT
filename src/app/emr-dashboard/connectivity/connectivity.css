@@ -1,0 +1,23 @@
+.card-header{
+    color: var(--base-primary);
+    background-color: var(--base-primary-subtle);
+}
+
+.card-body{
+    min-height: 100px;
+    color: var(--base-primary);
+}
+
+.card-footer{
+    color: var(--base-primary);
+    font-size: 12px;
+}
+
+.text-danger{
+    
+    color: #FF2B1D;
+}
+
+.card-body .table-striped > tbody > tr:nth-of-type(even) > * {
+    --bs-table-bg-type: #F5F7FD;
+}

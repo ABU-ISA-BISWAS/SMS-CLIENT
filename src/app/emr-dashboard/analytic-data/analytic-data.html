@@ -1,0 +1,110 @@
+<div class="container-fluid">
+
+    <div class="row mb-4">
+        <div class="col-xxl-6 col-lg-12">
+            <div class="row">
+                <div class="col-xxl-5 col-xl-5 col-lg-6 col-12">
+                    <div class="input-group input-group-sm flex-nowrap mb-lg-0 mb-3">
+                        <span class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium" id="unitName">Unit Name</span>
+                        <select class="form-select" aria-label="Username" aria-describedby="unitName">
+                            <option value="" selected disabled>Please Select Unit</option>
+                            <option>Unit 1</option>
+                            <option>Unit 2</option>
+                            <option>Unit 3</option>
+                            <option>Unit 4</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-xxl-3 col-lg-3 col-sm-6 col-12 ms-auto">
+                    <div class="input-group input-group-sm flex-nowrap mb-lg-0 mb-3">
+                        <span class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium" id="fromDate">From Date</span>
+                        <input type="text" class="form-control" 
+                            placeholder="Select Date" 
+                            aria-label="from date" 
+                            aria-describedby="fromDate" 
+                            bsDatepicker 
+                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'brand-theme'}"
+                            [(ngModel)]="fromDate"
+                        />
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-3 col-sm-6 col-12">
+                    <div class="input-group input-group-sm flex-nowrap mb-lg-0 mb-3">
+                        <span class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium" id="toDate">To Date</span>
+                        <input type="text" class="form-control" 
+                            placeholder="Select Date" 
+                            aria-label="to date"
+                            aria-describedby="toDate" 
+                            bsDatepicker 
+                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'brand-theme'}"
+                            [(ngModel)]="toDate"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <div class="card shadow rounded-3 mb-3">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0 base-txt-primary">CHM Dhaka (Incremental Backup)</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="appointVsPresChartOptions"
+                        style="width: 100%; height: 400px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow rounded-3 mb-3">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0 base-txt-primary">Ward Wise Statistics Summary</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="wardWiseStatsChartOptions"
+                        style="width: 100%; height: 400px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="card shadow rounded-3 mb-3">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0 base-txt-primary">Dept Wise Death</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="deptWiseDeathChartOptions"
+                        style="width: 100%; height: 400px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "message": "Afmsd Control type List Found.",
+  "items": [
+    {
+      "id": null,
+      "name": null,
+      "type": "Select control type",
+      "activeStatus": 1
+    },
+    {
+      "id": 2,
+      "name": "Non-Control",
+      "type": "Non-Control",
+      "activeStatus": 1
+    },
+    {
+      "id": 1,
+      "name": "Control",
+      "type": "Control",
+      "activeStatus": 1
+    }
+  ]
+}

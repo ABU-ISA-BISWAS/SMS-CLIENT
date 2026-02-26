@@ -1,0 +1,125 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{title}}</h6>
+  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body ">
+  <!-- patient Info -->
+  <div class="patient-info bg-light p-3 rounded border mb-2">
+    <div class="row g-2">
+      <div class="col-md-6 col-sm-6 col-12">
+        <div class="row g-2">
+          <!-- info -->
+          <div class="col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+              <label for="roleName" class="form-label base-txt-primary">Role Name:</label>
+              <div class="input-group required">
+                <input type="text" id="roleName" class="form-control form-control-sm" [(ngModel)]="role.roleName"
+                  [class.is-invalid]="invalidRoleName" [ngClass]="{ 'invalid-input': invalidRoleName }" required />
+                <div *ngIf="invalidRoleName">
+                  Role Name is required
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- info -->
+          <div class="col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+              <label for="roleName" class="form-label base-txt-primary">Role ID:</label>
+              <div class="input-group required">
+                <input type="text" id="roleName" class="form-control form-control-sm" [(ngModel)]="role.roleId"
+                  [class.is-invalid]="invalidRoleId" [ngClass]="{ 'invalid-input': invalidRoleId }" required />
+                <div *ngIf="invalidRoleId">
+                  Role ID is required
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Description -->
+      <div class="col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+          <label for="roleName" class="form-label base-txt-primary">Description:</label>
+          <div class="input-group required">
+            <textarea class="form-control form-control-sm" [(ngModel)]="role.descr" rows="1"> </textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Flags -->
+  <div class="card flags mb-2">
+    <div class="card-header">Status</div>
+    <div class="card-body">
+
+      <div class="d-flex flex-wrap">
+        <div class="form-check me-3 mb-2 mb-md-0">
+          <input class="form-check-input me-2" type="checkbox" id="activeStatus" [checked]="role.activeStatus === 1"
+            (change)="onStatusChange($event)" />
+
+          <button type="button" class="status-btn"
+            [ngClass]="role.activeStatus === 1 ? 'status-active' : 'status-inactive'" disabled>
+            <span class="dot"></span>
+            {{ role.activeStatus === 1 ? 'Active' : 'Inactive' }}
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- divider -->
+<hr />
+<div class="modal-body">
+
+  <tabset class="tab-menu-style" type="pills">
+    <tab heading="Modules & Features">
+      <div id="userInfo" class="tab-pane active  pt-1">
+        <div class="row">
+          <div class="col-md-12 accordionCustom paddingLeft0 paddingRight0">
+            <div class="col-md-12 text-right mb-2">
+              <button type="button" class="btn btn-info btnAcc" (click)="toggleTabs()">
+                <i class="fas fa-hand-pointer"></i> {{toggleButton}}
+              </button>
+            </div>
+            <div class="col-md-12">
+              <accordion class="base-accordion">
+                @for(module of moduleList3; track $index){
+                <accordion-group [heading]="module.displayName" [isOpen]="isOpen">
+                  <app-sub-module-role [parent]="self" [subModules]="module"
+                    (featureSelected)="getSelectedFeature($event.feature, $event.checked)">
+                  </app-sub-module-role>
+                </accordion-group>
+
+                }
+              </accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary"
+    (click)="bsModalRef.hide()"> Close </button>
+
+  <button type="button" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveUpdateRole()">
+    {{role.id ? 'Update' : 'Save'}}
+  </button>
+</div>

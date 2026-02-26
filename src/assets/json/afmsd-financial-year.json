@@ -1,0 +1,76 @@
+{
+	"success": true,
+	"message": "Afmsd Financial Year List Found.",
+	"items": [
+		{
+			"id": 10,
+			"name": "2017-2018",
+			"activeStatus": 1
+		},
+		{
+			"id": 11,
+			"name": "2018-2019",
+			"activeStatus": 1
+		},
+		{
+			"id": 11,
+			"name": "2018-2019",
+			"activeStatus": 1
+		},
+		{
+			"id": 12,
+			"name": "2019-2020",
+			"activeStatus": 1
+		},
+		{
+			"id": 13,
+			"name": "2020-2021",
+			"activeStatus": 1
+		},
+		{
+			"id": 14,
+			"name": "2021-2022",
+			"activeStatus": 1
+		},
+		{
+			"id": 15,
+			"name": "2022-2023",
+			"activeStatus": 1
+		},
+		{
+			"id": 16,
+			"name": "2023-2024",
+			"activeStatus": 1
+		},
+		{
+			"id": 17,
+			"name": "2024-2025",
+			"activeStatus": 1
+		},
+		{
+			"id": 18,
+			"name": "2025-2026",
+			"activeStatus": 1
+		},
+		{
+			"id": 19,
+			"name": "2026-2027",
+			"activeStatus": 1
+		},
+		{
+			"id": 20,
+			"name": "2027-2028",
+			"activeStatus": 1
+		},
+		{
+			"id": 21,
+			"name": "2028-2029",
+			"activeStatus": 1
+		},
+		{
+			"id": 22,
+			"name": "2029-2030",
+			"activeStatus": 1
+		}
+	]
+}

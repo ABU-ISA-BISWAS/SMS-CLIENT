@@ -1,0 +1,234 @@
+.pConfirmation {
+	color: #942902;
+	font-size: 16px;
+}
+
+.searchHeaderField .input-group-text {
+	border-left: 1px solid #a8d7ea;
+	height: 30px;
+	border-radius: 16px 0px 0px 16px;
+	padding: 0px 16px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.searchHeaderField .form-control {
+	height: 30px;
+	border-radius: 0px 16px 16px 0px;
+	font-size: 16px;
+}
+
+.paddC {
+	padding: 2px 22px;
+	border-radius: 31px;
+}
+
+label.labelConfirm {
+	width: 100%;
+	font-size: 14.5px;
+}
+
+.perNumberConfirm {
+	border-radius: 16px !important;
+	border: solid 1px #9bd3ec;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .custom-modal-header {
+	border-bottom: none;
+	position: relative;
+}
+
+.custom-modal-header .btn-close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 1.2rem;
+}
+
+.custom-modal-body {
+	text-align: center;
+	padding-top: 0;
+	padding-bottom: 2rem;
+}
+
+.warning-icon {
+	font-size: 3rem;
+	color: #dc3545;
+	background-color: #f8d7da;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1.5rem;
+}
+
+.custom-modal-title {
+	font-size: 1.75rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.custom-modal-text {
+	color: #6c757d;
+	font-size: 0.95rem;
+	margin-bottom: 2rem;
+}
+
+.btn-delete {
+	background-color: #dc3545;
+	border-color: #dc3545;
+	color: white;
+	font-weight: bold;
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	width: 100%;
+	margin-bottom: 0.75rem;
+}
+
+.btn-delete:hover {
+	background-color: #c82333;
+	border-color: #bd2130;
+}
+
+.btn-cancel {
+	background-color: #f8f9fa;
+	border-color: #dee2e6;
+	color: #343a40;
+	font-weight: bold;
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	width: 100%;
+}
+
+.btn-cancel:hover {
+	background-color: #e2e6ea;
+	border-color: #dae0e5;
+}
+
+.modal-dialog {
+	max-width: 400px;
+}
+
+.modal-content {
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+} */
+
+
+
+/* ======================================= */
+/* GLOBAL/STYLESHEET CSS TO TARGET NGX-BOOTSTRAP */
+/* ======================================= */
+
+/* 1. Target the Modal Dialog container */
+.modal-dialog.custom-confirmation-modal {
+    max-width: 440px !important; /* Set a specific, narrow width */
+}
+
+/* 2. Style the Modal Content */
+.modal-dialog.custom-confirmation-modal .modal-content {
+    border-radius: 1.5rem !important; /* Highly rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border: none !important;
+}
+
+/* 3. Style the Modal Header for custom padding/positioning */
+.modal-dialog.custom-confirmation-modal .modal-header {
+    border-bottom: none !important;
+    padding: 1rem 1rem 0 1rem !important;
+    position: relative;
+}
+
+/* 4. Style the Close Button */
+.modal-dialog.custom-confirmation-modal .btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+/* 5. Style the Modal Body (internal content) */
+.modal-body-custom {
+    text-align: center;
+    /* padding: 0 2.5rem 2.5rem 2.5rem !important; */
+}
+
+/* 6. Icon Styling (Blue/Question for the confirmation look) */
+.icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.icon-question {
+    background-color: #e5f1ff; /* Light blue background */
+    color: #007bff; /* Primary blue color */
+    font-weight: bold;
+}
+
+/* 7. Text Styling */
+.main-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.sub-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 0; /* Remove default margin before inputs */
+    line-height: 1.5;
+}
+
+/* 8. Button Styling (Full-width custom look) */
+.btn-full-width {
+    font-weight: 600;
+    /* border-radius: 0.75rem; */
+    width: 100%;
+}
+
+.btn-primary-blue {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.btn-secondary-white {
+    background-color: white;
+    border-color: #ced4da;
+    color: #333;
+}
+
+/* 9. Styling for your input fields */
+.lebelBg {
+    background-color: #f8f9fa; /* Light background for the label part */
+    font-weight: 600;
+    color: #495057;
+}
+
+.labelConfirm {
+    font-size: 0.9rem;
+    color: #495057;
+}

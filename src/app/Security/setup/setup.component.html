@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12 padding-left-right">
+    <div class="all_content_wrapper">
+      <div class="allInner">
+        <div class="pannelArea">
+          <div class="pannelHeading">
+            <h5 class="subHeading subHeadingDocSetup">Access Control Setup Dashboard</h5>
+          </div>
+          <div class="pannelBody container-fluid">
+            <div class="row">
+              <div class="mx-2 my-2 registartionTab setupTab">
+
+                <tabset #tabset>
+                  <tab *ngFor="let tab of tabs" [heading]="tab.title" [active]="tab.active"
+                    (select)="tab.active= true; tab.initiated= true; onSelect(tab)" [disabled]="tab.disabled"
+                    [customClass]="tab.customClass">
+
+                    <ng-container *ngIf="tab.content == 'featureSetup' && tab.initiated">
+                      <app-features></app-features>
+                    </ng-container>
+
+                    <ng-container *ngIf="tab.content == 'employeeSetup' && tab.initiated">
+                      <app-personnel></app-personnel>
+                    </ng-container>
+
+                    <ng-container *ngIf="tab.content == 'userSetup' && tab.initiated">
+                      <app-users></app-users>
+                    </ng-container>
+
+                  </tab>
+                </tabset>
+              </div>
+              <!-- end tabView -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

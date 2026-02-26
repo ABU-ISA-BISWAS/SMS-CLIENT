@@ -1,0 +1,91 @@
+
+.topbar #sidebarToggleTop {
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--base-primary);
+}
+
+.topbar {
+    height: 4.375rem;
+}
+/* .topbar .navbar-search {
+    width: 25rem;
+} */
+
+.header-search{
+    max-width: 250px;
+}
+
+.dropdown-item{
+    font-size: 14px;
+}
+
+.dropdown .dropdown-menu .dropdown-header,
+.sidebar .sidebar-heading, .text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.dropdown-toggle::after{
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    transform: translateY(-50%) rotate(0deg);
+    transition: 0.25s;
+}
+
+/* .dropdown-toggle::after, */
+.dropdown-toggle.collapsed::after{
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: 0.25s;
+}
+
+.user-account{
+    min-width: 150px;
+}
+
+.topbar .nav-item .nav-link .badge-counter {
+    position: absolute;
+    transform: scale(.7);
+    transform-origin: top right;
+    right: .25rem;
+    margin-top: -.25rem;
+}
+
+.topbar .nav-item .nav-link .img-profile {
+    height: 2rem;
+    width: 2rem;
+}
+
+.dropdown-toggle::after{
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    transform: translateY(-50%) rotate(0deg);
+    transition: 0.25s;
+}
+
+/* .dropdown-toggle::after, */
+.dropdown-toggle.collapsed::after{
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: 0.25s;
+}
+
+.no-arrow .dropdown-toggle::after{
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .header-search{
+        max-width: 150px;
+    }
+    .user-account{
+        min-width: 0px;
+    }
+}
+   

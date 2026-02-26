@@ -1,0 +1,108 @@
+<div class="container-fluid">
+
+    <div class="row">
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow rounded-3 mb-3" routerLink="details">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0">CPU Usage</h2>
+                </div>
+
+                <div class="card-body">
+                    <p class="base-txt-purple fw-bold mb-0 ms-3">40%</p>
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="cpuUsageChartOptions"
+                        style="width: 100%; height: 200px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow rounded-3 mb-3" routerLink="details">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0">Memory</h2>
+                </div>
+
+                <div class="card-body">
+                    <p class="base-txt-purple fw-bold mb-0 ms-3">70%</p>
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="memoryChartOptions"
+                        style="width: 100%; height: 200px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow rounded-3 mb-3" routerLink="details">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0">Disk Usage</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="container text-center">
+                        <div class="row gap-0 text-end mb-2">
+                            <div class="col">
+                                <h5 class="base-txt-purple fw-bold mb-0">70GB</h5>
+                                <small class="base-txt-purple fw-normal mb-0 d-block">28% used</small>
+                            </div>
+                            <div class="col border-start border-2 text-start">
+                                <h5 class="base-txt-purple fw-bold mb-0">250GB</h5>
+                                <small class="base-txt-purple fw-normal mb-0 d-block">Total Storage</small>
+                            </div>
+                        </div>
+                    </div>
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="diskUsageChartOptions"
+                        style="width: 100%; height: 170px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow rounded-3 mb-3" routerLink="details">
+                <div class="card-header border-0 d-flex justify-content-between align-items-center">
+                    <h2 class="h6 fw-bold mb-0">Bandwidth</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="container text-center">
+                        <div class="row gap-0 text-end mb-2">
+                            <div class="col">
+                                <h5 class="base-txt-purple fw-bold mb-0">20MB</h5>
+                                <small class="base-txt-purple fw-normal mb-0 d-block">40% used</small>
+                            </div>
+                            <div class="col border-start border-2 text-start">
+                                <h5 class="base-txt-purple fw-bold mb-0">50MB</h5>
+                                <small class="base-txt-purple fw-normal mb-0 d-block">Total Bandwidth</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <highcharts-chart
+                        [Highcharts]="Highcharts"
+                        [options]="bandwidthChartOptions"
+                        style="width: 100%; height: 170px; display: block;"
+                    ></highcharts-chart>
+                </div>
+
+                <div class="card-footer border-0"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

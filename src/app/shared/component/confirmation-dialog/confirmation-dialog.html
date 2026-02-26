@@ -1,0 +1,73 @@
+<!-- <div class="modal-body text-center pt-5 pb-5">
+    <p class="pConfirmation" [innerHTML]="title"></p>
+    <div *ngIf="cancelFlag ">
+        <div class="searchHeaderField col-md-9 offset-md-2 pt-4 pl-3 pr-5">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text lebelBg">Cancel Reason:</div>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="cancelReason"
+                    (ngModelChange)="cancelReason.length > 0 ? cancelReasonChecker = false : cancelReasonChecker = true">
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="personalNumber ">
+        <div class="searchHeaderField col-md-9 offset-md-2 pt-4 pl-3 pr-5">
+            <div class="form-group mb-2">
+                <label for="formGroupExampleInput" class="text-center labelConfirm">
+                    <strong>Personal Number to confirm:</strong>
+                </label>
+                <input type="text" class="form-control perNumberConfirm" [(ngModel)]="validationString"
+                    (ngModelChange)="validationString == personalNumber ? unitCheck = false : unitCheck = true">
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-success paddC mt-2" (click)="onConfirm()"
+        [disabled]="cancelReasonChecker || unitCheck">Yes
+    </button>
+    <button type="button" class="btn btn-danger paddC mt-2 mx-3 " (click)="onCancel()">No
+    </button>
+</div> -->
+            
+    <div class="modal-body modal-body px-4 py-5 text-center">
+        
+        <div class="icon-container icon-question">
+            <i class="fas fa-question"></i>
+        </div>
+        
+        <h5 class="main-title" [innerHTML]="title"></h5>
+        <p class="sub-text">Please review the details before confirming this action.</p>
+
+        <div *ngIf="cancelFlag" class="pt-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text lebelBg">Cancel Reason:</span>
+                <input type="text" class="form-control" [(ngModel)]="cancelReason"
+                    (ngModelChange)="cancelReason.length > 0 ? cancelReasonChecker = false : cancelReasonChecker = true">
+            </div>
+        </div>
+
+        <div *ngIf="personalNumber" class="pt-4">
+            <div class="form-group mb-3">
+                <label for="perNumberConfirm" class="text-center labelConfirm d-block">
+                    <strong>Personal Number to confirm:</strong>
+                </label>
+                <input type="text" class="form-control perNumberConfirm" [(ngModel)]="validationString"
+                    (ngModelChange)="validationString == personalNumber ? unitCheck = false : unitCheck = true">
+            </div>
+        </div>
+
+        <div class="hstack gap-3 mt-4">
+            <button type="button" class="btn btn-full-width btn-secondary-white" (click)="onCancel()">
+                No
+            </button>
+            
+            <button type="button" class="btn btn-full-width btn-primary-blue" (click)="onConfirm()"
+                [disabled]="cancelReasonChecker || unitCheck">
+                Yes
+            </button>
+        </div>
+    </div>
+                

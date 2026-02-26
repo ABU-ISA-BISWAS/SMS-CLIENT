@@ -1,0 +1,48 @@
+.card{
+    overflow: hidden;
+    /* background-color: #E3E9F9; */
+    cursor: pointer;
+    transition: 0.15s;
+}
+.card:hover{
+    transform: scale(1.02);
+    transition: 0.15s;
+}
+
+.card-header{
+    color: var(--base-primary);
+    background-color: var(--base-primary-subtle);
+}
+
+.card-header .status{
+    font-size: 13px;
+}
+
+.card-body{
+    min-height: 250px;
+    color: var(--base-primary);
+}
+
+.card-body .table tr > * {
+    font-size: 13px;
+    color: #252525;
+}
+
+.card-body .table-striped > tbody > tr:nth-of-type(odd) > * {
+    /* background-color: #EBEFFB; */
+    --bs-table-bg-type: #EBEFFB;
+}
+.card-body .table-striped > tbody > tr:nth-of-type(even) > * {
+    --bs-table-bg-type: #F5F7FD;
+}
+
+.card-footer{
+    background-color: #F5F7FD;
+    color: var(--base-primary);
+    font-size: 12px;
+}
+
+.text-danger{
+    
+    color: #FF2B1D;
+}

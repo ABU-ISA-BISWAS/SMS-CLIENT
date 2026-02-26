@@ -1,0 +1,33 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">Add Signature</h6>
+  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="signature-preview-container">
+    <div>
+      <h3 class="text-center">View</h3>
+      <div class="signature-preview">
+        <img [src]="profileImgURL" *ngIf="profileImgURL" alt="User Signature">
+        <img *ngIf="!profileImgURL" alt="No Signature Available" src="/assets/images/no-sig.png">
+      </div>
+
+    </div>
+    <div class="upload-sign-image">
+      <input #file type="file" accept="image/*" (change)="processFile(file.files)" style="display: none">
+      <button class="select-btn" (click)="file.click()">Select Signature</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()">Cancel</button>
+  <button type="submit" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn" (click)="onSubmit()" [disabled]="isSaving">
+    {{ isSaving ? 'Saving' : 'Save'}}
+  </button>
+</div>

@@ -1,0 +1,26 @@
+<div class="card-body" *ngFor="let subModule of subModules.children">
+  <div class="card-bodyInner">
+  <div *ngIf="subModule?.children.length == 0 && subModule?.featureDtosList == null">
+      <h5 class="h5SubModule">{{subModule.displayName}}</h5>
+      <app-sub-module  [parent]="parent" [subModules]="subModule"></app-sub-module>
+  </div>
+  <div *ngIf="subModule?.children.length > 0 && subModule?.featureDtosList == null">
+      <h5 class="h5SubModule">{{subModule.displayName}}</h5>
+      <app-sub-module [parent]="parent" [subModules]="subModule"></app-sub-module>
+  </div>
+  <div *ngIf="subModule?.children.length == 0 && subModule?.featureDtosList != null">
+    <div class="subModuleArea">
+    <h5 class="h5SubModule">{{subModule.displayName}}</h5>
+    <span class="form-check form-check-inline subSpan" *ngFor="let feature of subModule.featureDtosList">
+      <input type="checkbox" class="form-check-input" 
+        [attr.id]="feature.featureId" 
+        [attr.name]="feature.featureId"
+        [value]="feature" 
+        [checked]="feature.isGranted"
+        (change)="getSelectedFeature(feature, $event.target.checked)">
+      <label class="form-check-label" [attr.for]="feature.featureId">{{feature.featureName}}</label>
+    </span>
+  </div>
+  </div>
+</div>
+</div>

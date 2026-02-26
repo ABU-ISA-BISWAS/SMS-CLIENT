@@ -1,0 +1,129 @@
+<div class="persoanlInfoArea">
+  <div class="row">
+    <div class="col-md-7 col-sm-12 ">
+      <table>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <th style="font-size: 13px;padding-bottom: 6px !important;padding-top: 7px !important;" colspan="2">
+                  Present Address</th>
+              </tr>
+              <tr class="input-group mb-2">
+                  <span class="input-group-text base-bg-subtle-primary base-txt-primary">C/O:</span>
+                  <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prCareOfAddr">
+              </tr>
+              <tr class="input-group mb-2">
+                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Address1:</span>
+                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddr1">
+              </tr>
+              <tr class="input-group mb-2">
+                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Address2:</span>
+                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddr2">
+              </tr>
+              <tr class="input-group mb-2">
+                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Post Office:</span>
+                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddrPost">
+              </tr>
+              <tr class="input-group mb-2">
+                <span class="input-group-text base-bg-subtle-primary base-txt-primary">District:</span>
+                  <ng-select [items]="districtlist" placeholder="Choose district" notFoundText="No district found"
+                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.prAddrDist" class="form-control form-select rounded">
+                  </ng-select>
+              </tr>
+
+              <tr class="input-group mb-2">
+                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Country:</span>
+                  <ng-select [items]="countryList" placeholder="Choose a country" notFoundText="No country found"
+                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.prAddrCountry" class="form-control form-select rounded">
+                  </ng-select>
+              </tr>
+
+            </table>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <th></th>
+                <th style="font-size: 13px;padding-bottom: 6px !important;padding-top: 7px !important;">Permanent
+                  Address</th>
+              </tr>
+              <tr>
+                <td rowspan="8" style="width: 60px; vertical-align: middle; text-align: center;"><button
+                    class=" btnnext btn btn-primary" (click)="copyPresentAddress()">
+                    <i class="fas fa-angle-double-right"></i>
+                  </button></td>
+
+              </tr>
+            
+              <tr class="input-group mb-2">
+
+                  <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peCareOfAddr">
+              </tr>
+              <tr class="input-group mb-2">
+
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddr1">
+              </tr>
+              <tr class="input-group mb-2">
+
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddr2">
+              </tr>
+              <tr class="input-group mb-2">
+
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddrPost">
+              </tr>
+              <tr class="input-group mb-2">
+
+                  <ng-select [items]="districtlist" placeholder="Choose district" notFoundText="No district found"
+                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.peAddrDist" class="form-control form-select">
+                  </ng-select>
+              </tr>
+
+              <tr class="input-group mb-2">
+
+                  <ng-select [items]="countryList" placeholder="Choose a country" notFoundText="No country found"
+                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.peAddrCountry" class="form-control form-select">
+                  </ng-select>
+              </tr>
+              
+    
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Contact person -->
+    <div class="col-md-5 col-sm-12 border border-left-0">
+      <div class="row">
+        <strong class="header sm-3 py-2 pl-3">Emergency Contact Details</strong>
+      </div>
+      <div class="form-group row pr-2">
+         <div class="input-group mb-2">
+        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Name:</span>
+        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractPersonName">
+      </div>
+          <div class="input-group mb-2">
+        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Relation:</span>
+        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractRelation">
+      </div>
+         <div class="input-group mb-2">
+        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Phone No.</span>
+        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractPhone">
+      </div>
+        <div class="input-group mb-2">
+        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Mobile</span>
+        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractMobile">
+      </div>
+        <div class="input-group mb-2">
+        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Email</span>
+        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractEmail">
+      </div>
+       
+      </div>
+
+    </div>
+
+  </div>
+</div>

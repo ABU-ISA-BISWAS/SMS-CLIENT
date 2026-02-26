@@ -1,0 +1,8 @@
+{
+    "description": "Used Only Default Connector",
+    "cmhDefaultConnector" : "8080/weasis-pacs-connector/viewer?accessionNumber",
+    "weasisConnectorByAccessionNumber": "8080/weasis-pacs-connector/weasis?accessionNumber",
+    "viewerConnectorByAccessionNumber": "8080/weasis-pacs-connector/viewer?accessionNumber",
+    "weasisConnectorByPatientID": "8080/weasis-pacs-connector/weasis?patientID"
+    
+}

@@ -1,0 +1,58 @@
+.signature-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.signature-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    justify-content: center;
+    border: 2px dashed #00796b;
+    padding: 15px;
+}
+
+.signature-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+.signature-preview p {
+    font-size: 14px;
+    color: #757575;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.upload-sign-image {
+    margin-top: 10px;
+}
+
+.select-btn {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.select-btn:hover {
+    background-color: #004d40;
+}
+
+.fixed-width-btn {
+  min-width: 80px; 
+}

@@ -1,0 +1,24 @@
+#central-emr-menu .nav-item .nav-link{
+    color: gray;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+#central-emr-menu .nav-item .nav-link.active{
+    color: var(--base-primary);
+}
+
+#central-emr-menu .nav-item .nav-link.active::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 100%;
+    background-color: var(--base-primary);
+    border-radius: 5px;
+}

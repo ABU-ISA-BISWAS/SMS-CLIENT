@@ -1,0 +1,107 @@
+<!-- Modal Header -->
+<div class="modal-header ">
+  <h6 class="modal-title app-modal-title">
+    {{ title || 'Role Features' }}
+  </h6>
+  <button type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="bsModalRef.hide()">
+  </button>
+</div>
+
+<!-- Modal Body -->
+<div class="modal-body p-0">
+
+  <!-- Search Section -->
+  <div class="app-search-bar">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fas fa-search text-muted"></i>
+      </span>
+
+      <input type="text"
+             class="form-control"
+             placeholder="Search by menu, submenu, role..."
+             [(ngModel)]="searchText"
+             (ngModelChange)="filterFeatures()">
+
+      <button *ngIf="searchText"
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="clearSearch()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-responsive app-table-container">
+
+    <table class="table table-hover align-middle mb-0"
+           *ngIf="filteredFeatures?.length">
+
+      <thead class="table-light app-table-header">
+        <tr>
+          <th class="text-center col-sl">#</th>
+          <th>Menu</th>
+          <th>Submenu</th>
+          <th>Type</th>
+          <th>Role</th>
+          <th>Access</th>
+          <th class="text-center col-status">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let feature of filteredFeatures; let i = index">
+          <td class="text-center text-muted">
+            {{ i + 1 }}
+          </td>
+
+          <td class="fw-medium">{{ feature?.menuName }}</td>
+          <td>{{ feature?.submenuName }}</td>
+          <td>{{ feature?.typeName }}</td>
+          <td>{{ feature?.roleName }}</td>
+
+          <td>
+            <span class="badge app-access-badge">
+              {{ feature?.accessType }}
+            </span>
+          </td>
+
+          <td class="text-center">
+            <div class="form-check form-switch justify-content-center">
+              <input class="form-check-input"
+                     type="checkbox"
+                     [(ngModel)]="feature.activeStatus"
+                     (change)="onStatusChange(feature)">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div *ngIf="!filteredFeatures?.length"
+         class="app-empty-state">
+      <i class="fas fa-folder-open"></i>
+      <p *ngIf="searchText">
+        No results found for "<strong>{{ searchText }}</strong>"
+      </p>
+      <p *ngIf="!searchText">
+        No features assigned to this role
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Footer -->
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+          (click)="onCloseModal()">
+     Save & Close
+  </button>
+</div>

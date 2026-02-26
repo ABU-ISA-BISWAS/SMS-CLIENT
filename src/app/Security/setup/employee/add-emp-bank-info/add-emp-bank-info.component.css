@@ -1,0 +1,18 @@
+
+::ng-deep table.dataTable tbody tr.selected-row > td {
+  background-color: #6a95b6 !important;
+  color: white !important;
+}
+
+.input-group .input-group-text:nth-child(1) {
+    background-color: transparent;
+
+    text-align: right;
+    border: 0;
+    display: inline;
+    font-weight: 600;
+}
+
+.fixed-width-btn {
+  min-width: 80px; 
+}

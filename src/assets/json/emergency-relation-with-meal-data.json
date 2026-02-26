@@ -1,0 +1,34 @@
+{
+    "success": true,
+    "message": "Dosage Uom List Found.",
+    "items": [
+        {
+            "id": 10001,
+            "preDiagnosisVal": "After Meal",
+            "departmentNo": 2001,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10002,
+            "preDiagnosisVal": "Before Meal",
+            "departmentNo": 2001,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10003,
+            "preDiagnosisVal": "1 Hour Before Meal",
+            "departmentNo": 2001,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10004,
+            "preDiagnosisVal": "1/2 An Hour Before Meal",
+            "departmentNo": 2001,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        }
+    ]
+}

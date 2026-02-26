@@ -1,0 +1,20 @@
+{
+    "success": true,
+    "message": "Eye Glass Usage Type List Found.",
+    "items": [
+        {
+            "preDiagnosisVal": "Constant Use",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10001,
+            "activeStatus": 1
+        },
+        {
+            "preDiagnosisVal": "Near Work",
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "referenceId": 10002,
+            "activeStatus": 1
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+::ng-deep table.dataTable tbody tr.selected-row>td {
+    background-color: #6a95b6 !important;
+    color: white !important;
+}

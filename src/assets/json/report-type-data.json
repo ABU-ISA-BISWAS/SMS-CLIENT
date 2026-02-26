@@ -1,0 +1,26 @@
+{
+    "success": true,
+    "message": "Disposal List Found.",
+    "items": [
+        {
+            "id": 0,
+            "reportType": "Without header without signature",
+            "activeStatus": 1
+        },
+        {
+            "id": 1,
+            "reportType": "With header without signature",
+            "activeStatus": 1
+        },
+        {
+            "id": 2,
+            "reportType": "Without header with signature",
+            "activeStatus": 1
+        },
+        {
+            "id": 3,
+            "reportType": "With header with signature",
+            "activeStatus": 1
+        }
+    ]
+}

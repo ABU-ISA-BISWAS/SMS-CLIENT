@@ -1,0 +1,185 @@
+/* :root{
+    --textColor: var(--ja-menu-item-color);
+    --bgColor: var(--ja-menu-bg);
+    --hoverTextColor: #ffffff;
+    --hoverColor: #4D4D4D;
+    --activeColor: #4D4D4D;
+} */
+:root{
+    --textColor: #ffffff;
+    --bgColor: #003367;
+    --hoverTextColor: #ffffff;
+    --hoverColor: #0a61b9;
+    --activeColor: #004387;
+}
+
+
+/* ======== theme customizations =========== */
+.chiller-theme .sidebar-wrapper {
+    background: var(--bgColor);
+}
+
+.sidebar-wrapper .sidebar-brand {
+    background: var(--bgColor);
+	box-shadow: 0px 0px 2px rgb(from rgba(var(--textColor) r g b / 0.5));
+    border-bottom: solid 2px rgb(from rgba(var(--textColor) r g b / 0.5));
+}
+
+
+.subHeading{
+	border-right: 1px solid var(--bgColor)!important;
+    box-shadow: 1px 0px 1px -1px var(--bgColor)!important;
+    color: var(--textColor);
+}
+
+header.headerTop {
+    background: var(--bgColor)!important;
+}
+
+.page-wrapper.chiller-theme.toggled #close-sidebar {
+    background: var(--bgColor);
+}
+
+.settingTop {
+    background: var(--bgColor)!important;
+    color: var(--textColor);
+}
+.settingTop:before {
+    /* border-bottom: solid 10px var(--bgColor)!important; */
+    border-bottom: solid 10px var(--textColor)!important;
+}
+
+.pannelHeading {
+	background: var(--bgColor);
+	border-right: 1px solid var(--bgColor)!important;
+    box-shadow: 1px 0px 1px -1px var(--bgColor)!important;
+}
+
+
+.menu-tab-custom .nav-tabs{
+	border-bottom: 1px solid var(--textColor) !important;
+}
+
+.tab-pane > div > div > .dropdown-container i.fav-menu-icon{
+  color: var(--hoverTextColor)!important;
+}
+
+.pannelArea{
+	border: solid 1px var(--bgColor)!important;
+}
+
+.crudArea{
+    background: var(--bgColor)!important;
+}
+.pannelHeading-all{
+	background: linear-gradient(135deg, var(--bgColor) 0, rgba(0, 0, 0, 0.15) 100%)!important;
+}
+
+.subHeading-all{
+	border-right:0px!important;
+    box-shadow: none!important;
+}
+
+body .tab-pane button:hover,
+body .tab-pane a:hover{
+	color: var(--hoverTextColor);
+	background-color: var(--hoverColor) !important;
+}
+
+body .sidenav a.activeNav{
+	color: var(--hoverTextColor);
+	background: var(--activeColor) !important;
+}
+
+/* .active {
+    background: var(--activeColor) !important;
+    border-left: solid 2px var(--hoverTextColor);;
+    color: var(--textColor);
+} */
+
+.dropdown-btn.active {
+    background: var(--activeColor) !important;
+    border-left: solid 2px var(--hoverTextColor);
+    color: var(--textColor);
+}
+
+
+body .sidenav a, body .dropdown-btn{
+    color: var(--textColor)!important;
+    border-bottom: solid 0px var(--textColor)!important;
+    /* border-bottom: solid 1px var(--textColor)!important; */
+    /* box-shadow: 0px 1px 0px var(--textColor); */
+    box-shadow: none;
+}
+
+.sidenav .dropdown-btn i{
+    color: var(--textColor);
+}
+.menu-tab-custom .nav-tabs .nav-link.active{
+    border: 1px solid var(--textColor) !important;
+    color: var(--textColor) !important;
+    background: var(--bgColor) !important;
+}
+
+.menu-tab-custom ul li a{
+    color: var(--textColor) !important;
+}
+
+.menu-fav li {
+    padding: 0px 6px;
+    border-bottom: solid 1px var(--bgColor) !important;
+}
+
+.menu-fav li a i:not(.fa-trash-alt){
+    color: var(--textColor) !important;
+}
+
+body .menu-fav li a{
+    border-bottom: 0px!important;
+    box-shadow: none!important;
+}
+
+.sidenav .dropdown-container{
+    color: var(--textColor) !important;
+    background: var(--bgColor) !important;
+}
+
+.headerTop.dash-header{
+    color: var(--textColor);
+}
+
+.headerTop.dash-header .text-light{
+    color: var(--textColor)!important;
+}
+
+/* .headerTop.dash-header .dropDownMain span{
+    color: var(--textColor)!important;
+} */
+.dash-header .name{
+    color: var(--textColor)!important;
+}
+.dash-header h6{
+    color: var(--textColor)!important;
+}
+
+.menu-tab-custom .nav-tabs .nav-link:hover{
+    border-bottom: solid 0px #053769 !important;
+}
+
+#show-sidebar{
+    color: var(--hoverTextColor)!important;
+    background: var(--activeColor)!important;
+}
+
+body .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    color: var(--hoverTextColor)!important;
+    background: var(--bgColor) !important;
+}
+body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: var(--hoverTextColor) !important;
+    background: var(--hoverColor) !important;
+}
+
+body .subHeading-all{
+    color: var(--textColor) !important;
+}

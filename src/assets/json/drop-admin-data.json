@@ -1,0 +1,38 @@
+{
+    "success": true,
+    "message": "Drop Administration List Found.",
+    "items": [
+        {
+            "id": 10001,
+            "preDiagnosisVal": "1 Drop",
+            "preDiagnosisValType" : 25,
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10001,
+            "preDiagnosisVal": "2 Drops",
+            "preDiagnosisValType" : 25,
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10002,
+            "preDiagnosisVal": "3 Drops",
+            "preDiagnosisValType" : 25,
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        },
+        {
+            "id": 10003,
+            "preDiagnosisVal": "4 Drops",
+            "preDiagnosisValType" : 25,
+            "departmentNo": 1112,
+            "doctorNo": 4000045,
+            "activeStatus": 1
+        }
+    ]
+}

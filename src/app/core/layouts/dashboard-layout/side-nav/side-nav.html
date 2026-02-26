@@ -1,0 +1,156 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark mt-0" id="accordionSidebar" [class.collapsed]=" isCollapse">
+   <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#" >
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div> -->
+        <div class="sidebar-brand-text mx-3 fs-13px">CMH Central System</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/connectivity" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-plugin nav-icon"></i>
+            </span>
+            Connectivity
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/data-sync-status" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-database-check nav-icon"></i>
+            </span>
+            Data Sync Status
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/backup-sync-status" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-database-lock nav-icon"></i>
+            </span>
+            Backup Sync Status
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/analytic-data" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-graph-up-arrow nav-icon"></i>
+                
+            </span>
+            Analytic Data
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/server-usage" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-hdd-rack nav-icon"></i>
+            </span>
+            Server Usage
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/user-management" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-people nav-icon"></i>
+            </span>
+            User Management
+        </a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/emr-dashboard/patient-dashboard" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-person-video2 nav-icon"></i>
+            </span>
+            Patient Dashboard
+        </a>
+    </div>
+
+    <hr class="sidebar-divider">
+    
+    <div class="nav-item">
+        <a class="nav-link" href="#" routerLink="/registration" routerLinkActive="activeNav">
+            <span class="nav-icon-holder">
+                <i class="bi bi-file-medical nav-icon"></i>
+            </span>
+            Registration
+        </a>
+    </div>
+
+    <!-- ////////////////////////////////// -->
+     <div class="nav-item">
+        <a class="nav-link dropdown-container dropdown-toggle collapsed" href="#" role="button" data-bs-toggle="collapse"
+            data-bs-target="#emr" aria-expanded="true" aria-controls="emr">
+            <span class="nav-icon-holder">
+                <i class="fas fa-lock nav-icon"></i>
+            </span>
+            <span class="nav-link-title">Settings & Security</span>
+        </a>
+
+        <div id="emr" class="nav-collapse collapse" data-bs-parent="#navbarVerticalMenu"
+            hs-parent-area="#navbarVerticalMenu" style="top: 0px;">
+            <div id="emrMenu">
+                <a class="nav-link" href="#" routerLink="/security/setup/feature"
+                    routerLinkActive="activeNav">Feature Setup</a>
+                <a class="nav-link" href="#" routerLink="/security/setup/employee"
+                    routerLinkActive="activeNav">Employee Setup</a>
+                <a class="nav-link" href="#" routerLink="/security/setup/user"
+                    routerLinkActive="activeNav">User List(S)</a>
+
+            </div>
+        </div>
+    </div> 
+     <!-- ///////////////////////////////// -->
+
+    <!-- Dropdown -->
+    <!-- <div class="nav-item">
+        <a class="nav-link dropdown-container dropdown-toggle collapsed" href="#" role="button" data-bs-toggle="collapse"
+            data-bs-target="#emr" aria-expanded="true" aria-controls="emr">
+            <span class="nav-icon-holder">
+                <i class="bi-shield-lock nav-icon"></i>
+            </span>
+            <span class="nav-link-title">EMR Dashboard</span>
+        </a>
+
+        <div id="emr" class="nav-collapse collapse" data-bs-parent="#navbarVerticalMenu"
+            hs-parent-area="#navbarVerticalMenu" style="top: 0px;">
+            <div id="emrMenu">
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/connectivity"
+                    routerLinkActive="activeNav">Connectivity</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/data-sync-status"
+                    routerLinkActive="activeNav">Data Sync Status</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/backup-sync-status"
+                    routerLinkActive="activeNav">Backup Sync Status</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/analytic-data"
+                    routerLinkActive="activeNav">Analytic Data</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/server-usage"
+                    routerLinkActive="activeNav">Server Usage</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/user-management"
+                    routerLinkActive="activeNav">User Management</a>
+                <a class="nav-link" href="#" routerLink="/emr-dashboard/patient-dashboard"
+                    routerLinkActive="activeNav">Patient Dashboard</a>
+
+                <div class="nav-item">
+                    <a class="nav-link dropdown-toggle collapsed" href="#emrLoginMenu" role="button" data-bs-toggle="collapse" data-bs-target="#emrLoginMenu" aria-expanded="false" aria-controls="emrLoginMenu">
+                    Log In
+                    </a>
+
+                    <div id="emrLoginMenu" class="nav-collapse collapse" data-bs-parent="#emrMenu" hs-parent-area="#emr" style="top: 0px;">
+                    <a class="nav-link " href="#">Basic</a>
+                    <a class="nav-link " href="#">Cover</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Divider -->
+    <!-- <hr class="sidebar-divider"> -->
+</ul>

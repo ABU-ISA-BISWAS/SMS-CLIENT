@@ -1,0 +1,45 @@
+::ng-deep table.dataTable tbody tr.selected-row>td {
+    background-color: #6a95b6 !important;
+    color: white !important;
+}
+
+.status-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.90rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 3px 10px;
+    cursor: default;
+    transition: all 0.2s ease-in-out;
+}
+
+.status-btn .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-active {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+}
+
+.status-active .dot {
+    background-color: #34a853;
+}
+
+.status-inactive {
+    background-color: #fdecea;
+    color: #b71c1c;
+}
+
+.status-inactive .dot {
+    background-color: #d93025;
+}
+
+.activestat {
+    margin-top: 19px;
+}

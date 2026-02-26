@@ -1,0 +1,12 @@
+.mainHeadingColor {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #003f7f; 
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.mainHeadingColor {
+    text-align: center;
+}

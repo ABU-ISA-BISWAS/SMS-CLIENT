@@ -1,0 +1,272 @@
+<!-- Personal Information -->
+<div class="row mb-2">
+  <div class="col-12 col-sm-4 text-right">
+    <div class="form-check flex-nowrap">
+      <input
+        type="checkbox"
+        id="active"
+        [(ngModel)]="employee.activeStatus"
+        name="nurse"
+        class="form-check-input"
+      />
+      <label for="active" class="form-check-label text-dark text-nowrap ms-1"
+        >Active</label
+      >
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- Emp. Name -->
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="personalNo" class="form-label base-txt-primary">
+        Emp. Name <span class="mandatory">*</span>
+      </label>
+      <div class="input-group">
+        <select
+          class="form-control form-select salutation bg-light rounded-start"
+          [(ngModel)]="employee.salutation"
+        >
+          @for (salutation of salutationList; track $index) {
+            <option [ngValue]="salutation.detailName">
+              {{ salutation.detailName }}
+            </option>
+          }
+        </select>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Name"
+          name="fname"
+          [(ngModel)]="employee.fname"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Emp. ID -->
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">
+        Emp. ID <span class="mandatory">*</span>
+      </label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Emp. No"
+          [(ngModel)]="employee.empId"
+          (blur)="validateEmpNo(employee.empId || '')"
+          (ngModelChange)="empNoChecker = false"
+          [ngClass]="{ 'invalid-input': empNoChecker }"
+        />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Personal Number"
+          [(ngModel)]="employee.personalNumber"
+          (blur)="searchByPersonalNumber()"
+          (ngModelChange)="personalNumberChecker = false"
+          [ngClass]="{ 'invalid-input': personalNumberChecker }"
+        />
+      </div>
+      <span *ngIf="empNoChecker" class="text-danger"
+        >Emp ID already exist!</span
+      >
+      <span *ngIf="personalNumberChecker" class="text-danger"
+        >Error with Personal Number!</span
+      >
+    </div>
+  </div>
+
+  <!-- Job Type -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">
+        Job Type <span class="mandatory">*</span>
+      </label>
+      <ng-select
+        [items]="jobTypeList"
+        placeholder="Choose Job Type"
+        notFoundText="No Job Type found"
+        bindLabel="detailName"
+        bindValue="id"
+        [(ngModel)]="employee.jobType"
+        class="form-control form-select"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- Department -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">
+        Department <span class="mandatory">*</span>
+      </label>
+      <ng-select
+        [items]="departmentList"
+        placeholder="Choose Department"
+        notFoundText="No Department found"
+        bindLabel="buName"
+        bindValue="id"
+        [(ngModel)]="employee.buNo"
+        class="form-control form-select"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- Job Title -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">
+        Job Title <span class="mandatory">*</span>
+      </label>
+      <ng-select
+        [items]="jobTitleList"
+        placeholder="Choose Job Title"
+        notFoundText="No Job Title found"
+        bindLabel="jobtitle"
+        bindValue="jobtitleNo"
+        [(ngModel)]="employee.jobtitleNo"
+        class="form-control form-select"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- Join Date -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">
+        Join Date <span class="mandatory">*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Select Date (DD-MM-YYYY)"
+        bsDatepicker
+        [(ngModel)]="employee.joinDate"
+        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+      />
+    </div>
+  </div>
+
+  <!-- Date of Birth -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Date of Birth:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Select Date..."
+        bsDatepicker
+        [(ngModel)]="employee.dob"
+        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+        [maxDate]="employee.joinDate"
+      />
+    </div>
+  </div>
+
+  <!-- Father's Name -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Father's Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Father's Name"
+        [(ngModel)]="employee.fatherName"
+      />
+    </div>
+  </div>
+
+  <!-- Mother's Name -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Mother's Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Mother's Name"
+        [(ngModel)]="employee.motherName"
+      />
+    </div>
+  </div>
+
+  <!-- Spouse Name -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Spouse Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Spouse Name"
+        [(ngModel)]="employee.spouseName"
+        [disabled]="!(employee.maritalStatus == 'M')"
+      />
+    </div>
+  </div>
+
+  <!-- Marital Status -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Marital Status:</label>
+      <ng-select
+        [items]="maritalStatus"
+        placeholder="Choose Marital Status"
+        notFoundText="No Marital Status found"
+        bindLabel="detailDescription"
+        bindValue="detailName"
+        [(ngModel)]="employee.maritalStatus"
+        class="form-control form-select"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- Gender -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Gender:</label>
+      <ng-select
+        [items]="genderList"
+        placeholder="Choose Gender"
+        notFoundText="No Gender found"
+        bindLabel="detailDescription"
+        bindValue="detailName"
+        [(ngModel)]="employee.gender"
+        class="form-control form-select"
+      >
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Mobile:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Mobile Number"
+        [(ngModel)]="employee.phoneMobile"
+      />
+    </div>
+  </div>
+
+  <!-- Place of Birth -->
+  <div class="col-md-3">
+    <div class="form-group">
+      <label class="form-label base-txt-primary">Place of Birth:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Birth Place"
+        [(ngModel)]="employee.placeOfBirth"
+      />
+    </div>
+  </div>
+</div>

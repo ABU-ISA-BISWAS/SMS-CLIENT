@@ -1,0 +1,76 @@
+{
+    "success": true,
+    "message": "Login Custom Layout Info Found.",
+    "obj": [
+        {
+            "id": 1,
+            "activeStatus": 1,
+            "companyName": "Medicare Web Central CMH",
+            "hasOTP": false,
+            "companyClassName": "cmh",
+            "login_welcome_msg": "Welcome",
+            "login_welcome_sub_msg": "Welcome To Central CMH. Please enter your login details below to using the app.",
+            "login_btn_title": "Sign in",
+            "favicon": "favicons/dgms-logo.png",
+            "logoUrl": "images/cmh.png",
+            "additionalLogo": "images/dgms-logo.png",
+            "bgImg": "images/bd-map-bg.jpg",
+            "companyHeader": {
+                "title": "",
+                "welcome_msg": "",
+                "subtitle": "",
+                "tel": "",
+                "mob": "",
+                "email": "",
+                "address": "",
+                "icons": []
+            },
+            "theme": {
+                "primaryColor": "#183F66",
+                "secondaryColor": "#6A5ACD",
+                "btnTextColor": "#FFFFFF",
+                "btnHoverTextColor":"#FFFFFF"
+                
+            },
+            "company_footer": {
+                "copyright_msg": ""
+            }
+            
+        },
+        {
+            "id": 2,
+            "activeStatus": 0,
+            "companyName": "Medicare Web Central Navy",
+            "hasOTP": false,
+            "companyClassName": "navy",
+            "login_welcome_msg": "Welcome",
+            "login_welcome_sub_msg": "Welcome To Central Navy. Please enter your login details below to using the app.",
+            "login_btn_title": "Sign in",
+            "favicon": "favicons/navy.png",
+            "logoUrl": "images/navy.png",
+            "additionalLogo": "images/dgms-logo.png",
+            "bgImg": "images/bg_navy.png",
+            "companyHeader": {
+                "title": "",
+                "welcome_msg": "",
+                "subtitle": "",
+                "tel": "",
+                "mob": "",
+                "email": "",
+                "address": "",
+                "icons": []
+            },
+            "theme": {
+                "primaryColor": "#1C3586",
+                "secondaryColor": "#FAF402",
+                "btnTextColor": "#FFFFFF",
+                "btnHoverTextColor":"#000000"
+                
+            },
+            "company_footer": {
+                "copyright_msg": ""
+            }
+            
+        }
+    ]
+}

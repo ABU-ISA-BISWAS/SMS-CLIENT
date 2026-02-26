@@ -1,0 +1,23 @@
+@media (min-width:200px) and (max-width:767px) {
+ 
+     .border-r-none{
+         border-right: none !important;
+     }
+      .ref-btn-r {
+         text-align: right !important;
+         padding-right: 24px !important;
+         
+
+     }
+     .ref-btn-r .BtnOt{
+        padding: 3px 30px !important;
+        
+     } 
+}
+
+
+@media (min-width:200px) and (max-width:704px) {
+.btn-3d{
+    padding: 5px 0px !important;
+}
+}
