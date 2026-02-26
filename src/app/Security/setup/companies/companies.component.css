@@ -1,0 +1,31 @@
+.addButtonCustom {
+    padding: 3px 12px !important;
+    font-size: 13px !important;
+}
+.borderColorB{ border-bottom: solid 1px #e3e3e3 !important;
+    border-top: solid 1px #e3e3e3;}
+    .allInner {
+        border: solid 1px #9dccef;
+    padding: 13px; padding-left: 0px; padding-right: 0px;
+    margin-top: 46px;
+    padding-top: 2%;
+    background: #fff;
+    position: relative;
+    }
+    .allTitle {
+        min-width: 213px;
+        border: solid 1px #9dccef;
+        position: absolute;
+        z-index: 999;
+        top: -36px;
+        border-radius: 4px 4px 0px 0px;
+        padding: 4px;
+        padding-top: 6px;
+        text-align: center;
+        left: -1px;
+        color: #0594a7;
+        border-bottom: solid 1px #ffffff;
+        font-size: 16px;
+        background: #ffffff;
+    }
+  

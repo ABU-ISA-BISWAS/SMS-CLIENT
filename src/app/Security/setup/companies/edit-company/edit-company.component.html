@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edit Company</h5>
+  <button type="button" (click)="bsModalRef.hide()" class="close" data-dismiss="modal" aria-label="Close"> <span
+      aria-hidden="true">&times;</span> </button>
+</div>
+<div class="modal-body persoanlInfoArea">
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Company Name: </label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Phone No: </label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Organization: </label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Address: </label>
+    </div>
+    <div class="col-md-6">
+      <textarea class="form-control"></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary">Save</button>
+  <button type="button" (click)="bsModalRef.hide()" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>

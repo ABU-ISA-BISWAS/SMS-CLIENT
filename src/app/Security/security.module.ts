@@ -12,6 +12,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 import { IconPickerComponent } from './_coreSecurity/common/icon-picker/icon-picker.component';
 import { SecurityRoutingModule } from './security-routing.module';
+import { AddCompanyComponent } from './setup/companies/add-company/add-company.component';
+import { CompaniesComponent } from './setup/companies/companies.component';
+import { EditCompanyComponent } from './setup/companies/edit-company/edit-company.component';
+import { AddDepartmentModalComponent } from './setup/department-new/add-department-modal/add-department-modal.component';
+import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { AddEmpBankInfoComponent } from './setup/employee/add-emp-bank-info/add-emp-bank-info.component';
 import { AddEmpSignatureComponent } from './setup/employee/add-emp-signature/add-emp-signature.component';
 import { AddEmployeeComponent } from './setup/employee/add-employee/add-employee.component';
@@ -24,6 +29,9 @@ import { AddFeatureComponent } from './setup/features/add-feature/add-feature.co
 import { FeaturesComponent } from './setup/features/features.component';
 import { AddModuleComponent } from './setup/modules/add-module/add-module.component';
 import { ModulesComponent } from './setup/modules/modules.component';
+import { AddOrganizationComponent } from './setup/organizations/add-organization/add-organization.component';
+import { EditOrganizationComponent } from './setup/organizations/edit-organization/edit-organization.component';
+import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
@@ -57,6 +65,14 @@ import { UsersComponent } from './setup/users/users.component';
     AddRoleNewComponent,
     SubModuleRoleComponent,
     RoleFeaturesModalComponent,
+    OrganizationsComponent,
+    AddOrganizationComponent,
+    EditOrganizationComponent,
+    CompaniesComponent,
+    EditCompanyComponent,
+    AddCompanyComponent,
+    DepartmentNewComponent,
+    AddDepartmentModalComponent,
   ],
   imports: [
     SharedModule,

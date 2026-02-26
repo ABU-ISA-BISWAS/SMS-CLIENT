@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
+import { CompaniesComponent } from './setup/companies/companies.component';
+import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
 import { FeaturesComponent } from './setup/features/features.component';
 import { ModulesComponent } from './setup/modules/modules.component';
+import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
 import { UsersComponent } from './setup/users/users.component';
@@ -67,6 +70,35 @@ const routes: Routes = [
     path: 'setup/role',
     canActivate: [AuthGuard],
     component: RoleManagementComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+
+  {
+    path: 'setup/organization',
+    canActivate: [AuthGuard],
+    component: OrganizationsComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+  {
+    path: 'setup/company',
+    canActivate: [AuthGuard],
+    component: CompaniesComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+
+  {
+    path: 'setup/department',
+    canActivate: [AuthGuard],
+    component: DepartmentNewComponent,
     data: {
       featureId: 'SAS013',
       title: 'Role Setup',

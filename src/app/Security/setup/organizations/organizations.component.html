@@ -1,0 +1,42 @@
+<div class="row marginRightAll">
+  <div class="col-md-12 padding-left-right">
+    <div class="all_content_wrapper">
+      <div class="allInner">
+        <div class="allTitle">Organization Setup</div>
+        <div class="row marginLeft0 marginRight0 pt-1">
+          <div
+            class="col-md-12 border-bottom borderColorB text-right pt-1 pb-1 mb-2 pannelHeading setupHeader"
+          >
+            <div class="btnAllRow">
+              <button
+                type="button"
+                class="btn btn-primary mr-1 addButtonCustom"
+                (click)="addOrg()"
+              >
+                <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>Add
+              </button>
+              <button
+                type="button"
+                class="btn btn-success mr-1 addButtonCustom"
+                (click)="editOrg()"
+              >
+                <i class="fas fa-edit mr-1" aria-hidden="true"></i>Edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger mr-1 addButtonCustom"
+                (click)="deleteOrg()"
+                disabled
+              >
+                <i class="fas fa-trash-alt mr-1" aria-hidden="true"></i>Delete
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive dataGridTable dataGridTableRegister">
+            <table #orgGrid class="row-border hover"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

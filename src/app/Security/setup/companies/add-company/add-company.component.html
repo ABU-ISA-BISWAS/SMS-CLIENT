@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h5 class="modal-title">Add New Company</h5>
+  <button type="button" (click)="bsModalRef.hide()" class="close" data-dismiss="modal" aria-label="Close"> <span
+      aria-hidden="true">&times;</span> </button>
+</div>
+<div class="modal-body persoanlInfoArea">
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Company. Name: </label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control"
+      [(ngModel)]="company.companyName">
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Phone No: </label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control"
+        [(ngModel)]="company.companyPhone">
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Organization </label>
+    </div>
+    <div class="col-md-6">
+        <ng-template #customOrgTemplate let-model="item" let-index="index">
+            <table >
+              <tr >
+                <td class="float-left" style="width:100%;"><label class="doctorTilte">Org. Name</label><span class="docSpan">: {{model.ogName}}</span></td>
+                <td class="float-right" style="width:100%;"><label class="doctorTilte">Org. ID</label><span class="docSpan">: {{model.id}}</span></td>      
+              </tr>
+            </table>
+          </ng-template>
+      <input type="text" class="form-control"
+        [(ngModel)]="company.ogName"
+        [typeahead]="organizationDataSource"
+        (typeaheadLoading)="changeTypeaheadLoading($event)"
+        (typeaheadOnSelect)="selectOrg($event)"
+        [typeaheadOptionsLimit]="7"
+        [typeaheadMinLength]="3"
+        [typeaheadItemTemplate]="customOrgTemplate"
+        typeaheadOptionField="orgName"
+        
+        placeholder="Search Organization" >
+    </div>
+  </div>
+  <div class="form-group col-md-12 row mx-auto">
+    <div class="col-md-4 text-right">
+      <label>Address: </label>
+    </div>
+    <div class="col-md-6">
+      <textarea name="" class="form-control"
+        [(ngModel)]="company.companyAddress1"></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="addEditCompany()">Save</button>
+  <button type="button" (click)="bsModalRef.hide()" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
