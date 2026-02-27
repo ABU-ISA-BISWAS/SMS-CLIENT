@@ -1,0 +1,164 @@
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px; float: left;
+   }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input.default:checked + .slider {
+    background-color: #444;
+  }
+  input.primary:checked + .slider {
+    background-color: #2196F3;
+  }
+  input.success:checked + .slider {
+    background-color: #8bc34a;
+  }
+  input.info:checked + .slider {
+    background-color: #3de0f5;
+  }
+  input.warning:checked + .slider {
+    background-color: #FFC107;
+  }
+  input.danger:checked + .slider {
+    background-color: #f44336;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .addfeature{
+         height: 28px;
+         padding-top: 3px;
+  }
+
+  .custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 31.5rem;
+    top: 10px;
+}
+
+.custom-control1{
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+/* .modal-content{
+    width: 155%;
+} */
+.mandatory{
+    color:red;
+}
+
+.invalid-input{
+	color: red !important;
+	border: 1px solid red;
+}
+
+.custom-control2{
+    padding-top: 25px;
+    padding-left: 40px;
+}
+
+button.btnsize {
+	padding: 3px 12px;
+	margin-bottom: 12px;
+	margin-right: 4px;
+}
+
+.required{
+    color: red;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    /* border-bottom: 1px solid #ffffff; */
+}
+.custom-checkbox .custom-control-label::before {
+    top: 0.15rem;
+}
+.patientFieldField .form-control {
+    height: 27px;
+    border: 1px solid #6bb5d2;
+    padding: 0px;
+}
+.exm-setup{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.foreiCheck {
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    position: relative;
+    left: 3px;
+}
+
+.form-check-inline {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 2px;
+    margin-right: 0px;
+}
+.field-bg{
+    background: #f7f7f7;
+}
+
+select.invalid,
+input.invalid{
+    border: 1px solid red!important;
+}
+
+.status-checkbox{
+    display: block!important;
+    height: 16px;
+    width: 16px;
+    margin-left: 8px;
+}

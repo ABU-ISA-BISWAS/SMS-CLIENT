@@ -1,0 +1,65 @@
+
+  <div class="row marginRightAll">
+    <div class="col-md-12 padding-left-right">
+        
+            <div class="all_content_wrapper">
+              
+              <div class="allInner">
+                <div class="allTitle">Bank Info Setup</div>
+
+
+  <div class="row marginLeft0 marginRight0">
+      <div class="col-md-12 border-bottom borderColorB text-right pt-1 pb-1 mb-2 pannelHeading setupHeader">
+          <div class="btnAllRow">
+  <button type="button" class="btn btn-primary mr-1 addButtonCustom" (click)="addBankInfo()">
+    <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>Add
+  </button>
+  <button type="button" class="btn btn-success mr-1 addButtonCustom" (click)="editBankInfo()">
+    <i class="fas fa-edit mr-1" aria-hidden="true"></i>Edit
+  </button>
+  <!-- <button type="button" class="btn btn-warning mr-1 addButtonCustom" (click)="disableFeature()">
+    <i class="fas fa-ban mr-1" aria-hidden="true"></i>Disable
+  </button> -->
+  <!-- <button type="button" class="btn btn-danger mr-1 addButtonCustom" (click)="deleteFeature()">
+    <i class="fas fa-trash-alt mr-1" aria-hidden="true"></i>Delete
+  </button> -->
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row w-100">
+  <div class="col-12 px-0">
+    <div class="searchHeader topheader paddingTop2 text-right paddingTop1">
+      <div class="form-row align-items-center justify-content-center searchAllField">
+
+        <div class="col-auto col-md-4 col-lg-3">
+          <div class="form-check form-check-inline">
+            <input checked="checked" class="form-check-input" id="inlineRadi1" name="Single item" type="radio"
+              value="all" [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="" checked>
+            <label class="form-check-label" for="inlineRadi1">All</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="inlineRadi2" name="Single item" type="radio" value="all"
+              [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="1">
+            <label class="form-check-label" for="inlineRadi2">Active</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="inlineRadi3" name="Single item" type="radio" value="all"
+              [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="0">
+            <label class="form-check-label" for="inlineRadi3">Inactive</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive dataGridTable dataGridTableRegister">
+  <table #bankInfoGrid class="row-border hover">
+  </table>
+</div>
+</div>
+</div>
+</div>
+</div>

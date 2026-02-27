@@ -12,6 +12,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 import { IconPickerComponent } from './_coreSecurity/common/icon-picker/icon-picker.component';
 import { SecurityRoutingModule } from './security-routing.module';
+import { AddBankInfoComponent } from './setup/bankInfo/add-bank-info/add-bank-info.component';
+import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { AddCompanyComponent } from './setup/companies/add-company/add-company.component';
 import { CompaniesComponent } from './setup/companies/companies.component';
 import { EditCompanyComponent } from './setup/companies/edit-company/edit-company.component';
@@ -35,6 +37,7 @@ import { OrganizationsComponent } from './setup/organizations/organizations.comp
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
+import { ThemePaletteComponent } from './setup/theme-setting/theme-palette/theme-palette.component';
 import { AddUserComponent } from './setup/users/add-user/add-user.component';
 import { ChangePasswordComponent } from './setup/users/change-password/change-password.component';
 import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/role-features-modal.component';
@@ -73,6 +76,9 @@ import { UsersComponent } from './setup/users/users.component';
     AddCompanyComponent,
     DepartmentNewComponent,
     AddDepartmentModalComponent,
+    BankInfoComponent,
+    AddBankInfoComponent,
+    ThemePaletteComponent,
   ],
   imports: [
     SharedModule,

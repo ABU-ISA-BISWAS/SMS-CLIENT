@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
+import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { CompaniesComponent } from './setup/companies/companies.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
@@ -9,6 +10,7 @@ import { ModulesComponent } from './setup/modules/modules.component';
 import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
+import { ThemePaletteComponent } from './setup/theme-setting/theme-palette/theme-palette.component';
 import { UsersComponent } from './setup/users/users.component';
 
 const routes: Routes = [
@@ -99,6 +101,26 @@ const routes: Routes = [
     path: 'setup/department',
     canActivate: [AuthGuard],
     component: DepartmentNewComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+
+  {
+    path: 'setup/bank',
+    canActivate: [AuthGuard],
+    component: BankInfoComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Role Setup',
+    },
+  },
+
+  {
+    path: 'setup/color-palette',
+    canActivate: [AuthGuard],
+    component: ThemePaletteComponent,
     data: {
       featureId: 'SAS013',
       title: 'Role Setup',
