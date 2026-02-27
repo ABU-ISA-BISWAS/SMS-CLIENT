@@ -1,76 +1,134 @@
-@let companyName = companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
-@let bgImg = companyInfo?.bgImg ? `url(${companyInfo.bgImg})` : "url('images/default-bg.jpeg')";
-@let welcomeMsg = companyInfo?.login_welcome_msg ? companyInfo?.login_welcome_msg : "Welcome";
-@let welcomeSubMsg = companyInfo?.login_welcome_sub_msg ? companyInfo?.login_welcome_sub_msg : "Please enter your login credintial below to using the app.";
+@let companyName =
+  companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
+@let bgImg =
+  companyInfo?.bgImg
+    ? `url(${companyInfo.bgImg})`
+    : "url('images/default-bg.jpeg')";
+@let welcomeMsg =
+  companyInfo?.companyName ? companyInfo?.companyName : "Welcome";
+@let welcomeSubMsg =
+  companyInfo?.login_welcome_sub_msg
+    ? companyInfo?.login_welcome_sub_msg
+    : "Please enter your login credintial below to using the app.";
 @let logo = companyInfo?.logoUrl ? companyInfo?.logoUrl : "images/cmh.png";
-@let additionalLogo = companyInfo?.additionalLogo ? companyInfo?.additionalLogo : "images/dgms-logo.png";
-@let login_btn_title = companyInfo?.login_btn_title ? companyInfo?.login_btn_title : "Sign In";
+@let additionalLogo =
+  companyInfo?.additionalLogo
+    ? companyInfo?.additionalLogo
+    : "images/dgms-logo.png";
+@let login_btn_title =
+  companyInfo?.login_btn_title ? companyInfo?.login_btn_title : "Sign In";
 
+<div
+  class="container-fluid d-flex justify-content-center align-items-center py-3 login-container"
+>
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden w-100">
+    <div class="row g-0 h-100">
+      <div
+        class="col-lg-8 d-none d-lg-flex p-0 bg-info-subtle align-items-center justify-content-center overflow-hidden"
+      >
+        <div
+          class="w-100 h-100 login-bg"
+          [ngStyle]="{ 'background-image': bgImg }"
+        ></div>
+      </div>
 
-<div class="container-fluid d-flex justify-content-center align-items-center py-3 login-container">
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden w-100">
-        <div class="row g-0 h-100">
-            
-            <div class="col-lg-9 d-none d-lg-flex p-0 bg-info-subtle align-items-center justify-content-center overflow-hidden">
-                <!-- <div class="w-100 h-100 flip login-bg" style="background-image: url('images/hospital-bg.jpeg');"></div> -->
-                <!-- <div class="w-100 h-100 login-bg" style="background-image: url('images/bd-map-bg.jpg');"></div> -->
-                <div class="w-100 h-100 login-bg" [ngStyle]="{'background-image': bgImg}"></div>
-            </div>
+      <div
+        class="col-lg-4 p-3 d-flex flex-column justify-content-between border-start"
+      >
+        <div
+          class="mb-2 d-flex align-items-center justify-content-between login-logos"
+        >
+          <!-- additional logo -->
+          <img
+            [src]="additionalLogo"
+            [alt]="companyName"
+            class="img-fluid me-auto"
+          />
 
-            <div class="col-lg-3 p-4 d-flex flex-column justify-content-between border-start">
-                <div class="mb-4 d-flex align-items-center justify-content-between login-logos">
-                    <!-- additional logo -->
-                    <img [src]="additionalLogo" [alt]="companyName" class="img-fluid me-auto" />
+          <!-- primary logo -->
+          <img [src]="logo" [alt]="companyName" class="img-fluid" />
+        </div>
 
-                    <!-- primary logo -->
-                    <img [src]="logo" [alt]="companyName" class="img-fluid" />
+        @if (this.openTwoFactAuth) {
+          <!-- Two Factor Authentication -->
+          <div
+            class="login-form-container mx-auto w-100"
+            style="max-width: 350px"
+          >
+            <app-two-factor-auth-modal></app-two-factor-auth-modal>
+          </div>
+        } @else {
+          <!-- Login -->
+
+          <div
+            class="login-form-container mx-auto w-100"
+            style="max-width: 350px"
+          >
+            <h3 class="welcome-title">
+              {{ welcomeMsg }}
+            </h3>
+            <p class="welcome-text mb-2 text-center">
+              {{ welcomeSubMsg }}
+            </p>
+
+            <div class="app-login-wrapper">
+              <form
+                id="formAuthentication"
+                class="app-login-card"
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmit()"
+              >
+                <div class="app-login-header">
+                  <p>Enter your credentials to continue</p>
                 </div>
 
-                @if(this.openTwoFactAuth){
-                    <!-- Two Factor Authentication -->
-                    <div class="login-form-container mx-auto w-100" style="max-width: 350px;">
-                        <app-two-factor-auth-modal></app-two-factor-auth-modal>
-                    </div>
-                }
-                @else {
-                    <!-- Login -->
-                    <div class="login-form-container mx-auto w-100" style="max-width: 350px;">
-                        <h2 class="fs-2 fw-bold mb-2 base-txt-primary text-center">{{welcomeMsg}}</h2>
-                        <p class="text-muted mb-4 small fw-medium text-center">{{welcomeSubMsg}}</p>
+                <div class="form-floating mb-3 app-form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingUserName"
+                    name="userName"
+                    placeholder="User Name"
+                    formControlName="userName"
+                    required
+                    #userNameRef
+                  />
+                  <label for="floatingUserName">User Name</label>
+                </div>
 
-                        <form id="formAuthentication" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingUserName" name="userName"
-                                    placeholder="User Name" formControlName="userName" required #userNameRef>
-                                <label for="floatingUserName">User Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" name="password"
-                                    placeholder="Password" formControlName="password" required>
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                            <div class="text-end mb-4">
-                                <a href="#" class="text-decoration-none text-muted small fw-medium">Forgot the password?</a>
-                            </div>
-                            <!-- <button type="submit" class="btn base-btn-primary fw-medium w-100 py-2 fw-bold mb-3" (click)="openTwoFactorAuthModal()">Get Verification Code</button> -->
-                            <button type="submit" class="btn base-btn-primary fw-medium w-100 py-2 fw-bold mb-3 login-btn"
-                                [disabled]="isLoading">{{login_btn_title}}<i class="bi bi-box-arrow-in-right ms-2"></i></button>
-                        </form>
+                <!-- Password -->
 
-                        <!-- <div class="d-flex align-items-center my-4">
-                            <hr class="flex-grow-1">
-                            <span class="mx-3 text-muted">or</span>
-                            <hr class="flex-grow-1">
-                        </div> -->
+                <div class="form-floating mb-3 app-form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingPassword"
+                    name="password"
+                    placeholder="Password"
+                    formControlName="password"
+                    required
+                  />
+                  <label for="floatingPassword">Password</label>
+                </div>
 
-                        <!-- <button class="btn btn-outline-secondary w-100 py-2 fw-bold d-flex align-items-center justify-content-center">
-                            <i class="fab fa-google me-2"></i> Sign in with Google
-                        </button> -->
-                    </div>
-                }
-                
-                <div></div>
+                <button
+                  type="submit"
+                  class="app-btn-login"
+                  [disabled]="isLoading"
+                >
+                  <span *ngIf="!isLoading">{{ login_btn_title }}</span>
+                  <span
+                    *ngIf="isLoading"
+                    class="spinner-border spinner-border-sm"
+                  ></span>
+                </button>
+              </form>
             </div>
-        </div>
+          </div>
+        }
+
+        <div></div>
+      </div>
     </div>
+  </div>
 </div>

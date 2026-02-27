@@ -5,26 +5,34 @@ import { AuthService } from '../../../../auth/_service/auth-service';
   selector: 'app-top-nav',
   standalone: false,
   templateUrl: './top-nav.html',
-  styleUrl: './top-nav.css'
+  styleUrl: './top-nav.css',
 })
 export class TopNav {
   @Output() toggleSidebar = new EventEmitter<void>();
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  userName: any;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Initialization logic for the topbar if needed
+    this.getUserDetails();
   }
 
   onToggleSidebar(): void {
     this.toggleSidebar.emit();
-    console.log("top nav emit");
+    console.log('top nav emit');
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 
+  getUserDetails() {
+    const userDetails = localStorage.getItem('userInfo');
+
+    if (userDetails) {
+      const user = JSON.parse(userDetails);
+      this.userName = user.userName;
+    }
+  }
 }

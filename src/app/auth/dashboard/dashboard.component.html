@@ -1,3 +1,7 @@
+@let welcomeSubMsg =
+  companyInfo?.login_welcome_sub_msg
+    ? companyInfo?.login_welcome_sub_msg
+    : "Welcome to School Management System.";
 <main>
-  <h4 class="mainHeadingColor">Welcome to School Management System</h4>
+  <h4 class="mainHeadingColor">{{ welcomeSubMsg }}</h4>
 </main>

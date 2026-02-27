@@ -15,17 +15,8 @@ export class ThemePaletteComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    // this.getThemes();
     this.loadThemes().subscribe((data: any[]) => {
       this.themes = data;
-
-      const themeLocal = this.getItem('themeLocal');
-      if (themeLocal) {
-        this.selectedTheme = themeLocal;
-        this.setTheme(themeLocal);
-      } else if (this.themes.length) {
-        this.setTheme(this.themes[0]);
-      }
     });
   }
 

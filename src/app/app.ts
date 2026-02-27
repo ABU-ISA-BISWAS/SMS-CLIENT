@@ -10,15 +10,10 @@ import { UtilsService } from './auth/_service/utils.service';
   styleUrl: './app.css',
 })
 export class App implements OnInit, OnDestroy {
-  // protected title = 'medicare-web-central-cmh';
-
   loginCustomLayout: any;
   themes: any[] = [];
 
   constructor(
-    // private authService: AuthService,
-    // private router: Router,
-    // private cookieService: CookieService,
     private title: Title,
     private utilsService: UtilsService,
     @Inject(DOCUMENT) private document: Document,
@@ -42,17 +37,11 @@ export class App implements OnInit, OnDestroy {
         this.loginCustomLayout,
       );
 
-      // favicon
       const faviconElement = this.document.getElementById('favicon');
 
       if (faviconElement) {
         faviconElement.setAttribute('href', this.loginCustomLayout.favicon);
       }
-
-      // favicon
-      // this.document
-      // 	.getElementById('favicon')
-      // 	.setAttribute('href', this.loginCustomLayout.favicon);
     }
 
     if (this.loginCustomLayout?.theme) {
@@ -61,21 +50,20 @@ export class App implements OnInit, OnDestroy {
   }
 
   setTheme(theme: any) {
+    console.log('Theme:-', theme);
+    document.documentElement.style.setProperty('--textColor', theme.textColor);
+    document.documentElement.style.setProperty('--base-primary', theme.bgColor);
     document.documentElement.style.setProperty(
-      '--base-primary',
-      theme.primaryColor,
+      '--hoverColor',
+      theme.hoverColor,
     );
     document.documentElement.style.setProperty(
-      '--base-secondary',
-      theme.secondaryColor,
+      '--hoverTextColor',
+      theme.hoverTextColor,
     );
     document.documentElement.style.setProperty(
-      '--base-btn-text-color',
-      theme.btnTextColor ? theme.btnTextColor : '#FFFFFF',
-    );
-    document.documentElement.style.setProperty(
-      '--base-btn-hover-text-color',
-      theme.btnHoverTextColor ? theme.btnHoverTextColor : '#FFFFFF',
+      '--activeColor',
+      theme.activeColor,
     );
   }
 
