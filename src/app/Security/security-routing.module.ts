@@ -9,7 +9,6 @@ import { FeaturesComponent } from './setup/features/features.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
-import { SetupComponent } from './setup/setup.component';
 import { ThemePaletteComponent } from './setup/theme-setting/theme-palette/theme-palette.component';
 import { UsersComponent } from './setup/users/users.component';
 
@@ -20,15 +19,15 @@ const routes: Routes = [
     pathMatch: 'full',
   },
 
-  {
-    path: 'setup',
-    canActivate: [AuthGuard],
-    component: SetupComponent,
-    data: {
-      featureId: 'SAS001',
-      title: 'Setup',
-    },
-  },
+  // {
+  //   path: 'setup',
+  //   canActivate: [AuthGuard],
+  //   component: SetupComponent,
+  //   data: {
+  //     featureId: 'SAS001',
+  //     title: 'Setup',
+  //   },
+  // },
 
   {
     path: 'setup/feature',

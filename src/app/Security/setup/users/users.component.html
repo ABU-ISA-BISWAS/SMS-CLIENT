@@ -6,13 +6,13 @@
 
     <div class="card-body">
       <!-- Action Bar -->
-      <div class="card border border-2 action-bar mb-2 bg-light">
+      <div class="card border border-2 action-bar mb-2">
         <div
-          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-center py-2 px-3"
+          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-1 px-2"
         >
           <button
             type="button"
-            class="btn btn-sm base-btn-outline-orange fw-medium px-3 mb-2 mb-xxl-0"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-3 mb-xxl-0"
             (click)="disableFG()"
           >
             <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
 
           <button
             type="button"
-            class="btn btn-sm base-btn-outline-purple fw-medium px-2 mb-2 mb-xxl-0"
+            class="btn btn-sm base-btn-outline-purple fw-medium px-2 mb-xxl-0"
             (click)="changePassword()"
           >
             <i class="fas fa-exchange-alt mr-1" aria-hidden="true"></i> Change
@@ -32,7 +32,7 @@
 
           <button
             type="button"
-            class="btn btn-sm base-btn-primary fw-medium px-3 mb-2 mb-xxl-0"
+            class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
             (click)="addFG()"
           >
             <i class="fas fa-plus-circle" aria-hidden="true"></i> Add
@@ -40,7 +40,7 @@
 
           <button
             type="button"
-            class="btn btn-sm btn-warning fw-medium px-3 mb-2 mb-xxl-0"
+            class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
             (click)="editFG()"
           >
             <i class="fas fa-edit"></i> Edit
@@ -52,108 +52,53 @@
         </div>
       </div>
 
-      <!-- Filter Bar -->
-      <div class="card border border-2 filter-bar mb-2 bg-light">
-        <div class="card-body">
+      <div class="card border border-2 bg-light mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-0 px-2"
+        >
           <div class="row justify-content-center align-items-center">
-            <div class="col-xxl-10 col-xl-10 col-md-9 col-sm-7">
-              <div class="row g-2">
-                <div class="col-md-6 col-xl-2 col-xxl-3">
-                  <div class="input-group" *ngIf="isreportFlter">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      User ID:
-                    </span>
-
-                    <input
-                      type="text"
-                      [(ngModel)]="userIdSearchText"
-                      [typeahead]="userIdDataSource"
-                      (typeaheadOnSelect)="selectUser($event)"
-                      [typeaheadOptionsLimit]="10"
-                      [typeaheadMinLength]="2"
-                      typeaheadOptionField="userId"
-                      class="form-control"
-                      placeholder="Search by ID"
-                      autocomplete="off"
-                    />
-                  </div>
+            <div class="col mt-3 mt-xl-0">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="inlineRadio2"
+                    name="inlineRadioOptions"
+                    (click)="statusCheck('E')"
+                    [(ngModel)]="enabledDisabledFlag"
+                    class="custom-control-input"
+                    value="E"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio2"
+                    >Enabled</label
+                  >
                 </div>
 
-                <div class="col-md-6 col-xl-2 col-xxl-3">
-                  <div class="input-group" *ngIf="isreportFlter">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      User Name:
-                    </span>
-
-                    <input
-                      type="text"
-                      [(ngModel)]="userNameSearchText"
-                      [typeahead]="userNameDataSource"
-                      (typeaheadOnSelect)="selectUser($event)"
-                      [typeaheadOptionsLimit]="10"
-                      [typeaheadMinLength]="2"
-                      typeaheadOptionField="userName"
-                      class="form-control"
-                      placeholder="Search by Name"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-xl-2 col-xxl-3">
-                  <div class="input-group" *ngIf="isreportFlter">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Emp. ID:
-                    </span>
-
-                    <input
-                      type="text"
-                      [(ngModel)]="empIdSearchText"
-                      [typeahead]="employeeIdDataSource"
-                      (typeaheadOnSelect)="selectEmployee($event)"
-                      [typeaheadOptionsLimit]="10"
-                      [typeaheadMinLength]="2"
-                      typeaheadOptionField="empId"
-                      class="form-control"
-                      placeholder="Search by ID"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-xl-2 col-xxl-3">
-                  <div class="input-group" *ngIf="isreportFlter">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Emp. Name:
-                    </span>
-
-                    <input
-                      type="text"
-                      [(ngModel)]="empNameSearchText"
-                      [typeahead]="employeeNameDataSource"
-                      (typeaheadLoading)="changeTypeaheadLoading($event)"
-                      (typeaheadOnSelect)="selectEmployee($event)"
-                      [typeaheadOptionsLimit]="10"
-                      [typeaheadMinLength]="2"
-                      typeaheadOptionField="empName"
-                      class="form-control"
-                      placeholder="Search by Name"
-                      autocomplete="off"
-                    />
-                  </div>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    (click)="statusCheck('D')"
+                    [(ngModel)]="enabledDisabledFlag"
+                    id="inlineRadio3"
+                    name="inlineRadioOptions"
+                    class="custom-control-input"
+                    value="D"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio3"
+                    >Disabled</label
+                  >
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-xl-2 col-md-3 col-sm-5 mt-3 mt-xl-0">
+      <!-- Filter Bar -->
+      <!-- <div class="card border border-2 filter-bar mb-2">
+        <div class="card-body">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-xl-3 col-xxl-3 col-md-4 col-sm-5 mt-3 mt-xl-0">
               <div class="custom-radio-group d-flex flex-wrap">
                 <div class="form-check w-50">
                   <input
@@ -184,24 +129,11 @@
                     >Disabled</label
                   >
                 </div>
-
-                <div class="form-check w-50">
-                  <input
-                    type="checkbox"
-                    [(ngModel)]="selectActiveSta"
-                    (change)="getSelectedActive($event.target.checked)"
-                    value="option1"
-                    class="custom-control-input"
-                  />
-                  <label class="form-check-label p-2" for="inlineCheckbox1"
-                    >Active</label
-                  >
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-md-12">

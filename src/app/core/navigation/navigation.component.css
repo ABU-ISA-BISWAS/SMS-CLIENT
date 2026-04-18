@@ -1,6 +1,6 @@
 .sidebar {
-  min-width: 18rem !important;
-  max-width: 18rem !important;
+  min-width: 13.5rem !important;
+  max-width: 13.5rem !important;
 
   border-right: 1px solid var(--bs-navbar-vertical-border-color);
   bottom: 0;
@@ -15,9 +15,12 @@
 }
 
 .bg-gradient-primary {
-  background-color: var(--base-primary);
+  /* background-color: var(--base-primary); */
   /* background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
   background-size: cover;
+  /* background-color: #0f122a; */
+  background-color: #0f172a;
+  /* background-color: #111827; */
 }
 
 .sidebar.collapsed {
@@ -38,6 +41,68 @@
   text-wrap: nowrap;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+/* .parentModule {
+}
+
+.superModule {
+}
+
+.subChildModule {
+  background-color: #1f2937;
+  border: #374151;
+  color: #e5e7eb;
+} */
+
+/* .sidebar{
+  background-color:#111827;
+  padding:12px 10px;
+  width:260px;
+  font-family: "Inter", sans-serif;
+} */
+
+/* Super Menu */
+.superModule {
+  background: #060a13;
+  color: #e5e7eb;
+  /* padding: 12px 14px; */
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  /* border: 2px solid #192746; */
+}
+
+/* Parent Menu */
+.parentModule {
+  background: #080f20;
+  color: #e5e7eb;
+  padding: 10px 14px;
+  font-weight: 500;
+}
+
+/* Sub Menu */
+.subChildModule {
+  background: #2a3648;
+  color: #e5e7eb;
+
+  border: 1px solid #131c28;
+  display: flex;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.subChildModule:hover {
+  background: #374151;
+}
+
+.subChildModule.active {
+  background: #2563eb;
+  color: white;
 }
 
 .sidebar .nav-item .nav-link .badge-counter,
@@ -61,6 +126,7 @@
 
 .sidebar .nav-item {
   position: relative;
+  /* border: 1px solid #242c5d; */
 }
 .sidebar-dark hr.sidebar-divider {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -71,19 +137,20 @@
 }
 
 .sidebar .sidebar-brand {
-  height: 4.375rem;
+  height: 3.5rem;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 800;
-  padding: 1rem;
+  /* padding: 1rem; */
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   z-index: 1;
   /* width: 224px; */
   max-width: 250px;
-  margin-left: auto;
-  margin-right: auto;
+  background: #0f172a;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 .sidebar-dark .nav-item .activeNav.nav-link,
@@ -92,8 +159,10 @@
 }
 
 .activeNav {
-  color: #fff;
+  /* color: #fff; */
   font-weight: 700;
+  background: #2563eb;
+  color: white;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -184,7 +253,7 @@
 .sidebar .nav-item .collapse,
 .sidebar .nav-item .collapsing {
   /* margin: 0 0rem 0 27px !important */
-  margin: 0 0rem 0 16px !important;
+  /* margin: 0 0rem 0 16px !important; */
 }
 
 .nav-icon-holder {
@@ -217,7 +286,7 @@
 .dropdown-toggle::after {
   position: absolute;
   right: 15px;
-  top: 18px;
+  top: 12px;
   transform: translateY(-50%) rotate(0deg);
   transition: 0.25s;
 }
@@ -226,7 +295,7 @@
 .dropdown-toggle.collapsed::after {
   position: absolute;
   right: 15px;
-  top: 18px;
+  top: 12px;
   transform: translateY(-50%) rotate(-90deg);
   transition: 0.25s;
 }
@@ -252,7 +321,7 @@
   }
 
   .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
     display: inline;
   }
   .sidebar .sidebar-heading {
@@ -263,9 +332,9 @@
     display: block;
     width: 100%;
     text-align: left;
-    padding: 0.4rem 0.4rem 0.4rem 0.8rem;
+    padding: 0.1rem 0.1rem 0.1rem 0.2rem;
     /* width: 14rem; */
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* .sidebar {
@@ -285,13 +354,13 @@
   .sidebar .nav-item .nav-link i {
     /* font-size: .85rem;
         margin-right: .25rem; */
-    font-size: 14px;
+    font-size: 10px;
     /* margin-right: 10px; */
   }
 
   .sidebar .nav-item .collapse,
   .sidebar .nav-item .collapsing {
-    margin: 0 1rem;
+    /* margin: 0 1rem; */
   }
 
   .sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
@@ -308,8 +377,9 @@
     font-family: "Font Awesome 5 Free";
   }
   .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     display: inline;
+    padding-top: 2px;
   }
   .sidebar .nav-item .collapse .collapse-inner,
   .sidebar .nav-item .collapsing .collapse-inner {

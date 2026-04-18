@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 
 import { DataTablesModule } from 'angular-datatables';
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -13,11 +13,7 @@ import { ConfirmationDialog } from './component/confirmation-dialog/confirmation
 import { WebCam } from './component/web-cam/web-cam';
 
 @NgModule({
-  declarations: [
-  
-    ConfirmationDialog,
-       WebCam
-  ],
+  declarations: [ConfirmationDialog, WebCam],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,7 +23,7 @@ import { WebCam } from './component/web-cam/web-cam';
     NgSelectModule,
     HighchartsChartModule,
     AccordionModule,
-    BsDatepickerModule
+    BsDatepickerModule,
   ],
   exports: [
     CommonModule,
@@ -38,8 +34,8 @@ import { WebCam } from './component/web-cam/web-cam';
     NgSelectModule,
     HighchartsChartModule,
     AccordionModule,
-    BsDatepickerModule
+    BsDatepickerModule,
   ],
-  providers: [TabsetConfig]
+  providers: [TabsetConfig],
 })
-export class SharedModule { }
+export class SharedModule {}

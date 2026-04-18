@@ -3,10 +3,15 @@
   width: 2.5rem;
   color: var(--textColor);
 }
-
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .topbar {
-  height: 4.375rem;
-  background-color: var(--base-primary);
+  height: 3.55rem;
+  /* background-color: var(--base-primary); */
+  /* background-color: #1e293b; */
+  background-color: #ffffff;
   color: var(--textColor);
 }
 .userAdmin {
@@ -60,8 +65,8 @@
 }
 
 .topbar .nav-item .nav-link .img-profile {
-  height: 2rem;
-  width: 2rem;
+  height: 1.9rem;
+  width: 1.9rem;
 }
 
 .dropdown-toggle::after {

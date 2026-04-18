@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { DoctorModel } from '../models/doctor.model';
 import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
-import { LookupDetailService } from './lookup-details.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +34,6 @@ export class EmployeeService extends ResourceService<LookupDetail> {
 
   constructor(
     private http: HttpClient,
-    private lookupDetailService: LookupDetailService,
     authService: AuthService,
   ) {
     super(

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
-import { FeatureGuard } from '../auth/_guard/feature-guard';
 import { AnalyticData } from './analytic-data/analytic-data';
 import { BackupSyncStatus } from './backup-sync-status/backup-sync-status';
 import { Connectivity } from './connectivity/connectivity';
@@ -18,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'connectivity',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: Connectivity,
     data: {
       featureId: 'EMR01',
@@ -27,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'data-sync-status',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: DataSyncStatus,
     data: {
       featureId: 'EMR02',
@@ -36,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'backup-sync-status',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: BackupSyncStatus,
     data: {
       featureId: 'EMR03',
@@ -45,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'analytic-data',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: AnalyticData,
     data: {
       featureId: 'EMR04',
@@ -54,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'server-usage',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: ServerUsage,
     data: {
       featureId: 'EMR05',
@@ -63,7 +62,7 @@ const routes: Routes = [
   },
   {
     path: 'server-usage/details',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: ServerUsageDetails,
     data: {
       featureId: 'EMR06',
@@ -72,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'user-management',
-    canActivate: [AuthGuard, FeatureGuard],
+    canActivate: [AuthGuard],
     component: UserManagement,
     data: {
       featureId: 'EMR07',

@@ -4,68 +4,66 @@
 /* this hosts only for login */
 /* default */
 :host,
-:root{
-    --primary-color: #07634E;
-    --secondary-color: #17a786;
+:root {
+  --primary-color: #07634e;
+  --secondary-color: #17a786;
 
-    --btn-text-color: #ffffff;
-    --btn-bg-color: #2BAFE8;
-    --btn-hover-color: #229DD2;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #2bafe8;
+  --btn-hover-color: #229dd2;
 }
-
-
 
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 100; /* Thin weight */
-    src: url('/assets/font/inter/Inter_28pt-Thin.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100; /* Thin weight */
+  src: url("/assets/font/inter/Inter_28pt-Thin.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200; /* Extra Lite weight */
-    src: url('/assets/font/inter/Inter_28pt-ExtraLight.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 200; /* Extra Lite weight */
+  src: url("/assets/font/inter/Inter_28pt-ExtraLight.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300; /* Lite weight */
-    src: url('/assets/font/inter/Inter_28pt-Light.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300; /* Lite weight */
+  src: url("/assets/font/inter/Inter_28pt-Light.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400; /* Regular weight */
-    src: url('/assets/font/inter/Inter_24pt-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400; /* Regular weight */
+  src: url("/assets/font/inter/Inter_24pt-Regular.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500; /* Medium weight */
-    src: url('/assets/font/inter/Inter_28pt-Medium.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500; /* Medium weight */
+  src: url("/assets/font/inter/Inter_28pt-Medium.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600; /* Semi Bold weight */
-    src: url('/assets/font/inter/Inter_28pt-SemiBold.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600; /* Semi Bold weight */
+  src: url("/assets/font/inter/Inter_28pt-SemiBold.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700; /* Bold weight */
-    src: url('/assets/font/inter/Inter_28pt-Bold.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700; /* Bold weight */
+  src: url("/assets/font/inter/Inter_28pt-Bold.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800; /* Extra Bold weight */
-    src: url('/assets/font/inter/Inter_28pt-ExtraBold') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800; /* Extra Bold weight */
+  src: url("/assets/font/inter/Inter_28pt-ExtraBold") format("truetype");
 }
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900; /* Black weight */
-    src: url('/assets/font/inter/Inter_24pt-Black.ttf') format('truetype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900; /* Black weight */
+  src: url("/assets/font/inter/Inter_24pt-Black.ttf") format("truetype");
 }

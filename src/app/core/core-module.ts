@@ -1,22 +1,22 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { TabsetConfig } from 'ngx-bootstrap/tabs';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ToastrModule } from 'ngx-toastr';
-import { TabsetConfig } from 'ngx-bootstrap/tabs';
 
-import { DashboardLayout } from './layouts/dashboard-layout/dashboard-layout';
-import { EmrDashboardLayout } from './layouts/emr-dashboard-layout/emr-dashboard-layout';
-import { TopNav } from './layouts/dashboard-layout/top-nav/top-nav';
-import { SideNav } from './layouts/dashboard-layout/side-nav/side-nav';
-import { PageNotFound } from './pages/page-not-found/page-not-found';
-import { Unauthorized } from './pages/unauthorized/unauthorized';
-import { EmrTopNav } from './layouts/emr-dashboard-layout/emr-top-nav/emr-top-nav';
-import { RouterLink, RouterModule } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { DashboardLayout } from './layouts/dashboard-layout/dashboard-layout';
+import { SideNav } from './layouts/dashboard-layout/side-nav/side-nav';
+import { TopNav } from './layouts/dashboard-layout/top-nav/top-nav';
+import { EmrDashboardLayout } from './layouts/emr-dashboard-layout/emr-dashboard-layout';
+import { EmrTopNav } from './layouts/emr-dashboard-layout/emr-top-nav/emr-top-nav';
 import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { PageNotFound } from './pages/page-not-found/page-not-found';
+import { Unauthorized } from './pages/unauthorized/unauthorized';
 // import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -26,8 +26,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     TypeaheadModule.forRoot(),
     ToastrModule.forRoot(),
     RouterModule,
-    CommonModule
-  
+    CommonModule,
+
     // HttpClientModule
   ],
   declarations: [
@@ -39,7 +39,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     PageNotFound,
     Unauthorized,
     MenuListItemComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   exports: [
     ModalModule,
@@ -57,14 +57,16 @@ import { NavigationComponent } from './navigation/navigation.component';
     BsModalService,
     BsLocaleService,
     TabsetConfig,
-    provideHttpClient()
-  ]
+    provideHttpClient(),
+  ],
 })
 export class CoreModule {
   // Prevent re-import
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('CoreModule is already loaded. Import only in AppModule.');
+      throw new Error(
+        'CoreModule is already loaded. Import only in AppModule.',
+      );
     }
   }
 }

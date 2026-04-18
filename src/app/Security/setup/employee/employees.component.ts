@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
-import { LookupDetailSerializer } from '../../_coreSecurity/serializers/lookup-detail-serializer';
 import { EmployeeService } from '../../_coreSecurity/services/employee.service';
 import { AddEmpBankInfoComponent } from './add-emp-bank-info/add-emp-bank-info.component';
 import { AddEmpSignatureComponent } from './add-emp-signature/add-emp-signature.component';
@@ -65,63 +64,41 @@ export class EmployeesComponent implements OnInit {
   }
 
   getInitialDataList(): void {
-    this.empService.initEmpSetupList().subscribe(
-      (res: {
-        success: any;
-        obj: {
-          districtList: any;
-          employeeTypeList: any;
-          upazilaList: any;
-          maritalStatusList: any;
-          hrTypeList: any;
-          religionList: any;
-          jobTypeList: any;
-          bloodGroupList: any;
-          countryList: any;
-          genderList: any;
-          salutationList: any;
-        };
-      }) => {
-        if (res.success) {
-          this.districtList = new LookupDetailSerializer().toArray(
-            res.obj.districtList,
-          );
-          this.empTypeList = new LookupDetailSerializer().toArray(
-            res.obj.employeeTypeList,
-          );
-          this.upazilaList = new LookupDetailSerializer().toArray(
-            res.obj.upazilaList,
-          );
-          this.maritalStatusList = new LookupDetailSerializer().toArray(
-            res.obj.maritalStatusList,
-          );
-          this.hrTypeList = new LookupDetailSerializer().toArray(
-            res.obj.hrTypeList,
-          );
-          this.religionList = new LookupDetailSerializer().toArray(
-            res.obj.religionList,
-          );
-          this.jobTypeList = new LookupDetailSerializer().toArray(
-            res.obj.jobTypeList,
-          );
-          this.bloodGroupList = new LookupDetailSerializer().toArray(
-            res.obj.bloodGroupList,
-          );
-          this.countryList = new LookupDetailSerializer().toArray(
-            res.obj.countryList,
-          );
-          this.genderList = new LookupDetailSerializer().toArray(
-            res.obj.genderList,
-          );
-          this.salutationList = new LookupDetailSerializer().toArray(
-            res.obj.salutationList,
-          );
-        }
-      },
-      (err: any) => {
-        console.error('Error occured when get all Initial Data response ', err);
-      },
-    );
+    //   this.empService.initEmpSetupList().subscribe(
+    //     (res: {
+    //       success: any;
+    //       obj: {
+    //         districtList: any;
+    //         empTypeList: any;
+    //         upazilaList: any;
+    //         maritalStatusList: any;
+    //         hrTypeList: any;
+    //         religionList: any;
+    //         jobTypeList: any;
+    //         bloodGroupList: any;
+    //         countryList: any;
+    //         genderList: any;
+    //         salutationList: any;
+    //       };
+    //     }) => {
+    //       if (res.success) {
+    //         this.districtList = res.obj.districtList;
+    //         this.empTypeList = res.obj.empTypeList;
+    //         this.upazilaList = res.obj.upazilaList;
+    //         this.maritalStatusList = res.obj.maritalStatusList;
+    //         this.hrTypeList = res.obj.hrTypeList;
+    //         this.religionList = res.obj.religionList;
+    //         this.jobTypeList = res.obj.jobTypeList;
+    //         this.bloodGroupList = res.obj.bloodGroupList;
+    //         this.countryList = res.obj.countryList;
+    //         this.genderList = res.obj.genderList;
+    //         this.salutationList = res.obj.salutationList;
+    //       }
+    //     },
+    //     (err: any) => {
+    //       console.error('Error occured when get all Initial Data response ', err);
+    //     },
+    //   );
   }
 
   getDeptName(): any {
@@ -318,11 +295,11 @@ export class EmployeesComponent implements OnInit {
         },
         {
           title: 'Dept.',
-          data: 'businessUnitName',
+          data: 'buNo',
         },
         {
           title: 'Job Title',
-          data: 'jobTilte',
+          data: 'jobtitleNo',
         },
         {
           title: 'Join Date',

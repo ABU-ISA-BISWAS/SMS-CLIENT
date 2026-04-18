@@ -25,11 +25,11 @@
         "icons": []
       },
       "theme": {
-        "bgColor": "#00796B",
-        "textColor": "#ffffff",
+        "bgColor": "#1e3a8a",
+        "textColor": "#0f172a",
         "hoverTextColor": "#ffffff",
-        "hoverColor": "#009688",
-        "activeColor": "#009688"
+        "hoverColor": "#2563eb",
+        "activeColor": "#1d4ed8"
       },
       "company_footer": {
         "copyright_msg": ""

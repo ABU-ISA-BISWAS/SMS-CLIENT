@@ -211,18 +211,6 @@ export class UsersComponent implements OnInit {
           width: '100px',
         },
         {
-          title: 'Unit',
-          data: 'unitName',
-          width: '150px',
-        },
-        {
-          title: 'Unit User',
-          data: 'unitUserFlag',
-          render: (data: number) => {
-            return data >= 1 ? '<i class="fas fa-check-square h5"></i>' : '';
-          },
-        },
-        {
           title: 'Created at',
           data: 'userCreatedOn',
           render: (data: string | number | Date) => {

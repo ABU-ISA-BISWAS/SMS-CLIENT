@@ -52,7 +52,7 @@ export class App implements OnInit, OnDestroy {
   setTheme(theme: any) {
     console.log('Theme:-', theme);
     document.documentElement.style.setProperty('--textColor', theme.textColor);
-    document.documentElement.style.setProperty('--base-primary', theme.bgColor);
+    // document.documentElement.style.setProperty('--base-primary', theme.bgColor);
     document.documentElement.style.setProperty(
       '--hoverColor',
       theme.hoverColor,
