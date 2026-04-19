@@ -9,7 +9,6 @@ import { FeaturesComponent } from './setup/features/features.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
-import { ThemePaletteComponent } from './setup/theme-setting/theme-palette/theme-palette.component';
 import { UsersComponent } from './setup/users/users.component';
 
 const routes: Routes = [
@@ -110,16 +109,6 @@ const routes: Routes = [
     path: 'setup/bank',
     canActivate: [AuthGuard],
     component: BankInfoComponent,
-    data: {
-      featureId: 'SAS013',
-      title: 'Role Setup',
-    },
-  },
-
-  {
-    path: 'setup/color-palette',
-    canActivate: [AuthGuard],
-    component: ThemePaletteComponent,
     data: {
       featureId: 'SAS013',
       title: 'Role Setup',

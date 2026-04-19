@@ -21,9 +21,7 @@
 <div
   class="container-fluid d-flex justify-content-center align-items-center py-3 login-container"
 >
-  <div
-    class="card shadow-lg border-0 rounded-4 overflow-hidden w-100 page moving-box-border"
-  >
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden w-100 page">
     <div class="row g-0 h-100">
       <div
         class="col-lg-8 d-none d-lg-flex p-0 bg-info-subtle align-items-center justify-content-center overflow-hidden"
@@ -115,7 +113,7 @@
 
                 <button
                   type="submit"
-                  class="app-btn-login"
+                  class="app-btn-login rounded-1"
                   [disabled]="isLoading"
                 >
                   <span *ngIf="!isLoading">{{ login_btn_title }}</span>

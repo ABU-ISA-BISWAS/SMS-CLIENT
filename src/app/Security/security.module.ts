@@ -37,7 +37,6 @@ import { OrganizationsComponent } from './setup/organizations/organizations.comp
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
-import { ThemePaletteComponent } from './setup/theme-setting/theme-palette/theme-palette.component';
 import { AddUserComponent } from './setup/users/add-user/add-user.component';
 import { ChangePasswordComponent } from './setup/users/change-password/change-password.component';
 import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/role-features-modal.component';
@@ -78,7 +77,6 @@ import { UsersComponent } from './setup/users/users.component';
     AddDepartmentModalComponent,
     BankInfoComponent,
     AddBankInfoComponent,
-    ThemePaletteComponent,
   ],
   imports: [
     SharedModule,
