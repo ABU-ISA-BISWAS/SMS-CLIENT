@@ -80,9 +80,7 @@
                       [(ngModel)]="departmentFilter"
                       (ngModelChange)="onChangeDept()"
                     >
-                      <option [ngValue]="0" selected>
-                        -- All Departments --
-                      </option>
+                      <option [ngValue]="0" selected>All Departments</option>
                       <option
                         *ngFor="let department of hrBuList"
                         [ngValue]="department.id"
@@ -108,7 +106,7 @@
                       [(ngModel)]="jobTitleFilter"
                       (ngModelChange)="onChangeJobtitle()"
                     >
-                      <option [ngValue]="0" selected>-- Job Title --</option>
+                      <option [ngValue]="0" selected>Job Title</option>
 
                       @for (job of hrJobTitleList; track $index) {
                         <option [ngValue]="job.jobtitleNo">
@@ -131,7 +129,7 @@
                       [(ngModel)]="jobTypeFilter"
                       (ngModelChange)="onChangeJobType()"
                     >
-                      <option [ngValue]="0" selected>-- Job Type --</option>
+                      <option [ngValue]="0" selected>Job Type</option>
                       @for (job of jobTypeList; track $index) {
                         <option [ngValue]="job.id">{{ job.detailName }}</option>
                       }
@@ -151,7 +149,7 @@
                       [(ngModel)]="empTypeFilter"
                       (ngModelChange)="onChangeEmpType()"
                     >
-                      <option [ngValue]="0" selected>-- Emp. Type--</option>
+                      <option [ngValue]="0" selected>Emp. Type</option>
 
                       @for (emp of empTypeList; track $index) {
                         <option [ngValue]="emp.id">{{ emp.detailName }}</option>

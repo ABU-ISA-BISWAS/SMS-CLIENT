@@ -12,6 +12,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 import { IconPickerComponent } from './_coreSecurity/common/icon-picker/icon-picker.component';
 import { SecurityRoutingModule } from './security-routing.module';
+import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
+import { AddSessionComponent } from './setup/academic-session/add-session/add-session.component';
 import { AddBankInfoComponent } from './setup/bankInfo/add-bank-info/add-bank-info.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { AddCompanyComponent } from './setup/companies/add-company/add-company.component';
@@ -77,6 +79,8 @@ import { UsersComponent } from './setup/users/users.component';
     AddDepartmentModalComponent,
     BankInfoComponent,
     AddBankInfoComponent,
+    AcademicSessionComponent,
+    AddSessionComponent,
   ],
   imports: [
     SharedModule,

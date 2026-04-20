@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
+import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { CompaniesComponent } from './setup/companies/companies.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
@@ -112,6 +113,16 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Role Setup',
+    },
+  },
+
+  {
+    path: 'setup/academic-session',
+    canActivate: [AuthGuard],
+    component: AcademicSessionComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Academic Session Setup',
     },
   },
 ];
