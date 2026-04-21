@@ -3,8 +3,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { IconPickerComponent } from '../../../_coreSecurity/common/icon-picker/icon-picker.component';
-import { FeatureModel } from '../../../_coreSecurity/models/feature.model';
+import { AcademicSession } from '../../../_coreSecurity/models/academic-session.model';
+import { AcademicSessionService } from '../../../_coreSecurity/services/academic-session.service';
 import { FeatureService } from '../../../_coreSecurity/services/feature.service';
 @Component({
   selector: 'app-add-session',
@@ -13,33 +13,25 @@ import { FeatureService } from '../../../_coreSecurity/services/feature.service'
   standalone: false,
 })
 export class AddSessionComponent implements OnInit {
-  feature: FeatureModel = new FeatureModel();
-  parentModuleList: any;
+  academicSession: AcademicSession = new AcademicSession();
   onClose!: Subject<boolean>;
   sendFeature: any;
   validate!: boolean;
   title = '';
-  iconList: any;
   existingFeature!: string;
   isSaving: boolean = false;
 
   constructor(
     public bsModalRef: BsModalRef,
     private featureService: FeatureService,
+    private academicSessionService: AcademicSessionService,
     private toastr: ToastrService,
     private iconModal: BsModalRef,
     private modalService: BsModalService,
   ) {}
 
   ngOnInit() {
-    if (this.feature) {
-      this.existingFeature = this.feature.submenuId;
-    }
     this.onClose = new Subject();
-    this.featureService.getIconList().subscribe((res) => {
-      this.iconList = res;
-      console.log(res);
-    });
   }
 
   compareFn(a: any, b: any) {
@@ -48,7 +40,7 @@ export class AddSessionComponent implements OnInit {
 
   saveFeatures() {
     this.isSaving = true;
-    this.toogleValue(this.feature);
+    this.toogleValue(this.academicSession);
 
     if (!this.checkValidation()) {
       this.isSaving = false;
@@ -56,9 +48,9 @@ export class AddSessionComponent implements OnInit {
       return;
     }
 
-    if (this.feature.id) {
+    if (this.academicSession.id) {
       this.featureService
-        .updateFeature(this.feature)
+        .updateFeature(this.academicSession)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -68,26 +60,26 @@ export class AddSessionComponent implements OnInit {
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
               this.toastr.success(
-                res.message || 'Feature updated successfully!',
+                res.message || 'Session updated successfully!',
               );
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to update feature.');
+              this.toastr.warning(res.message || 'Failed to update session.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while updating the feature. Please try again.',
+              'Something went wrong while updating the session. Please try again.',
             );
             this.onClose.next(false);
           },
         });
     } else {
-      this.featureService
-        .saveFeature(this.feature)
+      this.academicSessionService
+        .saveSession(this.academicSession)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -96,18 +88,18 @@ export class AddSessionComponent implements OnInit {
         .subscribe({
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
-              this.toastr.success(res.message || 'Feature saved successfully!');
+              this.toastr.success(res.message || 'Session saved successfully!');
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to save feature.');
+              this.toastr.warning(res.message || 'Failed to save session.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while saving the feature. Please try again.',
+              'Something went wrong while saving the session. Please try again.',
             );
             this.onClose.next(false);
           },
@@ -116,40 +108,23 @@ export class AddSessionComponent implements OnInit {
   }
 
   checkValidation() {
-    if (!this.feature.submenuName) {
-      this.toastr.warning("Feature Name can't be empty!");
-      return false;
-    } else if (!this.feature.submenuType) {
-      this.toastr.warning("Featuer Type can't be empty!");
-      return false;
-    } else if (!this.feature.slNo) {
-      this.toastr.warning("Serial No can't be empty!");
-      return false;
-    } else if (!this.feature.submenuId) {
-      this.toastr.warning("Feature Code can't be empty!");
-      return false;
-    } else if (!this.feature.pageLink) {
-      this.toastr.warning("Feature Page Link can't be empty!");
-      return false;
-    } else if (!this.feature.menuEntity) {
-      this.toastr.warning("Parent Module can't be empty!");
+    if (!this.academicSession.sessionName) {
+      this.toastr.warning("Session Name can't be empty!");
       return false;
     }
+    //  else if (!this.academicSession.startDate) {
+    //   this.toastr.warning("Start Date can't be empty!");
+    //   return false;
+    // } else if (!this.academicSession.endDate) {
+    //   this.toastr.warning("End Date can't be empty!");
+    //   return false;
+    // }
     return true;
   }
-  selectIcon() {
-    this.iconModal = this.modalService.show(IconPickerComponent, {
-      class: 'modal-md',
-    });
-    this.iconModal.content.selectedIcon.subscribe(
-      (res: { iconValue: string }) => {
-        this.feature.iconName = res.iconValue;
-      },
-    );
-  }
-  toogleValue(obj: FeatureModel) {
+
+  toogleValue(obj: AcademicSession) {
     Object.keys(obj).forEach((key) => {
-      const typedKey = key as keyof FeatureModel;
+      const typedKey = key as keyof AcademicSession;
       const val = obj[typedKey];
 
       if (val === true) {
@@ -160,25 +135,5 @@ export class AddSessionComponent implements OnInit {
         (obj[typedKey] as any) = 0;
       }
     });
-  }
-
-  validateFeatureCode() {
-    if (this.feature.id && this.existingFeature != this.feature.submenuId) {
-      this.featureService
-        .validateFeatureCode(this.feature.submenuId)
-        .subscribe((res: { success: any }) => {
-          if (!res.success) {
-            this.validate = true;
-          }
-        });
-    } else if (!this.feature.id && this.feature.submenuId) {
-      this.featureService
-        .validateFeatureCode(this.feature.submenuId)
-        .subscribe((res: { success: any }) => {
-          if (!res.success) {
-            this.validate = true;
-          }
-        });
-    }
   }
 }

@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
 import { FeatureModel } from '../../_coreSecurity/models/feature.model';
+import { AcademicSessionService } from '../../_coreSecurity/services/academic-session.service';
 import { FeatureService } from '../../_coreSecurity/services/feature.service';
 import { ModuleService } from '../../_coreSecurity/services/module.service';
 import { AddSessionComponent } from './add-session/add-session.component';
@@ -32,15 +33,18 @@ export class AcademicSessionComponent implements OnInit {
     private moduleService: ModuleService,
     private featureService: FeatureService,
     private toastr: ToastrService,
+    private academicSessionService: AcademicSessionService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initAcademicSessionGrid();
+  }
 
   ngAfterViewInit(): void {
     this.initAcademicSessionGrid();
   }
 
-  addFeature() {
+  addSession() {
     const initialState = {
       title: 'Add Session',
     };
@@ -136,7 +140,7 @@ export class AcademicSessionComponent implements OnInit {
         url:
           environment.baseUrl +
           environment.authApiUrl +
-          '/api/features/gridList',
+          '/api/session/gridList',
         type: 'GET',
         data: function (d: any) {
           d.customSearch = d.search.value;
@@ -176,26 +180,21 @@ export class AcademicSessionComponent implements OnInit {
       order: [[0, 'desc']],
       columns: [
         {
-          visible: false,
-          data: 'ssModifiedOn',
-          name: 'ssModifiedOn',
-        },
-        {
-          title: 'Feature No.',
+          title: 'Academic Session No.',
           data: 'id',
           className: 'dt-left',
         },
         {
-          title: 'Feature Name',
+          title: 'Session Name',
           data: 'submenuName',
           name: 'submenuName',
         },
         {
-          title: 'Feature Code',
+          title: 'Start Date',
           data: 'submenuId',
         },
         {
-          title: 'Serial No',
+          title: 'End Date',
           data: 'slNo',
           className: 'dt-left',
         },
@@ -208,13 +207,6 @@ export class AcademicSessionComponent implements OnInit {
             } else {
               return '<span class="badge rounded-pill bg-danger-subtle px-3 py-2 text-danger">Inactive</span>';
             }
-          },
-        },
-        {
-          title: 'Hide Flag',
-          data: 'hideFlag',
-          render: (data: number) => {
-            return data == 0 ? 'Not Hidden' : 'Hidden';
           },
         },
       ],

@@ -1,94 +1,70 @@
 <div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{title}}</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="bsModalRef.hide()">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 
 <div class="modal-body">
-
-  <div class="border p-3  mb-3">
-
-    <div class="input-group required mb-2  positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Feature Name <span
-          class="text-danger">*</span></span>
-      <input type="text" class="form-control"
-        [(ngModel)]="feature.submenuName" />
-    </div>
-
-    <div class="input-group mb-2">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Feature Type<span class="text-danger">*</span>
-      </span>
-      <ng-select [(ngModel)]="feature.submenuType" class="form-control form-select" placeholder="Select Feature Type">
-        <ng-option [value]="'R'">Report</ng-option>
-        <ng-option [value]="'F'">Form</ng-option>
-        <ng-option [value]="'W'">Java Form</ng-option>
-        <ng-option [value]="'A'">Access</ng-option>
-        <ng-option [value]="'P'">Parameter Form</ng-option>
-      </ng-select>
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Session Name <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="academicSession.sessionName"
+      />
     </div>
 
     <div class="input-group required mb-2 positionRelative">
-      <span  class="input-group-text base-bg-subtle-primary base-txt-primary">Serial No<span
-          class="text-danger">*</span></span>
-      <input type="number" class="form-control" [(ngModel)]="feature.slNo" />
-    </div>
-
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Feature Code<span
-          class="text-danger">*</span></span>
-      <input type="text" class="form-control" required [(ngModel)]="feature.submenuId"
-        [ngClass]="{'invalid-input':validate}" (ngModelChange)="validate=false" (blur)="validateFeatureCode()" />
-      <span *ngIf="validate">Feature code already exist!</span>
-    </div>
-
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Feature Page Link<span
-          class="text-danger">*</span></span>
-      <input type="text" class="form-control" [(ngModel)]="feature.pageLink" />
-    </div>
-
-    <div class="input-group mb-2">
-      <span for="colFormLabel" class="input-group-text base-bg-subtle-primary base-txt-primary">Parent Module<span
-          class="text-danger">*</span></span>
-
-      <ng-select [items]="parentModuleList" placeholder="Select Parent Module" notFoundText="No feature found"
-        bindLabel="moduleNameAndId" [(ngModel)]="feature.menuEntity" class="form-control form-select"></ng-select>
-    </div>
-
-    <div class="input-group mb-2">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Feature Icon</span>
-      <input type="text" class="form-control" [(ngModel)]="feature.iconName">
-      <button class="btn btn-info addfeature" (click)="selectIcon()" type="button">
-        <i class="fas fa-plus " aria-hidden="true"></i>
-      </button>
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Remarks <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="academicSession.remarks"
+      />
     </div>
 
     <div class="row">
       <div class="col-12 d-flex justify-content-start flex-wrap">
-
         <div class="form-check flex-nowrap">
-          <input type="checkbox" [(ngModel)]="feature.hideFlag" class="form-check-input">
-          <label class="form-check-label text-dark text-nowrap ms-1">Hide Flag</label>
+          <input
+            type="checkbox"
+            [(ngModel)]="academicSession.activeStatus"
+            class="form-check-input"
+          />
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
         </div>
-        <div class="form-check flex-nowrap">
-          <input type="checkbox" [(ngModel)]="feature.activeStatus" class="form-check-input">
-          <label class="form-check-label text-dark text-nowrap ms-1">Status</label>
-        </div>
-
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="modal-footer border-0 bg-light">
-  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
-    (click)="bsModalRef.hide()">Close</button>
-  <button type="button" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="saveFeatures()" [disabled] = "isSaving">
-    {{ isSaving ? 'Saving' : 'Save'}}
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveFeatures()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving" : "Save" }}
   </button>
 </div>
