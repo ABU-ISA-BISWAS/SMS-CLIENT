@@ -20,6 +20,8 @@ export class AddSessionComponent implements OnInit {
   title = '';
   existingFeature!: string;
   isSaving: boolean = false;
+  startDate: Date = new Date();
+  endDate: Date = new Date();
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -34,10 +36,6 @@ export class AddSessionComponent implements OnInit {
     this.onClose = new Subject();
   }
 
-  compareFn(a: any, b: any) {
-    return a && b && (a.id == b.id || a.menuName == b.menuName);
-  }
-
   saveFeatures() {
     this.isSaving = true;
     this.toogleValue(this.academicSession);
@@ -49,8 +47,8 @@ export class AddSessionComponent implements OnInit {
     }
 
     if (this.academicSession.id) {
-      this.featureService
-        .updateFeature(this.academicSession)
+      this.academicSessionService
+        .updateSession(this.academicSession)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -135,5 +133,19 @@ export class AddSessionComponent implements OnInit {
         (obj[typedKey] as any) = 0;
       }
     });
+  }
+
+  onEndYearModelChange(date: Date) {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      this.academicSession.endDate = year;
+    }
+  }
+
+  onStartYearModelChange(date: Date) {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      this.academicSession.startDate = year;
+    }
   }
 }

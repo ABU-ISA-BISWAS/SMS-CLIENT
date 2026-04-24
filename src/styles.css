@@ -163,7 +163,7 @@ input[type="checkbox"]:focus-within,
 }
 
 .bs-datepicker.brand-theme .bs-datepicker-head {
-  background-color: var(--primay-color);
+  /* background-color: var(--primay-color); */
   color: #fff;
 }
 

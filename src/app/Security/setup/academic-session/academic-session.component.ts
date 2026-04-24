@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
-import { FeatureModel } from '../../_coreSecurity/models/feature.model';
+import { AcademicSession } from '../../_coreSecurity/models/academic-session.model';
 import { AcademicSessionService } from '../../_coreSecurity/services/academic-session.service';
 import { FeatureService } from '../../_coreSecurity/services/feature.service';
 import { ModuleService } from '../../_coreSecurity/services/module.service';
@@ -65,7 +65,7 @@ export class AcademicSessionComponent implements OnInit {
     } else {
       const initialState = {
         title: 'Edit Session',
-        feature: this.selectedSession,
+        academicSession: this.selectedSession,
       };
       this.bsModalRef = this.modalService.show(AddSessionComponent, {
         class: 'modal-md base-modal',
@@ -97,12 +97,11 @@ export class AcademicSessionComponent implements OnInit {
   //   }
   // }
   disableOrEnableFeature(): void {
-    console.log('Selected feature from disabe enable:', this.selectedSession);
     if (!this.selectedSession) {
-      this.toastr.warning('Please select a feature first.');
+      this.toastr.warning('Please select a session first.');
     } else {
       const initialState = {
-        title: 'Do you want to ' + this.disableButton + ' this Feature?',
+        title: 'Do you want to ' + this.disableButton + ' this session?',
       };
       this.bsModalRef = this.modalService.show(ConfirmationDialog, {
         initialState,
@@ -113,8 +112,8 @@ export class AcademicSessionComponent implements OnInit {
           console.log('flag:', this.activeInactiveFlag);
           this.selectedSession.activeStatus =
             this.activeInactiveFlag == 'I' ? 1 : 0;
-          this.featureService
-            .updateFeature(this.selectedSession)
+          this.academicSessionService
+            .updateSession(this.selectedSession)
             .subscribe((res: { message: string | undefined }) => {
               console.log('reees:', res);
               res.message
@@ -186,16 +185,17 @@ export class AcademicSessionComponent implements OnInit {
         },
         {
           title: 'Session Name',
-          data: 'submenuName',
-          name: 'submenuName',
+          data: 'sessionName',
+          name: 'sessionName',
         },
         {
           title: 'Start Date',
-          data: 'submenuId',
+          data: 'startDate',
+          className: 'dt-left',
         },
         {
           title: 'End Date',
-          data: 'slNo',
+          data: 'endDate',
           className: 'dt-left',
         },
         {
@@ -230,12 +230,12 @@ export class AcademicSessionComponent implements OnInit {
             $(row).closest('tbody').find('tr').removeClass('selected-row');
             $(row).addClass('selected-row');
           }
-          this.featureService
+          this.academicSessionService
             .getSingleFeature(data.id)
-            .subscribe((res: FeatureModel) => {
+            .subscribe((res: AcademicSession) => {
               this.selectedSession = res;
             });
-          console.log('Selected Feature ', this.selectedSession);
+          console.log('Selected Session ', this.selectedSession);
         });
         return row;
       },

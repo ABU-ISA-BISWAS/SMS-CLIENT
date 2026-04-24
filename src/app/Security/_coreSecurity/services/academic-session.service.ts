@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
@@ -14,11 +13,9 @@ import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
 export class AcademicSessionService extends ResourceService<AcademicSession> {
   private END_POINT = `api/session`;
   private SAVE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/create`;
-  private UPDATE_FEATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/update`;
+  private UPDATE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/update`;
   private DELETE_FEATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/delete`;
   private SINGLE_FEATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/find`;
-  private COMPANY_LIST = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/list`;
-  private VALIDATE_SUBMENUID = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/validate-submenu-id`;
 
   constructor(
     private http: HttpClient,
@@ -33,9 +30,9 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
     );
   }
 
-  getSingleFeature(featureNo: any) {
-    console.log('fn', featureNo);
-    const params = new HttpParams().append('id', featureNo);
+  getSingleFeature(academicSessionNo: any) {
+    console.log('fn', academicSessionNo);
+    const params = new HttpParams().append('id', academicSessionNo);
     return this.http
       .get(this.SINGLE_FEATURE, { params })
       .pipe(map((data: any) => data.obj));
@@ -45,30 +42,15 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
       .post(this.SAVE_SESSION, data)
       .pipe(map((data: any) => data));
   }
-  updateFeature(data: any) {
+  updateSession(data: any) {
     return this.http
-      .put(this.UPDATE_FEATURE, data)
+      .put(this.UPDATE_SESSION, data)
       .pipe(map((data: any) => data));
   }
   deleteFeature(data: string | number | boolean) {
     const params = new HttpParams().append('id', data);
     return this.http
       .delete(this.DELETE_FEATURE, { params })
-      .pipe(map((data: any) => data));
-  }
-  getCompanyList() {
-    return this.http.get(this.COMPANY_LIST).pipe(map((data: any) => data));
-  }
-  getIconList(): Observable<any> {
-    return this.http
-      .get('./assets/json/font-awesome.json')
-      .pipe(map((data: any) => data));
-  }
-
-  validateFeatureCode(submenuId: string) {
-    const params = new HttpParams().append('submenuId', submenuId);
-    return this.http
-      .get(this.VALIDATE_SUBMENUID, { params })
       .pipe(map((data: any) => data));
   }
 }

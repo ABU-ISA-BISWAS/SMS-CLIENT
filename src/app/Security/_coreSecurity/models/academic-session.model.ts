@@ -6,9 +6,9 @@ export class AcademicSession extends Resource {
 
   sessionName!: string;
 
-  startDate!: Date;
+  startDate!: number;
 
-  endDate!: Date;
+  endDate!: number;
 
   remarks!: string;
 

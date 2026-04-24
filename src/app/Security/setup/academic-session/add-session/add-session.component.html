@@ -35,16 +35,63 @@
     </div>
 
     <div class="row">
-      <div class="col-12 d-flex justify-content-start flex-wrap">
+      <div class="col-12 d-flex justify-content-start flex-wrap mb-2">
+        <div class="input-group input-group-sm flex-nowrap">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium"
+            id="startDate"
+            >Start Date</span
+          >
+
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Select Year"
+            bsDatepicker
+            [bsConfig]="{
+              minMode: 'year',
+              dateInputFormat: 'YYYY',
+              containerClass: 'brand-theme',
+            }"
+            [ngModel]="academicSession.startDate"
+            (ngModelChange)="onStartYearModelChange($event)"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-start flex-wrap mb-2">
+        <div class="input-group input-group-sm flex-nowrap">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium"
+            id="endDate"
+            >End Date</span
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Select Year"
+            bsDatepicker
+            [bsConfig]="{
+              minMode: 'year',
+              dateInputFormat: 'YYYY',
+              containerClass: 'brand-theme',
+            }"
+            [ngModel]="academicSession.endDate"
+            (ngModelChange)="onEndYearModelChange($event)"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end flex-wrap">
         <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
           <input
             type="checkbox"
             [(ngModel)]="academicSession.activeStatus"
             class="form-check-input"
           />
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
         </div>
       </div>
     </div>
