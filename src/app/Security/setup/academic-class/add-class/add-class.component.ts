@@ -3,17 +3,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { AcademicSession } from '../../../_coreSecurity/models/academic-session.model';
-import { AcademicSessionService } from '../../../_coreSecurity/services/academic-session.service';
-import { FeatureService } from '../../../_coreSecurity/services/feature.service';
+import { AcademicClass } from '../../../_coreSecurity/models/academic-class.model';
+import { AcademicClassService } from '../../../_coreSecurity/services/academic-class.service';
 @Component({
-  selector: 'app-add-session',
-  templateUrl: './add-session.component.html',
-  styleUrls: ['./add-session.component.css'],
+  selector: 'app-add-class',
+  templateUrl: './add-class.component.html',
+  styleUrls: ['./add-class.component.css'],
   standalone: false,
 })
-export class AddSessionComponent implements OnInit {
-  academicSession: AcademicSession = new AcademicSession();
+export class AddClassComponent implements OnInit {
+  academicClass: AcademicClass = new AcademicClass();
   onClose!: Subject<boolean>;
   validate!: boolean;
   title = '';
@@ -23,8 +22,7 @@ export class AddSessionComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private featureService: FeatureService,
-    private academicSessionService: AcademicSessionService,
+    private academicClassService: AcademicClassService,
     private toastr: ToastrService,
     private iconModal: BsModalRef,
     private modalService: BsModalService,
@@ -34,9 +32,9 @@ export class AddSessionComponent implements OnInit {
     this.onClose = new Subject();
   }
 
-  saveFeatures() {
+  saveClasses() {
     this.isSaving = true;
-    this.toogleValue(this.academicSession);
+    this.toogleValue(this.academicClass);
 
     if (!this.checkValidation()) {
       this.isSaving = false;
@@ -44,9 +42,9 @@ export class AddSessionComponent implements OnInit {
       return;
     }
 
-    if (this.academicSession.id) {
-      this.academicSessionService
-        .updateSession(this.academicSession)
+    if (this.academicClass.id) {
+      this.academicClassService
+        .updateClass(this.academicClass)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -55,27 +53,25 @@ export class AddSessionComponent implements OnInit {
         .subscribe({
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
-              this.toastr.success(
-                res.message || 'Session updated successfully!',
-              );
+              this.toastr.success(res.message || 'Class updated successfully!');
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to update session.');
+              this.toastr.warning(res.message || 'Failed to update class.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while updating the session. Please try again.',
+              'Something went wrong while updating the class. Please try again.',
             );
             this.onClose.next(false);
           },
         });
     } else {
-      this.academicSessionService
-        .saveSession(this.academicSession)
+      this.academicClassService
+        .saveClass(this.academicClass)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -84,18 +80,18 @@ export class AddSessionComponent implements OnInit {
         .subscribe({
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
-              this.toastr.success(res.message || 'Session saved successfully!');
+              this.toastr.success(res.message || 'Class saved successfully!');
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to save session.');
+              this.toastr.warning(res.message || 'Failed to save class.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while saving the session. Please try again.',
+              'Something went wrong while saving the class. Please try again.',
             );
             this.onClose.next(false);
           },
@@ -104,22 +100,22 @@ export class AddSessionComponent implements OnInit {
   }
 
   checkValidation() {
-    if (!this.academicSession.sessionName) {
-      this.toastr.warning("Session Name can't be empty!");
+    if (!this.academicClass.className) {
+      this.toastr.warning("Class Name can't be empty!");
       return false;
-    } else if (!this.academicSession.startDate) {
+    } else if (!this.academicClass.classCode) {
       this.toastr.warning("Start Date can't be empty!");
       return false;
-    } else if (!this.academicSession.endDate) {
+    } else if (!this.academicClass.classOrder) {
       this.toastr.warning("End Date can't be empty!");
       return false;
     }
     return true;
   }
 
-  toogleValue(obj: AcademicSession) {
+  toogleValue(obj: AcademicClass) {
     Object.keys(obj).forEach((key) => {
-      const typedKey = key as keyof AcademicSession;
+      const typedKey = key as keyof AcademicClass;
       const val = obj[typedKey];
 
       if (val === true) {
@@ -130,19 +126,5 @@ export class AddSessionComponent implements OnInit {
         (obj[typedKey] as any) = 0;
       }
     });
-  }
-
-  onEndYearModelChange(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      const year = date.getFullYear();
-      this.academicSession.endDate = year;
-    }
-  }
-
-  onStartYearModelChange(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      const year = date.getFullYear();
-      this.academicSession.startDate = year;
-    }
   }
 }
