@@ -52,9 +52,10 @@
   font-size: 12px;
   color: #e5e7eb !important;
   border-bottom: 1px solid #16233a;
+
   position: relative;
 }
-.superModule {
+/* .superModule {
   background: #101a2d !important;
 
   font-weight: 700;
@@ -68,6 +69,29 @@
   background: #22395c !important;
   font-weight: 500;
   color: #f8fafc !important;
+} */
+
+.superModule {
+  background: #101a2d !important;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(147, 197, 253, 0.25); /* subtle glow */
+  box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.15);
+}
+
+.parentModule {
+  background: #162742 !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(147, 197, 253, 0.18);
+  box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.12);
+}
+
+.subChildModule {
+  background: #22395c !important;
+  font-weight: 500;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(147, 197, 253, 0.12);
+  box-shadow: inset 0 -1px 0 rgba(59, 130, 246, 0.08);
+  padding-left: 30px !important;
 }
 
 .sidebar .nav-link.subChildModule {
@@ -90,7 +114,7 @@
   margin-right: 6px;
   display: inline-block;
 }
-.dropdown-toggle::after {
+/* .dropdown-toggle::after {
   content: "›";
   font-size: 16px;
   border: 0;
@@ -103,4 +127,26 @@
 .dropdown-toggle.collapsed::after {
   transform: translateY(-50%) rotate(-90deg);
   color: #94a3b8;
+} */
+
+.dropdown-toggle::after {
+  content: "\f231"; /* caret-right-fill */
+  font-family: "bootstrap-icons";
+  font-size: 12px;
+  border: none;
+
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: #e2e8f0;
+}
+
+.dropdown-toggle:hover::after {
+  color: #60a5fa;
+}
+
+.dropdown-toggle:not(.collapsed)::after {
+  transform: translateY(-50%) rotate(90deg);
 }
