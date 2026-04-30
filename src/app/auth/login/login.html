@@ -1,134 +1,201 @@
 @let companyName =
   companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
-@let bgImg =
-  companyInfo?.bgImg
-    ? `url(${companyInfo.bgImg})`
-    : "url('images/default-bg.jpeg')";
+<!-- @let bgImg = companyInfo?.bgImg ? companyInfo.bgImg : "images/default-bg.jpeg"; -->
 @let welcomeMsg =
-  companyInfo?.companyName ? companyInfo?.companyName : "Welcome";
+  companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
 @let welcomeSubMsg =
   companyInfo?.login_welcome_sub_msg
-    ? companyInfo?.login_welcome_sub_msg
-    : "Please enter your login credintial below to using the app.";
-@let logo = companyInfo?.logoUrl ? companyInfo?.logoUrl : "images/cmh.png";
+    ? companyInfo.login_welcome_sub_msg
+    : "Integrated management for admissions, academics, finance, HR and institutional operations.";
+<!-- @let logo = companyInfo?.logoUrl ? companyInfo.logoUrl : "images/cmh.png"; -->
 @let additionalLogo =
   companyInfo?.additionalLogo
-    ? companyInfo?.additionalLogo
+    ? companyInfo.additionalLogo
     : "images/dgms-logo.png";
 @let login_btn_title =
-  companyInfo?.login_btn_title ? companyInfo?.login_btn_title : "Sign In";
+  companyInfo?.login_btn_title ? companyInfo.login_btn_title : "Sign In";
 
-<div
-  class="container-fluid d-flex justify-content-center align-items-center py-3 login-container"
->
-  <div class="card shadow-lg border-0 rounded-4 overflow-hidden w-100 page">
-    <div class="row g-0 h-100">
-      <div
-        class="col-lg-8 d-none d-lg-flex p-0 bg-info-subtle align-items-center justify-content-center overflow-hidden"
-      >
-        <div
-          class="w-100 h-100 login-bg"
-          [ngStyle]="{ 'background-image': bgImg }"
-        ></div>
+<div class="slp-root">
+  <!-- ═══════════════════════════════════════
+       LEFT — Blur Background Image Panel
+  ═══════════════════════════════════════ -->
+  <div class="slp-left">
+    <!-- Blur background image layer -->
+    <div class="slp-left-bg"></div>
+
+    <!-- Dark overlay on top of image -->
+    <div class="slp-left-overlay"></div>
+
+    <!-- SVG geometric lines on top of overlay -->
+    <svg
+      class="slp-geo"
+      viewBox="0 0 600 800"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+    >
+      <line x1="0" y1="0" x2="600" y2="0" stroke="#185FA5" stroke-width="3" />
+    </svg>
+
+    <!-- Left Content -->
+    <div class="slp-left-content">
+      <div class="slp-badge">
+        <span class="slp-badge-dot"></span>
+        School Management System
       </div>
 
-      <div
-        class="col-lg-4 p-3 d-flex flex-column justify-content-between border-start"
-      >
-        <div
-          class="mb-2 d-flex align-items-center justify-content-between login-logos"
-        >
-          <!-- additional logo -->
-          <img
-            [src]="additionalLogo"
-            [alt]="companyName"
-            class="img-fluid me-auto"
-          />
+      <p class="slp-tagline">{{ welcomeSubMsg }}</p>
 
-          <!-- primary logo -->
-          <img [src]="logo" [alt]="companyName" class="img-fluid" />
+      <div class="slp-rule"></div>
+
+      <ul class="slp-modules">
+        <li>Admissions</li>
+        <li>Academics</li>
+        <li>Finance</li>
+        <li>HR &amp; Payroll</li>
+        <li>Exam &amp; Result</li>
+      </ul>
+    </div>
+
+    <!-- Logos top-left -->
+    <div class="slp-left-logos">
+      <img [src]="additionalLogo" [alt]="companyName" />
+      <!-- <img [src]="logo" [alt]="companyName" /> -->
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       RIGHT — Form Panel
+  ═══════════════════════════════════════ -->
+  <div class="slp-right">
+    <div class="slp-right-topbar"></div>
+
+    <div class="slp-right-inner">
+      <!-- Brand -->
+      <div class="slp-brand">
+        <div class="slp-brand-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 3L2 8l10 5 10-5-10-5z"
+              stroke="#7EB8F7"
+              stroke-width="1.5"
+              stroke-linejoin="miter"
+            />
+            <path
+              d="M2 17l10 5 10-5"
+              stroke="#7EB8F7"
+              stroke-width="1.5"
+              stroke-linecap="square"
+            />
+            <path
+              d="M2 12l10 5 10-5"
+              stroke="rgba(126,184,247,0.4)"
+              stroke-width="1.5"
+              stroke-linecap="square"
+            />
+          </svg>
+        </div>
+        <div>
+          <div class="slp-brand-name">{{ welcomeMsg }}</div>
+          <div class="slp-brand-sub">EduCare Portal</div>
+        </div>
+      </div>
+
+      <!-- Two-Factor Auth -->
+      @if (this.openTwoFactAuth) {
+        <div class="slp-2fa">
+          <app-two-factor-auth-modal></app-two-factor-auth-modal>
+        </div>
+      } @else {
+        <!-- Login Form -->
+        <div class="slp-form-header">
+          <h2 class="slp-form-title">Sign In</h2>
+          <p class="slp-form-sub">Enter your credentials to continue</p>
         </div>
 
-        @if (this.openTwoFactAuth) {
-          <!-- Two Factor Authentication -->
-          <div
-            class="login-form-container mx-auto w-100"
-            style="max-width: 350px"
-          >
-            <app-two-factor-auth-modal></app-two-factor-auth-modal>
-          </div>
-        } @else {
-          <!-- Login -->
-
-          <div
-            class="login-form-container mx-auto w-100"
-            style="max-width: 350px"
-          >
-            <h3 class="welcome-title">
-              {{ welcomeMsg }}
-            </h3>
-            <p class="welcome-text mb-2 text-center">
-              {{ welcomeSubMsg }}
-            </p>
-
-            <div class="app-login-wrapper">
-              <form
-                id="formAuthentication"
-                class="app-login-card"
-                [formGroup]="loginForm"
-                (ngSubmit)="onSubmit()"
-              >
-                <div class="app-login-header">
-                  <p>Enter your credentials to continue</p>
-                </div>
-
-                <div class="form-floating mb-3 app-form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="floatingUserName"
-                    name="userName"
-                    placeholder="User Name"
-                    formControlName="userName"
-                    required
-                    #userNameRef
-                  />
-                  <label for="floatingUserName">User Name</label>
-                </div>
-
-                <!-- Password -->
-
-                <div class="form-floating mb-3 app-form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="floatingPassword"
-                    name="password"
-                    placeholder="Password"
-                    formControlName="password"
-                    required
-                  />
-                  <label for="floatingPassword">Password</label>
-                </div>
-
-                <button
-                  type="submit"
-                  class="app-btn-login rounded-1"
-                  [disabled]="isLoading"
+        <form
+          id="formAuthentication"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+          novalidate
+        >
+          <!-- Username -->
+          <div class="slp-field">
+            <label class="slp-label" for="slpUserName">Username</label>
+            <div class="slp-input-wrap">
+              <input
+                id="slpUserName"
+                type="text"
+                name="userName"
+                placeholder="Enter your username"
+                formControlName="userName"
+                required
+                #userNameRef
+                class="slp-input"
+              />
+              <span class="slp-iicon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
                 >
-                  <span *ngIf="!isLoading">{{ login_btn_title }}</span>
-                  <span
-                    *ngIf="isLoading"
-                    class="spinner-border spinner-border-sm"
-                  ></span>
-                </button>
-              </form>
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </span>
             </div>
           </div>
-        }
 
-        <div></div>
-      </div>
+          <!-- Password -->
+          <div class="slp-field">
+            <label class="slp-label" for="slpPassword">Password</label>
+            <div class="slp-input-wrap">
+              <input
+                id="slpPassword"
+                type="password"
+                name="password"
+                placeholder="••••••••"
+                formControlName="password"
+                required
+                class="slp-input"
+              />
+              <span class="slp-iicon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="3" y="11" width="18" height="11" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="slp-btn-submit" [disabled]="isLoading">
+            <span *ngIf="!isLoading">{{ login_btn_title }}</span>
+            <span
+              *ngIf="isLoading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span class="slp-btn-line"></span>
+          </button>
+        </form>
+      }
+    </div>
+
+    <!-- Footer -->
+    <div class="slp-footer">
+      <span class="slp-fc">EduCare Technologies, All Rights Reserved</span>
+      <span class="slp-fv">v3.1.0</span>
     </div>
   </div>
 </div>
