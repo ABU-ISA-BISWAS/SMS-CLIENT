@@ -1,0 +1,70 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Section Name <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="academicSection.sectionName"
+      />
+    </div>
+
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Section Code <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="academicSection.sectionCode"
+      />
+    </div>
+
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end flex-wrap">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="academicSection.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveSections()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving" : "Save" }}
+  </button>
+</div>
