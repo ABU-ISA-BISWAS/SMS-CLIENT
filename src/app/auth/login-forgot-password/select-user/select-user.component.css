@@ -1,0 +1,84 @@
+
+.p-email-enter {
+    font-size: 15.5px;
+    width: 84%;
+    margin: auto;
+    line-height: 24px;
+    color: #757474;
+    margin-top: 10px;
+}
+.check-input-mail {
+    width: 24px;
+    height: 20px;
+}
+.span-pass{
+    margin-top: 19px;
+    float: left;
+    top: 10px;
+    position: relative;
+    margin-left: 10px;
+
+}
+.span-pass{
+    margin-top: -4px;
+    float: left;
+    margin-left: 10px;font-size: 15px;
+
+}
+
+span.span-pass dt {
+    font-weight: normal;
+    font-size: 13px;color: #6b6a6a;
+}
+.span-pass-two{
+    margin-top: 16px;
+    float: left;
+    margin-left: 10px;font-size: 15px;
+
+}
+
+.span-pass-two dt {
+    font-weight: normal;
+    font-size: 13px;color: #6b6a6a;
+}
+label.user-title {
+    width: 50%;
+    float: left;
+    font-weight: bold;
+    font-size: 13px;
+    background: #f9f9f9;
+    padding: 5px 14px;
+}
+
+.user-title-ul {
+    display: block;
+    width: 100%;
+    float: left;
+    border: solid 1px #ececec;
+    padding: 2px;
+   
+}
+
+p.user-title-in {
+    float: left;
+    width: 50%;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    padding-left: 14px;
+}
+p.user-title-in label {
+    margin-bottom: 6px;  float: left; cursor: pointer;
+}
+.input-radio {
+    width: 18px;
+    height: 21px;
+    margin-right: 6px;
+    float: left;
+    cursor: pointer;
+}
+.height_table_200 {
+    height: 200px;
+    overflow-y: scroll;
+    float: left;
+    width: 100%;
+}

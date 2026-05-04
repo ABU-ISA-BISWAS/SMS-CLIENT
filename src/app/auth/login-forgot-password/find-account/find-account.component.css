@@ -1,0 +1,31 @@
+.p-email-enter {
+    font-size: 15.5px;
+    width: 80%;
+    margin: auto;
+    line-height: 24px;
+    color: #757474;
+    margin-top: 10px;
+}
+.lofinField{
+    position: relative;
+    margin-bottom: 2px !important;
+    box-shadow: 0px 1px 3px #639ea2;
+    border-radius: 40px;
+    border: solid 2px #fdfdfd;
+    margin-bottom: 12px !important;
+}
+.lofinField .form-control {
+    border: 0px;
+    background: transparent;padding-left:0px;
+}
+.lofinField .input-group-text{
+    background: #fff;
+    color: #7dd8cf;
+    border: solid 1px #fff;
+    border-radius: 40px 0px 0px 40px;
+}
+
+
+.lofinField .form-control:focus{
+    box-shadow: none;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="mb-0 mt-3 text-center">Which are you?</h4>
+  </div>
+
+  <div class="col-md-10 offset-md-1 mt-3">
+    <ul class="list-group list-inline user-title-ul">
+      <label class="user-title">User ID</label>
+      <label class="user-title">Patient Name</label>
+      <div class="scrool_ber height_table_200">
+        <li *ngFor="let user of userList; let i = index">
+          <p class="user-title-in">
+            <input
+              class="input-radio"
+              type="radio"
+              id="userId_{{ i }}"
+              name="user"
+              (click)="onClickUser(user)"
+            />
+            <label for="userId_{{ i }}">{{ user.userId }}</label>
+          </p>
+           <p class="user-title-in" *ngIf=" user.userName && user.userFullName">
+            <label for="userId_{{i}}">{{user.userFullName}}</label>
+          </p>
+          <p class="user-title-in" *ngIf=" user.userName && !user.userFullName">
+            <label for="userId_{{i}}">{{user.userName}}</label>
+          </p>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>

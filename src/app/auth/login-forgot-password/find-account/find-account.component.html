@@ -1,0 +1,25 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-12">
+    <h4 class="mb-0 mt-3 text-center font-weight-bold">Find Your Account</h4>
+    <p class="text-center p-email-enter">
+      Please enter your email address or mobile number or user name to search
+      for your account.
+    </p>
+  </div>
+
+  <div class="col-md-8">
+    <div class="input-group lofinField mt-4">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="far fa-envelope-open"></i></div>
+      </div>
+      <input
+        name="email"
+        type="text"
+        class="form-control pl-2"
+        id="email"
+        placeholder="Enter your Email/Mobile/User Name"
+        (blur)="onBlurSearch($event)"
+      />
+    </div>
+  </div>
+</div>

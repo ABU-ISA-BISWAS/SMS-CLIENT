@@ -1,13 +1,11 @@
 @let companyName =
   companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
-<!-- @let bgImg = companyInfo?.bgImg ? companyInfo.bgImg : "images/default-bg.jpeg"; -->
 @let welcomeMsg =
   companyInfo?.companyName ? companyInfo.companyName : "Medicare Web Central";
 @let welcomeSubMsg =
   companyInfo?.login_welcome_sub_msg
     ? companyInfo.login_welcome_sub_msg
     : "Integrated management for admissions, academics, finance, HR and institutional operations.";
-<!-- @let logo = companyInfo?.logoUrl ? companyInfo.logoUrl : "images/cmh.png"; -->
 @let additionalLogo =
   companyInfo?.additionalLogo
     ? companyInfo.additionalLogo
@@ -17,51 +15,187 @@
 
 <div class="slp-root">
   <!-- ═══════════════════════════════════════
-       LEFT — Blur Background Image Panel
+       LEFT — Background Image Panel
   ═══════════════════════════════════════ -->
   <div class="slp-left">
     <!-- Blur background image layer -->
     <div class="slp-left-bg"></div>
 
-    <!-- Dark overlay on top of image -->
+    <!-- Dark gradient overlay -->
     <div class="slp-left-overlay"></div>
 
-    <!-- SVG geometric lines on top of overlay -->
+    <!-- Decorative SVG grid / geometric lines -->
     <svg
       class="slp-geo"
-      viewBox="0 0 600 800"
+      viewBox="0 0 700 900"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      <line x1="0" y1="0" x2="600" y2="0" stroke="#185FA5" stroke-width="3" />
+      <!-- Top accent bar -->
+
+      <!-- Corner bracket top-right -->
+      <path
+        d="M640 30 L670 30 L670 60"
+        stroke="rgba(126,184,247,0.35)"
+        stroke-width="1.5"
+        fill="none"
+      />
+      <!-- Corner bracket bottom-left -->
+      <path
+        d="M30 840 L30 870 L60 870"
+        stroke="rgba(126,184,247,0.25)"
+        stroke-width="1.5"
+        fill="none"
+      />
+      <!-- Subtle dot grid -->
+      <pattern
+        id="dotGrid"
+        x="0"
+        y="0"
+        width="48"
+        height="48"
+        patternUnits="userSpaceOnUse"
+      >
+        <circle cx="1" cy="1" r="1" fill="rgba(126,184,247,0.12)" />
+      </pattern>
+      <rect width="700" height="900" fill="url(#dotGrid)" />
     </svg>
 
-    <!-- Left Content -->
+    <!-- Logos — top left -->
+    <div class="slp-left-logos">
+      <img [src]="additionalLogo" [alt]="companyName" />
+    </div>
+
+    <!-- Left main content -->
     <div class="slp-left-content">
       <div class="slp-badge">
         <span class="slp-badge-dot"></span>
         School Management System
       </div>
 
+      <h1 class="slp-headline">Smart ERP<br />for Modern Schools</h1>
+
       <p class="slp-tagline">{{ welcomeSubMsg }}</p>
 
       <div class="slp-rule"></div>
 
       <ul class="slp-modules">
-        <li>Admissions</li>
-        <li>Academics</li>
-        <li>Finance</li>
-        <li>HR &amp; Payroll</li>
-        <li>Exam &amp; Result</li>
-        <li></li>
+        <li>
+          <span class="slp-mod-icon">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 1.5L13.5 4.5V11.5L8 14.5L2.5 11.5V4.5L8 1.5Z"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+            </svg>
+          </span>
+          Admissions
+        </li>
+        <li>
+          <span class="slp-mod-icon">
+            <svg viewBox="0 0 16 16" fill="none">
+              <rect
+                x="2"
+                y="2"
+                width="5"
+                height="5"
+                rx="1"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+              <rect
+                x="9"
+                y="2"
+                width="5"
+                height="5"
+                rx="1"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+              <rect
+                x="2"
+                y="9"
+                width="5"
+                height="5"
+                rx="1"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+              <rect
+                x="9"
+                y="9"
+                width="5"
+                height="5"
+                rx="1"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+            </svg>
+          </span>
+          Academics
+        </li>
+        <li>
+          <span class="slp-mod-icon">
+            <svg viewBox="0 0 16 16" fill="none">
+              <circle
+                cx="8"
+                cy="8"
+                r="5.5"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+              <path
+                d="M8 5v3.5l2 1.5"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          Finance
+        </li>
+        <li>
+          <span class="slp-mod-icon">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 8a3 3 0 100-6 3 3 0 000 6z"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+              />
+              <path
+                d="M2 14c0-3 2.7-5 6-5s6 2 6 5"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          HR &amp; Payroll
+        </li>
+        <li>
+          <span class="slp-mod-icon">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 4h10M3 8h7M3 12h5"
+                stroke="#7EB8F7"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          Exam &amp; Result
+        </li>
       </ul>
     </div>
 
-    <!-- Logos top-left -->
-    <div class="slp-left-logos">
-      <img [src]="additionalLogo" [alt]="companyName" />
-      <!-- <img [src]="logo" [alt]="companyName" /> -->
+    <!-- Bottom system status -->
+    <div class="slp-left-status">
+      <span class="slp-status-dot"></span>
+      <span class="slp-status-text">All systems operational</span>
+      <span class="slp-status-sep">·</span>
+      <span class="slp-status-uptime">99.9% uptime</span>
     </div>
   </div>
 
@@ -69,6 +203,7 @@
        RIGHT — Form Panel
   ═══════════════════════════════════════ -->
   <div class="slp-right">
+    <!-- Top accent bar -->
     <div class="slp-right-topbar"></div>
 
     <div class="slp-right-inner">
@@ -102,7 +237,7 @@
         </div>
         <div>
           <div class="slp-brand-name">{{ welcomeMsg }}</div>
-          <div class="slp-brand-sub">EduCare Portal</div>
+          <div class="slp-brand-sub">EduCare Portal</div>
         </div>
       </div>
 
@@ -112,10 +247,10 @@
           <app-two-factor-auth-modal></app-two-factor-auth-modal>
         </div>
       } @else {
-        <!-- Login Form -->
+        <!-- Form header -->
         <div class="slp-form-header">
-          <h2 class="slp-form-title">Sign In</h2>
-          <p class="slp-form-sub">Enter your credentials to continue</p>
+          <h2 class="slp-form-title">Welcome back</h2>
+          <p class="slp-form-sub">Sign in to your workspace to continue</p>
         </div>
 
         <form
@@ -129,17 +264,7 @@
           <div class="slp-field">
             <label class="slp-label" for="slpUserName">Username</label>
             <div class="slp-input-wrap">
-              <input
-                id="slpUserName"
-                type="text"
-                name="userName"
-                placeholder="Enter your username"
-                formControlName="userName"
-                required
-                #userNameRef
-                class="slp-input"
-              />
-              <span class="slp-iicon">
+              <span class="slp-iicon slp-iicon--left">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -150,45 +275,99 @@
                   <circle cx="12" cy="7" r="4" />
                 </svg>
               </span>
+              <input
+                id="slpUserName"
+                type="text"
+                name="userName"
+                placeholder="Enter your username"
+                formControlName="userName"
+                required
+                #userNameRef
+                class="slp-input"
+              />
             </div>
           </div>
 
           <!-- Password -->
           <div class="slp-field">
-            <label class="slp-label" for="slpPassword">Password</label>
+            <label class="slp-label" for="slpPassword">
+              <span>Password</span>
+              <a href="#" routerLink="/auth/login-forgot" class="slp-forgot"
+                >Forgot password?</a
+              >
+            </label>
             <div class="slp-input-wrap">
-              <input
-                id="slpPassword"
-                type="password"
-                name="password"
-                placeholder="••••••••"
-                formControlName="password"
-                required
-                class="slp-input"
-              />
-              <span class="slp-iicon">
+              <span class="slp-iicon slp-iicon--left">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.8"
                 >
-                  <rect x="3" y="11" width="18" height="11" />
+                  <rect x="3" y="11" width="18" height="11" rx="1.5" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
               </span>
+              <input
+                id="slpPassword"
+                type="password"
+                name="password"
+                placeholder="••••••••••"
+                formControlName="password"
+                required
+                class="slp-input"
+              />
             </div>
+          </div>
+
+          <!-- Remember me -->
+          <div class="slp-remember">
+            <label class="slp-check-wrap">
+              <input type="checkbox" class="slp-checkbox-input" />
+              <span class="slp-checkbox-box"></span>
+              <span class="slp-check-label">Keep me signed in for 30 days</span>
+            </label>
           </div>
 
           <!-- Submit -->
           <button type="submit" class="slp-btn-submit" [disabled]="isLoading">
             <span *ngIf="!isLoading">{{ login_btn_title }}</span>
-            <span
-              *ngIf="isLoading"
-              class="spinner-border spinner-border-sm"
-            ></span>
+            <span *ngIf="isLoading" class="slp-spinner"></span>
+            <svg
+              *ngIf="!isLoading"
+              class="slp-btn-arrow"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M4 10h12M12 6l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
             <span class="slp-btn-line"></span>
           </button>
+
+          <!-- Security note -->
+          <div class="slp-security-note">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 1.5L13 4v5c0 3-2.5 5-5 5.5C6 14 3.5 12 3 9V4L8 1.5z"
+                stroke="#185FA5"
+                stroke-width="1.2"
+              />
+              <path
+                d="M5.5 8l1.5 1.5L10.5 6"
+                stroke="#185FA5"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Protected with advanced encryption</span>
+          </div>
         </form>
       }
     </div>

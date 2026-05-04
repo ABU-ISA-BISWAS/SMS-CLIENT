@@ -1,0 +1,62 @@
+.p-email-enter {
+    font-size: 15.5px;
+    width: 80%;
+    margin: auto;
+    line-height: 24px;
+    color: #757474;
+    margin-top: 10px;
+}
+.lofinField{
+    position: relative;
+    margin-bottom: 2px !important;
+    box-shadow: 0px 1px 3px #639ea2;
+    border-radius: 40px;
+    border: solid 2px #fdfdfd;
+    margin-bottom: 12px !important;
+}
+.lofinField .form-control {
+    border: 0px;
+    background: transparent;
+    padding-left: 0px;
+    font-size: 18px; 
+}
+.lofinField .input-group-text{
+    background: #fff;
+    color: #7dd8cf;
+    border: solid 1px #fff;
+    border-radius: 40px 0px 0px 40px;
+}
+.mail-to-code-area {
+    width: 70%;
+    margin: auto;
+    margin-top: 32px;
+}
+.mail-to p {
+    margin: 0px;
+    margin-top: 21px;
+    font-size: 16px;
+}
+.mail-to span {
+    font-size: 14px;
+    color: #717070;
+}
+
+p.p-get-code {
+    width: 100%;
+    float: left;
+    margin-top: 0px;
+    top: 24px;
+    position: relative;
+    margin-bottom: 0px;
+    font-size: 14px;
+    padding-left: 8px;
+}
+
+p.p-get-code button {
+    background: transparent;
+    border: 0px;
+    color: #09f;
+}
+p.p-get-code i {
+    color: #28a745;
+}

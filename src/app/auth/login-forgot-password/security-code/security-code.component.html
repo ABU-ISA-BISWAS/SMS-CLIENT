@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="mb-0 mt-3 text-center font-weight-bold">Enter security code</h4>
+    <p class="text-center p-email-enter">
+      Please check your
+      {{ userInfo.otpCodeSendType == 1 ? "email" : "phone" }} for a message with
+      your code. Your code is 6 numbers long.
+    </p>
+  </div>
+  <div class="mail-to-code-area">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group lofinField mt-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="far fa-file-alt"></i></div>
+          </div>
+          <input
+            name="otpCode"
+            type="text"
+            class="form-control pl-2"
+            id="otpCode"
+            placeholder="Enter code"
+            (keyup)="keyPressOtp($event)"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 mail-to">
+        <p>We sent your code to:</p>
+        <span>{{ userInfo.sendTo }}</span>
+      </div>
+
+      <div class="col-md-12">
+        <p class="p-get-code">
+          Didn't get a code?
+          <button (click)="onClickResend()" [disabled]="otpLoader">
+            Resend Code
+          </button>
+          <i class="fa fa-spinner fa-spin" *ngIf="otpLoader"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

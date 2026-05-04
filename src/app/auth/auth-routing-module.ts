@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginForgotPasswordComponent } from './login-forgot-password/login-forgot-password.component';
 import { Login } from './login/login';
 
 const routes: Routes = [
@@ -7,14 +8,20 @@ const routes: Routes = [
     path: 'signin',
     component: Login,
     data: {
-      title: 'Sign-In'
-    }
+      title: 'Sign-In',
+    },
   },
-  { path: '**', redirectTo: 'signin' }
+
+  {
+    path: 'login-forgot',
+    component: LoginForgotPasswordComponent,
+  },
+
+  { path: '**', redirectTo: 'signin' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}
