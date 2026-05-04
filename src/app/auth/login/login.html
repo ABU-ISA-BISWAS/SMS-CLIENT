@@ -49,7 +49,7 @@
         fill="none"
       />
       <!-- Subtle dot grid -->
-      <pattern
+      <!-- <pattern
         id="dotGrid"
         x="0"
         y="0"
@@ -58,8 +58,8 @@
         patternUnits="userSpaceOnUse"
       >
         <circle cx="1" cy="1" r="1" fill="rgba(126,184,247,0.12)" />
-      </pattern>
-      <rect width="700" height="900" fill="url(#dotGrid)" />
+      </pattern> -->
+      <!-- <rect width="700" height="900" fill="url(#dotGrid)" /> -->
     </svg>
 
     <!-- Logos — top left -->
@@ -73,8 +73,6 @@
         <span class="slp-badge-dot"></span>
         School Management System
       </div>
-
-      <h1 class="slp-headline">Smart ERP<br />for Modern Schools</h1>
 
       <p class="slp-tagline">{{ welcomeSubMsg }}</p>
 
@@ -204,7 +202,6 @@
   ═══════════════════════════════════════ -->
   <div class="slp-right">
     <!-- Top accent bar -->
-    <div class="slp-right-topbar"></div>
 
     <div class="slp-right-inner">
       <!-- Brand -->
@@ -249,7 +246,6 @@
       } @else {
         <!-- Form header -->
         <div class="slp-form-header">
-          <h2 class="slp-form-title">Welcome back</h2>
           <p class="slp-form-sub">Sign in to your workspace to continue</p>
         </div>
 
@@ -321,13 +317,13 @@
           </div>
 
           <!-- Remember me -->
-          <div class="slp-remember">
+          <!-- <div class="slp-remember">
             <label class="slp-check-wrap">
               <input type="checkbox" class="slp-checkbox-input" />
               <span class="slp-checkbox-box"></span>
               <span class="slp-check-label">Keep me signed in for 30 days</span>
             </label>
-          </div>
+          </div> -->
 
           <!-- Submit -->
           <button type="submit" class="slp-btn-submit" [disabled]="isLoading">

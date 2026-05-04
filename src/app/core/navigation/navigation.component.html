@@ -1,125 +1,167 @@
 @let navigationTitle =
   companyInfo?.companyName ? companyInfo?.companyName : "Welcome";
 
-<ul
-  class="navbar-nav bg-gradient-primary sidebar sidebar-dark mt-0"
-  id="accordionSidebar"
-  [class.collapsed]="isCollapse"
->
-  <!-- Sidebar - Brand -->
-  <a
-    class="sidebar-brand d-flex align-items-center justify-content-center"
-    style="text-decoration: none"
-  >
-    <!-- <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div> -->
-    <div class="sidebar-brand-text mx-1 fs-13px">{{ navigationTitle }}</div>
-  </a>
+<ul class="snav-root" id="accordionSidebar" [class.snav-collapsed]="isCollapse">
+  <!-- ── Brand / Logo Area ── -->
+  <li class="snav-brand">
+    <a class="snav-brand-inner" style="text-decoration: none">
+      <div class="snav-brand-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 3L2 8l10 5 10-5-10-5z"
+            stroke="#7EB8F7"
+            stroke-width="1.6"
+            stroke-linejoin="miter"
+          />
+          <path
+            d="M2 17l10 5 10-5"
+            stroke="#7EB8F7"
+            stroke-width="1.6"
+            stroke-linecap="square"
+          />
+          <path
+            d="M2 12l10 5 10-5"
+            stroke="rgba(126,184,247,0.4)"
+            stroke-width="1.6"
+            stroke-linecap="square"
+          />
+        </svg>
+      </div>
+      <div class="snav-brand-text-wrap">
+        <span class="snav-brand-name">{{ navigationTitle }}</span>
+        <span class="snav-brand-sub">EduCare ERP</span>
+      </div>
+    </a>
+  </li>
 
-  <!-- Divider -->
+  <!-- ── Nav Items ── -->
+  <div class="snav-scroll">
+    <div class="snav-item-wrap" *ngFor="let item of newNavItems; let i = index">
+      <!-- ─ Single nav item (no children) ─ -->
+      <ng-container *ngIf="(item?.children?.length ?? 0) === 0">
+        <a
+          class="snav-link snav-single"
+          [routerLink]="'/' + item.route"
+          routerLinkActive="snav-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="snav-icon">
+            <i class="{{ item.iconName }}"></i>
+          </span>
+          <span class="snav-label">{{ item.displayName }}</span>
+          <span class="snav-active-bar"></span>
+        </a>
+      </ng-container>
 
-  <div class="nav-item" *ngFor="let item of newNavItems; let i = index">
-    <!-- Single nav item -->
-    <ng-container *ngIf="(item?.children?.length ?? 0) === 0">
-      <a
-        class="nav-link"
-        [routerLink]="'/' + item.route"
-        routerLinkActive="activeNav"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span class="nav-icon-holder">
-          <i class="{{ item.iconName }} nav-icon"></i>
-        </span>
-        {{ item.displayName }}
-      </a>
-    </ng-container>
+      <!-- ─ Dropdown nav item (has children) ─ -->
+      <ng-container *ngIf="(item?.children?.length ?? 0) > 0">
+        <a
+          class="snav-link snav-parent superModule dropdown-toggle collapsed"
+          [attr.href]="'#snav-collapse-' + i"
+          role="button"
+          data-bs-toggle="collapse"
+          [attr.aria-controls]="'snav-collapse-' + i"
+          aria-expanded="false"
+        >
+          <span class="snav-icon">
+            <i class="{{ item.iconName }}"></i>
+          </span>
+          <span class="snav-label">{{ item.displayName }}</span>
+          <span class="snav-chevron">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path
+                d="M5 7l3 3 3-3"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </a>
 
-    <!-- Dropdown nav item -->
-    <ng-container *ngIf="(item?.children?.length ?? 0) > 0">
-      <a
-        class="nav-link dropdown-container dropdown-toggle collapsed superModule"
-        [attr.href]="'#collapse' + i"
-        role="button"
-        data-bs-toggle="collapse"
-        [attr.aria-controls]="'collapse' + i"
-        aria-expanded="false"
-      >
-        <span class="nav-icon-holder">
-          <i class="{{ item.iconName }} nav-icon"></i>
-        </span>
-        <span class="nav-link-title">{{ item.displayName }}</span>
-      </a>
-
-      <div
-        [id]="'collapse' + i"
-        class="nav-collapse collapse"
-        data-bs-parent="#navbarVerticalMenu"
-        hs-parent-area="#navbarVerticalMenu"
-        style="top: 0px"
-      >
-        <div>
+        <div
+          [id]="'snav-collapse-' + i"
+          class="snav-sub-panel collapse"
+          data-bs-parent="#navbarVerticalMenu"
+        >
           <ng-container *ngFor="let child of item.children; let j = index">
             <!-- Child without children -->
-            <div class="nav-item" *ngIf="(child?.children?.length ?? 0) === 0">
-              <a
-                class="nav-link"
-                [routerLink]="'/' + child.route"
-                routerLinkActive="activeNav"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-                <span class="nav-icon-holder">
-                  <i class="{{ child.iconName }} nav-icon"></i>
-                </span>
-                {{ child.displayName }}
-              </a>
-            </div>
+            <a
+              *ngIf="(child?.children?.length ?? 0) === 0"
+              class="snav-link snav-child parentModule"
+              [routerLink]="'/' + child.route"
+              routerLinkActive="snav-active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <span class="snav-child-indent"></span>
+              <span class="snav-icon snav-icon-sm">
+                <i class="{{ child.iconName }}"></i>
+              </span>
+              <span class="snav-label">{{ child.displayName }}</span>
+              <span class="snav-active-bar"></span>
+            </a>
 
-            <!-- Nested dropdown -->
-            <div class="nav-item" *ngIf="(child?.children?.length ?? 0) > 0">
+            <!-- Nested dropdown child -->
+            <ng-container *ngIf="(child?.children?.length ?? 0) > 0">
               <a
-                class="nav-link dropdown-container dropdown-toggle collapsed parentModule"
-                [attr.href]="'#subCollapse' + i + '-' + j"
+                class="snav-link snav-child parentModule dropdown-toggle collapsed"
+                [attr.href]="'#snav-sub-' + i + '-' + j"
                 role="button"
                 data-bs-toggle="collapse"
-                [attr.aria-controls]="'subCollapse' + i + '-' + j"
+                [attr.aria-controls]="'snav-sub-' + i + '-' + j"
                 aria-expanded="false"
               >
-                <span class="nav-icon-holder">
-                  <i class="{{ child.iconName }} nav-icon"></i>
+                <span class="snav-child-indent"></span>
+                <span class="snav-icon snav-icon-sm">
+                  <i class="{{ child.iconName }}"></i>
                 </span>
-                <span class="nav-link-title">{{ child.displayName }}</span>
+                <span class="snav-label">{{ child.displayName }}</span>
+                <span class="snav-chevron snav-chevron-sm">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M5 7l3 3 3-3"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </a>
 
               <div
-                [id]="'subCollapse' + i + '-' + j"
-                class="nav-collapse collapse"
+                [id]="'snav-sub-' + i + '-' + j"
+                class="snav-sub-panel collapse"
                 data-bs-parent="#navbarVerticalMenu"
-                hs-parent-area="#navbarVerticalMenu"
-                style="top: 0px"
               >
-                <div>
-                  <ng-container *ngFor="let subChild of child.children">
-                    <div class="nav-item">
-                      <a
-                        class="nav-link subChildModule"
-                        [routerLink]="'/' + subChild.route"
-                        routerLinkActive="activeNav"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                      >
-                        <span class="nav-icon-holder">
-                          <i class="{{ subChild.iconName }} nav-icon"></i>
-                        </span>
-                        {{ subChild.displayName }}
-                      </a>
-                    </div>
-                  </ng-container>
-                </div>
+                <ng-container *ngFor="let subChild of child.children">
+                  <a
+                    class="snav-link snav-subchild subChildModule"
+                    [routerLink]="'/' + subChild.route"
+                    routerLinkActive="snav-active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    <span class="snav-subchild-indent"></span>
+                    <span class="snav-icon snav-icon-xs">
+                      <i class="{{ subChild.iconName }}"></i>
+                    </span>
+                    <span class="snav-label">{{ subChild.displayName }}</span>
+                    <span class="snav-active-bar"></span>
+                  </a>
+                </ng-container>
               </div>
-            </div>
+            </ng-container>
           </ng-container>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
+  <!-- /snav-scroll -->
+
+  <!-- ── Footer ── -->
+  <li class="snav-footer">
+    <span class="snav-footer-text">EduCare Technologies</span>
+    <span class="snav-footer-ver">v3.1.0</span>
+  </li>
 </ul>
