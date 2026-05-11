@@ -270,6 +270,7 @@ a.snav-link.snav-active {
   flex-shrink: 0;
   background: rgba(37, 99, 235, 0.08);
   border: 1px solid rgba(37, 99, 235, 0.1);
+  /* border-color: #1f60ab !important; */
 }
 
 .snav-icon-sm {
@@ -277,6 +278,8 @@ a.snav-link.snav-active {
   width: 20px;
   min-width: 20px;
   height: 20px;
+  border-color: #164780 !important;
+  margin-left: 2px;
 }
 .snav-icon-xs {
   font-size: 10.5px;
@@ -285,6 +288,8 @@ a.snav-link.snav-active {
   height: 18px;
   border-radius: 50%;
   padding: 10px;
+  border-color: #1f60ab !important;
+  margin-left: 1px;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -398,7 +403,8 @@ a.snav-link.snav-active {
   top: -20px;
   bottom: -12px;
   width: 1px;
-  background: rgba(37, 99, 235, 0.2);
+  /* background: rgba(37, 99, 235, 0.2); */
+  background: #1f60ab !important;
 }
 
 .snav-child-indent::after {
@@ -408,7 +414,8 @@ a.snav-link.snav-active {
   top: 50%;
   width: 6px;
   height: 1px;
-  background: rgba(37, 99, 235, 0.3);
+  /* background: rgba(37, 99, 235, 0.3); */
+  background: #1f60ab !important;
 }
 
 .snav-subchild-indent {
@@ -426,7 +433,8 @@ a.snav-link.snav-active {
   top: -20px;
   bottom: -12px;
   width: 1px;
-  background: rgba(37, 99, 235, 0.15);
+  /* background: rgba(37, 99, 235, 0.15); */
+  background: #1f60ab !important;
 }
 
 .snav-subchild-indent::after {
@@ -436,7 +444,8 @@ a.snav-link.snav-active {
   top: 50%;
   width: 6px;
   height: 1px;
-  background: rgba(37, 99, 235, 0.2);
+  /* background: rgba(37, 99, 235, 0.2); */
+  background: #1f60ab !important;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -492,7 +501,7 @@ a.snav-link.snav-active {
 
 .snav-footer-text {
   font-size: 9.5px;
-  color: rgba(148, 163, 184, 0.3);
+  color: rgba(218, 229, 246, 0.502);
   font-family: var(--snav-font-mono);
   white-space: nowrap;
   overflow: hidden;

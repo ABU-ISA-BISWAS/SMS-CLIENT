@@ -4,11 +4,13 @@ import { AuthGuard } from '../auth/_guard/auth-guard';
 import { AcademicClassComponent } from './setup/academic-class/academic-class.component';
 import { AcademicSectionComponent } from './setup/academic-section/academic-section.component';
 import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
+import { AcademicShiftComponent } from './setup/academic-shift/academic-shift.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { CompaniesComponent } from './setup/companies/companies.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
 import { FeaturesComponent } from './setup/features/features.component';
+import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
@@ -144,6 +146,26 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Academic Section Setup',
+    },
+  },
+
+  {
+    path: 'setup/academic-shift',
+    canActivate: [AuthGuard],
+    component: AcademicShiftComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Academic Shift Setup',
+    },
+  },
+
+  {
+    path: 'setup/group-version',
+    canActivate: [AuthGuard],
+    component: GroupVersionComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Group / Version Setup',
     },
   },
 ];

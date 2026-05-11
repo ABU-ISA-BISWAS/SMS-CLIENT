@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Academic Shift Setup</h6>
+    </div>
+
+    <div class="card-body">
+      <!-- Action Bar -->
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-1 px-3"
+        >
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
+            (click)="disableOrEnableShift()"
+          >
+            <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
+              disableButton
+            }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
+            (click)="addShift()"
+            title="Add Shift"
+          >
+            <i class="fas fa-user-plus" aria-hidden="true"></i> Add
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
+            (click)="editShift()"
+            title="Add Bank Info"
+          >
+            <i class="fas fa-edit" aria-hidden="true"></i> Edit
+          </button>
+          <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0"
+            (click)="deleteShift()">
+            <i class="fas fa-trash-alt"></i> Delete
+          </button> -->
+        </div>
+      </div>
+      <!-- Filtar Bar -->
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-0 px-2"
+        >
+          <div class="row justify-content-center align-items-center">
+            <div class="mt-3 mt-xl-0">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="inlineRadio2"
+                    name="inlineRadioOptions"
+                    (click)="statusCheck('A')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="A"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio2"
+                    >Active</label
+                  >
+                </div>
+
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    (click)="statusCheck('I')"
+                    [(ngModel)]="activeInactiveFlag"
+                    id="inlineRadio3"
+                    name="inlineRadioOptions"
+                    class="custom-control-input"
+                    value="I"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio3"
+                    >InActive</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #academicShiftGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

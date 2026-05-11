@@ -18,6 +18,8 @@ import { AcademicSectionComponent } from './setup/academic-section/academic-sect
 import { AddSectionComponent } from './setup/academic-section/add-class/add-section.component';
 import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
 import { AddSessionComponent } from './setup/academic-session/add-session/add-session.component';
+import { AcademicShiftComponent } from './setup/academic-shift/academic-shift.component';
+import { AddShiftComponent } from './setup/academic-shift/add-shift/add-shift.component';
 import { AddBankInfoComponent } from './setup/bankInfo/add-bank-info/add-bank-info.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 import { AddCompanyComponent } from './setup/companies/add-company/add-company.component';
@@ -35,6 +37,8 @@ import { EmployeesComponent } from './setup/employee/employees.component';
 import { ResetPasswordComponent } from './setup/employee/reset-password/reset-password.component';
 import { AddFeatureComponent } from './setup/features/add-feature/add-feature.component';
 import { FeaturesComponent } from './setup/features/features.component';
+import { AddGroupVersionComponent } from './setup/group-version/add-group-version/add-group-version.component';
+import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { AddModuleComponent } from './setup/modules/add-module/add-module.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { AddOrganizationComponent } from './setup/organizations/add-organization/add-organization.component';
@@ -89,6 +93,10 @@ import { UsersComponent } from './setup/users/users.component';
     AddClassComponent,
     AcademicSectionComponent,
     AddSectionComponent,
+    AddShiftComponent,
+    AcademicShiftComponent,
+    GroupVersionComponent,
+    AddGroupVersionComponent,
   ],
   imports: [
     SharedModule,
