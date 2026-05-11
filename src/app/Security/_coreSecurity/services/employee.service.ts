@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { ResourceService } from '../../../auth/_service/resource.service';
-import { LookupDetail } from '../models/lookup-details.model';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../auth/_service/auth-service';
-import { DoctorModel } from '../models/doctor.model';
+import { EmployeeModel } from '../models/employee.model';
 import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EmployeeService extends ResourceService<LookupDetail> {
+export class EmployeeService extends ResourceService<EmployeeModel> {
   private END_POINT = `api/employee`;
 
   private JOBLIST = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/jobtitle/list`;
@@ -29,9 +28,6 @@ export class EmployeeService extends ResourceService<LookupDetail> {
   private ADD_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/add-emp-signature`;
   private GET_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/getEmpSignature`;
 
-  private doctorSource = new Subject<DoctorModel>();
-  doctorObject = this.doctorSource.asObservable();
-
   constructor(
     private http: HttpClient,
     authService: AuthService,
@@ -43,10 +39,6 @@ export class EmployeeService extends ResourceService<LookupDetail> {
       new HrBuSerializer(),
       authService,
     );
-  }
-
-  sendDoctor(data: DoctorModel) {
-    this.doctorSource.next(data);
   }
 
   getSingleEmployee(empNo: string | number | boolean) {

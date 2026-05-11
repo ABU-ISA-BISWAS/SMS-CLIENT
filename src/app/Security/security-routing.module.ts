@@ -6,13 +6,11 @@ import { AcademicSectionComponent } from './setup/academic-section/academic-sect
 import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
 import { AcademicShiftComponent } from './setup/academic-shift/academic-shift.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
-import { CompaniesComponent } from './setup/companies/companies.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
 import { FeaturesComponent } from './setup/features/features.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { ModulesComponent } from './setup/modules/modules.component';
-import { OrganizationsComponent } from './setup/organizations/organizations.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { UsersComponent } from './setup/users/users.component';
 
@@ -75,25 +73,6 @@ const routes: Routes = [
     path: 'setup/role',
     canActivate: [AuthGuard],
     component: RoleManagementComponent,
-    data: {
-      featureId: 'SAS013',
-      title: 'Role Setup',
-    },
-  },
-
-  {
-    path: 'setup/organization',
-    canActivate: [AuthGuard],
-    component: OrganizationsComponent,
-    data: {
-      featureId: 'SAS013',
-      title: 'Role Setup',
-    },
-  },
-  {
-    path: 'setup/company',
-    canActivate: [AuthGuard],
-    component: CompaniesComponent,
     data: {
       featureId: 'SAS013',
       title: 'Role Setup',

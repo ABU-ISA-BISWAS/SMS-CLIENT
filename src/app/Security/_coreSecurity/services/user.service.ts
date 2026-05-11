@@ -5,14 +5,14 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ResourceService } from '../../../auth/_service/resource.service';
-import { LookupDetail } from '../models/lookup-details.model';
+import { UserModel } from '../models/user.model';
 import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
 import { ModuleService } from './module.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends ResourceService<LookupDetail> {
+export class UserService extends ResourceService<UserModel> {
   private END_POINT = `api/coreUser`;
   private EMP_END_POINT = `api/employee`;
   private USER_UNIT_END_POINT = `api/unit-user-access`;
