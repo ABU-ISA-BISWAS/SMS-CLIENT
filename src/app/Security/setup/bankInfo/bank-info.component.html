@@ -1,65 +1,107 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Bank Info Setup</h6>
+    </div>
 
-  <div class="row marginRightAll">
-    <div class="col-md-12 padding-left-right">
-        
-            <div class="all_content_wrapper">
-              
-              <div class="allInner">
-                <div class="allTitle">Bank Info Setup</div>
+    <div class="card-body">
+      <!-- Action Bar -->
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-1 px-3"
+        >
+          <!-- <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
+            (click)="disableOrEnableClass()"
+          >
+            <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
+              disableButton
+            }}
+          </button> -->
 
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
+            (click)="addBankInfo()"
+            title="Add Class"
+          >
+            <i class="fas fa-user-plus" aria-hidden="true"></i> Add
+          </button>
 
-  <div class="row marginLeft0 marginRight0">
-      <div class="col-md-12 border-bottom borderColorB text-right pt-1 pb-1 mb-2 pannelHeading setupHeader">
-          <div class="btnAllRow">
-  <button type="button" class="btn btn-primary mr-1 addButtonCustom" (click)="addBankInfo()">
-    <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>Add
-  </button>
-  <button type="button" class="btn btn-success mr-1 addButtonCustom" (click)="editBankInfo()">
-    <i class="fas fa-edit mr-1" aria-hidden="true"></i>Edit
-  </button>
-  <!-- <button type="button" class="btn btn-warning mr-1 addButtonCustom" (click)="disableFeature()">
-    <i class="fas fa-ban mr-1" aria-hidden="true"></i>Disable
-  </button> -->
-  <!-- <button type="button" class="btn btn-danger mr-1 addButtonCustom" (click)="deleteFeature()">
-    <i class="fas fa-trash-alt mr-1" aria-hidden="true"></i>Delete
-  </button> -->
-  </div>
-</div>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
+            (click)="editBankInfo()"
+            title="Add Bank Info"
+          >
+            <i class="fas fa-edit" aria-hidden="true"></i> Edit
+          </button>
+          <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0"
+            (click)="deleteClass()">
+            <i class="fas fa-trash-alt"></i> Delete
+          </button> -->
+        </div>
+      </div>
+      <!-- Filtar Bar -->
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-0 px-2"
+        >
+          <div class="row justify-content-center align-items-center">
+            <div class="mt-3 mt-xl-0">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    class="custom-control-input"
+                    id="inlineRadi2"
+                    name="Single item"
+                    type="radio"
+                    value="all"
+                    [(ngModel)]="activeStatus"
+                    (ngModelChange)="onChangeRadioButton()"
+                    value="1"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio2"
+                    >Active</label
+                  >
+                </div>
 
-<div class="clearfix"></div>
-<div class="row w-100">
-  <div class="col-12 px-0">
-    <div class="searchHeader topheader paddingTop2 text-right paddingTop1">
-      <div class="form-row align-items-center justify-content-center searchAllField">
-
-        <div class="col-auto col-md-4 col-lg-3">
-          <div class="form-check form-check-inline">
-            <input checked="checked" class="form-check-input" id="inlineRadi1" name="Single item" type="radio"
-              value="all" [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="" checked>
-            <label class="form-check-label" for="inlineRadi1">All</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" id="inlineRadi2" name="Single item" type="radio" value="all"
-              [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="1">
-            <label class="form-check-label" for="inlineRadi2">Active</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" id="inlineRadi3" name="Single item" type="radio" value="all"
-              [(ngModel)]="activeStatus" (ngModelChange)="onChangeRadioButton()" value="0">
-            <label class="form-check-label" for="inlineRadi3">Inactive</label>
+                <div class="form-check">
+                  <input
+                    id="inlineRadi3"
+                    name="Single item"
+                    type="radio"
+                    value="all"
+                    [(ngModel)]="activeStatus"
+                    (ngModelChange)="onChangeRadioButton()"
+                    value="0"
+                    class="custom-control-input"
+                  />
+                  <label class="form-check-label p-2" for="inlineRadio3"
+                    >InActive</label
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #bankInfoGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="table-responsive dataGridTable dataGridTableRegister">
-  <table #bankInfoGrid class="row-border hover">
-  </table>
-</div>
-</div>
-</div>
-</div>
 </div>

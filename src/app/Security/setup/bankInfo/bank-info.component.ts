@@ -79,6 +79,7 @@ export class BankInfoComponent implements OnInit {
         {
           title: 'Bank Id.',
           data: 'id',
+          className: 'dt-left',
         },
         {
           title: 'Bank Name',
@@ -105,9 +106,9 @@ export class BankInfoComponent implements OnInit {
           className: 'text-center',
           render: (data: any) => {
             if (data == '1') {
-              return '<i class="fas fa-check text-success"></i>';
+              return '<span class="badge rounded-pill bg-success-subtle px-3 py-2 text-success">Active</span>';
             } else {
-              return '';
+              return '<span class="badge rounded-pill bg-danger-subtle px-3 py-2 text-danger">Inactive</span>';
             }
           },
         },
@@ -127,6 +128,12 @@ export class BankInfoComponent implements OnInit {
             self.selectedBankInfo;
           } else {
             self.selectedBankInfo = data;
+            if ($(row).hasClass('selected-row')) {
+              $(row).removeClass('selected-row');
+            } else {
+              $(row).closest('tbody').find('tr').removeClass('selected-row');
+              $(row).addClass('selected-row');
+            }
           }
           console.log('...selected selectedBankInfo', self.selectedBankInfo);
         });
@@ -145,8 +152,9 @@ export class BankInfoComponent implements OnInit {
       title: 'Add Bank Info',
     };
     this.bsModalRef = this.modalService.show(AddBankInfoComponent, {
-      class: 'modal-md',
+      class: 'modal-md base-modal',
       initialState,
+      backdrop: 'static',
     });
     this.bsModalRef.content.onClose.subscribe((result: any) => {
       if (result == true) {
@@ -165,8 +173,9 @@ export class BankInfoComponent implements OnInit {
         bankInfoModel: this.selectedBankInfo,
       };
       this.bsModalRef = this.modalService.show(AddBankInfoComponent, {
-        class: 'modal-md',
+        class: 'modal-md base-modal',
         initialState,
+        backdrop: 'static',
       });
       this.bsModalRef.content.onClose.subscribe((result: boolean) => {
         if (result == true) {

@@ -111,6 +111,13 @@ export class DepartmentNewComponent implements OnInit {
             self.selectedDepartment = '';
           } else {
             self.selectedDepartment = data;
+
+            if ($(row).hasClass('selected-row')) {
+              $(row).removeClass('selected-row');
+            } else {
+              $(row).closest('tbody').find('tr').removeClass('selected-row');
+              $(row).addClass('selected-row');
+            }
           }
         });
         return row;
@@ -127,8 +134,9 @@ export class DepartmentNewComponent implements OnInit {
       title: 'Add Department',
     };
     this.bsModalRef = this.modalService.show(AddDepartmentModalComponent, {
-      class: 'modal-lg',
+      class: 'modal-md base-modal',
       initialState,
+      backdrop: 'static',
     });
     this.bsModalRef.content.onClose.subscribe((result: any) => {
       if (result) {
@@ -144,8 +152,9 @@ export class DepartmentNewComponent implements OnInit {
         department: this.selectedDepartment,
       };
       this.bsModalRef = this.modalService.show(AddDepartmentModalComponent, {
-        class: 'modal-lg',
+        class: 'modal-md base-modal',
         initialState,
+        backdrop: 'static',
       });
       this.bsModalRef.content.onClose.subscribe((result: any) => {
         if (result) {

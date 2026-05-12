@@ -1,176 +1,123 @@
-<div class="modal-header">
-  <h5 class="modal-title">{{ title }}</h5>
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
   <button
     type="button"
-    (click)="bsModalRef.hide()"
-    class="close"
-    data-dismiss="modal"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
     aria-label="Close"
+    (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true">&times;</span>
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 
-<form
-  (ngSubmit)="f.form.valid && saveBankInfo(f)"
-  name="form"
-  #f="ngForm"
-  novalidate
->
-  <div class="modal-body persoanlInfoArea">
-    <div class="border pt-3 pb-3 mb-3">
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Name<span class="text-danger">*</span>:</label>
-        </div>
-        <div class="col-md-8">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankName"
-            name="bankName"
-            #bankName="ngModel"
-            [ngClass]="{
-              'is-invalid':
-                (bankName.touched || f.submitted) && bankName.invalid,
-            }"
-            required
-          />
-          <!-- Validation Message -->
-          <span
-            class="text-danger"
-            *ngIf="
-              (bankName?.touched || f.submitted) &&
-              bankName?.errors?.['required']
-            "
-          >
-            Empty not allowed!
-          </span>
-        </div>
-      </div>
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Bank Name <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="bankInfoModel.bankName"
+        name="bankName"
+      />
+    </div>
 
-      <!-- <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Account No<span class="text-danger">*</span>:</label>
-        </div>
-        <div class="col-md-8">
-          <input type="text" class="form-control" [(ngModel)]="bankInfoModel.bankAccountNo" name="bankAccountNo" required>
-        </div>
-      </div> -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Bank Account No <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="bankInfoModel.bankAccountNo"
+        name="bankAccountNo"
+      />
+    </div>
 
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Account No<span class="text-danger">*</span>:</label>
-        </div>
-        <div class="col-md-8">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankAccountNo"
-            name="bankAccountNo"
-            #bankAccountNo="ngModel"
-            [ngClass]="{
-              'is-invalid':
-                (bankAccountNo.touched || f.submitted) && bankAccountNo.invalid,
-            }"
-            required
-          />
-          <!-- Validation Message -->
-          <span
-            class="text-danger"
-            *ngIf="
-              (bankAccountNo?.touched || f.submitted) &&
-              bankAccountNo?.hasError('required')
-            "
-          >
-            Bank Account No is required!
-          </span>
-        </div>
-      </div>
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Bank Account Name<span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="bankInfoModel.bankAccountName"
+        name="bankAccountName"
+      />
+    </div>
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Bank Account Type <span class="text-danger">*</span></span
+      >
+      <ng-select
+        [items]="bankAccTypeList"
+        bindLabel="name"
+        bindValue="shortName"
+        placeholder="Choose Bank Account Type"
+        notFoundText="No Type found"
+        [(ngModel)]="bankInfoModel.bankAccountType"
+        name="bankAccountType"
+        class="form-control"
+      >
+      </ng-select>
+    </div>
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Bank Branch <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="bankInfoModel.bankBranch"
+        name="bankBranch"
+      />
+    </div>
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Swift Code <span class="text-danger">*</span></span
+      >
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="bankInfoModel.bankAccountSwiftcode"
+        name="bankAccountSwiftcode"
+      />
+    </div>
 
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Account Name:</label>
-        </div>
-        <div class="col-md-8">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankAccountName"
-            name="bankAccountName"
-          />
-        </div>
-      </div>
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Account Type:</label>
-        </div>
-        <div class="col-md-8">
-          <select
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankAccountType"
-            name="bankAccountType"
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end flex-wrap">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
           >
-            <option
-              *ngFor="let bankInfo of bankAccTypeList"
-              [ngValue]="bankInfo.shortName"
-            >
-              {{ bankInfo.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Branch:</label>
-        </div>
-        <div class="col-md-8">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankBranch"
-            name="bankBranch"
-          />
-        </div>
-      </div>
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Bank Account SwiftCode:</label>
-        </div>
-        <div class="col-md-8">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="bankInfoModel.bankAccountSwiftcode"
-            name="bankAccountSwiftcode"
-          />
-        </div>
-      </div>
-      <div class="form-group col-md-12 row mx-auto">
-        <div class="col-md-4 pr-0 text-right">
-          <label>Active Status</label>
-        </div>
-        <div class="col-md-8">
           <input
             type="checkbox"
-            class="checkTitle status-checkbox"
             [(ngModel)]="bankInfoModel.activeStatus"
             name="activeStatus"
             (ngModelChange)="bankInfoModel.activeStatus = $event ? 1 : 0"
+            class="form-check-input"
           />
         </div>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button role="submit" class="btn btn-primary">Save</button>
-    <button
-      type="button"
-      (click)="bsModalRef.hide()"
-      class="btn btn-danger"
-      data-dismiss="modal"
-    >
-      Close
-    </button>
-  </div>
-</form>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveBankInfo()"
+  >
+    Save
+  </button>
+</div>

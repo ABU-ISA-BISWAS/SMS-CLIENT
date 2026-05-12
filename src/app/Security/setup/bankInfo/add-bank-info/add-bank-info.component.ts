@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
@@ -32,9 +31,7 @@ export class AddBankInfoComponent implements OnInit {
     this.getBankAccountTypeDataList();
   }
 
-  saveBankInfo(form: NgForm): void {
-    console.log('formmmm:: ', form);
-
+  saveBankInfo(): void {
     if (this.bankInfoModel.id) {
       this.bankInfoService
         .updateBankInformation(this.bankInfoModel)
@@ -71,6 +68,7 @@ export class AddBankInfoComponent implements OnInit {
       (resp) => {
         if (resp.success) {
           this.bankAccTypeList = resp.items;
+          console.log('Bank Account Type  found.', this.bankAccTypeList);
         } else {
           console.log('Bank Account Type not found.');
         }

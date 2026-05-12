@@ -1,86 +1,72 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
-    <button type="button" class="close" (click)="bsModalRef.hide()">
-      <span>&times;</span>
-    </button>
-  </div>
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
 
-  <div class="modal-body all_content_wrapper">
-    <!-- Business Unit Information -->
-    <div class="row patient-info mt-0 mb-3">
-      <div class="col-12">
-        <fieldset
-          class="border p-2 marginLeftphato search fieldsetBg borderRight"
-        >
-          <legend class="w-auto legend-title">Business Unit Information</legend>
-          <div class="form-row searchDiv">
-            <div class="input-group col-md-6 col-12">
-              <label class="text-left">Code:</label>
-              <input
-                type="text"
-                class="form-control rounded"
-                [(ngModel)]="department.buId"
-                name="buId"
-                required
-                style="border-radius: 0.25rem !important"
-              />
-            </div>
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Code <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="department.buId"
+        name="buId"
+      />
+    </div>
 
-            <div class="input-group col-md-6 col-12 d-flex">
-              <table>
-                <th style="vertical-align: middle" class="text-right">
-                  <label class="text-right" for="activeStatus"
-                    >Active Status:</label
-                  >
-                </th>
-                <td style="vertical-align: middle; width: 24px">
-                  <input
-                    type="checkbox"
-                    class="checkTitle"
-                    [(ngModel)]="department.activeStatus"
-                    name="activeStatus"
-                    required
-                    id="activeStatus"
-                  />
-                </td>
-              </table>
-            </div>
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Name <span class="text-danger">*</span></span
+      >
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="department.buName"
+        name="buName"
+      />
+    </div>
 
-            <div class="input-group col-md-6 col-12">
-              <label class="text-left">Name:</label>
-              <input
-                type="text"
-                class="form-control rounded"
-                id=""
-                placeholder=""
-                [(ngModel)]="department.buName"
-                name="buName"
-                #buName="ngModel"
-                required
-                style="border-radius: 0.25rem !important"
-              />
-            </div>
-          </div>
-        </fieldset>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end flex-wrap">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="department.activeStatus"
+            name="activeStatus"
+            class="form-check-input"
+          />
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-primary minw-80"
-      (click)="onSaveOrUpdate()"
-    >
-      Save
-    </button>
-    <button
-      type="button"
-      class="btn btn-danger minw-80"
-      (click)="bsModalRef.hide()"
-    >
-      Close
-    </button>
-  </div>
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="onSaveOrUpdate()"
+  >
+    Save
+  </button>
 </div>
