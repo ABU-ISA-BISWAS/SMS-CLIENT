@@ -18,8 +18,6 @@ export class PersonalInfoTabComponent implements OnInit {
   @Input('department') departmentList: any;
   @Input('gender') genderList: any;
 
-  @Input()
-  salutationList: any[] = [];
 
   @Input('editPersonalInfo')
   editPersonalInfo!: EmployeeModel;

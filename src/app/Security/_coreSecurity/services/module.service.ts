@@ -30,7 +30,7 @@ export class ModuleService extends ResourceService<ModuleModel> {
     super(
       http,
       environment.authApiUrl,
-      'api/employee/jobtitle/list',
+      'api/module',
       new HrBuSerializer(),
       authService,
     );

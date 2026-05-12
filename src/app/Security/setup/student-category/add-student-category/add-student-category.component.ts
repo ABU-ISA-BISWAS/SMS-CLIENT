@@ -3,16 +3,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { GroupVersion } from '../../../_coreSecurity/models/group-version.model';
-import { GroupVersionService } from '../../../_coreSecurity/services/group-version.service';
+import { StudentCategory } from '../../../_coreSecurity/models/student-category.model'; 
+import { StudentCategoryService } from '../../../_coreSecurity/services/student-category.service'; 
 @Component({
-  selector: 'app-add-group-version',
-  templateUrl: './add-group-version.component.html',
-  styleUrls: ['./add-group-version.component.css'],
+  selector: 'app-add-student-category',
+  templateUrl: './add-student-category.component.html',
+  styleUrls: ['./add-student-category.component.css'],
   standalone: false,
 })
-export class AddGroupVersionComponent implements OnInit {
-  groupVersion: GroupVersion = new GroupVersion();
+export class AddStudentCategoryComponent implements OnInit {
+  studentCategory: StudentCategory = new StudentCategory();
   onClose!: Subject<boolean>;
   validate!: boolean;
   title = '';
@@ -22,19 +22,17 @@ export class AddGroupVersionComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private groupVersionService: GroupVersionService,
+    private studentCategoryService: StudentCategoryService,
     private toastr: ToastrService,
-    private iconModal: BsModalRef,
-    private modalService: BsModalService,
   ) {}
 
   ngOnInit() {
     this.onClose = new Subject();
   }
 
-  saveGroupVersions() {
+  saveStudentCategorys() {
     this.isSaving = true;
-    this.toogleValue(this.groupVersion);
+    this.toogleValue(this.studentCategory);
 
     if (!this.checkValidation()) {
       this.isSaving = false;
@@ -42,8 +40,8 @@ export class AddGroupVersionComponent implements OnInit {
       return;
     }
 
-    if (this.groupVersion.id) {
-      this.groupVersionService.updateGroupVersion(this.groupVersion)
+    if (this.studentCategory.id) {
+      this.studentCategoryService.updateStudentCategory(this.studentCategory)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -53,13 +51,13 @@ export class AddGroupVersionComponent implements OnInit {
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
               this.toastr.success(
-                res.message || 'GroupVersion updated successfully!',
+                res.message || 'StudentCategory updated successfully!',
               );
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
               this.toastr.warning(
-                res.message || 'Failed to update group-version.',
+                res.message || 'Failed to update Student Category.',
               );
               this.onClose.next(false);
               this.validate = true;
@@ -67,13 +65,13 @@ export class AddGroupVersionComponent implements OnInit {
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while updating the group-version. Please try again.',
+              'Something went wrong while updating the Student Category. Please try again.',
             );
             this.onClose.next(false);
           },
         });
     } else {
-      this.groupVersionService.saveGroupVersion(this.groupVersion)
+      this.studentCategoryService.saveStudentCategory(this.studentCategory)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -83,13 +81,13 @@ export class AddGroupVersionComponent implements OnInit {
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
               this.toastr.success(
-                res.message || 'GroupVersion saved successfully!',
+                res.message || 'StudentCategory saved successfully!',
               );
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
               this.toastr.warning(
-                res.message || 'Failed to save group-version.',
+                res.message || 'Failed to save Student Category.',
               );
               this.onClose.next(false);
               this.validate = true;
@@ -97,7 +95,7 @@ export class AddGroupVersionComponent implements OnInit {
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while saving the group-version. Please try again.',
+              'Something went wrong while saving the student category. Please try again.',
             );
             this.onClose.next(false);
           },
@@ -106,16 +104,16 @@ export class AddGroupVersionComponent implements OnInit {
   }
 
   checkValidation() {
-    if (!this.groupVersion.name) {
-      this.toastr.warning("GroupVersion Name can't be empty!");
+    if (!this.studentCategory.categoryName) {
+      this.toastr.warning("Student category Name can't be empty!");
       return false;
     }
     return true;
   }
 
-  toogleValue(obj: GroupVersion) {
+  toogleValue(obj: StudentCategory) {
     Object.keys(obj).forEach((key) => {
-      const typedKey = key as keyof GroupVersion;
+      const typedKey = key as keyof StudentCategory;
       const val = obj[typedKey];
 
       if (val === true) {

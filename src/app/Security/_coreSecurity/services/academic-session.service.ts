@@ -24,7 +24,7 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
     super(
       http,
       environment.authApiUrl,
-      'api/features',
+      'api/session',
       new HrBuSerializer(),
       authService,
     );

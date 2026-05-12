@@ -24,16 +24,6 @@
         Emp. Name <span class="mandatory">*</span>
       </label>
       <div class="input-group">
-        <select
-          class="form-control form-select salutation bg-light rounded-start"
-          [(ngModel)]="employee.salutation"
-        >
-          @for (salutation of salutationList; track $index) {
-            <option [ngValue]="salutation.detailName">
-              {{ salutation.detailName }}
-            </option>
-          }
-        </select>
         <input
           type="text"
           class="form-control"

@@ -14,21 +14,15 @@
   <div class="border p-3 mb-3">
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Name <span class="text-danger">*</span></span
+        >Relation Name <span class="text-danger">*</span></span
       >
-      <input type="text" class="form-control" [(ngModel)]="groupVersion.name" />
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="guardianRelation.name"
+      />
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Type <span class="text-danger">*</span>
-      </span>
-
-      <select class="form-select" [(ngModel)]="groupVersion.type" name="type">
-        <option value="Group">Group</option>
-        <option value="Version">Version</option>
-      </select>
-    </div>
 
     <div class="row">
       <div class="col-12 d-flex justify-content-end flex-wrap">
@@ -38,7 +32,7 @@
           >
           <input
             type="checkbox"
-            [(ngModel)]="groupVersion.activeStatus"
+            [(ngModel)]="guardianRelation.activeStatus"
             class="form-check-input"
           />
         </div>
@@ -58,7 +52,7 @@
   <button
     type="button"
     class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="saveGroupVersions()"
+    (click)="saveGuardianRelations()"
     [disabled]="isSaving"
   >
     {{ isSaving ? "Saving" : "Save" }}

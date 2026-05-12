@@ -48,6 +48,10 @@ import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/ro
 import { SubModuleRoleComponent } from './setup/users/sub-module-role/sub-module-role.component';
 import { SubModuleComponent } from './setup/users/sub-module/sub-module.component';
 import { UsersComponent } from './setup/users/users.component';
+import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
+import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
+import { StudentCategoryComponent } from './setup/student-category/student-category.component';
+import { AddStudentCategoryComponent } from './setup/student-category/add-student-category/add-student-category.component';
 @NgModule({
   declarations: [
     SetupComponent,
@@ -86,6 +90,10 @@ import { UsersComponent } from './setup/users/users.component';
     AcademicShiftComponent,
     GroupVersionComponent,
     AddGroupVersionComponent,
+    GuardianRelationComponent,
+    AddGuardianRelationComponent,
+    StudentCategoryComponent,
+    AddStudentCategoryComponent
   ],
   imports: [
     SharedModule,

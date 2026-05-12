@@ -24,7 +24,7 @@ export class AcademicShiftService extends ResourceService<AcademicShift> {
     super(
       http,
       environment.authApiUrl,
-      'api/features',
+      'api/shift',
       new HrBuSerializer(),
       authService,
     );

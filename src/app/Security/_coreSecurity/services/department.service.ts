@@ -30,7 +30,7 @@ export class DepartmentService extends ResourceService<Department> {
     super(
       http,
       environment.authApiUrl,
-      'employee/dept',
+      'api/employee/dept',
       new DepartmentSerializers(),
       authService,
     );

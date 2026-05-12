@@ -24,7 +24,7 @@ export class AcademicSectionService extends ResourceService<AcademicSection> {
     super(
       http,
       environment.authApiUrl,
-      'api/features',
+      'api/section',
       new HrBuSerializer(),
       authService,
     );

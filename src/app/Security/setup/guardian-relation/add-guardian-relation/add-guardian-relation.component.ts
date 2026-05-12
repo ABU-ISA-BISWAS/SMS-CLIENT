@@ -3,16 +3,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { GroupVersion } from '../../../_coreSecurity/models/group-version.model';
-import { GroupVersionService } from '../../../_coreSecurity/services/group-version.service';
+import { GuardianRelation } from '../../../_coreSecurity/models/guardian-relation.model'; 
+import { GuardianRelationService } from '../../../_coreSecurity/services/guardian-relation.service'; 
 @Component({
-  selector: 'app-add-group-version',
-  templateUrl: './add-group-version.component.html',
-  styleUrls: ['./add-group-version.component.css'],
+  selector: 'app-add-guardian-relation',
+  templateUrl: './add-guardian-relation.component.html',
+  styleUrls: ['./add-guardian-relation.component.css'],
   standalone: false,
 })
-export class AddGroupVersionComponent implements OnInit {
-  groupVersion: GroupVersion = new GroupVersion();
+export class AddGuardianRelationComponent implements OnInit {
+  guardianRelation: GuardianRelation = new GuardianRelation();
   onClose!: Subject<boolean>;
   validate!: boolean;
   title = '';
@@ -22,7 +22,7 @@ export class AddGroupVersionComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private groupVersionService: GroupVersionService,
+    private guardianRelationService: GuardianRelationService,
     private toastr: ToastrService,
     private iconModal: BsModalRef,
     private modalService: BsModalService,
@@ -32,9 +32,9 @@ export class AddGroupVersionComponent implements OnInit {
     this.onClose = new Subject();
   }
 
-  saveGroupVersions() {
+  saveGuardianRelations() {
     this.isSaving = true;
-    this.toogleValue(this.groupVersion);
+    this.toogleValue(this.guardianRelation);
 
     if (!this.checkValidation()) {
       this.isSaving = false;
@@ -42,8 +42,9 @@ export class AddGroupVersionComponent implements OnInit {
       return;
     }
 
-    if (this.groupVersion.id) {
-      this.groupVersionService.updateGroupVersion(this.groupVersion)
+    if (this.guardianRelation.id) {
+      this.guardianRelationService
+        .updateGuardianRelation(this.guardianRelation)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -53,27 +54,26 @@ export class AddGroupVersionComponent implements OnInit {
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
               this.toastr.success(
-                res.message || 'GroupVersion updated successfully!',
+                res.message || 'GuardianRelation updated successfully!',
               );
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(
-                res.message || 'Failed to update group-version.',
-              );
+              this.toastr.warning(res.message || 'Failed to update GuardianRelation.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while updating the group-version. Please try again.',
+              'Something went wrong while updating the GuardianRelation. Please try again.',
             );
             this.onClose.next(false);
           },
         });
     } else {
-      this.groupVersionService.saveGroupVersion(this.groupVersion)
+      this.guardianRelationService
+        .saveGuardianRelation(this.guardianRelation)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -82,22 +82,18 @@ export class AddGroupVersionComponent implements OnInit {
         .subscribe({
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
-              this.toastr.success(
-                res.message || 'GroupVersion saved successfully!',
-              );
+              this.toastr.success(res.message || 'GuardianRelation saved successfully!');
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(
-                res.message || 'Failed to save group-version.',
-              );
+              this.toastr.warning(res.message || 'Failed to save GuardianRelation.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while saving the group-version. Please try again.',
+              'Something went wrong while saving the GuardianRelation. Please try again.',
             );
             this.onClose.next(false);
           },
@@ -106,16 +102,16 @@ export class AddGroupVersionComponent implements OnInit {
   }
 
   checkValidation() {
-    if (!this.groupVersion.name) {
-      this.toastr.warning("GroupVersion Name can't be empty!");
+    if (!this.guardianRelation.name) {
+      this.toastr.warning("GuardianRelation Name can't be empty!");
       return false;
-    }
+    } 
     return true;
   }
 
-  toogleValue(obj: GroupVersion) {
+  toogleValue(obj: GuardianRelation) {
     Object.keys(obj).forEach((key) => {
-      const typedKey = key as keyof GroupVersion;
+      const typedKey = key as keyof GuardianRelation;
       const val = obj[typedKey];
 
       if (val === true) {

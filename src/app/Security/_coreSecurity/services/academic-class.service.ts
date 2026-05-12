@@ -24,7 +24,7 @@ export class AcademicClassService extends ResourceService<AcademicClass> {
     super(
       http,
       environment.authApiUrl,
-      'api/features',
+      'api/class',
       new HrBuSerializer(),
       authService,
     );

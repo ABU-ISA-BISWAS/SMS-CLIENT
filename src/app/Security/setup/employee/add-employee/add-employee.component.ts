@@ -31,7 +31,6 @@ export class AddEmployeeComponent implements OnInit {
   countryList: any;
   bloodGroupList: any;
   religionList: any;
-  salutationList: any;
   personnelData: any;
   doctorName: any;
   title = "";

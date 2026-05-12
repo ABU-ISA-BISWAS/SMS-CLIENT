@@ -13,6 +13,8 @@ import { GroupVersionComponent } from './setup/group-version/group-version.compo
 import { ModulesComponent } from './setup/modules/modules.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { UsersComponent } from './setup/users/users.component';
+import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
+import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 
 const routes: Routes = [
   {
@@ -145,6 +147,26 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Group / Version Setup',
+    },
+  },
+
+  {
+    path: 'setup/guardian-relation',
+    canActivate: [AuthGuard],
+    component: GuardianRelationComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Guardian Relation Setup',
+    },
+  },
+
+    {
+    path: 'setup/student-category',
+    canActivate: [AuthGuard],
+    component: StudentCategoryComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Student Category Setup',
     },
   },
 ];

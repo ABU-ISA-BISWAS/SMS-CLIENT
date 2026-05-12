@@ -14,20 +14,17 @@
   <div class="border p-3 mb-3">
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Name <span class="text-danger">*</span></span
+        >Category Name <span class="text-danger">*</span></span
       >
-      <input type="text" class="form-control" [(ngModel)]="groupVersion.name" />
+      <input type="text" class="form-control" [(ngModel)]="studentCategory.categoryName" />
     </div>
 
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Type <span class="text-danger">*</span>
+        Description <span class="text-danger">*</span>
       </span>
 
-      <select class="form-select" [(ngModel)]="groupVersion.type" name="type">
-        <option value="Group">Group</option>
-        <option value="Version">Version</option>
-      </select>
+   <textarea type="text" class="form-control" [(ngModel)]="studentCategory.description" ></textarea>
     </div>
 
     <div class="row">
@@ -38,7 +35,7 @@
           >
           <input
             type="checkbox"
-            [(ngModel)]="groupVersion.activeStatus"
+            [(ngModel)]="studentCategory.activeStatus"
             class="form-check-input"
           />
         </div>
@@ -58,7 +55,7 @@
   <button
     type="button"
     class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="saveGroupVersions()"
+    (click)="saveStudentCategorys()"
     [disabled]="isSaving"
   >
     {{ isSaving ? "Saving" : "Save" }}

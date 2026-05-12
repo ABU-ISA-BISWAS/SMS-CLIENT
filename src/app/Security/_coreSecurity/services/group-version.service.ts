@@ -24,7 +24,7 @@ export class GroupVersionService extends ResourceService<GroupVersion> {
     super(
       http,
       environment.authApiUrl,
-      'api/features',
+      'api/group-version',
       new HrBuSerializer(),
       authService,
     );
