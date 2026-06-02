@@ -16,6 +16,7 @@ export class SubjectMaster extends Resource {
   fullMarks!: number;
   passMarks!: number;
   creditHour!: number;
+  sortOrder!: number;
 
   //transient field
   isGranted!: boolean;

@@ -107,6 +107,17 @@
       />
     </div>
 
+       <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
+        >Sort Order <span class="text-danger">*</span></span
+      >
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="subject.sortOrder"
+      />
+    </div>
+
     <div class="row">
       <div class="col-12 d-flex justify-content-end flex-wrap">
         <div class="form-check flex-nowrap">
