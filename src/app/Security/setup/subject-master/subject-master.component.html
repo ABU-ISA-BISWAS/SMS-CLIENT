@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-header py-3">
-      <h6 class="m-0 fw-bold base-txt-primary">Academic Class Setup</h6>
+      <h6 class="m-0 fw-bold base-txt-primary">Subject Master Setup</h6>
     </div>
 
     <div class="card-body">
@@ -13,7 +13,7 @@
           <button
             type="button"
             class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
-            (click)="disableOrEnableClass()"
+            (click)="disableOrEnableSubject()"
           >
             <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
               disableButton
@@ -23,8 +23,8 @@
           <button
             type="button"
             class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
-            (click)="addClass()"
-            title="Add Class"
+            (click)="addSubject()"
+            title="Add Subject"
           >
             <i class="fas fa-user-plus" aria-hidden="true"></i> Add
           </button>
@@ -32,8 +32,8 @@
           <button
             type="button"
             class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
-            (click)="editClass()"
-            title="Edit Class"
+            (click)="editSubject()"
+            title="Edit Subject"
           >
             <i class="fas fa-edit" aria-hidden="true"></i> Edit
           </button>
@@ -92,7 +92,7 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table
-                  #academicClassGrid
+                  #subjectGrid
                   class="row-border hover table table-sm"
                 ></table>
               </div>

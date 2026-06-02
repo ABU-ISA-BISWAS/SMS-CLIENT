@@ -15,6 +15,7 @@ import { RoleManagementComponent } from './setup/role-management/role-management
 import { UsersComponent } from './setup/users/users.component';
 import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
+import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 
 const routes: Routes = [
   {
@@ -167,6 +168,15 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Student Category Setup',
+    },
+  },
+    {
+    path: 'setup/subject-master',
+    canActivate: [AuthGuard],
+    component: SubjectMasterComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Subject Master Setup',
     },
   },
 ];

@@ -52,6 +52,8 @@ import { GuardianRelationComponent } from './setup/guardian-relation/guardian-re
 import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { AddStudentCategoryComponent } from './setup/student-category/add-student-category/add-student-category.component';
+import { AddSubjectComponent } from './setup/subject-master/add-subject/add-subject.component';
+import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 @NgModule({
   declarations: [
     SetupComponent,
@@ -93,7 +95,9 @@ import { AddStudentCategoryComponent } from './setup/student-category/add-studen
     GuardianRelationComponent,
     AddGuardianRelationComponent,
     StudentCategoryComponent,
-    AddStudentCategoryComponent
+    AddStudentCategoryComponent,
+    AddSubjectComponent,
+    SubjectMasterComponent
   ],
   imports: [
     SharedModule,
