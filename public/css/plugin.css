@@ -38,14 +38,14 @@
 ## tab-oustom-list2
 ================================*/
 .width-td-datatable {
-    width: 77px !important;
+  width: 77px !important;
 }
 .width-td-datatable2 {
-    width: 20px !important;
+  width: 20px !important;
 }
-.tab-float .tab-content{
-	float: left;
-    width: 100%;
+.tab-float .tab-content {
+  float: left;
+  width: 100%;
 }
 /* start pulse css */
 /* .badge:before {
@@ -83,1211 +83,1300 @@
 	top:0
 	}
 	} */
-	/* --------##not-found-h2----------------------- */
+/* --------##not-found-h2----------------------- */
 
-	.white-space-none .ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container{
-		white-space: inherit;
-	}
-	.white-space-none .ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-		white-space: inherit;
-	}
-	.white-space-none .ng-select .ng-select-container .ng-value-container {
-		display: grid;
-	}
-	.sticky2 .dropdown-item {
-		white-space: inherit;
-		padding-left: 3px;
-		padding-right: 3px;
-	}
+.white-space-none
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container,
+.ng-select.ng-select-single .ng-select-container .ng-value-container {
+  white-space: inherit;
+}
+.white-space-none
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container,
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+  white-space: inherit;
+}
+.white-space-none .ng-select .ng-select-container .ng-value-container {
+  display: grid;
+}
+.sticky2 .dropdown-item {
+  white-space: inherit;
+  padding-left: 3px;
+  padding-right: 3px;
+}
 
 .not-found-h2 {
-    width: 100%;
-    float: left;
-    margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 8px;
-    padding: 4px;
-    color: #feffff;
-    margin-right: 4px;
-    border: solid 1px #0d0d0e;
-    padding-left: 10px;
-    padding-right: 14px;
-    background: #1d5288;
-    text-align: center;
-    height: 50px;
+  width: 100%;
+  float: left;
+  margin-left: 12px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  padding: 4px;
+  color: #feffff;
+  margin-right: 4px;
+  border: solid 1px #0d0d0e;
+  padding-left: 10px;
+  padding-right: 14px;
+  background: #1d5288;
+  text-align: center;
+  height: 50px;
 }
 h3.not-found-h2 span {
-    width: auto;
-    /* float: left; */
-    margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 8px;
-    color: #ecdba7;
-    margin-right: 4px;
-    border: solid 1px #487cb1;
-    border-radius: 30px;
-    padding-left: 10px;
-    padding-right: 14px;
-    background: #003366;
-    margin: auto;
-    font-size: 18px;
-    font-weight: bold;
-    /* display: table; */
-    padding: 2px 33px;
-    /* border-radius: 5px !important; */
-    font-family: arial;
+  width: auto;
+  /* float: left; */
+  margin-left: 12px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  color: #ecdba7;
+  margin-right: 4px;
+  border: solid 1px #487cb1;
+  border-radius: 30px;
+  padding-left: 10px;
+  padding-right: 14px;
+  background: #003366;
+  margin: auto;
+  font-size: 18px;
+  font-weight: bold;
+  /* display: table; */
+  padding: 2px 33px;
+  /* border-radius: 5px !important; */
+  font-family: arial;
 }
-.table-border-color-black th{
-	border: 1px solid #000 !important;
+.table-border-color-black th {
+  border: 1px solid #000 !important;
 }
-.table-border-color-black td{
-	border: 1px solid #000 !important;
+.table-border-color-black td {
+  border: 1px solid #000 !important;
 }
-	span.error-span {
-		width: 100%;
-		color: #f00;
-		font-weight: bold;
-	}
-	.loading-icon{
-		-webkit-animation: fa-spin 2s infinite linear;
-		animation: fa-spin 2s infinite linear;
-	}
+span.error-span {
+  width: 100%;
+  color: #f00;
+  font-weight: bold;
+}
+.loading-icon {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
 
-	.search-dorp-down-label typeahead-container.dropdown.open.dropdown-menu label {
-		font-weight: bold;
-	}
-	app-ot-distribution {
-		border: solid 3px #fbffff;
-		box-shadow: 2px 0px 9px #000;
-		border-radius: 6px;
-	}
-	.transaction-list-grid .dataTables_wrapper .dataTables_filter input {
-		width: 188px;
-	}
-	/* avater-patient-list */
-	/* .avater-patient-list {
+.search-dorp-down-label typeahead-container.dropdown.open.dropdown-menu label {
+  font-weight: bold;
+}
+app-ot-distribution {
+  border: solid 3px #fbffff;
+  box-shadow: 2px 0px 9px #000;
+  border-radius: 6px;
+}
+.transaction-list-grid .dataTables_wrapper .dataTables_filter input {
+  width: 188px;
+}
+/* avater-patient-list */
+/* .avater-patient-list {
 		float: left;
 	  }
 	  .patinet-name-register{
 		width: 50px;
 		float: left;
 	  } */
-	  /* end avater-patient-list */
+/* end avater-patient-list */
 /* start modal open */
 .modal-open {
-    overflow: visible;
-    padding-right: 0 !important;
+  overflow: visible;
+  padding-right: 0 !important;
 }
 /* end modal open */
 
 .reFresh .popover {
-    background: #fff !important;
-
+  background: #fff !important;
 }
-.reFresh .popover-body{
-color: #000 !important;
+.reFresh .popover-body {
+  color: #000 !important;
 }
-.top_section_all .border-custom-0 input{
-	border: 0 !important;
+.top_section_all .border-custom-0 input {
+  border: 0 !important;
 }
 
 /* custom-data-table-search */
 .custom-data-table-search {
-    position: absolute;
-    right:0px;
-    top:10px;
-    width: 32%;
-    z-index:9;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  width: 32%;
+  z-index: 9;
 }
-.custom-search-lebel{
-	font-size: 16px;
-    color: #287b94;
-    bottom: 5px;
-    position: relative;
-    left: 7px;
+.custom-search-lebel {
+  font-size: 16px;
+  color: #287b94;
+  bottom: 5px;
+  position: relative;
+  left: 7px;
 }
-.custom-search-input{
-    border-radius:40px;
+.custom-search-input {
+  border-radius: 40px;
 }
-.position-relative-section{
-    position:relative;
+.position-relative-section {
+  position: relative;
 }
-.data-table-search-loader{
-	position:absolute; 
-	right:5px; 
-	top:4px;
-	z-index:99;
-	font-size:12px;
+.data-table-search-loader {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  z-index: 99;
+  font-size: 12px;
 }
 /* end custom-data-table-search */
 
 .imageCapture {
-	padding: 1px 10px;
-	border-radius: 26px;
-	border: solid 2px #fff;
-	box-shadow: 0px 0px 2px #232222;
+  padding: 1px 10px;
+  border-radius: 26px;
+  border: solid 2px #fff;
+  box-shadow: 0px 0px 2px #232222;
 }
-.customTableAll  table.dataTable thead th{ padding: 3px 1px !important;}
-.customTableAll table.dataTable tbody td{ padding: 3px 1px !important;}
-.responsiveTable .dataTables_wrapper{ width: 99% !important;} 
-.borderCustomColor{border-color: #609128 !important;}
+.customTableAll table.dataTable thead th {
+  padding: 3px 1px !important;
+}
+.customTableAll table.dataTable tbody td {
+  padding: 3px 1px !important;
+}
+.responsiveTable .dataTables_wrapper {
+  width: 99% !important;
+}
+.borderCustomColor {
+  border-color: #609128 !important;
+}
 :focus {
-	outline: inherit;
+  outline: inherit;
 }
 .settingPosition {
-    position: relative;
-    z-index: 99;
+  position: relative;
+  z-index: 99;
 }
-.heighAuto{min-height: auto;}
+.heighAuto {
+  min-height: auto;
+}
 
-.btnShadow .btn{
-	border: solid #fff;
-    border-radius: 30px;
-    box-shadow: 0px 0px 2px #5a5757; padding: 3px 20px;
+.btnShadow .btn {
+  border: solid #fff;
+  border-radius: 30px;
+  box-shadow: 0px 0px 2px #5a5757;
+  padding: 3px 20px;
 }
 /* scrool_ber csss */
 .height_table_90 {
-	height: 90px;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 90px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .height_table_97 {
-	height: 97px;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 97px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .height_table_108 {
-	height: 108px;
-	overflow-x: auto;
+  height: 108px;
+  overflow-x: auto;
 }
 
 .height_table_128 {
-	height: 128px;
-	overflow-x: auto;
+  height: 128px;
+  overflow-x: auto;
 }
 
 .height_table_104 {
-	height: 104px;
-	overflow-x: auto;
+  height: 104px;
+  overflow-x: auto;
 }
 
 .height_table_112 {
-	height: 112px;
-	overflow-x: auto;
+  height: 112px;
+  overflow-x: auto;
 }
 
 .height_table_120 {
-	height: 120px;
-	overflow-x: auto;
+  height: 120px;
+  overflow-x: auto;
 }
 
 .height_table_123 {
-	height: 123px;
-	overflow-x: auto;
+  height: 123px;
+  overflow-x: auto;
 }
 
 .height_tableMin_123 {
-	min-height: 23px;
-	max-height: 123px;
-	overflow-x: auto;
+  min-height: 23px;
+  max-height: 123px;
+  overflow-x: auto;
 }
 
 .height_tableMin_120 {
-	min-height: 23px;
-	max-height: 120px;
-	overflow-x: auto;
+  min-height: 23px;
+  max-height: 120px;
+  overflow-x: auto;
 }
 
 .height_tableMin_104 {
-	min-height: 23px;
-	max-height: 104px;
-	overflow-x: auto;
+  min-height: 23px;
+  max-height: 104px;
+  overflow-x: auto;
 }
 
 .height_table_130 {
-	height: 130px;
-	overflow-x: auto;
+  height: 130px;
+  overflow-x: auto;
 }
 
 .height_table_135 {
-	height: 135px;
-	overflow-x: auto;
+  height: 135px;
+  overflow-x: auto;
 }
 
 .height_table_125 {
-	height: 123px;
-	overflow-x: auto;
+  height: 123px;
+  overflow-x: auto;
 }
 
 .height_table_140 {
-	height: 140px;
-	overflow-x: auto;
+  height: 140px;
+  overflow-x: auto;
 }
 
 .height_table_145 {
-	height: 145px;
-	overflow-x: auto;
+  height: 145px;
+  overflow-x: auto;
 }
 
 .height_table_150 {
-	height: 150px;
-	overflow-x: auto;
+  height: 150px;
+  overflow-x: auto;
 }
 .height_table_155 {
-	height: 155px;
-	overflow-x: auto;
+  height: 155px;
+  overflow-x: auto;
 }
 .height_table_145 {
-	height: 144px;
-	overflow-y: auto;
+  height: 144px;
+  overflow-y: auto;
 }
 .height_table_144 {
-	max-height: 144px;
-	overflow-y: auto;
+  max-height: 144px;
+  overflow-y: auto;
 }
 .height_table_164 {
-	height: 164px;
-	overflow-x: auto;
+  height: 164px;
+  overflow-x: auto;
 }
 
 .height_table_162 {
-	height: 162px;
-	overflow-x: auto;
+  height: 162px;
+  overflow-x: auto;
 }
 
 .height_table_160 {
-	height: 160px;
-	overflow-x: auto;
+  height: 160px;
+  overflow-x: auto;
 }
 .height_table_174 {
-	height: 174px;
-	overflow-x: auto;
+  height: 174px;
+  overflow-x: auto;
 }
 .height_table_180 {
-	height: 180px;
-	overflow-x: auto;
+  height: 180px;
+  overflow-x: auto;
 }
 
 .height_table_181 {
-	height: 26vh;
-	overflow-x: auto;
+  height: 26vh;
+  overflow-x: auto;
 }
 
 .height_table_190 {
-	height: 190px;
-	overflow-x: auto;
+  height: 190px;
+  overflow-x: auto;
 }
 .height_table_196 {
-	height: 196px;
-	overflow-x: auto;
+  height: 196px;
+  overflow-x: auto;
 }
 .height_table_202 {
-	height: 202px;
-	overflow-x: auto;
+  height: 202px;
+  overflow-x: auto;
 }
 
 .height_table_200 {
-	height: 200px;
-	overflow-x: auto;
+  height: 200px;
+  overflow-x: auto;
 }
 .height_table_201 {
-	max-height: 201px;
-	overflow-x: auto;
+  max-height: 201px;
+  overflow-x: auto;
 }
 .height_table_204 {
-	height: 204px;
-	overflow-x: auto;
+  height: 204px;
+  overflow-x: auto;
 }
 
 .height_table_210 {
-	height: 210px;
-	overflow-x: auto;
+  height: 210px;
+  overflow-x: auto;
 }
 .height_table_220 {
-	height: 220px;
-	overflow-x: auto;
+  height: 220px;
+  overflow-x: auto;
 }
 .height_table_235 {
-	height: 235px;
-	overflow-x: auto;
+  height: 235px;
+  overflow-x: auto;
 }
 
 .height_table_244 {
-	height: 244px;
-	overflow-x: auto;
+  height: 244px;
+  overflow-x: auto;
 }
 .height_table_245 {
-	height: 245px;
-	overflow-x: auto;
+  height: 245px;
+  overflow-x: auto;
 }
 .height_table_246 {
-	height: 246px;
-	overflow-x: auto;
+  height: 246px;
+  overflow-x: auto;
 }
 .height_table_240 {
-	height: 240px;
-	overflow-x: auto;
+  height: 240px;
+  overflow-x: auto;
 }
 .height_table_252 {
-	height: 252px;
-	overflow-x: auto;
+  height: 252px;
+  overflow-x: auto;
 }
 .height_table_260 {
-	height: 260px;
-	overflow-x: auto;
+  height: 260px;
+  overflow-x: auto;
 }
 .height_table_265 {
-	height: 265px;
-	overflow-x: auto;
+  height: 265px;
+  overflow-x: auto;
 }
 
 .height_table_278 {
-	max-height: 278px;
-	overflow-y: auto;
-	overflow-x: hidden;
+  max-height: 278px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .height_table_276 {
-	height: 276px;
-	overflow-x: auto;
+  height: 276px;
+  overflow-x: auto;
 }
-.height_tableRadio_276{ height: 41.3vh;overflow-x: auto;}
+.height_tableRadio_276 {
+  height: 41.3vh;
+  overflow-x: auto;
+}
 .height_table_294 {
-	height: 50vh;
-	overflow-x: hidden;
-	overflow-y: auto;
+  height: 50vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .height_table_291 {
-	height: 291px;
-	overflow-x: hidden;
-	overflow-y: auto;
+  height: 291px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .height_table_329 {
-	height: 70vh;
-	overflow-x: hidden;
-	overflow-y: auto;
+  height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.height_table_329Display { 
-	height: 57vh;
-	overflow: hidden;
-	
+.height_table_329Display {
+  height: 57vh;
+  overflow: hidden;
 }
 .height_table_300 {
-	height: 300px;
-	overflow-x: auto;
+  height: 300px;
+  overflow-x: auto;
 }
 .height_table_310 {
-	height: 310px;
-	overflow-x: auto;
+  height: 310px;
+  overflow-x: auto;
 }
 
 .height_table_315 {
-	height: 315px;
-	overflow-x: auto;
+  height: 315px;
+  overflow-x: auto;
 }
 .height_table_319 {
-	height: 319px;
-	overflow-x: auto;
+  height: 319px;
+  overflow-x: auto;
 }
 .height_table_320 {
-	height: 320px;
-	overflow-x: auto;
+  height: 320px;
+  overflow-x: auto;
 }
 
 .height_table_326 {
-	height: 326px;
-	overflow-x: auto;
+  height: 326px;
+  overflow-x: auto;
 }
 .height_table_330 {
-	height: 330px;
-	overflow-x: auto;
+  height: 330px;
+  overflow-x: auto;
 }
 .height_table_365 {
-	height: 365px;
-	overflow-x: auto;
+  height: 365px;
+  overflow-x: auto;
 }
 
 .height_table_360 {
-	height: 360px;
-	overflow-x: auto;
+  height: 360px;
+  overflow-x: auto;
 }
 .height_table_368 {
-	height: 368px;
-	overflow-x: auto;
+  height: 368px;
+  overflow-x: auto;
 }
 .height_tablea_320 {
-	max-height: 320px;
-    overflow-x: hidden;
-    overflow-y: auto;
+  max-height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .height_table_324 {
-	height: 324px;
-	overflow-x: auto;
+  height: 324px;
+  overflow-x: auto;
 }
 
 .height_tablea_319 {
-	height: 320px;
-	overflow-x: auto;
+  height: 320px;
+  overflow-x: auto;
 }
 
 .height_table_285 {
-	height: 285px;
-	overflow-x: auto;
+  height: 285px;
+  overflow-x: auto;
 }
 
 .height_table_320 {
-	height: 350px;
-	overflow-x: auto;
+  height: 350px;
+  overflow-x: auto;
 }
 
 .height_table_335 {
-	height: 335px;
-	overflow-x: auto;
+  height: 335px;
+  overflow-x: auto;
 }
 .height_table_338 {
-	height: 338px;
-	overflow-x: auto;
+  height: 338px;
+  overflow-x: auto;
 }
 .height_table_344 {
-	height: 344px;
-	overflow-x: auto;
+  height: 344px;
+  overflow-x: auto;
 }
 .height_table_346 {
-	height: 346px;
-	overflow-x: auto;
+  height: 346px;
+  overflow-x: auto;
 }
 .height_table_350 {
-	height: 350px;
-	overflow-x: auto;
+  height: 350px;
+  overflow-x: auto;
 }
 .height_table_354 {
-	height: 354px;
-	overflow-x: auto;
+  height: 354px;
+  overflow-x: auto;
 }
 
 .height_table_375 {
-	height: 375px;
-	overflow-x: auto;
+  height: 375px;
+  overflow-x: auto;
 }
 
 .height_table_379 {
-	height: 379px;
-	overflow-x: auto;
+  height: 379px;
+  overflow-x: auto;
 }
 
 .height_table_420 {
-	height: 420px;
-	overflow-x: auto;
-
+  height: 420px;
+  overflow-x: auto;
 }
 
 .height_table_415 {
-	height: 415px;
-	overflow-x: auto;
-
+  height: 415px;
+  overflow-x: auto;
 }
 
 .height_table_382 {
-	height: 382px;
-	overflow-x: auto;
+  height: 382px;
+  overflow-x: auto;
 }
 .height_table_384 {
-	height: 384px;
-	overflow-x: auto;
+  height: 384px;
+  overflow-x: auto;
 }
 .height_table_386 {
-	height: 386px;
-	overflow-x: auto;
+  height: 386px;
+  overflow-x: auto;
 }
 
 .height_table_450 {
-	height: 450px;
-	overflow-x: auto;
+  height: 450px;
+  overflow-x: auto;
 }
 .height_table_420 {
-	height: 420px;
-	overflow-x: auto;
+  height: 420px;
+  overflow-x: auto;
 }
 
 .height_table_460 {
-	height: 460px;
-	overflow-x: auto;
+  height: 460px;
+  overflow-x: auto;
 }
 
 .height_table_490 {
-	height: 490px;
-	overflow-x: auto;
+  height: 490px;
+  overflow-x: auto;
 }
 .hei_440 {
-	height: 57.3vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 57.3vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .height_table_400 {
-	height: 400px;
-	overflow-x: auto;
+  height: 400px;
+  overflow-x: auto;
 }
 .height_table_425 {
-	height: 425px;
-	overflow-x: auto;
+  height: 425px;
+  overflow-x: auto;
 }
 .height_table_444 {
-	height: 444px;
-	overflow-x: auto;
+  height: 444px;
+  overflow-x: auto;
 }
 
 .height_table_448 {
-	height: 450px;
-	overflow-x: auto;
+  height: 450px;
+  overflow-x: auto;
 }
-.height_table_600 { 
-	height: 600px;
-	overflow-x: auto;
-}
-.height_table_530 {
-	height: 530px;
-	overflow-x: auto;
-}
-.height_table_580{
-	height: 580px;
-	overflow-x: auto;
+.height_table_600 {
+  height: 600px;
+  overflow-x: auto;
 }
 .height_table_530 {
-	height: 530px;
-	overflow-x: auto;
+  height: 530px;
+  overflow-x: auto;
+}
+.height_table_580 {
+  height: 580px;
+  overflow-x: auto;
+}
+.height_table_530 {
+  height: 530px;
+  overflow-x: auto;
 }
 
 .height_table_466 {
-	height: 70.5vh;
-	overflow-x: auto;
+  height: 70.5vh;
+  overflow-x: auto;
 }
 
 .height_table_170 {
-	height: 170px;
-	overflow-x: auto;
+  height: 170px;
+  overflow-x: auto;
 }
 
 .height_table_244 {
-	height: 248px;
-	overflow-x: auto;
+  height: 248px;
+  overflow-x: auto;
 }
 
 .hei_570 {
-	height: 76.5vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 76.5vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .hei_553 {
-	height: 67vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 67vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .hei_599 {
-	height: 99.7vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 99.7vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .hei_v62 {
-	height: 62vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 62vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .hei_508 {
-	height: 82vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 82vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .hei_562 {
-	height: 85.5vh;
-	overflow-y: auto;
-	overflow-x: hidden;
+  height: 85.5vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .height_table_380 {
-	height: 66vh;
-	overflow-x: auto;
+  height: 66vh;
+  overflow-x: auto;
 }
 .height_table_337 {
-	height: 54vh;
-	overflow-x: auto;
+  height: 54vh;
+  overflow-x: auto;
 }
 .scrool_ber::-webkit-scrollbar {
-	width: 8px;
-	height:8px;
-	background: #000; border-radius: 6px;    box-shadow: 0px 0px 7px #9e9b9b inset !important;
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 6px;
+  box-shadow: 0px 0px 7px #9e9b9b inset !important;
 }
 
 .scrool_ber:scrollbar-thumb {
-	background-color: #32a2f7 !important;box-shadow: 0px 0px 6px #2083ce inset !important;
-	width: 6px;
-	border-radius: 0px;
-	height: 6px !important;border-radius: 6px;
+  background-color: #32a2f7 !important;
+  box-shadow: 0px 0px 6px #2083ce inset !important;
+  width: 6px;
+  border-radius: 0px;
+  height: 6px !important;
+  border-radius: 6px;
 }
 
 .scrool_ber::-webkit-scrollbar-thumb {
-	background-color: #32a2f7 !important;box-shadow: 0px 0px 6px #2083ce inset !important;
-	border-radius: 0px;
-	width: 6px;
-	height: 6px;border-radius: 6px;
+  background-color: #32a2f7 !important;
+  box-shadow: 0px 0px 6px #2083ce inset !important;
+  border-radius: 0px;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
 }
 
 .scrool_ber th {
-	top: -1px;
-	position: sticky;
-	position: -webkit-sticky;
+  top: -1px;
+  position: sticky;
+  position: -webkit-sticky;
   position: -moz-sticky;
   position: -ms-sticky;
   position: -o-sticky;
-	z-index: 9;
+  z-index: 9;
 }
-.therapi.scrool_ber th {	
-	top: 0px; 
-    background: #a5d9eb;
+.therapi.scrool_ber th {
+  top: 0px;
+  background: #a5d9eb;
 }
-.bgImgAll{
-	background:#15709b url(../images/phar.png) no-repeat center center;
-	border-radius: 16px;
-border: solid 2px #fff;
-box-shadow: 0px 0px 3px #000;background-size: cover;
+.bgImgAll {
+  background: #15709b url(../images/phar.png) no-repeat center center;
+  border-radius: 16px;
+  border: solid 2px #fff;
+  box-shadow: 0px 0px 3px #000;
+  background-size: cover;
 }
-.bgImgAll .form-control{
-	background-color: rgba(0,0,0, 0.3);
-    border: solid 1px #425437 !important;
-    color:#d6eabf;
-    border-radius: 17px;
+.bgImgAll .form-control {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: solid 1px #425437 !important;
+  color: #d6eabf;
+  border-radius: 17px;
 }
-.bgImgAll label{ color: #fff;
-	font-family: Verdana !important;
-   font-weight: normal !important;font-size: 12.5px;
-    
+.bgImgAll label {
+  color: #fff;
+  font-family: Verdana !important;
+  font-weight: normal !important;
+  font-size: 12.5px;
 }
-.bgImgAll th{ color: #fff;
-	font-family: Verdana !important;
-    font-weight: normal;
-    font-size: 13px;
+.bgImgAll th {
+  color: #fff;
+  font-family: Verdana !important;
+  font-weight: normal;
+  font-size: 13px;
 }
-.bgImgAll td{ color: #fff;}
-
-.bgImgAll3{
-	border: solid 3px #cee0e0 !important;
-	box-shadow: 0px 0px 4px #232222;
-	border-radius: 16px;
-}
-.bgImgAll3 .form-control{
-    border-radius: 17px;
+.bgImgAll td {
+  color: #fff;
 }
 
-.borderRadius10{ border-radius: 10px;box-shadow: 0px 0px 4px #cdd6c3 inset;}
+.bgImgAll3 {
+  border: solid 3px #cee0e0 !important;
+  box-shadow: 0px 0px 4px #232222;
+  border-radius: 16px;
+}
+.bgImgAll3 .form-control {
+  border-radius: 17px;
+}
+
+.borderRadius10 {
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px #cdd6c3 inset;
+}
 tr.sticky_td td {
-	top: 23px;
-	position:sticky;
-	position:-webkit-sticky;
-	padding-left: 0px !important;
+  top: 23px;
+  position: sticky;
+  position: -webkit-sticky;
+  padding-left: 0px !important;
 }
-.bgImgAll2 input{
-	background: burlywood;
-
+.bgImgAll2 input {
+  background: burlywood;
 }
-.bgImgAll2{
-	background: #000;
+.bgImgAll2 {
+  background: #000;
 }
 
 .stickytr td {
-	top: 22px;
-	position: sticky;
-	background: #fff;
+  top: 22px;
+  position: sticky;
+  background: #fff;
 }
 
 .stickytr input {
-	background: #fffce6;
+  background: #fffce6;
 }
 
 .min_height {
-	height: auto !important;
+  height: auto !important;
 }
-.stickyNone th{position: initial;}
+.stickyNone th {
+  position: initial;
+}
 /* ngx bootstrap accordion */
 .accordionCustom .card-header {
-	padding: 0px !important;
-	border: solid 1px #b9c6ab;
-	border-radius: 0px !important;
+  padding: 0px !important;
+  border: solid 1px #b9c6ab;
+  border-radius: 0px !important;
 }
 
 .accordionCustom .panel-title {
-	background: #e8f3dc;
-	color: #FFF;
+  background: #e8f3dc;
+  color: #fff;
 }
 
 .accordionCustom .panel-title .btn-link {
-	color: #030303;
-	text-decoration: none;
+  color: #030303;
+  text-decoration: none;
 }
 
 .accordionCustom .panel-title .btn {
-	padding: 0px 32px;z-index: 9;
-    position: relative;
+  padding: 0px 32px;
+  z-index: 9;
+  position: relative;
 }
 
 .accordionCustom accordion-group {
-	position: relative;
+  position: relative;
 }
 
 .accordionCustom accordion-group:before {
-	content: "+";
-	padding-right: 0px;
-	background: #919f81;
-	width: 27px;
-	height: 25px;
-	font-size: 25px !important;
-	text-align: center;
-	top: 2px;
-	border-right: solid 1px #79846c;
-	color: #fdfdfd;
-	position: absolute;
-	font-size: 10px;
-	line-height: 21px;
-	font-weight: normal;
-	left: 2px;
-	z-index:1;
+  content: "+";
+  padding-right: 0px;
+  background: #919f81;
+  width: 27px;
+  height: 25px;
+  font-size: 25px !important;
+  text-align: center;
+  top: 2px;
+  border-right: solid 1px #79846c;
+  color: #fdfdfd;
+  position: absolute;
+  font-size: 10px;
+  line-height: 21px;
+  font-weight: normal;
+  left: 2px;
+  z-index: 1;
 }
 
 .accordionCustom .panel-open:before {
-	content: "-";
+  content: "-";
 }
-.accordionCustomQue accordion{
-	width: 77%;
-    margin: auto;
+.accordionCustomQue accordion {
+  width: 77%;
+  margin: auto;
 }
 .accordionCustomQue accordion-group:before {
-	content: url(../images/searchA.svg);
-	
+  content: url(../images/searchA.svg);
 }
 
 .accordionCustomQue .panel-open:before {
-	content: url(../images/searchA.svg);
+  content: url(../images/searchA.svg);
 }
 /* .accordionCustomVitals .card {
     border: 1px solid rgb(158, 189, 122);
 } */
 .accordionCustom .table-bordered {
-    border: 1px solid #dee2e6 !important;
+  border: 1px solid #dee2e6 !important;
 }
 .accordionCustomQue .table-bordered {
-	/* border: 1px solid #070779  !important; */
-	border: transparent !important;
+  /* border: 1px solid #070779  !important; */
+  border: transparent !important;
 }
-.h5SubModule{
-	color: #09756b;
-    padding-left: 9px;
-    font-family: Verdana !important;
-    font-size: 17px;
-    margin-bottom:5px;
-	border: solid 1px #dedede;
-    padding: 4px;
-    border-left: solid 2px #09756b;
+.h5SubModule {
+  color: #09756b;
+  padding-left: 9px;
+  font-family: Verdana !important;
+  font-size: 17px;
+  margin-bottom: 5px;
+  border: solid 1px #dedede;
+  padding: 4px;
+  border-left: solid 2px #09756b;
 }
-.subModuleArea{border: solid 1px #dedede;
-    width: 98%;
-    margin: 8px auto;}
-.subSpan{   margin-left: 2%;
-    width: 29%;
-    /* float: left; */
-    left: 25px;}
-.subSpan .form-check-label{left:0px;}
+.subModuleArea {
+  border: solid 1px #dedede;
+  width: 98%;
+  margin: 8px auto;
+}
+.subSpan {
+  margin-left: 2%;
+  width: 29%;
+  /* float: left; */
+  left: 25px;
+}
+.subSpan .form-check-label {
+  left: 0px;
+}
 
-.subSpan input{
-	height: 16px;
-    width: 16px;
-    /* display: block; */
-    /* float: left; */
-    position: absolute !important;
-    left: -20px;
-    top: 4px;
+.subSpan input {
+  height: 16px;
+  width: 16px;
+  /* display: block; */
+  /* float: left; */
+  position: absolute !important;
+  left: -20px;
+  top: 4px;
 }
 .accordionCustomQue .panel-title {
-	background: url(../images/title.png) repeat;
-	color: #FFF;height: 37px;border-radius: 24px !important;
-	margin-bottom: 10px;
+  background: url(../images/title.png) repeat;
+  color: #fff;
+  height: 37px;
+  border-radius: 24px !important;
+  margin-bottom: 10px;
 }
-.accordionCustomQue .card-header{border:0px;}
+.accordionCustomQue .card-header {
+  border: 0px;
+}
 .accordionCustomQue accordion-group:before {
-	background: #1d5388;
-    height: 35px;
-    border-right: solid 1px #194571;
-    width: 90px;
-    line-height: 35px;border-radius: 24px 0px 0 24px !important;
+  background: #1d5388;
+  height: 35px;
+  border-right: solid 1px #194571;
+  width: 90px;
+  line-height: 35px;
+  border-radius: 24px 0px 0 24px !important;
 }
 .accordionCustomQue .card {
-	border-radius: 18px;
-    background: #ffffff;
-    border: 0px;
-    margin-top: 8px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 0px;
+  margin-top: 8px;
 }
 .accordionCustomQue .panel-title .btn {
-    padding: 6px 65px;    font-family: Verdana;
-    font-size: 16px !important;
-    color: #1d5388;
+  padding: 6px 65px;
+  font-family: Verdana;
+  font-size: 16px !important;
+  color: #1d5388;
 }
 .btnAcc {
-	padding: 4px 16px;
-	width: 130px;
-	margin-right: 8px;
-	background: #e8f3dc;
-	top: 7px;
-	position: relative;
-	color: #000;
-	border: 2px solid #b9c6ab;
-	border-radius: 4px 4px 0 0;
-	border-bottom: 2px solid #e8f3dc;
-	z-index: 99;
+  padding: 4px 16px;
+  width: 130px;
+  margin-right: 8px;
+  background: #e8f3dc;
+  top: 7px;
+  position: relative;
+  color: #000;
+  border: 2px solid #b9c6ab;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid #e8f3dc;
+  z-index: 99;
 }
 
 .btnAcc:hover {
-	color: #000;
-	background: #e8f3dc;
-	border: 2px solid #b9c6ab;
-	border-bottom: 2px solid #e8f3dc;
+  color: #000;
+  background: #e8f3dc;
+  border: 2px solid #b9c6ab;
+  border-bottom: 2px solid #e8f3dc;
 }
 
-.btnAcc.btn-info:not(:disabled ):not(.disabled ):active {
-	color: #fff;
-	background-color: #e8f3dc;
-	border-color: #b9c6ab;
-	border-bottom: 2px solid #e8f3dc;
+.btnAcc.btn-info:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #e8f3dc;
+  border-color: #b9c6ab;
+  border-bottom: 2px solid #e8f3dc;
 }
-
 
 /* security/setup/user */
 #user_grant_department .panel-title {
-	background: #bae886;
+  background: #bae886;
 }
 
 /* radiology result entry */
 .resultEntryTab .nav-tabs li a {
-	padding: 6px 10px !important;
+  padding: 6px 10px !important;
 }
 
 .invoiceDetails2 .form-control {
-	border: 1px solid #51a7b6 !important;
+  border: 1px solid #51a7b6 !important;
 }
 
 .pendingPrintedReport .nav-tabs li a {
-	padding: 6px 5px !important;
-}
-/*end  radiology result entry */
-.investigation_areaHomeCmh {
-	background: linear-gradient(to bottom, #ffffff 4%, #f4fafb 41%, #dbeeef 100%)
-		!important;
-}
-
-/* prescription hone for CMH */
-.continueMedicineArea {
-	width: auto;
-	float: left;
-	margin-left: 31%;
-	position: absolute;
-	z-index: 99;
-	top: 12px;
+  padding: 6px 5px !important;
 }
 
 .continueMedicineArea p {
-	width: 478px;
-    height: 31px;
-    overflow-x: auto;
-    background: #c5ddaa;
-    padding-left: 8px;
-    line-height: 16px;
-    top: -5px;
-    position: relative;
+  width: 478px;
+  height: 31px;
+  overflow-x: auto;
+  background: #c5ddaa;
+  padding-left: 8px;
+  line-height: 16px;
+  top: -5px;
+  position: relative;
 }
 
 .tableWidth {
-	width: 100%;
-	float: right;
-	/* margin-left: -4px; */
+  width: 100%;
+  float: right;
+  /* margin-left: -4px; */
 }
 
 table.searchAll {
-	margin-top: 7px;
+  margin-top: 7px;
 }
 
 .searchAll p {
-	margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .chiefBlock .searchAll label {
-	float: left;
+  float: left;
 }
 
 .chiefBlock .searchAll p {
-	float: left;
-	margin-left: 6px;
-	width: 78%;
+  float: left;
+  margin-left: 6px;
+  width: 78%;
 }
 
 .chiefBlock .tableWidth {
-	width: 78.5%;
-	float: right;
+  width: 78.5%;
+  float: right;
 }
 
 .chiefBlock3 .searchAll p {
-	width: 69%;
+  width: 69%;
 }
 
 .ProvisonalDiagnosis p {
-	width: 91%;
+  width: 91%;
 }
 
 .diseaseFev .feveArea .dropdown-menu.show {
-	right: 0px;
+  right: 0px;
 }
 
 .adviceBlock .tableWidth {
-	width: 78%;
-	float: left;
-	margin-left: 10.5%;
+  width: 78%;
+  float: left;
+  margin-left: 10.5%;
 }
 
 .page-wrapper .chiefBlock3 .tableWidth {
-	width: 69%;
-	float: left;
-	margin-left: 18.8%;
+  width: 69%;
+  float: left;
+  margin-left: 18.8%;
 }
 
 .page-wrapper.toggled .chiefBlock3 .tableWidth {
-	margin-left: 21.8%;
+  margin-left: 21.8%;
 }
 
 .allprescriptionBlock-Row th {
-	position: static;
+  position: static;
 }
-.item-name-type-dynamic-bill typeahead-container.dropdown.open.dropdown-menu{
-	width: auto !important;
+.item-name-type-dynamic-bill typeahead-container.dropdown.open.dropdown-menu {
+  width: auto !important;
 }
 /* referred-select-pres */
 .referred-select-pres .ng-select .ng-select-container {
-    border: 1px solid #6bb5d2;
+  border: 1px solid #6bb5d2;
 }
 
 .referred-select-pres .ng-select.ng-select-single .ng-select-container {
-    height: 26px;
+  height: 26px;
 }
-.referred-select-pres .ng-select .ng-select-container{
- min-height: 26px;
+.referred-select-pres .ng-select .ng-select-container {
+  min-height: 26px;
 }
 
 /* end referred-select-pres */
 
 .typeAhead typeahead-container.dropdown.open.dropdown-menu {
-	width: 82%;
+  width: 82%;
 }
 
 .chiefBlock .typeAhead typeahead-container.dropdown.open.dropdown-menu {
-	width: 72%;
+  width: 72%;
 }
 
-.pastIllness .typeAhead typeahead-container.dropdown.open.dropdown-menu
-	{
-	width: 90%;
+.pastIllness .typeAhead typeahead-container.dropdown.open.dropdown-menu {
+  width: 90%;
 }
 
-.investigationFinding .typeAhead typeahead-container.dropdown.open.dropdown-menu
-	{
-	width: 95%;
+.investigationFinding
+  .typeAhead
+  typeahead-container.dropdown.open.dropdown-menu {
+  width: 95%;
 }
 
-.chiefBlock3 .typeAhead typeahead-container.dropdown.open.dropdown-menu
-	{
-	width: 65%;
+.chiefBlock3 .typeAhead typeahead-container.dropdown.open.dropdown-menu {
+  width: 65%;
 }
 
-.ProvisonalDiagnosis .typeAhead typeahead-container.dropdown.open.dropdown-menu
-	{
-	width: 95%;
+.ProvisonalDiagnosis
+  .typeAhead
+  typeahead-container.dropdown.open.dropdown-menu {
+  width: 95%;
 }
 
 .searchAll th {
-	font-size: 13px !important;
-	background: transparent !important;
+  font-size: 13px !important;
+  background: transparent !important;
 }
 
 .searchAll input {
-	border-radius: 4px;
+  border-radius: 4px;
 }
 
 .allprescriptionBlock-Row {
-	margin-bottom: 4px;
-	width: 100%;
-	float: left;
-	padding-left: 6px;
-	padding-right: 6px;
+  margin-bottom: 4px;
+  width: 100%;
+  float: left;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .homeThreeDctor .allprescriptionBlock-Row {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .medicationTitle .labelMedi {
-	font-size: 13.4px;
-	font-weight: bold;
+  font-size: 13.4px;
+  font-weight: bold;
 }
 
 .add_title {
-	float: inherit !important;
-	width: 100% !important;
-	margin-left: 0px !important;
+  float: inherit !important;
+  width: 100% !important;
+  margin-left: 0px !important;
 }
 
 .check_input1 {
-	width: 19px !important;
-	margin: auto;
-	display: table;
+  width: 19px !important;
+  margin: auto;
+  display: table;
 }
 
 input.check2 {
-	width: 19px !important;
-	height: 19px !important;
-	left: 5px;
-	position: relative;
+  width: 19px !important;
+  height: 19px !important;
+  left: 5px;
+  position: relative;
 }
 
 .medicationTitle th {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 tr.sticky2 th {
-	top: 23px !important;
-	position: sticky;
+  top: 23px !important;
+  position: sticky;
 }
 tr.sticky3 th {
-	top: 41px !important;
-	position: sticky;
+  top: 41px !important;
+  position: sticky;
 }
-.sticky4{
-	position: inherit;
-	
+.sticky4 {
+  position: inherit;
 }
 .medicationTitle table {
-	background: #fff;
+  background: #fff;
 }
 
 .footerAreaHome {
-	width: 100%;
-	float: left; left: 1px;
-	margin: 4px auto;
-	border-radius: 4px;
-	padding: 5px;
-	padding-left: 0px; position: relative;
-	box-shadow: 0px -1px 3px #fff;
-	background: rgba(224,240,241,1);
-background: -moz-linear-gradient(top, rgba(224,240,241,1) 0%, rgba(201,227,229,1) 51%, rgba(201,227,229,1) 78%, rgba(182,218,220,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(224,240,241,1)), color-stop(51%, rgba(201,227,229,1)), color-stop(78%, rgba(201,227,229,1)), color-stop(100%, rgba(182,218,220,1)));
-background: -webkit-linear-gradient(top, rgba(224,240,241,1) 0%, rgba(201,227,229,1) 51%, rgba(201,227,229,1) 78%, rgba(182,218,220,1) 100%);
-background: -o-linear-gradient(top, rgba(224,240,241,1) 0%, rgba(201,227,229,1) 51%, rgba(201,227,229,1) 78%, rgba(182,218,220,1) 100%);
-background: -ms-linear-gradient(top, rgba(224,240,241,1) 0%, rgba(201,227,229,1) 51%, rgba(201,227,229,1) 78%, rgba(182,218,220,1) 100%);
-background: linear-gradient(to bottom, rgba(224,240,241,1) 0%, rgba(201,227,229,1) 51%, rgba(201,227,229,1) 78%, rgba(182,218,220,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f0f1', endColorstr='#b6dadc', GradientType=0 );
+  width: 100%;
+  float: left;
+  left: 1px;
+  margin: 4px auto;
+  border-radius: 4px;
+  padding: 5px;
+  padding-left: 0px;
+  position: relative;
+  box-shadow: 0px -1px 3px #fff;
+  background: rgba(224, 240, 241, 1);
+  background: -moz-linear-gradient(
+    top,
+    rgba(224, 240, 241, 1) 0%,
+    rgba(201, 227, 229, 1) 51%,
+    rgba(201, 227, 229, 1) 78%,
+    rgba(182, 218, 220, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(224, 240, 241, 1)),
+    color-stop(51%, rgba(201, 227, 229, 1)),
+    color-stop(78%, rgba(201, 227, 229, 1)),
+    color-stop(100%, rgba(182, 218, 220, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(224, 240, 241, 1) 0%,
+    rgba(201, 227, 229, 1) 51%,
+    rgba(201, 227, 229, 1) 78%,
+    rgba(182, 218, 220, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(224, 240, 241, 1) 0%,
+    rgba(201, 227, 229, 1) 51%,
+    rgba(201, 227, 229, 1) 78%,
+    rgba(182, 218, 220, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(224, 240, 241, 1) 0%,
+    rgba(201, 227, 229, 1) 51%,
+    rgba(201, 227, 229, 1) 78%,
+    rgba(182, 218, 220, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(224, 240, 241, 1) 0%,
+    rgba(201, 227, 229, 1) 51%,
+    rgba(201, 227, 229, 1) 78%,
+    rgba(182, 218, 220, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f0f1', endColorstr='#b6dadc', GradientType=0 );
 }
 
 .footerAreaHome3 {
-	margin-top: 4%
+  margin-top: 4%;
 }
 
 .HomePannel_left2 {
-	height: 50vh !important;
+  height: 50vh !important;
 }
 
 .footerAreaHome button {
-	width: 170px !important;
-	line-height: 12px !important;
-	border-radius: 0px;
-	height: 30px !important;
-	font-size: 16px !important;
-	border-radius: 4px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+  width: 170px !important;
+  line-height: 12px !important;
+  border-radius: 0px;
+  height: 30px !important;
+  font-size: 16px !important;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .allprescriptionBlock th {
-	color: #000 !important;
+  color: #000 !important;
 }
 
 .medicingTh th {
-	background: #e1f2f5;
-	color: #017080;
-	font-size: 14px;
+  background: #e1f2f5;
+  color: #017080;
+  font-size: 14px;
 }
 
 .medicingTh td {
-	font-size: 15px;
+  font-size: 15px;
 }
-/* end prescription hone for CMH */
 
-.ng-dropdown-panel  .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    background-color: #237cd6 !important;
-    color: #fbf1f1 !important;
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #237cd6 !important;
+  color: #fbf1f1 !important;
 }
 
 /* ng select custom border style */
 .radiologyExamList .ng-select .ng-select-container {
-	border: 1px solid #51a7b6 !important;
+  border: 1px solid #51a7b6 !important;
 }
 
-.radiologyExamList .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	color: #40464a;
-	font-weight: bold;
+.radiologyExamList
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  color: #40464a;
+  font-weight: bold;
 }
 
 .radiologyExamList .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
+  height: 30px;
 }
 
 .radiologyExamList .ng-select .ng-select-container {
-	min-height: 30px;
+  min-height: 30px;
 }
 
 /* radiology left-sidebar */
-#left-sidebar .ng-select.ng-select-single .ng-select-container .ng-value-container{
-	white-space: inherit;
+#left-sidebar
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container {
+  white-space: inherit;
 }
-#left-sidebar .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
-	white-space: inherit;
+#left-sidebar
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  white-space: inherit;
 }
-#left-sidebar .radiologyExamList .ng-select.ng-select-single .ng-select-container {
-    height: auto;
+#left-sidebar
+  .radiologyExamList
+  .ng-select.ng-select-single
+  .ng-select-container {
+  height: auto;
 }
 /* ng-white-space */
-.ng-white-space .ng-select.ng-select-single .ng-select-container .ng-value-container{
-	white-space: inherit;
+.ng-white-space
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container {
+  white-space: inherit;
 }
-.ng-white-space .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
-	white-space: inherit;
+.ng-white-space
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  white-space: inherit;
 }
-.ng-white-space .radiologyExamList .ng-select.ng-select-single .ng-select-container {
-    height: auto;
+.ng-white-space
+  .radiologyExamList
+  .ng-select.ng-select-single
+  .ng-select-container {
+  height: auto;
 }
 
 /* end radiology left-sidebar */
 /* bootstap custom */
 .textareaCustom {
-	height: 100px !important;
+  height: 100px !important;
 }
 
 .emergencyH5 {
-	width: 100%;
-	line-height: 33px;
+  width: 100%;
+  line-height: 33px;
 }
 .emergencySearchbtn {
-    float: right;
-    padding: 2px 11px;
-    border: solid 1px #fff;
-    box-shadow: 0px 1px 4px #2d3a6b;
-    top: 2pz;
-    top: 3px;
-    position: relative;
-    margin-right: 1%;
+  float: right;
+  padding: 2px 11px;
+  border: solid 1px #fff;
+  box-shadow: 0px 1px 4px #2d3a6b;
+  top: 2pz;
+  top: 3px;
+  position: relative;
+  margin-right: 1%;
 }
 /* multistep form progess bar */
 /*progressbar*/
@@ -1346,1344 +1435,1531 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f0f1', end
 
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-#progressbar li.active:before, #progressbar li.active:after {
-	background: #677cc8;
-	color: white;
-	border: solid 1px #8ea7ff;
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #677cc8;
+  color: white;
+  border: solid 1px #8ea7ff;
 }
 
 .pastIllness3 .typeAhead {
-	width: 90%;
+  width: 90%;
 }
 
 /* type Wise Discount css */
 .discount-type .ng-select .ng-select-container {
-	min-height: 30px;    top: -7px;
-    position: relative;
+  min-height: 30px;
+  top: -7px;
+  position: relative;
 }
 
 .discount-type .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
+  height: 30px;
 }
 
 .discount-type .ng-select .ng-select-container {
-	border: solid 1px transparent;
-    border-radius: 0px;
-    background: transparent;
+  border: solid 1px transparent;
+  border-radius: 0px;
+  background: transparent;
 }
 
-.discount-type .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.discount-type
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.discount-type .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.discount-type
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
 
 /* common-ng-select-style */
 .common-ng-select-style .ng-select .ng-select-container {
-	min-height: 30px;    top: -7px;
-    position: relative;
+  min-height: 30px;
+  top: -7px;
+  position: relative;
 }
 
 .common-ng-select-style .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
-    border: none;
-    padding-top: 8px;
+  height: 30px;
+  border: none;
+  padding-top: 8px;
 }
 
 .common-ng-select-style .ng-select .ng-select-container {
-	border: solid 1px transparent;
-    border-radius: 0px;
-    background: transparent;
+  border: solid 1px transparent;
+  border-radius: 0px;
+  background: transparent;
 }
 
-.common-ng-select-style .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.common-ng-select-style
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.common-ng-select-style .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.common-ng-select-style
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
 
- /* ExamSetup-type */
+/* ExamSetup-type */
 .ExamSetup-type .ng-select .ng-select-container {
-	min-height: 26px;    top: -3px;
-	position: relative;
-	
-	border: 0px; background: transparent;
+  min-height: 26px;
+  top: -3px;
+  position: relative;
+
+  border: 0px;
+  background: transparent;
 }
 
 .ExamSetup-type .ng-select.ng-select-single .ng-select-container {
-	height: 26px;
+  height: 26px;
 }
 
 .ExamSetup-type .ng-select .ng-select-container {
-	border: solid 1px transparent;
-    border-radius: 0px;
-    background: transparent;
+  border: solid 1px transparent;
+  border-radius: 0px;
+  background: transparent;
 }
 
-.ExamSetup-type .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.ExamSetup-type
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.ExamSetup-type .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.ExamSetup-type
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-.ExamSetup-type .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-    position: absolute;
-    left: 0;
-	width: 100%;
-	top: 0px;
+.ExamSetup-type
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-input {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0px;
 }
-.ExamSetup-type .ng-select.ng-select-opened>.ng-select-container {
-	border: 0px;
-    background: transparent;
+.ExamSetup-type .ng-select.ng-select-opened > .ng-select-container {
+  border: 0px;
+  background: transparent;
 }
 
-.ExamSetup-type .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+.ExamSetup-type
+  .ng-select.ng-select-focused:not(.ng-select-opened)
+  > .ng-select-container {
   border: 0px;
   border-top: none;
 }
 
-
 /* type-ahead-sample-receive css */
 .type-ahead-sample-receive .ng-select .ng-select-container {
-	min-height: 28px;
+  min-height: 28px;
 }
 
 .type-ahead-sample-receive .ng-select.ng-select-single .ng-select-container {
-	height: 28px;
+  height: 28px;
 }
 
 .type-ahead-sample-receive .ng-select .ng-select-container {
-	border: solid 1px #6bb5d2;
-	border-radius: 40px;
+  border: solid 1px #6bb5d2;
+  border-radius: 40px;
 }
 
-.type-ahead-sample-receive .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
-	line-height: 23px;
-	padding-top: 2px;
+.type-ahead-sample-receive
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 23px;
+  padding-top: 2px;
 }
 
-.type-ahead-sample-receive .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-	font-size: 15px;
+.type-ahead-sample-receive
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-
 
 /* type-ahead-sample-receive-tow css */
-.type-ahead-sample-receive-tow .ng-select{
-	width: 75.5%;
+.type-ahead-sample-receive-tow .ng-select {
+  width: 75.5%;
 }
 .type-ahead-sample-receive-tow .ng-select .ng-select-container {
-	min-height: 30px;
+  min-height: 30px;
 }
 
-.type-ahead-sample-receive-tow .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
+.type-ahead-sample-receive-tow
+  .ng-select.ng-select-single
+  .ng-select-container {
+  height: 30px;
 }
 
 .type-ahead-sample-receive-tow .ng-select .ng-select-container {
-	border: solid 1px #6bb5d2;
-	border-radius: 0px 40px 40px 0px;
+  border: solid 1px #6bb5d2;
+  border-radius: 0px 40px 40px 0px;
 }
 
-.type-ahead-sample-receive-tow .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
-	line-height: 23px;
-	padding-top: 2px;
+.type-ahead-sample-receive-tow
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 23px;
+  padding-top: 2px;
 }
 
-.type-ahead-sample-receive-tow .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-	font-size: 15px;
+.type-ahead-sample-receive-tow
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-
-
 
 /* typahead all css */
 .typeAhead .ng-select .ng-select-container {
-	min-height: 28px;
+  min-height: 28px;
 }
 
 .typeAhead .ng-select.ng-select-single .ng-select-container {
-	height: 28px;
+  height: 28px;
 }
 
 .typeAhead .ng-select .ng-select-container {
-	border: solid 1px #68bee0;
+  border: solid 1px #68bee0;
 }
 
-.typeAhead .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 23px;
-	padding-top: 2px;
+.typeAhead
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 23px;
+  padding-top: 2px;
 }
 
-.typeAhead .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.typeAhead .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  font-size: 15px;
 }
 .typeAheadphy .ng-select.ng-select-single .ng-select-container {
-    font-size: 14px;
+  font-size: 14px;
 }
 .typeAheadphy .ng-select .ng-select-container {
-    border-left: 0px;
-	border-radius: 0px 16px 16px 0px;
-	min-height: 30px;
+  border-left: 0px;
+  border-radius: 0px 16px 16px 0px;
+  min-height: 30px;
 }
-.typeAheadphy .ng-select{
-	width: 58%;
+.typeAheadphy .ng-select {
+  width: 58%;
 }
 .typeAheadphy .input-group-text {
-     border-left: 1px solid #a8d7ea; 
+  border-left: 1px solid #a8d7ea;
 }
 .typeAheadphy .input-group-prepend {
-    height: 28px;
+  height: 28px;
 }
- .typeAheadphy .ng-select span {
-    font-size: 14px;
+.typeAheadphy .ng-select span {
+  font-size: 14px;
 }
 
 /* select-transfer */
-.select-transfer .ng-select{
-	height: 24px;
+.select-transfer .ng-select {
+  height: 24px;
 }
 .select-transfer .ng-select.ng-select-single .ng-select-container {
-    height: 24px;
+  height: 24px;
 }
 .select-transfer .ng-select .ng-select-container {
-    background-color: rgba(0,0,0, 0.3);
-    border-radius: 27px;
-    min-height: 27px;
-
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 27px;
+  min-height: 27px;
 }
-.select-transfer .ng-select .ng-select-container .ng-value-container .ng-placeholder {
-    color: #fff;
+.select-transfer
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  color: #fff;
 }
-.select-transfer .ng-select .ng-select-container{
-	border:0px;
+.select-transfer .ng-select .ng-select-container {
+  border: 0px;
 }
-.select-transfer .ng-select.ng-select-opened>.ng-select-container {
-    background: rgba(0,0,0, 0.2);
-    color: #fff;
+.select-transfer .ng-select.ng-select-opened > .ng-select-container {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
 }
-.select-transfer  .ng-select .ng-select-container {
-	color: #fff;
+.select-transfer .ng-select .ng-select-container {
+  color: #fff;
 }
-.select-transfer .ng-select .ng-select-container .ng-value-container .ng-input>input{
-	color: #fff;
+.select-transfer
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-input
+  > input {
+  color: #fff;
 }
 /* typahead registration css */
 
 .dkFood .ng-select.ng-select-single .ng-select-container {
-    top: 2px !important;  
+  top: 2px !important;
 }
 
 .typeAheadRegistration .ng-select .ng-select-container {
-	min-height: 24px;
+  min-height: 24px;
 }
 
 .typeAheadRegistration .ng-select.ng-select-single .ng-select-container {
-	top: -2px;
-	min-height: 24px;height: 24px;
-	border-radius: 15px;
+  top: -2px;
+  min-height: 24px;
+  height: 24px;
+  border-radius: 15px;
 }
 
 .typeAheadRegistration .ng-select .ng-select-container {
-	border: 0px; background: transparent;
+  border: 0px;
+  background: transparent;
 }
-.ng-select .ng-select-container:hover{ box-shadow: none !important;}
-.typeAheadRegistration .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 23px;
-	padding-top: 9px;
+.ng-select .ng-select-container:hover {
+  box-shadow: none !important;
 }
-
-.typeAheadRegistration .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-	font-size: 15px; color:#4e4e4e;
-}
-.typeAheadRegistration .ng-select .ng-clear-wrapper{ top:6px;}
-.typeAheadRegistration .ng-select .ng-arrow-wrapper{ top:2px;}
-.typeAheadRegistration .ng-select .ng-select-container .ng-value-container .ng-placeholder {
-	line-height: 32px;
-    height: 30px;
+.typeAheadRegistration
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 23px;
+  padding-top: 9px;
 }
 
-.typeahead-ng-value-padding .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    padding-top: 4px;
+.typeAheadRegistration
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
+  color: #4e4e4e;
+}
+.typeAheadRegistration .ng-select .ng-clear-wrapper {
+  top: 6px;
+}
+.typeAheadRegistration .ng-select .ng-arrow-wrapper {
+  top: 2px;
+}
+.typeAheadRegistration
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  line-height: 32px;
+  height: 30px;
+}
+
+.typeahead-ng-value-padding
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  padding-top: 4px;
 }
 /* bedViewer */
-.bedViewer .ng-select.ng-select-disabled>.ng-select-container {
-    background: transparent;
+.bedViewer .ng-select.ng-select-disabled > .ng-select-container {
+  background: transparent;
 }
 /* typahead nurse station service all css */
 .typeAheadNurser .ng-select .ng-select-container {
-	min-height: 30px;
+  min-height: 30px;
 }
 
 .typeAheadNurser .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
+  height: 30px;
 }
 
 .typeAheadNurser .ng-select .ng-select-container {
-	border: solid 1px #68bee0;     border-radius: 0px 30px 30px 0px;
+  border: solid 1px #68bee0;
+  border-radius: 0px 30px 30px 0px;
 }
 
-.typeAheadNurser .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.typeAheadNurser
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.typeAheadNurser .ng-select .ng-select-container .ng-value-container .ng-placeholder{
-	font-size: 15px;
+.typeAheadNurser
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-.typeAheadNurser .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
-   top: 2px;
+.typeAheadNurser
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-input {
+  top: 2px;
 }
-.bedViewer .ng-select{width:80%;}
-.typ-ahead-padding .ng-select.ng-select-multiple .ng-select-container .ng-value-container{
-	padding-top: 0px;
+.bedViewer .ng-select {
+  width: 80%;
+}
+.typ-ahead-padding
+  .ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container {
+  padding-top: 0px;
 }
 
-.doctor-type-ahead .ng-select{
-	width: 85% !important;
+.doctor-type-ahead .ng-select {
+  width: 85% !important;
 }
 .typ-ahead-padding .ng-has-value {
-    width: 249px !important;
+  width: 249px !important;
 }
 
 /* typeAheadDisSum css */
 .typeAheadDisSum .ng-select .ng-select-container {
-	min-height: 26px;
+  min-height: 26px;
 }
 .typeAheadDisSum .ng-select {
-	width:79%;
+  width: 79%;
 }
 .typeAheadDisSum .ng-select.ng-select-single .ng-select-container {
-	height: 26px;
+  height: 26px;
 }
 
 .typeAheadDisSum .ng-select .ng-select-container {
-	border: solid 1px #6bb5d2;     border-radius: 0px 6px 6px 0px;
+  border: solid 1px #6bb5d2;
+  border-radius: 0px 6px 6px 0px;
 }
 
-.typeAheadDisSum .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.typeAheadDisSum
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.typeAheadDisSum .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.typeAheadDisSum
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-.typeAheadDisSum .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
-	top: 2px;
+.typeAheadDisSum
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-input {
+  top: 2px;
 }
-.typeAheadDisSum .ng-select .ng-arrow-wrapper .ng-arrow{
-	top: 1px;
+.typeAheadDisSum .ng-select .ng-arrow-wrapper .ng-arrow {
+  top: 1px;
 }
 .typeAheadDisSum .ng-select .ng-clear-wrapper .ng-clear {
-    top: 5px;
-    position: relative;
+  top: 5px;
+  position: relative;
 }
-.typeAheadDisSum .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
-    top: 0px;
+.typeAheadDisSum .ng-select.ng-select-opened > .ng-select-container .ng-arrow {
+  top: 0px;
 }
-.bedViewer .ng-select{width:80%;}
-.typ-ahead-padding .ng-select.ng-select-multiple .ng-select-container .ng-value-container{
-	padding-top: 0px;
+.bedViewer .ng-select {
+  width: 80%;
+}
+.typ-ahead-padding
+  .ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container {
+  padding-top: 0px;
 }
 
-.doctor-type-ahead .ng-select{
-	width: 85% !important;
+.doctor-type-ahead .ng-select {
+  width: 85% !important;
 }
 .typ-ahead-padding .ng-has-value {
-    width: 249px !important;
+  width: 249px !important;
 }
 .typeAheadDisSum-radius .ng-select .ng-select-container {
-    border-radius: 0px 40px 40px 0px;
+  border-radius: 0px 40px 40px 0px;
 }
 /* ng-value-container-padding */
-.ng-value-container-padding .ng-select.ng-select-multiple .ng-select-container .ng-value-container{
-	padding-top: 0px;
+.ng-value-container-padding
+  .ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container {
+  padding-top: 0px;
 }
 
 /* select-title-visible */
 .select-title-visible .ng-value {
-	white-space: inherit !important;
-	overflow: hidden;
-    position: relative;
+  white-space: inherit !important;
+  overflow: hidden;
+  position: relative;
 }
 .select-title-visible .ng-value-icon.left {
-    position: absolute;
-    height: 100%;
-    background: #deebf7;
+  position: absolute;
+  height: 100%;
+  background: #deebf7;
 }
-.select-title-visible .ng-value-label{
-	padding-left: 24px !important;
+.select-title-visible .ng-value-label {
+  padding-left: 24px !important;
 }
 /* .regPatientlist .ng-dropdown-panel .ng-dropdown-panel-items {
     width: 140px;
     left: -83px;
 } */
-.regPatientlist .ng-dropdown-panel{
-width:auto;left: -88px;
+.regPatientlist .ng-dropdown-panel {
+  width: auto;
+  left: -88px;
 }
 /* end typeAheadNurser */
 
-
 /* start typeAhead Doctor Station */
 .typeAheadDoctorStation .dropdown.open.dropdown-menu {
-    width: 93% !important;
-    left: 17px !important;
+  width: 93% !important;
+  left: 17px !important;
 }
 .typeAheadDoctorStation2 .dropdown.open.dropdown-menu {
-    width: 96% !important;
-    left: 6px !important;
+  width: 96% !important;
+  left: 6px !important;
 }
 .typeAheadDoctorStation3 .dropdown.open.dropdown-menu {
-    width: 94% !important;
-    left: 6px !important;
+  width: 94% !important;
+  left: 6px !important;
 }
 /* end typeAhead Doctor Station */
 
-
 /* ng-select-width */
-.ng-select-width .ng-select{
-	width: 208px;
+.ng-select-width .ng-select {
+  width: 208px;
 }
 /*end ng-select-width */
 
 .tableConsul2 .form-control {
-	height: 30px !important;
+  height: 30px !important;
 }
 
 .tableConsul2 td {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .addUserDepartment .ng-select.ng-select-single .ng-select-container {
-   border-radius: 25px;
+  border-radius: 25px;
 }
-.addUserDepartment .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    font-size: 15px;
+.addUserDepartment
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  font-size: 15px;
 }
 /* emergency type ahead css */
 .quickDiv3 typeahead-container.dropdown.open.dropdown-menu {
-	width:auto !important;
-	max-width:auto !important;
+  width: auto !important;
+  max-width: auto !important;
 }
 
 .quickDiv3 typeahead-container.dropdown.open.dropdown-menu h4 {
-	font-size: 20px;
+  font-size: 20px;
 }
 .quickdisposalSelect .ng-select {
-	width: 35%;font-size: 15px;
+  width: 35%;
+  font-size: 15px;
 }
 .quickdisposalSelectUdu .ng-select {
-	width: 55%;
+  width: 55%;
 }
 .quickdisposalSelectObs .ng-select {
-	width:70%;
+  width: 70%;
 }
-.qickDisposalRtu  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    width: 112px;
+.qickDisposalRtu
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  width: 112px;
 }
-.quickdisposalSelect .ng-dropdown-panel.ng-select-bottom{font-size: 15px;}
+.quickdisposalSelect .ng-dropdown-panel.ng-select-bottom {
+  font-size: 15px;
+}
 .quickdisposalSelect .ng-select .ng-select-container {
-    border: 1px solid #6bb5d2;
-    min-height: 30px;height: 30px !important;
-    border-radius: 0px 20px 20px 0px;
+  border: 1px solid #6bb5d2;
+  min-height: 30px;
+  height: 30px !important;
+  border-radius: 0px 20px 20px 0px;
 }
 
 /* ckeditor for radiology result entry */
 
-.middlePart .tox-tinymce{ height: 87.2vh !important;}
+.middlePart .tox-tinymce {
+  height: 87.2vh !important;
+}
 
-.middlePart1 .tox-tinymce{ height: 50.2vh !important;}
+.middlePart1 .tox-tinymce {
+  height: 50.2vh !important;
+}
 
 /* quick registration style */
 .quickReistration .tab-content {
-	border-radius: 6px;     
+  border-radius: 6px;
 }
 .quickReistration ul.nav.nav-tabs {
-	border: 0px !important;
-    border-bottom: 1px solid #609128 !important;
-    border-radius: 6px 6px 0 0;
-
+  border: 0px !important;
+  border-bottom: 1px solid #609128 !important;
+  border-radius: 6px 6px 0 0;
 }
-.quickReistration .dotedicon{top:8px !important;}
-.quickReistration .nav-tabs{display: none;}
-.displayBlockRe{display: block !important;}
-.qickRegA{width: 168px;}
+.quickReistration .dotedicon {
+  top: 8px !important;
+}
+.quickReistration .nav-tabs {
+  display: none;
+}
+.displayBlockRe {
+  display: block !important;
+}
+.qickRegA {
+  width: 168px;
+}
 
-app-cham-patient-list{margin-top: -26px;}
+app-cham-patient-list {
+  margin-top: -26px;
+}
 
 /* medicineTyahead */
 .medicineTyahead typeahead-container.dropdown.open.dropdown-menu {
-    width: auto !important;
+  width: auto !important;
 }
 /* end medicineTyahead */
 
-.disease-discharge-type-ahead .ng-select-typeahead{
-	width: 80%;
+.disease-discharge-type-ahead .ng-select-typeahead {
+  width: 80%;
 }
 .disease-discharge-type-ahead .ng-select-container {
-    width: 100% !important;
+  width: 100% !important;
 }
 /* type-eye-ocular */
 .type-eye-ocular typeahead-container.dropdown.open.dropdown-menu {
-    width: 64%;
+  width: 64%;
 }
 
 /*========== registration-modal ==========*/
 app-registration-modal {
-   margin-top: -26px;
+  margin-top: -26px;
 }
-app-business-list{  margin-top: -26px;}
-app-patient-list-doc-staion{ margin-top: -26px;}
-app-registration-modal .form-control{ height: 27px !important;}
- .titleGlobalregis {
-	background: #609128 !important;
+app-business-list {
+  margin-top: -26px;
 }
-textarea.globalRtexarea{height: 120px !important;}
+app-patient-list-doc-staion {
+  margin-top: -26px;
+}
+app-registration-modal .form-control {
+  height: 27px !important;
+}
+.titleGlobalregis {
+  background: #609128 !important;
+}
+textarea.globalRtexarea {
+  height: 120px !important;
+}
 /* ======================imgCapRadiology======================= */
-.imgCapRadiology table td{white-space: nowrap;}
+.imgCapRadiology table td {
+  white-space: nowrap;
+}
 /*========== app-dmfr-modal ==========*/
 app-dmfr-modal {
-	margin-top: -26px;
+  margin-top: -26px;
 }
 
 /* Tab Multi Step */
 .tabMultiStep .tab-content {
-    border: 0px;
-    margin-top: 10px;
+  border: 0px;
+  margin-top: 10px;
 }
-.tabMultiStep .nav-tabs{border-bottom: 0px !important;    position: relative;
-    width: 574px;
-    margin: auto; padding-left: 2%;
-   }
-  .tabMultiStep .nav{
-	min-height: 27px;
-  }
+.tabMultiStep .nav-tabs {
+  border-bottom: 0px !important;
+  position: relative;
+  width: 574px;
+  margin: auto;
+  padding-left: 2%;
+}
+.tabMultiStep .nav {
+  min-height: 27px;
+}
 .tabMultiStep .nav-tabs .nav-link {
-	width: 32px;
-    height: 32px;
-    border-radius: 40px;
-    background: #d1e7b9;
-    font-size: 17px !important;
-    text-align: center;
-    line-height: 32px;
-    padding: 0px;
-    position: relative;
-    border: dashed 1px #76aa39;
+  width: 32px;
+  height: 32px;
+  border-radius: 40px;
+  background: #d1e7b9;
+  font-size: 17px !important;
+  text-align: center;
+  line-height: 32px;
+  padding: 0px;
+  position: relative;
+  border: dashed 1px #76aa39;
 }
 .tabMultiStep .nav-tabs .nav-item {
-	width: 60px;
-    position: relative;
-    z-index: 9;
+  width: 60px;
+  position: relative;
+  z-index: 9;
 }
- .tabMultiStep .nav-tabs .nav-link.active {
-	border: dashed 1px #eaefe4 !important;
-	background: #76aa39 !important;
+.tabMultiStep .nav-tabs .nav-link.active {
+  border: dashed 1px #eaefe4 !important;
+  background: #76aa39 !important;
 }
- .tabMultiStep .nav-tabs .nav-link.active {
-    color: #000 !important;
+.tabMultiStep .nav-tabs .nav-link.active {
+  color: #000 !important;
 }
 .tabMultiStep ul.nav.nav-tabs:after {
-    content: '';
-    display: block;
-    width: 71%;
-    border: aliceblue;
-    position: absolute;
-    top: 16px; border: dashed .7px  #76aa39;
+  content: "";
+  display: block;
+  width: 71%;
+  border: aliceblue;
+  position: absolute;
+  top: 16px;
+  border: dashed 0.7px #76aa39;
 }
 .tabMultiStep-assessment ul.nav.nav-tabs:after {
-    width: 84% !important;
+  width: 84% !important;
 }
-.footerMultistep{
-	border: solid 1px #76aa39;
-    background: #fff;
-    padding: 4px;
-    border-radius: 6px; width: 99%; margin: auto;
+.footerMultistep {
+  border: solid 1px #76aa39;
+  background: #fff;
+  padding: 4px;
+  border-radius: 6px;
+  width: 99%;
+  margin: auto;
 }
 /* emergency tab */
 
 .tabMultiStep .nav-tabs .nav-link {
-    width: 28px;
-    height: 28px;
-    border-radius: 40px;
-    background: #d1e7b9;
-    font-size: 17px !important;
-    text-align: center;
-    line-height: 28px;
-    padding: 0px;
-    position: relative;
-    border: dashed 1px #76aa39;
+  width: 28px;
+  height: 28px;
+  border-radius: 40px;
+  background: #d1e7b9;
+  font-size: 17px !important;
+  text-align: center;
+  line-height: 28px;
+  padding: 0px;
+  position: relative;
+  border: dashed 1px #76aa39;
 }
-.emergencyTab{position: relative;}
+.emergencyTab {
+  position: relative;
+}
 .emergencyTab .tab-content {
- border: solid 1px #dedede;
- margin-top: 0px;
+  border: solid 1px #dedede;
+  margin-top: 0px;
 }
 .emergencyTab .nav-tabs {
-    width: 600px;
-    position: absolute;
-    top: 21px;
-    z-index: 99;
-    left: 28%;
+  width: 600px;
+  position: absolute;
+  top: 21px;
+  z-index: 99;
+  left: 28%;
 }
- .emergencyTab .nav-tabs .nav-link.active {
-    border: dashed 1px #55823c !important;
-    background: #cbe6bd !important;
-    border-radius:40px !important;
+.emergencyTab .nav-tabs .nav-link.active {
+  border: dashed 1px #55823c !important;
+  background: #cbe6bd !important;
+  border-radius: 40px !important;
 }
 .emergencyTab .nav-tabs .nav-link {
-	background: #326192;
-    font-size: 14px !important;
-    line-height: 26px;
-    border: dashed 1px #4b85c1;
-    color: #4a8cce !important;
+  background: #326192;
+  font-size: 14px !important;
+  line-height: 26px;
+  border: dashed 1px #4b85c1;
+  color: #4a8cce !important;
 }
 .emergencyTab ul.nav.nav-tabs:after {
-    border: dashed .7px #4b85c1;
+  border: dashed 0.7px #4b85c1;
 }
 .emergencyTab .nav-tabs .nav-item {
-    width: 50px;
+  width: 50px;
 }
 .allTabSet .btn {
-	padding: 7px 7px;
-    font-size: 15px !important;
-    /* border-right: solid 1px #007bff !important; */
-    /* border-color: #065cb9 !important; */
-    font-family: roboto;
-    /* box-shadow: 0px 0px 1px #3997fb; */
-    margin-right: 4px;
-  
+  padding: 7px 7px;
+  font-size: 15px !important;
+  /* border-right: solid 1px #007bff !important; */
+  /* border-color: #065cb9 !important; */
+  font-family: roboto;
+  /* box-shadow: 0px 0px 1px #3997fb; */
+  margin-right: 4px;
 }
 
-.allTabSet .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    background-color: #0054af;
-  
+.allTabSet .btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #0054af;
 }
-  .allTabSet{
-	margin: 3px auto;
-    display: table;
-  }
-  .emergencyTab .all_content_wrapper{ min-height: auto; padding-bottom: 1px !important;}
-  .flexColumNone{ flex-direction: inherit;width: auto;
-	float: right;}
-	.flexColumNone button {
-		margin-right: 2px;
-		padding: 3px 18px;
-	}
+.allTabSet {
+  margin: 3px auto;
+  display: table;
+}
+.emergencyTab .all_content_wrapper {
+  min-height: auto;
+  padding-bottom: 1px !important;
+}
+.flexColumNone {
+  flex-direction: inherit;
+  width: auto;
+  float: right;
+}
+.flexColumNone button {
+  margin-right: 2px;
+  padding: 3px 18px;
+}
 
-	/* nurse station css time and date */
-	.bs-timepicker-field {
-		width: 40px !important;
-		padding: 0px;border: solid 1px #7cbad2;
-	}
-	.startIntake button.btn.btn-default.text-center {
-		left: -16px;
-		position: relative;
-	}
-	.tableLeftIntake table {
-		left: 10px;
-		position: relative;
-	}
+/* nurse station css time and date */
+.bs-timepicker-field {
+  width: 40px !important;
+  padding: 0px;
+  border: solid 1px #7cbad2;
+}
+.startIntake button.btn.btn-default.text-center {
+  left: -16px;
+  position: relative;
+}
+.tableLeftIntake table {
+  left: 10px;
+  position: relative;
+}
 
 /*----quick review and disposal----*/
-.reportingTimeBtnSpace{
-	right: 11px;
-    position: relative;	
+.reportingTimeBtnSpace {
+  right: 11px;
+  position: relative;
 }
-.reportingTimeBtnSpace .btn{
-	right: 14px;
-    position: relative;
+.reportingTimeBtnSpace .btn {
+  right: 14px;
+  position: relative;
 }
 .reportingTimeBtnSpace span.bs-chevron.bs-chevron-up {
-    left: 12px;
+  left: 12px;
 }
 .reportingTimeBtnSpace span.bs-chevron.bs-chevron-down {
-    left: 12px;
+  left: 12px;
 }
-.reportingTime table td  {
-	padding: 0px !important;
-	padding: 0px !important;
-	border: 0px;
-	margin-bottom: 0px !important;
-
+.reportingTime table td {
+  padding: 0px !important;
+  padding: 0px !important;
+  border: 0px;
+  margin-bottom: 0px !important;
 }
-.time-pic-float timepicker{
-	float: left;
+.time-pic-float timepicker {
+  float: left;
 }
 
 .reportingTime table td .btn {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
-
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .reportingTime table {
-	width: 154px !important;
-    margin: auto;
-    left: 0px;
-    position: relative;
+  width: 154px !important;
+  margin: auto;
+  left: 0px;
+  position: relative;
 }
 
 /* reportingTimeHr */
 .reportingTimeHr table td {
-	padding: 0px !important;
-	padding: 0px !important;
-	border: 0px;
-	margin-bottom: 0px !important;
+  padding: 0px !important;
+  padding: 0px !important;
+  border: 0px;
+  margin-bottom: 0px !important;
 }
 
 .reportingTimeHr table td .btn {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 .reportingTimeHr .bs-chevron {
-    width: 7px;
-    height: 7px;
-    border-width: 2px 0px 0 2px;
+  width: 7px;
+  height: 7px;
+  border-width: 2px 0px 0 2px;
 }
 .reportingTimeHr table {
-	width: 155px !important;
-	margin: auto;
-	left: 3px;
-	position: relative;
+  width: 155px !important;
+  margin: auto;
+  left: 3px;
+  position: relative;
 }
-.reportingTimeHr .form-control{
-    height: 21px !important;
+.reportingTimeHr .form-control {
+  height: 21px !important;
 }
 .reportingTimeHr td {
-    font-size: 6px !important;
+  font-size: 6px !important;
 }
 .anaesthetic table tbody tr:first-child {
-    display: none;
+  display: none;
 }
 .anaesthetic table tbody tr:last-child {
-    display: none;
+  display: none;
 }
 .anaesthetic table tbody .btn {
-    right: 18px;
-    position: relative;
+  right: 18px;
+  position: relative;
 }
 
-
-
 .border-bottom-typeahead .ng-select .ng-select-container {
-	min-height: 26px;    top: -3px;
-	position: relative;
-	
-	border: 0px; background: transparent;
+  min-height: 26px;
+  top: -3px;
+  position: relative;
+
+  border: 0px;
+  background: transparent;
 }
 
 .border-bottom-typeahead .ng-select.ng-select-single .ng-select-container {
-	height: 26px;
+  height: 26px;
 }
 
 .border-bottom-typeahead .ng-select .ng-select-container {
-	border: solid 1px transparent;
-    border-radius: 0px;
-    background: transparent;
+  border: solid 1px transparent;
+  border-radius: 0px;
+  background: transparent;
 }
 
-.border-bottom-typeahead .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.border-bottom-typeahead
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.border-bottom-typeahead .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.border-bottom-typeahead
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
-.border-bottom-typeahead .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
-    position: absolute;
-    left: 0;
-	width: 100%;
-	top: 0px;
+.border-bottom-typeahead
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-input {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0px;
 }
-.border-bottom-typeahead .ng-select.ng-select-opened>.ng-select-container {
-	border: 0px;
-    background: transparent;
+.border-bottom-typeahead .ng-select.ng-select-opened > .ng-select-container {
+  border: 0px;
+  background: transparent;
 }
 
-.border-bottom-typeahead .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+.border-bottom-typeahead
+  .ng-select.ng-select-focused:not(.ng-select-opened)
+  > .ng-select-container {
   border: 0px;
   border-top: none;
 }
-.border-bottom-typeahead .form-control{
-	border: 0px !important;
-    border-bottom: dashed 1px #267392 !important;
-    background: transparent;
-    border-radius: 0px;
+.border-bottom-typeahead .form-control {
+  border: 0px !important;
+  border-bottom: dashed 1px #267392 !important;
+  background: transparent;
+  border-radius: 0px;
 }
 
 /* ==============================cheeckAll============================== */
 
 /* .cheeck box squaredThree */
 .cheeckAll {
-	position: relative;
-	float: left;
+  position: relative;
+  float: left;
 }
 
 .cheeckAll label {
-	width: 16px;
-	height: 16px;
-	cursor: pointer;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: #ffffff;
-	/* border-radius: 4px; */
-	border: solid 1px #000;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  /* border-radius: 4px; */
+  border: solid 1px #000;
 }
 
 .cheeckAll label:after {
-	content: '';
-	width: 10px;
-	height: 6px;
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	border: 3px solid #141512;
-	border-top: none;
-	border-right: none;
-	background: transparent;
-	opacity: 0;
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+  content: "";
+  width: 10px;
+  height: 6px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 3px solid #141512;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .cheeckAll label:hover::after {
-	opacity: 0.3;
+  opacity: 0.3;
 }
 
-.cheeckAll input[type=checkbox] {
-	visibility: hidden;
+.cheeckAll input[type="checkbox"] {
+  visibility: hidden;
 }
 
-.cheeckAll input[type=checkbox]:checked+label:after {
-	opacity: 1;
+.cheeckAll input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 /* end .squaredThree */
 .label-text {
-	position: relative;
-	left: 10px;
-	white-space: nowrap;
+  position: relative;
+  left: 10px;
+  white-space: nowrap;
 }
 
 .spanCheckText {
-	position: relative;
-	left: 18px;
-	white-space: nowrap;
+  position: relative;
+  left: 18px;
+  white-space: nowrap;
 }
 
 /* 2 */
 .allCheck {
-	position: relative;
-	float: left;
+  position: relative;
+  float: left;
 }
 
 .allCheck label {
-	width: 16px;
-	height: 16px;
-	cursor: pointer;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: #ff8080;
-	/* border-radius: 4px; */
-	border: solid 1px #000;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ff8080;
+  /* border-radius: 4px; */
+  border: solid 1px #000;
 }
 
 .allCheck label:after {
-	content: '';
-	width: 10px;
-	height: 6px;
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	border: 3px solid #fff;
-	border-top: none;
-	border-right: none;
-	background: transparent;
-	opacity: 0;
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+  content: "";
+  width: 10px;
+  height: 6px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 3px solid #fff;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .allCheck label:hover::after {
-	opacity: 0.3;
+  opacity: 0.3;
 }
 
-.warningCheck input[type=checkbox] {
-	visibility: hidden;
+.warningCheck input[type="checkbox"] {
+  visibility: hidden;
 }
 
-.allCheck input[type=checkbox]:checked+label:after {
-	opacity: 1;
+.allCheck input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 
 .spanCheckText2 {
-	white-space: nowrap;
-	position: relative;
-	left: 6px;
+  white-space: nowrap;
+  position: relative;
+  left: 6px;
 }
 
 /* bussiness ui css */
-.tabMinHeight .tab-content{
-	/* min-height: 59vh; */
-	min-height: 364px;
+.tabMinHeight .tab-content {
+  /* min-height: 59vh; */
+  min-height: 364px;
 }
-.tabMinHeight2 .tab-content{min-height:435px;}
+.tabMinHeight2 .tab-content {
+  min-height: 435px;
+}
 .tabMinHeight ul.nav.nav-tabs {
-    min-height: 40px;
+  min-height: 40px;
 }
 /*end bussiness ui css */
 
-
 /*start doctor station accordian css */
 .arrow-accordian .panel-heading {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 /*end doctor station accordian css */
 
 /* discharge TinyMce Settings */
-.editorDischarge .tox-menubar{
-    background-image: linear-gradient(135deg, #71994b 0, #263a0e 100%) !important;
+.editorDischarge .tox-menubar {
+  background-image: linear-gradient(135deg, #71994b 0, #263a0e 100%) !important;
 }
 .theme4 .editorDischarge .tox-menubar {
-    background-image: linear-gradient(135deg, #080808 0, #524f56 100%) !important;
+  background-image: linear-gradient(135deg, #080808 0, #524f56 100%) !important;
 }
-.editorDischarge2 .tox-tinymce{
-	border-radius: 6px 6px 0px 0px;
-	border: solid 1px #609128;
-	padding: 2px;
+.editorDischarge2 .tox-tinymce {
+  border-radius: 6px 6px 0px 0px;
+  border: solid 1px #609128;
+  padding: 2px;
 }
 .theme4 .editorDischarge2 .tox-tinymce {
-    border: solid 1px #000000 !important;
-   
+  border: solid 1px #000000 !important;
 }
 .editorDischarge2 .tox .tox-mbtn:hover:not(:disabled) {
-	background: #39521d;
+  background: #39521d;
 }
-.editorDischarge2 .tox-menubar{
-	border-radius:6px 6px 0px 0px;
+.editorDischarge2 .tox-menubar {
+  border-radius: 6px 6px 0px 0px;
 }
 
-.editorDischarge .tox .tox-mbtn{
-	color: #fff !important;
+.editorDischarge .tox .tox-mbtn {
+  color: #fff !important;
 }
 
 .editorDischarge .tox .tox-mbtn--active {
-	background: #344b19 !important;
+  background: #344b19 !important;
 }
 .editorDischarge .tox .tox-mbtn:focus:not(:disabled) {
-	background: #344b19 !important;
+  background: #344b19 !important;
 }
 .theme4 .tox .tox-mbtn:hover:not(:disabled) {
-    background: #172c42 !important;
+  background: #172c42 !important;
 }
 
 .tab_customtab .nav {
-    height: 33px !important;
+  height: 33px !important;
 }
 
 .tab_customtab li a {
-    padding: 1px 8px !important;
-    height: 28px;
-    background: transparent !important;
-    font-size: 15px;
-    border-radius: 0px !important;
-    color: #000 !important;
-    margin-right: 1px;
-    font-family: dosisr;
+  padding: 1px 8px !important;
+  height: 28px;
+  background: transparent !important;
+  font-size: 15px;
+  border-radius: 0px !important;
+  color: #000 !important;
+  margin-right: 1px;
+  font-family: dosisr;
 }
-
 
 /* start onoffswitch */
 .onoffswitch {
-	position: absolute; width:88px;
-	z-index: 9;
-    right: 104px;
-    top: 8px;
-    -webkit-user-select:none;
-  -moz-user-select:none;
+  position: absolute;
+  width: 88px;
+  z-index: 9;
+  right: 104px;
+  top: 8px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
-  margin:0 auto;
+  margin: 0 auto;
 }
 .onoffswitch .onoffswitch-checkbox {
-    display: none;
+  display: none;
 }
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;border-radius: 20px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 20px;
 }
 .onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
 }
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 25px; padding: 0; line-height:25px;
-    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif;
-    box-sizing: border-box;
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 25px;
+  padding: 0;
+  line-height: 25px;
+  font-size: 13px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "IPD";
-    padding-left: 16px;
-    border: solid 1px #08494e;
-    border-radius: 48px;
-    background-image: linear-gradient(135deg, #17a2b8 0, #083e3d 100%);
-    color: #FFFFFF;
+  content: "IPD";
+  padding-left: 16px;
+  border: solid 1px #08494e;
+  border-radius: 48px;
+  background-image: linear-gradient(135deg, #17a2b8 0, #083e3d 100%);
+  color: #ffffff;
 }
 .onoffswitch-inner:after {
-    content: "OPD";
-    padding-right:21px;
-	border: solid 1px #415a23;
-    border-radius: 48px;
-    background-image: linear-gradient(135deg, #71994b 0, #263a0e 100%); color: #FFFFFF;
-    text-align: right;
+  content: "OPD";
+  padding-right: 21px;
+  border: solid 1px #415a23;
+  border-radius: 48px;
+  background-image: linear-gradient(135deg, #71994b 0, #263a0e 100%);
+  color: #ffffff;
+  text-align: right;
 }
 
 /* advice English bangla*/
 .onoffswitch-inner2:before {
-    content: "English";
-    
+  content: "English";
 }
 .onoffswitch-inner2:after {
-    content: "Bangla";
-  
+  content: "Bangla";
 }
-.adviceOnoffswitch{
-	top: 26px;
+.adviceOnoffswitch {
+  top: 26px;
 }
-.adviceOnoffswitch .onoffswitch-switch{
-	top: -2px;
-	right:61px;
-	}
+.adviceOnoffswitch .onoffswitch-switch {
+  top: -2px;
+  right: 61px;
+}
 
 .onoffswitch-switch {
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin: 6px;
-    background: #519806;
-    position: absolute;
-    top:1px;
-    bottom: 0;
-    box-shadow: 1px 0px 2px #000 inset;
-    border: solid 2px #d3f1b2;
-    right: 52px;
-    border-radius: 20px;
-    transition: all 0.3s ease-in 0s;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 6px;
+  background: #519806;
+  position: absolute;
+  top: 1px;
+  bottom: 0;
+  box-shadow: 1px 0px 2px #000 inset;
+  border: solid 2px #d3f1b2;
+  right: 52px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
+  margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-	right: -2px;
-	background: #0ea4bb;
-    border: solid 2px #cafdf8; 
+  right: -2px;
+  background: #0ea4bb;
+  border: solid 2px #cafdf8;
 }
 
 /* end onoffswitch */
 
 /* custom tab tab-color */
 .tab-color ul.nav.nav-tabs {
-    border-bottom: solid 1px #3d8c85 !important;
+  border-bottom: solid 1px #3d8c85 !important;
 }
 .registartionTab .tab-color ul.nav.nav-tabs {
-    background: #aed8d4 !important;
-    border: solid 1px #3d8c85 !important;
+  background: #aed8d4 !important;
+  border: solid 1px #3d8c85 !important;
 }
-.tab-color .tab-content{
-	border: solid 1px #3d8c85 !important;border-top: 0px !important;
-	margin-top: -17px;
+.tab-color .tab-content {
+  border: solid 1px #3d8c85 !important;
+  border-top: 0px !important;
+  margin-top: -17px;
 }
-.registartionTab  .tab-color .nav-tabs .nav-link.active {
-    color: #fff !important;
-	background-color: #5b948f !important;
-	border: solid 1px #2d736d !important;
-    border-bottom: 0px !important;
+.registartionTab .tab-color .nav-tabs .nav-link.active {
+  color: #fff !important;
+  background-color: #5b948f !important;
+  border: solid 1px #2d736d !important;
+  border-bottom: 0px !important;
 }
 .registartionTab .tab-color .nav-tabs li a {
-	border: solid 1px #3d8c85 !important;border-bottom: 1px solid #fff !important;
+  border: solid 1px #3d8c85 !important;
+  border-bottom: 1px solid #fff !important;
 }
 
 .tab-color .nav-tabs {
-	height: 33px;
-	margin-top: 6px;margin-bottom: 17px;
+  height: 33px;
+  margin-top: 6px;
+  margin-bottom: 17px;
 }
 
 .tab-color ul li a {
-	padding: 1px 9px !important;
-	height: 28px;
-	background: transparent !important;
-	font-size: 15px;
-	border-radius: 0px !important;
-	color: #000 !important;
-	margin-right: 1px;
-	font-family: dosisr;
+  padding: 1px 9px !important;
+  height: 28px;
+  background: transparent !important;
+  font-size: 15px;
+  border-radius: 0px !important;
+  color: #000 !important;
+  margin-right: 1px;
+  font-family: dosisr;
 }
 
 /* end custom tab tab-color */
 
 .table-search-none .dataTables_length {
-    display: none;
+  display: none;
 }
 
-.table-search-none .dataTables_filter{
-	display: none;
+.table-search-none .dataTables_filter {
+  display: none;
 }
 
 /* toggle css */
 
 /* infertility-table-all */
-.infertility-table-all table th{
-	font-size:18px;
-	padding: 4px !important; 
-	color:#000;
+.infertility-table-all table th {
+  font-size: 18px;
+  padding: 4px !important;
+  color: #000;
 }
-.infertility-table-all table td{
-	padding: 8px 4px !important; 
+.infertility-table-all table td {
+  padding: 8px 4px !important;
 }
-.fertility-float{
-    float: left;
+.fertility-float {
+  float: left;
 }
-.infertility-table-all  input{
-	width:auto;
+.infertility-table-all input {
+  width: auto;
 }
-.fertility-p{
-	line-height: 26px;font-size: 15px;
+.fertility-p {
+  line-height: 26px;
+  font-size: 15px;
 }
-.fertility-span{
-	line-height: 26px;font-size: 15px;
-}
-
-.input-style-frtility{
-	border: 0px !important;
-    border-bottom: dashed 1px #267392 !important;
-    background: transparent !important;
-    border-radius: 0px !important;
+.fertility-span {
+  line-height: 26px;
+  font-size: 15px;
 }
 
-.infertility-table-padding  tbody td  {
-    padding: 8px 4px !important;
+.input-style-frtility {
+  border: 0px !important;
+  border-bottom: dashed 1px #267392 !important;
+  background: transparent !important;
+  border-radius: 0px !important;
 }
-.input-width-90{
-	width:90% !important;
+
+.infertility-table-padding tbody td {
+  padding: 8px 4px !important;
 }
-.input-width-70{
-	width:70% !important;
+.input-width-90 {
+  width: 90% !important;
 }
-.input-width-74{
-	width:74% !important;
+.input-width-70 {
+  width: 70% !important;
 }
-.input-width-69{
-	width:69% !important;
+.input-width-74 {
+  width: 74% !important;
 }
-.input-width-66{
-	width:66.5% !important;
+.input-width-69 {
+  width: 69% !important;
 }
-.input-width-40{
-	width: 40% !important;
+.input-width-66 {
+  width: 66.5% !important;
 }
-.input-width-30{
-	width: 30% !important;
+.input-width-40 {
+  width: 40% !important;
 }
-.input-width-29{
-	width: 29% !important;
+.input-width-30 {
+  width: 30% !important;
 }
-.input-width-24{
-	width: 24% !important;
+.input-width-29 {
+  width: 29% !important;
 }
-.input-width-21{
-	width: 21% !important;
+.input-width-24 {
+  width: 24% !important;
 }
-.input-width-11{
-	width: 11% !important;
+.input-width-21 {
+  width: 21% !important;
 }
-.input-width-12{
-	width: 12% !important;
+.input-width-11 {
+  width: 11% !important;
 }
-.input-width-26{
-	width: 26.5% !important;
+.input-width-12 {
+  width: 12% !important;
 }
-.input-width-26{
-	width: 26% !important;
+.input-width-26 {
+  width: 26.5% !important;
 }
-.input-width-20{
-	width: 20.5% !important;
+.input-width-26 {
+  width: 26% !important;
 }
-.input-width-33{
-	width: 33.5% !important;
+.input-width-20 {
+  width: 20.5% !important;
+}
+.input-width-33 {
+  width: 33.5% !important;
 }
 .input-width-37 {
-    width: 37% !important;
+  width: 37% !important;
 }
 
 .input-width-32 {
-    width: 32% !important;
+  width: 32% !important;
 }
-.input-width-27{
-	width: 27% !important;
-}
-
-.input-width-45{
-	width: 45% !important;
-}
-.input-width-20{
-	width: 20% !important;
-}
-.input-width-90{
-	width:90% !important;
-}
-.input-width-80{
-	width:80% !important;
+.input-width-27 {
+  width: 27% !important;
 }
 
-.input-width-60{
-	width:60% !important;
+.input-width-45 {
+  width: 45% !important;
+}
+.input-width-20 {
+  width: 20% !important;
+}
+.input-width-90 {
+  width: 90% !important;
+}
+.input-width-80 {
+  width: 80% !important;
 }
 
-.input-width-54{
-	width:54% !important;
-}
-.input-width-76{
-	width:76% !important;
-}
-.input-width-50{
-	width:50% !important;
-}
-.input-width-84{
-	width:84% !important;
-}
-.input-width-87{
-	width:87% !important;
-}
-.textarea-width-70{
-	 width:70% !important;
-}
-.textarea-width-90{
-	width:90% !important;
-}
-.textarea-width-80{
-	width:80% !important;
-}
-.textarea-width-97{
-	width:97.5% !important;
+.input-width-60 {
+  width: 60% !important;
 }
 
-.medihis{
-    display: inline-flex;
-    padding-right: 6px;
-    margin-top: 3px;
+.input-width-54 {
+  width: 54% !important;
 }
-.texth6{
-    margin-top: 6px;
-	padding-left: 6px;
-	font-size: 14px;
+.input-width-76 {
+  width: 76% !important;
 }
-.patienth5{
-    color: #009688;
-    margin-bottom: 6px;
+.input-width-50 {
+  width: 50% !important;
+}
+.input-width-84 {
+  width: 84% !important;
+}
+.input-width-87 {
+  width: 87% !important;
+}
+.textarea-width-70 {
+  width: 70% !important;
+}
+.textarea-width-90 {
+  width: 90% !important;
+}
+.textarea-width-80 {
+  width: 80% !important;
+}
+.textarea-width-97 {
+  width: 97.5% !important;
+}
+
+.medihis {
+  display: inline-flex;
+  padding-right: 6px;
+  margin-top: 3px;
+}
+.texth6 {
+  margin-top: 6px;
+  padding-left: 6px;
+  font-size: 14px;
+}
+.patienth5 {
+  color: #009688;
+  margin-bottom: 6px;
 }
 .infertility_Table th {
-    color: #027167;
-    font-size: 13px;
+  color: #027167;
+  font-size: 13px;
 }
 
-.infer-pl5{
-    padding-left: 5%;
+.infer-pl5 {
+  padding-left: 5%;
 }
 
 .infertility_Table p {
-    color: #027167;
-    font-size: 13px;
+  color: #027167;
+  font-size: 13px;
 }
 .fertility-p-width {
-    width: 20%;
+  width: 20%;
 }
-.input-ml{
-
-	margin-left: 3%;
-
+.input-ml {
+  margin-left: 3%;
 }
-.infer-btn{
-    float: right;
+.infer-btn {
+  float: right;
 }
 
 /* tab-padding-less */
 .tab-padding-less .nav-tabs li a {
-	padding: 6px 5px !important; 
+  padding: 6px 5px !important;
 }
 
-.display-none-loader{
-	display: none;
+.display-none-loader {
+  display: none;
 }
-.loader-icon-block .display-none-loader{
-	display: block !important;
-
+.loader-icon-block .display-none-loader {
+  display: block !important;
 }
 /* tinymce css  */
-.pacsReportingEditor .tox .tox-sidebar-wrap { 
-	width: 830px;
-    background: #fff;
-    margin: auto;
+.pacsReportingEditor .tox .tox-sidebar-wrap {
+  width: 830px;
+  background: #fff;
+  margin: auto;
 }
-.pacsReportingEditor .tox-edit-area__iframe{
-	width:693px !important;
-    border: solid;
-    margin: auto;
-    left: 60px;
-}
-
-.pacsReportingEditor .mce-content-body { 
-    padding: 0px 75px !important;
+.pacsReportingEditor .tox-edit-area__iframe {
+  width: 693px !important;
+  border: solid;
+  margin: auto;
+  left: 60px;
 }
 
-.pacsReportingEditor .tox-editor-container{
-	background: #09090994!important; 
+.pacsReportingEditor .mce-content-body {
+  padding: 0px 75px !important;
 }
 
-.pacsReportingEditor{
-	height: 885px!important;
+.pacsReportingEditor .tox-editor-container {
+  background: #09090994 !important;
 }
 
-.pacsReportingEditor .tox-tinymce{
-	height: 842px!important;
+.pacsReportingEditor {
+  height: 885px !important;
 }
 
-.pacsReportingEditor .tox .tox-edit-area { 
-    border-left: 2px solid #6d9d92;
-    border-right: 2px solid #6d9d92;
+.pacsReportingEditor .tox-tinymce {
+  height: 842px !important;
+}
+
+.pacsReportingEditor .tox .tox-edit-area {
+  border-left: 2px solid #6d9d92;
+  border-right: 2px solid #6d9d92;
 }
 
 .purchase-without-type typeahead-container.dropdown.open.dropdown-menu {
-    height: 227px !important;
-    border: solid 2px #54708b; overflow: auto; 
+  height: 227px !important;
+  border: solid 2px #54708b;
+  overflow: auto;
 }
 
 .approve-Type .ExamSetup-type .ng-select .ng-select-container {
-    top: -1px!important;
+  top: -1px !important;
 }
 
-.approve-Type .ng-select.ng-select-disabled>.ng-select-container {
-	background-color: #dddddd!important;
+.approve-Type .ng-select.ng-select-disabled > .ng-select-container {
+  background-color: #dddddd !important;
 }
 /* .pacsReportingEditor p {
     padding: 0;
@@ -2699,293 +2975,310 @@ app-dmfr-modal {
 	line-height: 4px;
 } */
 
-
 /* typeahead-container-height */
-.typeahead-container-height typeahead-container{
-   padding: 0px;
+.typeahead-container-height typeahead-container {
+  padding: 0px;
 }
 
 .typeahead-container-height typeahead-container button.dropdown-item {
-    padding: 0px 1px;
+  padding: 0px 1px;
 }
-.typeahead-container-height .dropdown-item table th{
-	background-color: #bee4e9 !important;
-    color: #000;
-    font-size: 14px;
+.typeahead-container-height .dropdown-item table th {
+  background-color: #bee4e9 !important;
+  color: #000;
+  font-size: 14px;
 }
-.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container{
-	box-shadow: none !important;
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  box-shadow: none !important;
 }
 
 .actionType typeahead-container.dropdown.open.dropdown-menu {
-    width: 83% !important;
+  width: 83% !important;
 }
 
 /* /tart for data table card view  */
-table.dataTable.no-footer.cards{
-	border-bottom:0px !important;
-	}
-	.cards tbody tr {
-		float: left;
-		width: 12.5rem;
-		margin: 0.5rem;
-		border: 1px solid #05788a;
-		height: 220px;
-		overflow: hidden;
-		border-radius: 6px;
-	}
-	.cards tbody tr:nth-child(2n+2){
-	background: #fff !important;
-	}
-	.cards tbody td {
-	display: block;
-	}
-	
-	.cards thead {
-	display: none;
-	}
-	
-	.cards td:before {
-	content: attr(data-label);
-	display: inline;
-	position: relative;
-	font-size: 85%;
-	top: -0.5rem;
-	color: #808080;
-	min-width: 4rem;
-	margin-left: 0;
-	margin-right: 1rem;
-	text-align: left;
-	float:left;
-	}
-	
-	tr.selected td:before {
-	color: #404040;
-	}
-	
-	/* .cards .fa {
+table.dataTable.no-footer.cards {
+  border-bottom: 0px !important;
+}
+.cards tbody tr {
+  float: left;
+  width: 12.5rem;
+  margin: 0.5rem;
+  border: 1px solid #05788a;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.cards tbody tr:nth-child(2n + 2) {
+  background: #fff !important;
+}
+.cards tbody td {
+  display: block;
+}
+
+.cards thead {
+  display: none;
+}
+
+.cards td:before {
+  content: attr(data-label);
+  display: inline;
+  position: relative;
+  font-size: 85%;
+  top: -0.5rem;
+  color: #808080;
+  min-width: 4rem;
+  margin-left: 0;
+  margin-right: 1rem;
+  text-align: left;
+  float: left;
+}
+
+tr.selected td:before {
+  color: #404040;
+}
+
+/* .cards .fa {
 	font-size: 2.5rem;
 	text-align: center;
 	} */
-	
-	.cards .cards-icon {
-	font-size: 4rem;
-	}
-	.cards .sorting_1 {
-	height: 55px;padding: 2px !important;
-	overflow: hidden;
-	}
-	.cards .sorting_1 img {
-	height: 181px;
-	object-fit: cover;
-	}
-	table.dataTable tbody td.doc-name-app{
-	color: #028398;
-	padding-left: 12px !important;
-	font-size: 15px !important;padding-bottom: 0px !important; font-weight: bold;
-	padding-top: 10px !important; line-height: 20px;
-	}
-	table.dataTable tbody td.doc-spe-app {
-	color: #0b0c0c;
-	padding-left: 12px !important;
-	font-size: 15px !important;
-	padding-top: 8px !important;
-	padding-bottom: 3px !important;
-	line-height: 17px;
-	
-	}
-	table.dataTable tbody td.doc-deg-app {
-	color: #7b7d7d;
-	padding-left: 12px !important;
-	font-size: 15px !important;
-	padding-top: 14px !important;
-	padding-bottom: 0px !important;
-	padding-top: 0px !important; line-height: 17px;
-	}
-	table.dataTable tbody td.doc-con-app {
-	color: #000;
-	padding-left: 12px !important;
-	font-size: 15px !important;
-	padding-top: 14px !important;
-	padding-bottom: 0px !important;
-	padding-top: 0px !important;
-	}
-	table.dataTable tbody td.doc-hos-app {
-	color: #7b7d7d;
-	padding-left: 12px !important;
-	font-size: 15px !important;
-	padding-top: 14px !important;
-	padding-bottom: 0px !important;
-	padding-top: 0px !important;
-	}
-	p.amount-title-p {
-	color: #076d1e;
-	padding-left: 12px !important;
-	font-size: 15px !important;
-	padding-top: 14px !important;
-	padding-bottom: 0px !important;
-	padding-top: 0px !important;font-weight: bold;
-	width: 50%;
-	float: left; padding-top: 8px !important;
-	}
-	button.btn.btn-info.book-app-onlineapp {
-	background-color: #17a2b8;
-	border-color: #17a2b8;
-	padding: 2px 10px;
-	border-radius: 40px;
-	margin-right: 8px;
-	margin-top: 4px;
-	float: right;
-	right: 5px;
-	position: relative;
-	}
-	td.booking-fee-app {
-	
-	margin-top: 6px;
-	}
-	table.dataTable.cards.hover tbody tr:hover{
-	background-color: #f5f7f9 !important;
-	
-	}
-	/* end for data table card view  */
-	.Machine-type  .ng-select.ng-select-disabled>.ng-select-container {
-		top: -1px !important;
-	}
 
-	.dietEditorHeight635 .tox-tinymce {
-		height: 635px!important;
-	}
+.cards .cards-icon {
+  font-size: 4rem;
+}
+.cards .sorting_1 {
+  height: 55px;
+  padding: 2px !important;
+  overflow: hidden;
+}
+.cards .sorting_1 img {
+  height: 181px;
+  object-fit: cover;
+}
+table.dataTable tbody td.doc-name-app {
+  color: #028398;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-bottom: 0px !important;
+  font-weight: bold;
+  padding-top: 10px !important;
+  line-height: 20px;
+}
+table.dataTable tbody td.doc-spe-app {
+  color: #0b0c0c;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-top: 8px !important;
+  padding-bottom: 3px !important;
+  line-height: 17px;
+}
+table.dataTable tbody td.doc-deg-app {
+  color: #7b7d7d;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-top: 14px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  line-height: 17px;
+}
+table.dataTable tbody td.doc-con-app {
+  color: #000;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-top: 14px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+table.dataTable tbody td.doc-hos-app {
+  color: #7b7d7d;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-top: 14px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+p.amount-title-p {
+  color: #076d1e;
+  padding-left: 12px !important;
+  font-size: 15px !important;
+  padding-top: 14px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  font-weight: bold;
+  width: 50%;
+  float: left;
+  padding-top: 8px !important;
+}
+button.btn.btn-info.book-app-onlineapp {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  padding: 2px 10px;
+  border-radius: 40px;
+  margin-right: 8px;
+  margin-top: 4px;
+  float: right;
+  right: 5px;
+  position: relative;
+}
+td.booking-fee-app {
+  margin-top: 6px;
+}
+table.dataTable.cards.hover tbody tr:hover {
+  background-color: #f5f7f9 !important;
+}
+/* end for data table card view  */
+.Machine-type .ng-select.ng-select-disabled > .ng-select-container {
+  top: -1px !important;
+}
 
-	.patientHistoryEditorHeight .tox-tinymce {
-		height: 370px!important;
-	}
+.dietEditorHeight635 .tox-tinymce {
+  height: 635px !important;
+}
 
+.patientHistoryEditorHeight .tox-tinymce {
+  height: 370px !important;
+}
 
-	/* popover */
-	.ot-popover .popover-content{
-		background-color: #fff!important;
-		border-bottom-right-radius: 4px;
-    	border-bottom-left-radius: 4px;
-	}
+/* popover */
+.ot-popover .popover-content {
+  background-color: #fff !important;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 
-
-	.ot-popover .popover-arrow.arrow::after {
-		border-top-color: #ffffff !important;
-	}
+.ot-popover .popover-arrow.arrow::after {
+  border-top-color: #ffffff !important;
+}
 /*  */
 .white-space-nowrap table.dataTable {
-   white-space: nowrap!important;
+  white-space: nowrap !important;
 }
-
-
 
 /* tab custom list 2 */
-.tab-oustom-list2 ul.nav.nav-tabs{
-	background: #e6e7e5 !important;
-    border: solid 1px #c9d3bd !important;
-    background-color: #e6e7e5;
-    width: auto;
-    margin: auto;
-    border-radius: 30px !important;
-    padding:3px !important;
+.tab-oustom-list2 ul.nav.nav-tabs {
+  background: #e6e7e5 !important;
+  border: solid 1px #c9d3bd !important;
+  background-color: #e6e7e5;
+  width: auto;
+  margin: auto;
+  border-radius: 30px !important;
+  padding: 3px !important;
 }
 .tab-oustom-list .nav-tabs .nav-item {
-    margin-bottom: 0px!important;
-	margin-left: 2px;
-    margin-right: 2px;
+  margin-bottom: 0px !important;
+  margin-left: 2px;
+  margin-right: 2px;
 }
-
 
 .tabArea.tab-oustom-list2 .tab-content {
-    border: 0px;
+  border: 0px;
 }
 .tabArea.tab-oustom-list2 .nav-tabs li a {
-    background: #e6e7e5   !important;
-    border: 0px !important;
-	border-radius: 20px !important;margin: 0px;
-	padding: 2px 16px; font-size: 14px;
+  background: #e6e7e5 !important;
+  border: 0px !important;
+  border-radius: 20px !important;
+  margin: 0px;
+  padding: 2px 16px;
+  font-size: 14px;
 }
 .tabArea.tab-oustom-list2 .nav-tabs .nav-link.active {
-    color: #fff !important;
-    background-color: #828f75 !important;
-    border-bottom: solid 1px #e8f3dc !important;
-    border: solid 1px #808b75 !important;
-    margin: 0px;
-    border-radius: 20px !important;  
-    padding-top: 1px !important;
+  color: #fff !important;
+  background-color: #828f75 !important;
+  border-bottom: solid 1px #e8f3dc !important;
+  border: solid 1px #808b75 !important;
+  margin: 0px;
+  border-radius: 20px !important;
+  padding-top: 1px !important;
 }
-
-
 
 .tab-oustom-medication ul.nav.nav-tabs {
-    margin: auto 200px!important;
+  margin: auto 200px !important;
 }
 .float-list-tab ul.nav.nav-tabs {
-	height: 30px !important;
-    float: left; min-height: auto;
+  height: 30px !important;
+  float: left;
+  min-height: auto;
 }
 .float-list-tab .nav-tabs li a {
-    padding: 2px 32px !important;height: 23px !important;
+  padding: 2px 32px !important;
+  height: 23px !important;
 }
 
 .float-list-tab .nav-tabs li a {
-	height: 23px !important;line-height: 19px;
+  height: 23px !important;
+  line-height: 19px;
 }
 .float-list-tab .nav-tabs .nav-link.active {
-height: 23px !important;line-height: 19px;
+  height: 23px !important;
+  line-height: 19px;
 }
-.float-list-tab-width ul{
-	width: 100% !important;
+.float-list-tab-width ul {
+  width: 100% !important;
 }
-
 
 /* common-ng-select-style2 */
 .common-ng-select-style2 .ng-select .ng-select-container {
-	min-height: 30px;    top: -7px;
-    position: relative;
+  min-height: 30px;
+  top: -7px;
+  position: relative;
 }
 
 .common-ng-select-style2 .ng-select.ng-select-single .ng-select-container {
-	height: 30px;
-    border: none;
-    padding-top: 8px;
+  height: 30px;
+  border: none;
+  padding-top: 8px;
 }
 
 .common-ng-select-style2 .ng-select .ng-select-container {
-	border: none;
-    border-radius: 16px;
-    background: transparent;
+  border: none;
+  border-radius: 16px;
+  background: transparent;
 }
 
-.common-ng-select-style2 .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value
-	{
-	line-height: 25px;
-	padding-top: 4px;
+.common-ng-select-style2
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  line-height: 25px;
+  padding-top: 4px;
 }
 
-.common-ng-select-style2 .ng-select .ng-select-container .ng-value-container .ng-placeholder
-	{
-	font-size: 15px;
+.common-ng-select-style2
+  .ng-select
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
+  font-size: 15px;
 }
 
 .addUserStore .ng-select.ng-select-single .ng-select-container {
-	border-radius: 25px;
- }
- .addUserStore .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-	 font-size: 15px;
- }
+  border-radius: 25px;
+}
+.addUserStore
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  font-size: 15px;
+}
 
 .addNsUserStore .ng-select.ng-select-single .ng-select-container {
-	border-radius: 25px;
- }
- .addNsUserStore .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-	 font-size: 15px;
- }
+  border-radius: 25px;
+}
+.addNsUserStore
+  .ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  font-size: 15px;
+}
 
- #user_store_policy .panel-title {
-	background: #bae886;
+#user_store_policy .panel-title {
+  background: #bae886;
 }
 
 table.dataTable.hover tbody .rs-entry-data-table-row:hover {
-	background: #9e5757 !important; color: #fff !important;
+  background: #9e5757 !important;
+  color: #fff !important;
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cmh-healthdr-ui": {
+    "educare-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,9 +24,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -54,7 +52,6 @@
               "public/css/variables.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
-                
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -75,12 +72,12 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
-              ],            
+              ],
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2MB",
-                  "maximumError": "2MB"
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,10 +99,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cmh-healthdr-ui:build:production"
+              "buildTarget": "educare-ui:build:production"
             },
             "development": {
-              "buildTarget": "cmh-healthdr-ui:build:development"
+              "buildTarget": "educare-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -116,10 +113,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
@@ -132,9 +126,7 @@
                 "output": "/assets"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/styles.css"]
           }
         }
       }

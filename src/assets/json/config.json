@@ -2,24 +2,9 @@
   "success": true,
   "layouts": [
     {
-      "id":1,
+      "id": 1,
       "activeStatus": 1,
-      "themeName": "CMH"
-    },
-    {
-      "id":2,
-      "activeStatus": 0,
-      "themeName": "NAVY"
-    },
-    {
-      "id":3,
-      "activeStatus": 0,
-      "themeName": "POLICE"
-    },
-    {
-      "id":4,
-      "activeStatus": 0,
-      "themeName": "OSMANI"
+      "themeName": "SMS"
     }
   ]
 }

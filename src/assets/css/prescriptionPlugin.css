@@ -1,697 +1,691 @@
 /* prescription custom plugin css */
 .btn-medicine-his {
-    width: 18px !important;
+  width: 18px !important;
 }
-.cross-color{
-    color:#e10707; padding-left: 2px !important
+.cross-color {
+  color: #e10707;
+  padding-left: 2px !important;
 }
-.check-btn{
-    color: #07ac28; padding-left: 2px;  
+.check-btn {
+  color: #07ac28;
+  padding-left: 2px;
 }
-.textarea-prescription{
-    height: 56px  !important;
-    line-height: 17px;
+.textarea-prescription {
+  height: 56px !important;
+  line-height: 17px;
 }
 .referredSearch typeahead-container.dropdown.open.dropdown-menu {
-    width: 73.5%;
+  width: 73.5%;
 }
-.referralTable{
-    width: 80% !important;
-    border: solid 1px #6a99ba;
-    float: right;
-    background: #efefef;
-    
+.referralTable {
+  width: 80% !important;
+  border: solid 1px #6a99ba;
+  float: right;
+  background: #efefef;
 }
 
-.referralTable tr:nth-child(2n+2){
-	background:#fbf8f8;
+.referralTable tr:nth-child(2n + 2) {
+  background: #fbf8f8;
 }
-.referralTable tr span i{
-    color: #c40707;
+.referralTable tr span i {
+  color: #c40707;
 }
-.btnDuration{padding: 0px 6px !important;}
-.topSpace{top: -4px;}
+.btnDuration {
+  padding: 0px 6px !important;
+}
+.topSpace {
+  top: -4px;
+}
 .saveTemplate {
-    padding: 4px 8px;
-    /* width: 100%; */
-    top: -3px;
-    position: relative;
-    float: right;
+  padding: 4px 8px;
+  /* width: 100%; */
+  top: -3px;
+  position: relative;
+  float: right;
 }
 
 .color_one {
-    border: 1px solid #89ad62  !important;
+  border: 1px solid #89ad62 !important;
 }
 .block_all {
-	border: 1px solid rgba(0,0,0,.125);
-	border-radius: 4px;
-	-webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
-	background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  background: transparent;
 }
 .block_all h4 {
-    width: 100%;
-    float: left;
-    margin: 0px;
-    background: #c5ddaa;
-    line-height: 27px;
-    font-size: 21px;
-    margin-bottom: 6px;border-radius: 4px 4px 0 0;
+  width: 100%;
+  float: left;
+  margin: 0px;
+  background: #c5ddaa;
+  line-height: 27px;
+  font-size: 21px;
+  margin-bottom: 6px;
+  border-radius: 4px 4px 0 0;
 }
 .block_all h4 span {
-    width: 34px;
-    height: 28px;
-    float: left;
-    text-align: center;
-    font-size: 17px;
-    color: #fff;
-    line-height: 28px;
-    background: #89ad62;
-    margin-right: 12px;
-    border-right: solid 1px #94c065;
-    box-shadow: 1px 0px 0px #4e7a1a;
+  width: 34px;
+  height: 28px;
+  float: left;
+  text-align: center;
+  font-size: 17px;
+  color: #fff;
+  line-height: 28px;
+  background: #89ad62;
+  margin-right: 12px;
+  border-right: solid 1px #94c065;
+  box-shadow: 1px 0px 0px #4e7a1a;
 }
-.pannelBody{ padding: 7px;}
-.inpuControl{
-    border: 1px solid #6bb5d2;
+.pannelBody {
+  padding: 7px;
+}
+.inpuControl {
+  border: 1px solid #6bb5d2;
 }
 .searchicon {
-    border: 1px solid #6bb5d2;
-    border-left: 0px;
-    height: 26px;
-    border-radius: 0px 4px 4px 0px !important;
+  border: 1px solid #6bb5d2;
+  border-left: 0px;
+  height: 26px;
+  border-radius: 0px 4px 4px 0px !important;
 }
-.tdFont td{ font-size: 14px;}
+.tdFont td {
+  font-size: 14px;
+}
 
-.color_two{
-    border: 1px solid #75b6bb !important;
-    
+.color_two {
+  border: 1px solid #75b6bb !important;
 }
 .color_two h4 {
-    background: #75b6bb;
-    position: relative; color: #fff;
+  background: #75b6bb;
+  position: relative;
+  color: #fff;
 }
 .color_two h4 span {
-    background: #63a2a7 !important;
-    border-right: solid 1px #548e93 !important;
-    box-shadow: 1px 0px 0px #8ccfd4 !important;
+  background: #63a2a7 !important;
+  border-right: solid 1px #548e93 !important;
+  box-shadow: 1px 0px 0px #8ccfd4 !important;
 }
-.add_title{ padding: 0px 6px;}
+.add_title {
+  padding: 0px 6px;
+}
 .all_content_wrapper .form-control {
-    border: 1px solid #6bb5d2;
+  border: 1px solid #6bb5d2;
 }
 input.check_input1 {
-    height: 20px;
+  height: 20px;
 }
 
 .main_table_content thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    background: #e1f2f5 !important;
-    white-space: nowrap;
-    color: #017080;
-    font-size: 15px;
-    font-weight: bold;
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background: #e1f2f5 !important;
+  white-space: nowrap;
+  color: #017080;
+  font-size: 15px;
+  font-weight: bold;
 }
-.minheightTemplate{ height: 36vh;}
+.minheightTemplate {
+  height: 36vh;
+}
 .medicationSearch typeahead-container.dropdown.open.dropdown-menu {
-    width: 296%;
+  width: 296%;
 }
 .check_input input.chekMargin {
-    height: 17px !important;
-    top: 3px;
+  height: 17px !important;
+  top: 3px;
 }
 .icon_marginp {
-    top: 4px;
-    position: relative; color: #ad3712;
+  top: 4px;
+  position: relative;
+  color: #ad3712;
 }
-.btnFevList{ width:20px !important;
-    text-align: center;
-    padding: 0px !important;}
-    .medicationTitle table thead th{ font-size: 13px !important;}
-
-    .allprescriptionBlock-Row typeahead-container.dropdown.open.dropdown-menu {
-        overflow: auto;
-    }
-
-    .medicationTypeahead .dropdown-item {
-        white-space: pre-line;
-        word-break: break-all;
-        height: auto !important;
-        line-height: 20px!important;
-    }
-
-    .rowPaddPrescription{ padding-left: 15px; padding-right: 15px;}
-    input.input{
-        border: solid 1px #68bee0;
-        height: 30px !Important;
-    }
-    .ipd-doctor-prescription ul.nav.nav-tabs {
-        top: 1px !important;
-        position: relative !important;
-    }
-
-
-    .item-therapy-list{
-        width: 100%;
-        background: #fff;
-        float: left;
-        border: solid 1px #9cc9d6;
-        border-radius: 4px;
-        line-height: 18px;padding-left: 2px;
-    }
-    .ipdNoWardClass .ng-select-container.ng-has-value {
-        border-color: red;
-    }
-
-    .page-wrapper .page-content .teeth_li2{
-        left: 48px;
-    }
-    .page-wrapper.toggled .page-content .teeth_li2{
-        left: 72px;
-    }
-    .page-wrapper .page-content .teeth_li3{
-        left: 48px;
-    }
-    .page-wrapper.toggled .page-content .teeth_li3{
-        left: 72px;
-    }
-
-    .ipd-search-right {
-        width: auto;
-        float: right;
-    }
-    .ipd-search-work {
-        float: left;
-    }
-    .ipd-search-work input {
-        width: 130px !important;
-    }
-.searchPannelPatient{
-    float: left;
+.btnFevList {
+  width: 20px !important;
+  text-align: center;
+  padding: 0px !important;
 }
-    /* prescription responsive css */
-    @media (min-width:200px) and (max-width:1324px) {
-        .search-right-pre {
-            width: 58%;
-        }
-    }
-
-    @media (min-width:200px) and (max-width:1299px) {
-    ul.tab_custom li a {
-
-        padding: 1px 5px !important;
-    }
-    .onoffswitch{
-        top: 41px;
-    }
-    .nav-item.quick-app-btn .quickAppLi {
-        top: 37px;
-    }
-    .search-right-pre {
-        width: 100%;
-        float: left;
-        position: relative;
-        margin-top: 10px;
-    
-    }
-    .inputSearch{
-        width: 120px;
-    }
-    .ipd-search-right {
-        margin-top: 29px;
-    }
-    .consul-top-tab{
-        margin-top: 25px;
-    }
-    .modalWidth80 {
-        max-width: 100% !important;
-    }
+.medicationTitle table thead th {
+  font-size: 13px !important;
 }
 
-@media (min-width:200px) and (max-width:1234px) {
-.searchPannelPatient input{
-    width: 112px !important;;
-}
+.allprescriptionBlock-Row typeahead-container.dropdown.open.dropdown-menu {
+  overflow: auto;
 }
 
-@media (min-width:200px) and (max-width:1210px) {
-.searchPannelPatient input{
-    width: 110px;
+.medicationTypeahead .dropdown-item {
+  white-space: pre-line;
+  word-break: break-all;
+  height: auto !important;
+  line-height: 20px !important;
+}
+
+.rowPaddPrescription {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+input.input {
+  border: solid 1px #68bee0;
+  height: 30px !important;
+}
+.ipd-doctor-prescription ul.nav.nav-tabs {
+  top: 1px !important;
+  position: relative !important;
+}
+
+.item-therapy-list {
+  width: 100%;
+  background: #fff;
+  float: left;
+  border: solid 1px #9cc9d6;
+  border-radius: 4px;
+  line-height: 18px;
+  padding-left: 2px;
+}
+.ipdNoWardClass .ng-select-container.ng-has-value {
+  border-color: red;
+}
+
+.page-wrapper .page-content .teeth_li2 {
+  left: 48px;
+}
+.page-wrapper.toggled .page-content .teeth_li2 {
+  left: 72px;
+}
+.page-wrapper .page-content .teeth_li3 {
+  left: 48px;
+}
+.page-wrapper.toggled .page-content .teeth_li3 {
+  left: 72px;
+}
+
+.ipd-search-right {
+  width: auto;
+  float: right;
+}
+.ipd-search-work {
+  float: left;
 }
 .ipd-search-work input {
-    width: 110px !important;
+  width: 130px !important;
+}
+.searchPannelPatient {
+  float: left;
+}
+/* prescription responsive css */
+@media (min-width: 200px) and (max-width: 1324px) {
+  .search-right-pre {
+    width: 58%;
+  }
 }
 
-}
-
-@media (min-width:200px) and (max-width:1100px) {
-.ipd-search-right {
-    margin-top: 28px;
-}
-}
-
-@media (min-width:200px) and (max-width:1050px) {
-.searchPannelPatient input{
-    width: 100px;
-}
-.pannelArea .registartionTab .nav-tabs li a {
-    z-index:99;
+@media (min-width: 200px) and (max-width: 1299px) {
+  ul.tab_custom li a {
+    padding: 1px 5px !important;
+  }
+  .onoffswitch {
+    top: 41px;
+  }
+  .nav-item.quick-app-btn .quickAppLi {
+    top: 37px;
+  }
+  .search-right-pre {
+    width: 100%;
+    float: left;
     position: relative;
-}
+    margin-top: 10px;
+  }
+  .inputSearch {
+    width: 120px;
+  }
+  .ipd-search-right {
+    margin-top: 29px;
+  }
+  .consul-top-tab {
+    margin-top: 25px;
+  }
+  .modalWidth80 {
+    max-width: 100% !important;
+  }
 }
 
-@media (min-width:200px) and (max-width:1031px) {
-.input-mis-supp{
+@media (min-width: 200px) and (max-width: 1234px) {
+  .searchPannelPatient input {
+    width: 112px !important;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 1210px) {
+  .searchPannelPatient input {
+    width: 110px;
+  }
+  .ipd-search-work input {
+    width: 110px !important;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 1100px) {
+  .ipd-search-right {
+    margin-top: 28px;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 1050px) {
+  .searchPannelPatient input {
+    width: 100px;
+  }
+  .pannelArea .registartionTab .nav-tabs li a {
+    z-index: 99;
+    position: relative;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 1031px) {
+  .input-mis-supp {
     width: 60% !important;
-}
-.span-mis-supp{
+  }
+  .span-mis-supp {
     width: 40% !important;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:1016px) {
-    .searchPannelPatient input {
-        width: 110px;
-}
-.ipd-search-right {
+@media (min-width: 200px) and (max-width: 1016px) {
+  .searchPannelPatient input {
+    width: 110px;
+  }
+  .ipd-search-right {
     margin-top: 8px;
-}
-.illnessP{
+  }
+  .illnessP {
     width: 116px !important;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:950px) {
-.searchPannelPatient{
+@media (min-width: 200px) and (max-width: 950px) {
+  .searchPannelPatient {
     margin-top: 37px;
+  }
 
-}
-.investigation_area.investigation_areaHomeCmh {
-    margin-top: 82px;
-}
-.continueMedicineArea p {
+  .continueMedicineArea p {
     width: 478px !important;
     height: 56px !important;
     top: 40px;
-    left: -18%;background: #eff9e4;
+    left: -18%;
+    background: #eff9e4;
     border-radius: 12px;
     border: solid 1px #6fae66;
-
-}
-#allBtnArea {
+  }
+  #allBtnArea {
     position: relative !important;
     top: 80px !important;
     margin: auto;
     display: table;
-}
-.continueMedicineArea p {
- 
+  }
+  .continueMedicineArea p {
     top: 110px;
-}
-.investigation_area.investigation_areaHomeCmh {
-    margin-top: 132px;
-}
-.pres-template-top {
+  }
+
+  .pres-template-top {
     top: 78px !important;
     right: 54% !important;
-
-}
-.rx-space-responsive{
+  }
+  .rx-space-responsive {
     margin-top: 107px !important;
-}
-.colone{
-    width: 99% !important; margin-bottom: 12px;
-}
-.colTwo{
+  }
+  .colone {
+    width: 99% !important;
+    margin-bottom: 12px;
+  }
+  .colTwo {
     width: 99% !important;
     margin-right: 3px;
-}
-.addi-option-top{
+  }
+  .addi-option-top {
     margin-top: 149px;
+  }
 }
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .height_table_130 {
+    max-height: 100% !important;
+    height: auto !important;
+  }
+  .bg-pat-res {
+    background: #fff;
+    border-top: solid 1px #ddd;
+    padding-top: 12px;
+  }
+  .onoffswitch {
+    top: 7px;
+  }
+  .nav-item.quick-app-btn .quickAppLi {
+    top: 3px;
+  }
+  .searchPannelPatient {
+    margin-top: 8px;
+  }
+  .search-right-pre {
+    width: 66%;
+    float: right;
+    margin-top: 1px;
+  }
+  .registartionTab ul.nav.nav-tabs {
+    padding-bottom: 33px;
+  }
+  .height_table_162 {
+    height: 212px;
+  }
+  .height_table_128 {
+    height: 212px;
+  }
+  .consul-top-tab {
+    margin-top: 2px;
+  }
+  .continueMedicineArea p {
+    top: 40px;
+  }
+
+  #allBtnArea {
+    position: relative !important;
+    top: 80px !important;
+    margin: auto;
+    display: table;
+  }
+  .continueMedicineArea p {
+    top: 110px;
+    left: -23%;
+  }
+
+  .nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home .nav-link.active {
+    border-radius: 40px !important;
+  }
+  .nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home .nav-link p {
+    margin-bottom: 5px;
+  }
+  .pres-template-top {
+    right: 23% !important;
+  }
+  .padding_left {
+    padding-left: 1px !important;
+    padding-right: 15px !important;
+  }
+  .HomePannel_left2 {
+    border-bottom: solid 1px #649d77;
+    width: 96%;
+    margin: auto;
+    right: 6px;
+    position: relative;
+    height: auto !important;
+  }
+  .height_tablev_64 {
+    height: 29vh !important;
+  }
+  .investigation_table {
+    z-index: 99;
+  }
+  .allprescriptionBlock {
+    width: 95%;
+    margin: auto;
+  }
+  .allprescriptionBlock-Row {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .pl-0-responsive {
+    padding-left: 12px !important;
+  }
+  .pr-0-responsive {
+    padding-right: 12px !important;
+  }
+  .photoTitle {
+    margin-bottom: 13px;
+    margin-top: 15px;
+  }
+  .patientInoOpd {
+    padding-top: 36px !important;
+  }
+  .btn.btn-primary.search-btn {
+    width: 270px;
+    margin: auto;
+    display: table;
+    margin-top: 7px;
+  }
+  .grapdate-area .form-check.form-check-inline {
+    margin-bottom: 12px;
+  }
+  .tabArea.registartionTab .nav-tabs li a {
+    border-radius: 40px !important;
+  }
+}
+@media (min-width: 200px) and (max-width: 700px) {
+  .roomUl li {
+    border: solid 1px #000;
+    box-shadow: 0px 0px 3px #646060;
+  }
+  .doctorContent {
+    margin-left: 2%;
+  }
+  .mac-window .title-bar .buttons {
+    margin-right: 37px !important;
+  }
+  .pre_left_sideber_right {
+    width: 57%;
+    padding-left: 0%;
+  }
+  .rx {
+    left: 9px;
+    position: relative;
+  }
+  .medicine_title {
+    padding-left: 0px !important;
+  }
+  .titme_medicine {
+    left: -18px;
+    position: relative;
+    font-size: 13px;
+  }
+  .prescription_detail_left_name {
+    left: -4px;
+    position: relative;
+  }
+  .list-custom-style p::before {
+    left: -4px !important;
+    top: 6px !important;
+  }
+  .prescription_detail_left_name p {
+    padding-left: 1% !important;
+  }
 }
 
-@media (min-width:200px) and (max-width:767px) {
-    .height_table_130{
-        max-height: 100% !important;
-        height: auto !important;
-
-    }
-    .bg-pat-res {
-        background: #fff;
-        border-top: solid 1px #ddd;
-        padding-top: 12px;
-    
-    }
-    .onoffswitch {
-        top: 7px;
-    }
-    .nav-item.quick-app-btn .quickAppLi {
-        top: 3px;
-    }
-    .searchPannelPatient {
-        margin-top: 8px;
-    }
-    .search-right-pre {
-        width: 66%;
-        float: right;
-        margin-top: 1px;
-    
-    }
-    .registartionTab ul.nav.nav-tabs{
-        padding-bottom: 33px;
-    }
-    .height_table_162 {
-        height: 212px;
-    }
-    .height_table_128 {
-        height: 212px;
-    }
-    .consul-top-tab {
-        margin-top: 2px;
-    }
-    .continueMedicineArea p {
-        top: 40px;
-    }
-    .investigation_area.investigation_areaHomeCmh {
-        margin-top: 92px;
-    }
-    #allBtnArea {
-        position: relative !important;
-        top: 80px !important;
-        margin: auto;
-        display: table;
-    }
-    .continueMedicineArea p {
-        top: 110px;
-        left: -23%;
-    }
-    .investigation_area.investigation_areaHomeCmh {
-        margin-top: 122px;
-    
-    }
-    .nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home .nav-link.active {
-        border-radius: 40px !important;
-    }
-    .nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home .nav-link p{
-        margin-bottom: 5px;
-    }
-    .pres-template-top {
-        right: 23% !important;
-    }
-    .padding_left {
-        padding-left: 1px !important;
-        padding-right: 15px !important;
-    }
-    .HomePannel_left2 {
-        border-bottom: solid 1px #649d77;
-        width: 96%;
-        margin: auto;
-        right: 6px;
-        position: relative;height: auto !important;
-    }
-    .height_tablev_64 {
-        height: 29vh !important;
-       
-    }
-    .investigation_table {
-        z-index: 99;
-    }
-    .allprescriptionBlock {
-        width: 95%;
-        margin: auto;
-    }
-    .allprescriptionBlock-Row {
-        padding-left: 0px;
-        padding-right: 0px;
-    
-    }
-    .pl-0-responsive {
-        padding-left: 12px !important;
-    }
-    .pr-0-responsive {
-        padding-right: 12px !important;
-    }
-    .photoTitle{
-        margin-bottom: 13px;
-        margin-top: 15px;
-
-    }
-    .patientInoOpd{
-        padding-top: 36px !important;
-    
-    }
-    .btn.btn-primary.search-btn {
-        width: 270px;
-        margin: auto;
-        display: table;
-        margin-top:7px;
-    }
-    .grapdate-area .form-check.form-check-inline {
-        margin-bottom: 12px;
-    }
-    .tabArea.registartionTab .nav-tabs li a{
-        border-radius: 40px !important;
-    }
-    
+@media (min-width: 200px) and (max-width: 645px) {
+  .continueMedicineArea {
+    margin-left: 25%;
+  }
+  .typeAheadOPD typeahead-container.dropdown.open.dropdown-menu {
+    width: 100% !important;
+    left: 0px !important;
+  }
+  .typeAheadOPD typeahead-container.dropdown.open.dropdown-menu button {
+    white-space: inherit;
+  }
 }
-    @media (min-width:200px) and (max-width:700px) {
-        .roomUl li{
-            border: solid 1px #000;
-            box-shadow: 0px 0px 3px #646060;
-        }
-        .doctorContent{
-            margin-left: 2%;
-        }
-        .mac-window .title-bar .buttons {
-            margin-right: 37px !important;
-        }
-        .pre_left_sideber_right {
-            width: 57%;
-            padding-left: 0%;
-        }
-        .rx {
-            left: 9px;
-            position: relative;
-        }
-        .medicine_title{
-            padding-left: 0px !important;
-        }
-        .titme_medicine{
-            left: -18px;
-            position: relative;
-            font-size: 13px;
-        }
-        .prescription_detail_left_name{
-            left: -4px;
-            position: relative;
-        }
-        .list-custom-style p::before {
-            left: -4px !important;
-            top: 6px !important;
-        }
-        .prescription_detail_left_name p{
-            padding-left: 1% !important;
-        }
-           }
 
-           @media (min-width:200px) and (max-width:645px) {
-           .continueMedicineArea {
-            margin-left: 25%;
-           }
-           .typeAheadOPD typeahead-container.dropdown.open.dropdown-menu {
-            width: 100% !important;
-            left: 0px !important;
-        }
-        .typeAheadOPD typeahead-container.dropdown.open.dropdown-menu button {
-           
-            white-space: inherit;
-        }
-        }
+@media (min-width: 200px) and (max-width: 615px) {
+  .searchPannelPatient input {
+    width: 120px !important;
+  }
+  .table-width-medicine {
+    width: 590px !important;
+  }
 
-           @media (min-width:200px) and (max-width:615px) {
-           .searchPannelPatient input{
-            width: 120px !important;
-           }
-           .table-width-medicine{
-            width: 590px !important;
-           }
-
-           .table-responsive-custom{
-               overflow-y: auto;
-           }
-        }
-
-@media (min-width:200px) and (max-width:600px) {
-    .addi-option-top{
-        margin-top: 10px;
-    }
-    .prescriptionTab .tab_custom {
-        height: auto !important;
-    
-    }
-    .rx-space-responsive{
-        margin-top: 0px !important;
-    }
-    .pannelArea .registartionTab .nav-tabs li a {
-        border-radius: 0px !important;
-        margin-bottom: 0px !important;
-        text-align: center;
-        font-size: 16px;
-    }
-    .onoffswitch {
-        position: relative;
-        margin: auto;
-        display: table;
-        top: 116px;
-    
-    }
-    .nav-item.quick-app-btn .quickAppLi {
-        top: 16px;
-        position: relative;
-        margin: auto;
-        display: table;
-        left: 99px;
-        font-size: 20px;
-    
-    }
-    .tab_custom li {
-        border-bottom: 0px !important;
-    
-    }
-    .searchPannelPatient{
-        top: -6px;
-        margin-left: 17%;
+  .table-responsive-custom {
+    overflow-y: auto;
+  }
 }
-.tab-color .nav-tabs {
-    height: auto;padding-bottom: 61px !important;
 
-}
-.tab-color li {
+@media (min-width: 200px) and (max-width: 600px) {
+  .addi-option-top {
+    margin-top: 10px;
+  }
+  .prescriptionTab .tab_custom {
+    height: auto !important;
+  }
+  .rx-space-responsive {
+    margin-top: 0px !important;
+  }
+  .pannelArea .registartionTab .nav-tabs li a {
+    border-radius: 0px !important;
+    margin-bottom: 0px !important;
+    text-align: center;
+    font-size: 16px;
+  }
+  .onoffswitch {
+    position: relative;
+    margin: auto;
+    display: table;
+    top: 116px;
+  }
+  .nav-item.quick-app-btn .quickAppLi {
+    top: 16px;
+    position: relative;
+    margin: auto;
+    display: table;
+    left: 99px;
+    font-size: 20px;
+  }
+  .tab_custom li {
+    border-bottom: 0px !important;
+  }
+  .searchPannelPatient {
+    top: -6px;
+    margin-left: 17%;
+  }
+  .tab-color .nav-tabs {
+    height: auto;
+    padding-bottom: 61px !important;
+  }
+  .tab-color li {
     width: 100%;
-}
-.search-right-pre {
+  }
+  .search-right-pre {
     width: 100%;
     text-align: center;
     margin-bottom: 7px;
-
-}
-.searchPannelPatient{
+  }
+  .searchPannelPatient {
     width: 310px !important;
-margin-left: 13% !important;
-}
-.searchPannelPatient input {
+    margin-left: 13% !important;
+  }
+  .searchPannelPatient input {
     width: 100% !important;
-}
-.ipd-search-right {
+  }
+  .ipd-search-right {
     margin-bottom: 8px;
     width: 100%;
     text-align: center;
-}
-#allBtnArea {
+  }
+  #allBtnArea {
     top: 150px !important;
-}
-.nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home {
-    padding-bottom: 126px;min-height: 220px !important;
-}
-.continueMedicineArea p {
+  }
+  .nav.nav-tabs.tab_custom.tab_custom2.tab-prescription-home {
+    padding-bottom: 126px;
+    min-height: 220px !important;
+  }
+  .continueMedicineArea p {
     top: 174px;
     left: -23%;
-}
-.investigation_area.investigation_areaHomeCmh {
-    margin-top: 12px;
-}
-.pres-template-top {
+  }
+
+  .pres-template-top {
     top: 172px !important;
-}
-.btn.btn-primary.view-all-emr {
+  }
+  .btn.btn-primary.view-all-emr {
     margin: auto;
     top: 79px;
     left: 30px;
     width: 130px;
-}
-.close {
+  }
+  .close {
     right: 11px;
     position: relative;
-}
-.modal-dialog {
+  }
+  .modal-dialog {
     width: 90%;
     margin: auto;
-}
-.grapdate-area {
+  }
+  .grapdate-area {
     padding-left: 52px !important;
     padding-right: 52px !important;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:560px) {
-.continueMedicineArea p {
+@media (min-width: 200px) and (max-width: 560px) {
+  .continueMedicineArea p {
     width: 408px !important;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:500px) {
-.continueMedicineArea p {
+@media (min-width: 200px) and (max-width: 500px) {
+  .continueMedicineArea p {
     width: 373px !important;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:480px) {
-.pres-template-top {
-    right:0% !important;width: 310px !important;
-}
-#saveTemplate2{
-    width: 292px !important;left:-14px !important;
-}
-.btn.btn-primary.search-btn{
+@media (min-width: 200px) and (max-width: 480px) {
+  .pres-template-top {
+    right: 0% !important;
+    width: 310px !important;
+  }
+  #saveTemplate2 {
+    width: 292px !important;
+    left: -14px !important;
+  }
+  .btn.btn-primary.search-btn {
     left: 11px;
-position: relative;
-}
+    position: relative;
+  }
 }
 
-@media (min-width:200px) and (max-width:450px) {
-.searchPannelPatient {
+@media (min-width: 200px) and (max-width: 450px) {
+  .searchPannelPatient {
     margin-left: 5% !important;
-}
-.continueMedicineArea p {
+  }
+  .continueMedicineArea p {
     width: 323px !important;
-}
-.searchPannelPatient {
+  }
+  .searchPannelPatient {
     width: 270px !important;
-}
-button.footerBtnPres {
+  }
+  button.footerBtnPres {
     width: 100% !important;
     margin-left: 0px;
     margin-bottom: 12px;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:443px) {
-.patientInoOpd{
+@media (min-width: 200px) and (max-width: 443px) {
+  .patientInoOpd {
     padding-top: 0px !important;
     margin-bottom: 20px;
-}
+  }
 }
 
-@media (min-width:200px) and (max-width:400px) {
-.continueMedicineArea p {
-    width:293px !important;
+@media (min-width: 200px) and (max-width: 400px) {
+  .continueMedicineArea p {
+    width: 293px !important;
     left: -25%;
-
-}
-.searchPannelPatient {
+  }
+  .searchPannelPatient {
     width: 219px !important;
     margin-left: 13% !important;
-}
-.onoffswitch {
+  }
+  .onoffswitch {
     right: 81px;
-}
-.nav-item.quick-app-btn .quickAppLi {
+  }
+  .nav-item.quick-app-btn .quickAppLi {
     left: 68px;
-  
-}
-/* div.modalWidth80 {
+  }
+  /* div.modalWidth80 {
     max-width: 90% !important;
 } */
 }

@@ -2140,9 +2140,7 @@ body#tinymce {
 .theme-tiber .pannel_left {
 	background: #0c1427 !important;
 }
-.theme-tiber .investigation_areaHomeCmh {
-	background: linear-gradient(to bottom, #0c1427 4%, #0c1427 41%, #0c1427 100%) !important;
-}
+
 .theme-tiber .top_section_all label {
 	color: #d6d6cf !important;
 }
