@@ -5,7 +5,7 @@ export class SubjectMaster extends Resource {
   activeStatus: number = 1;
 
   subjectName!: string;
-  subjectNameBangla!: string;
+  subjectNameBn!: string;
 
   subjectCode!: string;
 

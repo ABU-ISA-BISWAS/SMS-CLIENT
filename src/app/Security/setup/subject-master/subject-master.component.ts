@@ -179,22 +179,44 @@ export class SubjectMasterComponent implements OnInit {
         {
           title: 'Subject No.',
           data: 'id',
-          SubjectName: 'dt-left',
-        },
-        {
-          title: 'Subject Name',
-          data: 'SubjectName',
-          name: 'SubjectName',
+          className: 'dt-left',
         },
         {
           title: 'Subject Code',
-          data: 'SubjectCode',
-          SubjectName: 'dt-left',
+          data: 'subjectCode',
+          className: 'dt-left',
         },
         {
-          title: 'Subject Order',
-          data: 'SubjectOrder',
-          SubjectName: 'dt-left',
+          title: 'Subject Name',
+          data: 'subjectName',
+          name: 'subjectName',
+        },
+        {
+          title: 'Subject Name Bangla',
+          data: 'subjectNameBn',
+          name: 'subjectNameBn',
+        },
+        {
+          title: 'Subject Type',
+          data: 'subjectType',
+          name: 'subjectType',
+        },
+
+        {
+          title: 'Subject Category',
+          data: 'subjectCategory',
+          name: 'subjectCategory',
+        },
+
+        {
+          title: 'Credit Hour',
+          data: 'creditHour',
+          className: 'dt-left',
+        },
+        {
+          title: 'Full Marks',
+          data: 'fullMarks',
+          className: 'dt-left',
         },
         {
           title: 'Status',

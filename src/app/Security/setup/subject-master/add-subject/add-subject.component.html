@@ -12,8 +12,6 @@
 
 <div class="modal-body">
   <div class="border p-3 mb-3">
-
-
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Subject Code <span class="text-danger">*</span></span
@@ -25,7 +23,7 @@
       />
     </div>
 
-        <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Subject Name <span class="text-danger">*</span></span
       >
@@ -36,18 +34,18 @@
       />
     </div>
 
-        <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Subject Name Bangla <span class="text-danger">*</span></span
       >
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="subject.subjectNameBangla"
+        [(ngModel)]="subject.subjectNameBn"
       />
     </div>
 
-        <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary">
         Subject Type <span class="text-danger">*</span>
       </span>
@@ -61,12 +59,16 @@
       </select>
     </div>
 
-          <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary">
         Subject Category <span class="text-danger">*</span>
       </span>
 
-      <select class="form-select" [(ngModel)]="subject.subjectCategory" name="type">
+      <select
+        class="form-select"
+        [(ngModel)]="subject.subjectCategory"
+        name="type"
+      >
         <option value="THEORY">THEORY</option>
         <option value="PRACTICAL">PRACTICAL</option>
         <option value="MCQ">MCQ</option>
@@ -85,7 +87,7 @@
       />
     </div>
 
-       <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Pass Marks <span class="text-danger">*</span></span
       >
@@ -96,7 +98,7 @@
       />
     </div>
 
-       <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Credit Hour <span class="text-danger">*</span></span
       >
@@ -107,7 +109,7 @@
       />
     </div>
 
-       <div class="input-group required mb-2 positionRelative">
+    <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
         >Sort Order <span class="text-danger">*</span></span
       >
