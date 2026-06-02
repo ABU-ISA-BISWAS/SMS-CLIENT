@@ -4,10 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
-import { SubjectMaster } from '../../_coreSecurity/models/subject-master.model'; 
-import { SubjectMasterService } from '../../_coreSecurity/services/subject-master.service'; 
+import { SubjectMaster } from '../../_coreSecurity/models/subject-master.model';
 import { ModuleService } from '../../_coreSecurity/services/module.service';
-import { AddSubjectComponent } from './add-subject/add-subject.component'; 
+import { SubjectMasterService } from '../../_coreSecurity/services/subject-master.service';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
 
 @Component({
   selector: 'app-subject-master',
@@ -135,7 +135,9 @@ export class SubjectMasterComponent implements OnInit {
 
       ajax: {
         url:
-          environment.baseUrl + environment.authApiUrl + '/api/Subject/gridList',
+          environment.baseUrl +
+          environment.authApiUrl +
+          '/api/subject-master/gridList',
         type: 'GET',
         data: function (d: any) {
           d.customSearch = d.search.value;
