@@ -5,10 +5,17 @@ export class SubjectMaster extends Resource {
   activeStatus: number = 1;
 
   subjectName!: string;
+  subjectNameBangla!: string;
 
   subjectCode!: string;
 
   subjectOrder!: number;
+
+  subjectType!: string;
+  subjectCategory!: string;
+  fullMarks!: number;
+  passMarks!: number;
+  creditHour!: number;
 
   //transient field
   isGranted!: boolean;
