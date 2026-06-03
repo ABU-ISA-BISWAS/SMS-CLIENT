@@ -6,16 +6,17 @@ import { AcademicSectionComponent } from './setup/academic-section/academic-sect
 import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
 import { AcademicShiftComponent } from './setup/academic-shift/academic-shift.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
+import { ClassSubjectMappingComponent } from './setup/class-subject-mapping/class-subject-mapping.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
 import { FeaturesComponent } from './setup/features/features.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
+import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
-import { UsersComponent } from './setup/users/users.component';
-import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
+import { UsersComponent } from './setup/users/users.component';
 
 const routes: Routes = [
   {
@@ -161,7 +162,7 @@ const routes: Routes = [
     },
   },
 
-    {
+  {
     path: 'setup/student-category',
     canActivate: [AuthGuard],
     component: StudentCategoryComponent,
@@ -170,13 +171,22 @@ const routes: Routes = [
       title: 'Student Category Setup',
     },
   },
-    {
+  {
     path: 'setup/subject-master',
     canActivate: [AuthGuard],
     component: SubjectMasterComponent,
     data: {
       featureId: 'SAS013',
       title: 'Subject Master Setup',
+    },
+  },
+  {
+    path: 'setup/class-subject-mapping',
+    canActivate: [AuthGuard],
+    component: ClassSubjectMappingComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Class Subject Mapping Setup',
     },
   },
 ];

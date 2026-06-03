@@ -23,6 +23,8 @@ import { AddShiftComponent } from './setup/academic-shift/add-shift/add-shift.co
 import { AddBankInfoComponent } from './setup/bankInfo/add-bank-info/add-bank-info.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 
+import { AddClassSubjectMappingComponent } from './setup/class-subject-mapping/add-class-subject-mapping/add-class-subject-mapping.component';
+import { ClassSubjectMappingComponent } from './setup/class-subject-mapping/class-subject-mapping.component';
 import { AddDepartmentModalComponent } from './setup/department-new/add-department-modal/add-department-modal.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { AddEmpBankInfoComponent } from './setup/employee/add-emp-bank-info/add-emp-bank-info.component';
@@ -37,23 +39,23 @@ import { AddFeatureComponent } from './setup/features/add-feature/add-feature.co
 import { FeaturesComponent } from './setup/features/features.component';
 import { AddGroupVersionComponent } from './setup/group-version/add-group-version/add-group-version.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
+import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
+import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { AddModuleComponent } from './setup/modules/add-module/add-module.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
+import { AddStudentCategoryComponent } from './setup/student-category/add-student-category/add-student-category.component';
+import { StudentCategoryComponent } from './setup/student-category/student-category.component';
+import { AddSubjectComponent } from './setup/subject-master/add-subject/add-subject.component';
+import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 import { AddUserComponent } from './setup/users/add-user/add-user.component';
 import { ChangePasswordComponent } from './setup/users/change-password/change-password.component';
 import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/role-features-modal.component';
 import { SubModuleRoleComponent } from './setup/users/sub-module-role/sub-module-role.component';
 import { SubModuleComponent } from './setup/users/sub-module/sub-module.component';
 import { UsersComponent } from './setup/users/users.component';
-import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
-import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
-import { StudentCategoryComponent } from './setup/student-category/student-category.component';
-import { AddStudentCategoryComponent } from './setup/student-category/add-student-category/add-student-category.component';
-import { AddSubjectComponent } from './setup/subject-master/add-subject/add-subject.component';
-import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 @NgModule({
   declarations: [
     SetupComponent,
@@ -97,7 +99,9 @@ import { SubjectMasterComponent } from './setup/subject-master/subject-master.co
     StudentCategoryComponent,
     AddStudentCategoryComponent,
     AddSubjectComponent,
-    SubjectMasterComponent
+    SubjectMasterComponent,
+    AddClassSubjectMappingComponent,
+    ClassSubjectMappingComponent,
   ],
   imports: [
     SharedModule,

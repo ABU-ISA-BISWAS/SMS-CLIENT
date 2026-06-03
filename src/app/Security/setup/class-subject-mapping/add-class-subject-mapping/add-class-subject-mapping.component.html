@@ -1,0 +1,123 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <!-- Class -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Class <span class="text-danger">*</span>
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="mapping.classMasterNo"
+        name="classMasterNo"
+      >
+        <option [ngValue]="undefined">-- Select Class --</option>
+        <option *ngFor="let cls of classList" [value]="cls.id">
+          {{ cls.className }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Group / Version -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Group / Version
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="mapping.groupVersionNo"
+        name="groupVersionNo"
+      >
+        <option [ngValue]="undefined">-- All Groups --</option>
+        <option *ngFor="let grp of groupList" [value]="grp.id">
+          {{ grp.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Subject -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Subject <span class="text-danger">*</span>
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="mapping.subjectMasterNo"
+        name="subjectMasterNo"
+      >
+        <option [ngValue]="undefined">-- Select Subject --</option>
+        <option *ngFor="let sub of subjectList" [value]="sub.id">
+          {{ sub.subjectCode }} - {{ sub.subjectName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Sort Order -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Sort Order
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="mapping.sortOrder"
+        min="0"
+      />
+    </div>
+
+    <!-- Optional & Status -->
+    <div class="row mt-2">
+      <div class="col-12 d-flex justify-content-end flex-wrap gap-4">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1">
+            Optional Subject
+          </label>
+          <input
+            type="checkbox"
+            [(ngModel)]="mapping.isOptional"
+            class="form-check-input"
+          />
+        </div>
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1">
+            Status
+          </label>
+          <input
+            type="checkbox"
+            [(ngModel)]="mapping.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveMapping()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>
