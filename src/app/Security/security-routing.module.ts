@@ -10,6 +10,7 @@ import { ClassSubjectMappingComponent } from './setup/class-subject-mapping/clas
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
 import { FeaturesComponent } from './setup/features/features.component';
+import { FeeStructureComponent } from './setup/fee-structure/fee-structure.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { ModulesComponent } from './setup/modules/modules.component';
@@ -187,6 +188,15 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Class Subject Mapping Setup',
+    },
+  },
+  {
+    path: 'setup/fee-structure',
+    canActivate: [AuthGuard],
+    component: FeeStructureComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Fee Structure',
     },
   },
 ];

@@ -1,0 +1,190 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <!-- Academic Session -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Academic Session <span class="text-danger">*</span>
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="feeStructure.academicSessionNo"
+        name="academicSessionNo"
+      >
+        <option [ngValue]="undefined">-- Select Session --</option>
+        <option *ngFor="let s of sessionList" [ngValue]="s.id">
+          {{ s.sessionName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Class -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Class <span class="text-danger">*</span>
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="feeStructure.classMasterNo"
+        name="classMasterNo"
+      >
+        <option [ngValue]="undefined">-- Select Class --</option>
+        <option *ngFor="let c of classList" [ngValue]="c.id">
+          {{ c.className }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Student Category -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Student Category
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="feeStructure.studentCategoryNo"
+        name="studentCategoryNo"
+      >
+        <option [ngValue]="undefined">-- All Categories --</option>
+        <option *ngFor="let cat of categoryList" [ngValue]="cat.id">
+          {{ cat.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Fee Head -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Fee Head <span class="text-danger">*</span>
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="feeStructure.feeHeadNo"
+        name="feeHeadNo"
+      >
+        <option [ngValue]="undefined">-- Select Fee Head --</option>
+        <option *ngFor="let fh of feeHeadList" [ngValue]="fh.id">
+          {{ fh.feeHeadName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Amount -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Amount (৳) <span class="text-danger">*</span>
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="feeStructure.amount"
+        (ngModelChange)="feeStructure.amount = $event"
+        (wheel)="$event.preventDefault()"
+        min="0"
+        placeholder="0"
+      />
+    </div>
+
+    <!-- Due Day -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Due Day (of Month)
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="feeStructure.dueDay"
+        (ngModelChange)="feeStructure.dueDay = $event"
+        (wheel)="$event.preventDefault()"
+        min="1"
+        max="31"
+        placeholder="e.g. 10"
+      />
+    </div>
+
+    <!-- Fine Amount -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Fine Amount (৳)
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [ngModel]="feeStructure.fineAmount"
+        (ngModelChange)="feeStructure.fineAmount = $event"
+        (wheel)="$event.preventDefault()"
+        min="0"
+        placeholder="0"
+      />
+    </div>
+
+    <!-- Effective From -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Effective From
+      </span>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="feeStructure.effectiveFrom"
+      />
+    </div>
+
+    <!-- Effective To -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Effective To
+      </span>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="feeStructure.effectiveTo"
+      />
+    </div>
+
+    <!-- Status -->
+    <div class="row mt-2">
+      <div class="col-12 d-flex justify-content-end">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="feeStructure.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveFeeStructure()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>

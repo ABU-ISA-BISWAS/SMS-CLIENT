@@ -1,0 +1,146 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Fee Structure Setup</h6>
+    </div>
+
+    <div class="card-body">
+      <!-- Action Bar -->
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-1 px-3"
+        >
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="disableOrEnable()"
+          >
+            <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>
+            &nbsp;{{ disableButton }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="addFeeStructure()"
+          >
+            <i class="fas fa-plus" aria-hidden="true"></i> Add
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="editFeeStructure()"
+          >
+            <i class="fas fa-edit" aria-hidden="true"></i> Edit
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-3"
+            (click)="deleteFeeStructure()"
+          >
+            <i class="fas fa-trash-alt" aria-hidden="true"></i> Delete
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div class="card-body py-2 px-3">
+          <div class="row align-items-center g-2">
+            <!-- Session Filter -->
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="filterSessionNo"
+              style="min-width: 160px"
+            >
+              <option [ngValue]="null">All Sessions</option>
+              <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                {{ s.sessionName }}
+              </option>
+            </select>
+
+            <!-- Class Filter -->
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="filterClassNo"
+              style="min-width: 140px"
+            >
+              <option [ngValue]="null">All Classes</option>
+              <option *ngFor="let c of classList" [ngValue]="c.id">
+                {{ c.className }}
+              </option>
+            </select>
+
+            <!-- Filter Buttons -->
+            <div class="col-auto">
+              <button
+                class="btn btn-sm base-btn-primary px-3"
+                (click)="applyFilter()"
+              >
+                <i class="fas fa-filter"></i> Filter
+              </button>
+              <button
+                class="btn btn-sm btn-light border px-3 ms-1"
+                (click)="clearFilter()"
+              >
+                <i class="fas fa-times"></i> Clear
+              </button>
+            </div>
+
+            <!-- Status Radio -->
+            <div class="col-auto ms-auto">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="fsActive"
+                    name="fsStatus"
+                    (click)="statusCheck('A')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="A"
+                  />
+                  <label class="form-check-label p-2" for="fsActive"
+                    >Active</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="fsInactive"
+                    name="fsStatus"
+                    (click)="statusCheck('I')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="I"
+                  />
+                  <label class="form-check-label p-2" for="fsInactive"
+                    >Inactive</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Grid -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #feeStructureGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -37,6 +37,8 @@ import { EmployeesComponent } from './setup/employee/employees.component';
 import { ResetPasswordComponent } from './setup/employee/reset-password/reset-password.component';
 import { AddFeatureComponent } from './setup/features/add-feature/add-feature.component';
 import { FeaturesComponent } from './setup/features/features.component';
+import { AddFeeStructureComponent } from './setup/fee-structure/add-fee-structure/add-fee-structure.component';
+import { FeeStructureComponent } from './setup/fee-structure/fee-structure.component';
 import { AddGroupVersionComponent } from './setup/group-version/add-group-version/add-group-version.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
@@ -102,6 +104,8 @@ import { UsersComponent } from './setup/users/users.component';
     SubjectMasterComponent,
     AddClassSubjectMappingComponent,
     ClassSubjectMappingComponent,
+    AddFeeStructureComponent,
+    FeeStructureComponent,
   ],
   imports: [
     SharedModule,
