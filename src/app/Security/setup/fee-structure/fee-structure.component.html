@@ -50,28 +50,47 @@
         <div class="card-body py-2 px-3">
           <div class="row align-items-center g-2">
             <!-- Session Filter -->
-            <select
-              class="form-select form-select-sm"
-              [(ngModel)]="filterSessionNo"
-              style="min-width: 160px"
-            >
-              <option [ngValue]="null">All Sessions</option>
-              <option *ngFor="let s of sessionList" [ngValue]="s.id">
-                {{ s.sessionName }}
-              </option>
-            </select>
+
+            <div class="col-auto">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                >
+                  Session
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filterSessionNo"
+                  style="min-width: 160px"
+                >
+                  <option [ngValue]="null">All Sessions</option>
+                  <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                    {{ s.sessionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
 
             <!-- Class Filter -->
-            <select
-              class="form-select form-select-sm"
-              [(ngModel)]="filterClassNo"
-              style="min-width: 140px"
-            >
-              <option [ngValue]="null">All Classes</option>
-              <option *ngFor="let c of classList" [ngValue]="c.id">
-                {{ c.className }}
-              </option>
-            </select>
+            <div class="col-auto">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                >
+                  Class
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filterClassNo"
+                  style="min-width: 140px"
+                >
+                  <option [ngValue]="null">All Classes</option>
+                  <option *ngFor="let c of classList" [ngValue]="c.id">
+                    {{ c.className }}
+                  </option>
+                </select>
+              </div>
+            </div>
 
             <!-- Filter Buttons -->
             <div class="col-auto">
