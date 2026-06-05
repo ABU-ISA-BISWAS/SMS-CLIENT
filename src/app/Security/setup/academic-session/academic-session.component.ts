@@ -187,12 +187,12 @@ export class AcademicSessionComponent implements OnInit {
           name: 'sessionName',
         },
         {
-          title: 'Start Date',
+          title: 'Start Year',
           data: 'startDate',
           className: 'dt-left',
         },
         {
-          title: 'End Date',
+          title: 'End Year',
           data: 'endDate',
           className: 'dt-left',
         },

@@ -43,11 +43,15 @@ import { AddGroupVersionComponent } from './setup/group-version/add-group-versio
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { AddGuardianRelationComponent } from './setup/guardian-relation/add-guardian-relation/add-guardian-relation.component';
 import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
+import { AddHolidayComponent } from './setup/holiday/add-holiday/add-holiday.component';
+import { HolidayComponent } from './setup/holiday/holiday.component';
 import { AddModuleComponent } from './setup/modules/add-module/add-module.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { SetupComponent } from './setup/setup.component';
+import { AddSmsTemplateComponent } from './setup/sms-template/add-sms-template/add-sms-template.component';
+import { SmsTemplateComponent } from './setup/sms-template/sms-template.component';
 import { AddStudentCategoryComponent } from './setup/student-category/add-student-category/add-student-category.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { AddSubjectComponent } from './setup/subject-master/add-subject/add-subject.component';
@@ -110,6 +114,10 @@ import { UsersComponent } from './setup/users/users.component';
     FeeStructureComponent,
     AddSystemConfigComponent,
     SystemConfigComponent,
+    AddSmsTemplateComponent,
+    SmsTemplateComponent,
+    AddHolidayComponent,
+    HolidayComponent,
   ],
   imports: [
     SharedModule,

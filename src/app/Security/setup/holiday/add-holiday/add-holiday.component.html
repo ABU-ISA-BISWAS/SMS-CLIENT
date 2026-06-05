@@ -1,0 +1,129 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <!-- Holiday Name -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Holiday Name <span class="text-danger">*</span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="holiday.holidayName"
+      />
+    </div>
+
+    <!-- Holiday Name Bangla -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        নাম (বাংলায়)
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="holiday.holidayNameBn"
+      />
+    </div>
+
+    <!-- Academic Session -->
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Academic Session
+      </span>
+      <select
+        class="form-select"
+        [(ngModel)]="holiday.academicSessionNo"
+        name="academicSessionNo"
+      >
+        <option [ngValue]="undefined">-- Select Session --</option>
+        <option *ngFor="let s of sessionList" [ngValue]="s.id">
+          {{ s.sessionName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Holiday Type -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Holiday Type <span class="text-danger">*</span>
+      </span>
+      <select class="form-select" [(ngModel)]="holiday.holidayType">
+        <option [ngValue]="undefined">-- Select Type --</option>
+        <option *ngFor="let t of holidayTypes" [value]="t.value">
+          {{ t.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- From Date -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        From Date <span class="text-danger">*</span>
+      </span>
+      <input type="date" class="form-control" [(ngModel)]="holiday.fromDate" />
+    </div>
+
+    <!-- To Date -->
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        To Date <span class="text-danger">*</span>
+      </span>
+      <input type="date" class="form-control" [(ngModel)]="holiday.toDate" />
+    </div>
+
+    <!-- Recurring & Status -->
+    <div class="row mt-2">
+      <div class="col-12 d-flex justify-content-end flex-wrap gap-4">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1">
+            Recurring Every Year
+          </label>
+          <input
+            type="checkbox"
+            [(ngModel)]="holiday.isRecurring"
+            class="form-check-input"
+          />
+        </div>
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="holiday.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveHoliday()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>

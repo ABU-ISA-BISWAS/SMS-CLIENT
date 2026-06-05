@@ -1,0 +1,133 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Holiday Setup</h6>
+    </div>
+    <div class="card-body">
+      <!-- Action Bar -->
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-1 px-3"
+        >
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="disableOrEnable()"
+          >
+            <i class="fas fa-toggle-on mr-1"></i>&nbsp;{{ disableButton }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="addHoliday()"
+          >
+            <i class="fas fa-plus"></i> Add
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="editHoliday()"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-3"
+            (click)="deleteHoliday()"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div class="card-body py-2 px-3">
+          <div class="row align-items-center g-2">
+            <div class="col-auto">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                >
+                  Session
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filterSessionNo"
+                  style="min-width: 160px"
+                >
+                  <option [ngValue]="null">All Sessions</option>
+                  <option *ngFor="let s of sessionList" [value]="s.id">
+                    {{ s.sessionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <button
+                class="btn btn-sm btn-primary border px-3 ms-1"
+                (click)="applyFilter()"
+              >
+                <i class="fas fa-filter"></i> Filter
+              </button>
+              <button
+                class="btn btn-sm btn-danger border px-3 ms-1"
+                (click)="clearFilter()"
+              >
+                <i class="fas fa-times"></i> Clear
+              </button>
+            </div>
+            <div class="col-auto ms-auto">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="holActive"
+                    name="holStatus"
+                    (click)="statusCheck('A')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="A"
+                  />
+                  <label class="form-check-label p-2" for="holActive"
+                    >Active</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="holInactive"
+                    name="holStatus"
+                    (click)="statusCheck('I')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="I"
+                  />
+                  <label class="form-check-label p-2" for="holInactive"
+                    >Inactive</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #holidayGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

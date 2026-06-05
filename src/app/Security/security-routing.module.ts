@@ -13,8 +13,10 @@ import { FeaturesComponent } from './setup/features/features.component';
 import { FeeStructureComponent } from './setup/fee-structure/fee-structure.component';
 import { GroupVersionComponent } from './setup/group-version/group-version.component';
 import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
+import { HolidayComponent } from './setup/holiday/holiday.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
+import { SmsTemplateComponent } from './setup/sms-template/sms-template.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 import { SystemConfigComponent } from './setup/system-config/system-config.component';
@@ -208,6 +210,24 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'System Config',
+    },
+  },
+  {
+    path: 'setup/sms-template',
+    canActivate: [AuthGuard],
+    component: SmsTemplateComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Sms Template',
+    },
+  },
+  {
+    path: 'setup/holiday',
+    canActivate: [AuthGuard],
+    component: HolidayComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Holiday',
     },
   },
 ];
