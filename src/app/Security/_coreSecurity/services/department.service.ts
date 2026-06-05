@@ -57,11 +57,14 @@ export class DepartmentService extends ResourceService<Department> {
   }
 
   public deleteDepartment(id: string) {
-    const token = this.authService.getAccessToken(); // get token from your auth service
+    const token = this.authService.getAccessToken();
+
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.delete(`${(this.DEPARTMENT_DELETE, { headers })}`, {
+
+    return this.http.delete(this.DEPARTMENT_DELETE, {
+      headers,
       params: new HttpParams().set('id', id),
     });
   }

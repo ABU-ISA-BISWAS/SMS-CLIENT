@@ -52,6 +52,8 @@ import { AddStudentCategoryComponent } from './setup/student-category/add-studen
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { AddSubjectComponent } from './setup/subject-master/add-subject/add-subject.component';
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
+import { AddSystemConfigComponent } from './setup/system-config/add-system-config/add-system-config.component';
+import { SystemConfigComponent } from './setup/system-config/system-config.component';
 import { AddUserComponent } from './setup/users/add-user/add-user.component';
 import { ChangePasswordComponent } from './setup/users/change-password/change-password.component';
 import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/role-features-modal.component';
@@ -106,6 +108,8 @@ import { UsersComponent } from './setup/users/users.component';
     ClassSubjectMappingComponent,
     AddFeeStructureComponent,
     FeeStructureComponent,
+    AddSystemConfigComponent,
+    SystemConfigComponent,
   ],
   imports: [
     SharedModule,

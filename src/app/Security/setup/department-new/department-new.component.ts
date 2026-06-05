@@ -82,14 +82,26 @@ export class DepartmentNewComponent implements OnInit {
       order: [[0, 'desc']],
       columns: [
         {
-          title: 'Department ID',
-          data: 'buId',
-          name: 'buId',
+          title: 'Department Code',
+          data: 'deptCode',
+          name: 'deptCode',
         },
         {
           title: 'Department Name',
-          data: 'buName',
-          name: 'buName',
+          data: 'deptName',
+          name: 'deptName',
+        },
+
+        {
+          title: 'Department Name(Bangla)',
+          data: 'deptNameBn',
+          name: 'deptNameBn',
+        },
+
+        {
+          title: 'Department Type',
+          data: 'deptType',
+          name: 'deptType',
         },
 
         {

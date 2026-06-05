@@ -4,102 +4,106 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
-import { AcademicSession } from '../../_coreSecurity/models/academic-session.model';
-import { AcademicSessionService } from '../../_coreSecurity/services/academic-session.service';
-import { ModuleService } from '../../_coreSecurity/services/module.service';
-import { AddSessionComponent } from './add-session/add-session.component';
+import { SystemConfig } from '../../_coreSecurity/models/system-config.model';
+import { SystemConfigService } from '../../_coreSecurity/services/system-config.service';
+import { AddSystemConfigComponent } from './add-system-config/add-system-config.component';
 
 @Component({
-  selector: 'app-academic-session',
-  templateUrl: './academic-session.component.html',
-  styleUrls: ['./academic-session.component.css'],
+  selector: 'app-system-config',
+  templateUrl: './system-config.component.html',
+  styleUrls: ['./system-config.component.css'],
   standalone: false,
 })
-export class AcademicSessionComponent implements OnInit {
+export class SystemConfigComponent implements OnInit {
   bsModalRef!: BsModalRef;
-  academicSessionTable: any;
-  academicSessionTableObj: any;
-  selectedSession!: any;
-  selectedSessionId!: number;
-  @ViewChild('academicSessionGrid')
-  academicSessionGrid!: { nativeElement: any };
+  systemConfigTable: any;
+  systemConfigTableObj: any;
+  selectedSystemConfig!: any;
+  selectedSystemConfigId!: number;
+  @ViewChild('systemConfigGrid')
+  systemConfigGrid!: { nativeElement: any };
   activeInactiveFlag: string | null = 'A';
   disableButton: string = 'Disable';
 
   constructor(
     private modalService: BsModalService,
     private authService: AuthService,
-    private moduleService: ModuleService,
     private toastr: ToastrService,
-    private academicSessionService: AcademicSessionService,
+    private systemConfigService: SystemConfigService,
   ) {}
 
   ngOnInit() {
-    this.initAcademicSessionGrid();
+    this.initSystemConfigGrid();
   }
 
   ngAfterViewInit(): void {
-    this.initAcademicSessionGrid();
+    this.initSystemConfigGrid();
   }
 
-  addSession() {
+  addConfig() {
     const initialState = {
-      title: 'Add Session',
+      title: 'Add System Config',
     };
-    this.bsModalRef = this.modalService.show(AddSessionComponent, {
+    this.bsModalRef = this.modalService.show(AddSystemConfigComponent, {
       class: 'modal-md base-modal',
       initialState,
       backdrop: 'static',
     });
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result == true) {
-        this.academicSessionTableObj.draw();
+        this.systemConfigTableObj.draw();
       }
     });
   }
-  editSession() {
-    if (!this.selectedSession) {
+  editConfig() {
+    if (!this.selectedSystemConfig) {
       this.toastr.warning('Please select a record to Edit');
     } else {
       const initialState = {
-        title: 'Edit Session',
-        academicSession: this.selectedSession,
+        title: 'Edit System Config',
+        systemConfig: this.selectedSystemConfig,
       };
-      this.bsModalRef = this.modalService.show(AddSessionComponent, {
+      this.bsModalRef = this.modalService.show(AddSystemConfigComponent, {
         class: 'modal-md base-modal',
         initialState,
         backdrop: 'static',
       });
       this.bsModalRef.content.onClose.subscribe((result: boolean) => {
         if (result == true) {
-          this.academicSessionTableObj.draw();
+          this.systemConfigTableObj.draw();
         }
       });
     }
   }
-  // deleteSession(): void {
-  //   if (!this.selectedSession) {
-  //     this.toastr.warning("Please select a record to Delete")
-  //   }
-  //   else {
-  //     const initialState = { title: "Do you want to Delete?" };
-  //     this.bsModalRef = this.modalService.show(ConfirmationDialog, { initialState, class: 'modal-sm base-modal' });
-  //     this.bsModalRef.content.onClose.subscribe((result: any) => {
-  //       if (result) {
-  //         this.sessionService.deleteSession(this.selectedSession.id).subscribe((res: { message: string | undefined; }) => {
-  //           res.message ? this.toastr.success(res.message) : this.toastr.warning(res.message);
-  //           this.sessionTableObj.draw();
-  //         })
-  //       }
-  //     })
-  //   }
-  // }
-  disableOrEnableSession(): void {
-    if (!this.selectedSession) {
-      this.toastr.warning('Please select a session first.');
+  deleteConfig(): void {
+    if (!this.selectedSystemConfig) {
+      this.toastr.warning('Please select a record to Delete');
+    } else {
+      const initialState = { title: 'Do you want to Delete?' };
+      this.bsModalRef = this.modalService.show(ConfirmationDialog, {
+        initialState,
+        class: 'modal-sm base-modal',
+      });
+      this.bsModalRef.content.onClose.subscribe((result: any) => {
+        if (result) {
+          this.systemConfigService
+            .deleteConfig(this.selectedSystemConfig.id)
+            .subscribe((res: { message: string | undefined }) => {
+              res.message
+                ? this.toastr.success(res.message)
+                : this.toastr.warning(res.message);
+              this.systemConfigTableObj.draw();
+            });
+        }
+      });
+    }
+  }
+  disableOrEnableConfig(): void {
+    if (!this.selectedSystemConfig) {
+      this.toastr.warning('Please select a config first.');
     } else {
       const initialState = {
-        title: 'Do you want to ' + this.disableButton + ' this session?',
+        title: 'Do you want to ' + this.disableButton + ' this config?',
       };
       this.bsModalRef = this.modalService.show(ConfirmationDialog, {
         initialState,
@@ -108,26 +112,26 @@ export class AcademicSessionComponent implements OnInit {
       this.bsModalRef.content.onClose.subscribe((result: boolean) => {
         if (result == true) {
           console.log('flag:', this.activeInactiveFlag);
-          this.selectedSession.activeStatus =
+          this.selectedSystemConfig.activeStatus =
             this.activeInactiveFlag == 'I' ? 1 : 0;
-          this.academicSessionService
-            .updateSession(this.selectedSession)
+          this.systemConfigService
+            .updateConfig(this.selectedSystemConfig)
             .subscribe((res: { message: string | undefined }) => {
               console.log('reees:', res);
               res.message
                 ? this.toastr.success(res.message)
                 : this.toastr.warning(res.message);
-              this.academicSessionTableObj.draw();
+              this.systemConfigTableObj.draw();
             });
         }
       });
     }
   }
 
-  initAcademicSessionGrid() {
+  initSystemConfigGrid() {
     let that = this;
-    this.academicSessionTable = $(this.academicSessionGrid?.nativeElement);
-    this.academicSessionTableObj = this.academicSessionTable.DataTable({
+    this.systemConfigTable = $(this.systemConfigGrid?.nativeElement);
+    this.systemConfigTableObj = this.systemConfigTable.DataTable({
       pagingType: 'full_numbers',
       pageLength: 10,
       serverSide: true,
@@ -137,7 +141,7 @@ export class AcademicSessionComponent implements OnInit {
         url:
           environment.baseUrl +
           environment.authApiUrl +
-          '/api/session/gridList',
+          '/api/system-config/gridList',
         type: 'GET',
         data: function (d: any) {
           d.customSearch = d.search.value;
@@ -177,25 +181,38 @@ export class AcademicSessionComponent implements OnInit {
       order: [[0, 'desc']],
       columns: [
         {
-          title: 'Academic Session No.',
+          title: 'SC No.',
           data: 'id',
           className: 'dt-left',
         },
         {
-          title: 'Session Name',
-          data: 'sessionName',
-          name: 'sessionName',
+          title: 'Config Key',
+          data: 'configKey',
+          name: 'configKey',
         },
         {
-          title: 'Start Date',
-          data: 'startDate',
-          className: 'dt-left',
+          title: 'Config Value',
+          data: 'configValue',
+          name: 'configValue',
         },
         {
-          title: 'End Date',
-          data: 'endDate',
-          className: 'dt-left',
+          title: 'Config Group',
+          data: 'configGroup',
+          name: 'configGroup',
         },
+
+        {
+          title: 'Is Editable',
+          data: 'isEditable',
+          render: (data: number) => {
+            if (data == 1) {
+              return '<span class="badge rounded-pill bg-success-subtle px-3 py-2 text-success">Yes</span>';
+            } else {
+              return '<span class="badge rounded-pill bg-danger-subtle px-3 py-2 text-danger">No</span>';
+            }
+          },
+        },
+
         {
           title: 'Status',
           data: 'activeStatus',
@@ -215,12 +232,12 @@ export class AcademicSessionComponent implements OnInit {
         const self = this;
         $('td', row).off('click');
         $('td', row).on('click', () => {
-          this.selectedSession = data.id;
+          this.selectedSystemConfig = data.id;
 
-          if (self.selectedSession) {
-            self.selectedSession = null;
+          if (self.selectedSystemConfig) {
+            self.selectedSystemConfig = null;
           }
-          self.selectedSession = data;
+          self.selectedSystemConfig = data;
 
           if ($(row).hasClass('selected-row')) {
             $(row).removeClass('selected-row');
@@ -228,12 +245,12 @@ export class AcademicSessionComponent implements OnInit {
             $(row).closest('tbody').find('tr').removeClass('selected-row');
             $(row).addClass('selected-row');
           }
-          this.academicSessionService
-            .getSingleSession(data.id)
-            .subscribe((res: AcademicSession) => {
-              this.selectedSession = res;
+          this.systemConfigService
+            .getSingleConfig(data.id)
+            .subscribe((res: SystemConfig) => {
+              this.selectedSystemConfig = res;
             });
-          console.log('Selected Session ', this.selectedSession);
+          console.log('Selected config ', this.selectedSystemConfig);
         });
         return row;
       },
@@ -247,6 +264,6 @@ export class AcademicSessionComponent implements OnInit {
     } else {
       this.disableButton = 'Enable';
     }
-    this.academicSessionTableObj.draw();
+    this.systemConfigTableObj.draw();
   }
 }

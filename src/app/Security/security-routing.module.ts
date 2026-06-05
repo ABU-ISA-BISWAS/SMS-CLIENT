@@ -17,6 +17,7 @@ import { ModulesComponent } from './setup/modules/modules.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
+import { SystemConfigComponent } from './setup/system-config/system-config.component';
 import { UsersComponent } from './setup/users/users.component';
 
 const routes: Routes = [
@@ -197,6 +198,16 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Fee Structure',
+    },
+  },
+
+  {
+    path: 'setup/system-config',
+    canActivate: [AuthGuard],
+    component: SystemConfigComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'System Config',
     },
   },
 ];

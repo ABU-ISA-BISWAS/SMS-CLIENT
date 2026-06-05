@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-header py-3">
-      <h6 class="m-0 fw-bold base-txt-primary">Academic Session Setup</h6>
+      <h6 class="m-0 fw-bold base-txt-primary">System Config Setup</h6>
     </div>
 
     <div class="card-body">
@@ -13,7 +13,7 @@
           <button
             type="button"
             class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
-            (click)="disableOrEnableSession()"
+            (click)="disableOrEnableConfig()"
           >
             <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
               disableButton
@@ -23,8 +23,8 @@
           <button
             type="button"
             class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
-            (click)="addSession()"
-            title="Add Session"
+            (click)="addConfig()"
+            title="Add System Config"
           >
             <i class="fas fa-user-plus" aria-hidden="true"></i> Add
           </button>
@@ -32,15 +32,18 @@
           <button
             type="button"
             class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
-            (click)="editSession()"
+            (click)="editConfig()"
             title="Add Bank Info"
           >
             <i class="fas fa-edit" aria-hidden="true"></i> Edit
           </button>
-          <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0"
-            (click)="deleteSession()">
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-3 mb-xxl-0"
+            (click)="deleteConfig()"
+          >
             <i class="fas fa-trash-alt"></i> Delete
-          </button> -->
+          </button>
         </div>
       </div>
       <!-- Filtar Bar -->
@@ -92,7 +95,7 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table
-                  #academicSessionGrid
+                  #systemConfigGrid
                   class="row-border hover table table-sm"
                 ></table>
               </div>

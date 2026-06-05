@@ -14,63 +14,51 @@
   <div class="border p-3 mb-3">
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Name <span class="text-danger">*</span></span
+        >Config Key <span class="text-danger">*</span></span
       >
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="department.deptName"
-        name="deptName"
+        [(ngModel)]="systemConfig.configKey"
       />
     </div>
-
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Dept. Name(Bangla) <span class="text-danger">*</span></span
+        >Config Value <span class="text-danger">*</span></span
       >
       <input
         type="text"
         class="form-control"
-        [(ngModel)]="department.deptNameBn"
-        name="deptNameBn"
+        [(ngModel)]="systemConfig.configValue"
       />
     </div>
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Code <span class="text-danger">*</span></span
-      >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="department.deptCode"
-        name="deptCode"
-      />
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Type <span class="text-danger">*</span></span
+        >Config Group <span class="text-danger">*</span></span
       >
       <select
         class="form-select"
-        [(ngModel)]="department.deptType"
-        name="deptType"
+        [(ngModel)]="systemConfig.configGroup"
+        name="configGroup"
       >
-        <option value="SUPPORT">SUPPORT</option>
-        <option value="ACADEMIC">ACADEMIC</option>
-        <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
-        <option value="MANAGEMENT">MANAGEMENT</option>
+        <option value="GENERAL">GENERAL</option>
+        <option value="SMS">SMS</option>
+        <option value="EMAIL">EMAIL</option>
+        <option value="FEE">FEE</option>
+        <option value="ATTENDANCE">ATTENDANCE</option>
+        <option value="RESULT">RESULT</option>
       </select>
     </div>
     <div class="input-group required mb-2 positionRelative">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Sort Order <span class="text-danger">*</span></span
+        >Description <span class="text-danger">*</span></span
       >
-      <input
-        type="number"
+      <textarea
+        type="text"
         class="form-control"
-        [(ngModel)]="department.sortOrder"
-        name="sortOrder"
-      />
+        [(ngModel)]="systemConfig.description"
+      >
+      </textarea>
     </div>
 
     <div class="row">
@@ -81,8 +69,17 @@
           >
           <input
             type="checkbox"
-            [(ngModel)]="department.activeStatus"
-            name="activeStatus"
+            [(ngModel)]="systemConfig.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Is Editable</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="systemConfig.isEditable"
             class="form-check-input"
           />
         </div>
@@ -102,8 +99,9 @@
   <button
     type="button"
     class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="onSaveOrUpdate()"
+    (click)="saveConfigs()"
+    [disabled]="isSaving"
   >
-    Save
+    {{ isSaving ? "Saving" : "Save" }}
   </button>
 </div>

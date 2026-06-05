@@ -3,16 +3,16 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { AcademicSession } from '../../../_coreSecurity/models/academic-session.model';
-import { AcademicSessionService } from '../../../_coreSecurity/services/academic-session.service';
+import { SystemConfig } from '../../../_coreSecurity/models/system-config.model';
+import { SystemConfigService } from '../../../_coreSecurity/services/system-config.service';
 @Component({
-  selector: 'app-add-session',
-  templateUrl: './add-session.component.html',
-  styleUrls: ['./add-session.component.css'],
+  selector: 'app-add-system-config',
+  templateUrl: './add-system-config.component.html',
+  styleUrls: ['./add-system-config.component.css'],
   standalone: false,
 })
-export class AddSessionComponent implements OnInit {
-  academicSession: AcademicSession = new AcademicSession();
+export class AddSystemConfigComponent implements OnInit {
+  systemConfig: SystemConfig = new SystemConfig();
   onClose!: Subject<boolean>;
   validate!: boolean;
   title = '';
@@ -22,7 +22,7 @@ export class AddSessionComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private academicSessionService: AcademicSessionService,
+    private systemConfigService: SystemConfigService,
     private toastr: ToastrService,
     private iconModal: BsModalRef,
     private modalService: BsModalService,
@@ -32,9 +32,9 @@ export class AddSessionComponent implements OnInit {
     this.onClose = new Subject();
   }
 
-  saveSessions() {
+  saveConfigs() {
     this.isSaving = true;
-    this.toogleValue(this.academicSession);
+    this.toogleValue(this.systemConfig);
 
     if (!this.checkValidation()) {
       this.isSaving = false;
@@ -42,9 +42,9 @@ export class AddSessionComponent implements OnInit {
       return;
     }
 
-    if (this.academicSession.id) {
-      this.academicSessionService
-        .updateSession(this.academicSession)
+    if (this.systemConfig.id) {
+      this.systemConfigService
+        .updateConfig(this.systemConfig)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -54,26 +54,26 @@ export class AddSessionComponent implements OnInit {
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
               this.toastr.success(
-                res.message || 'Session updated successfully!',
+                res.message || 'Config updated successfully!',
               );
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to update session.');
+              this.toastr.warning(res.message || 'Failed to update config.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while updating the session. Please try again.',
+              'Something went wrong while updating the config. Please try again.',
             );
             this.onClose.next(false);
           },
         });
     } else {
-      this.academicSessionService
-        .saveSession(this.academicSession)
+      this.systemConfigService
+        .saveConfig(this.systemConfig)
         .pipe(
           finalize(() => {
             this.isSaving = false;
@@ -82,18 +82,18 @@ export class AddSessionComponent implements OnInit {
         .subscribe({
           next: (res: { success: boolean; message?: string }) => {
             if (res.success) {
-              this.toastr.success(res.message || 'Session saved successfully!');
+              this.toastr.success(res.message || 'Config saved successfully!');
               this.onClose.next(true);
               this.bsModalRef.hide();
             } else {
-              this.toastr.warning(res.message || 'Failed to save session.');
+              this.toastr.warning(res.message || 'Failed to save config.');
               this.onClose.next(false);
               this.validate = true;
             }
           },
           error: (err) => {
             this.toastr.error(
-              'Something went wrong while saving the session. Please try again.',
+              'Something went wrong while saving the config. Please try again.',
             );
             this.onClose.next(false);
           },
@@ -102,22 +102,16 @@ export class AddSessionComponent implements OnInit {
   }
 
   checkValidation() {
-    if (!this.academicSession.sessionName) {
-      this.toastr.warning("Session Name can't be empty!");
-      return false;
-    } else if (!this.academicSession.startDate) {
-      this.toastr.warning("Start Date can't be empty!");
-      return false;
-    } else if (!this.academicSession.endDate) {
-      this.toastr.warning("End Date can't be empty!");
+    if (!this.systemConfig.configKey) {
+      this.toastr.warning("Config Key can't be empty!");
       return false;
     }
     return true;
   }
 
-  toogleValue(obj: AcademicSession) {
+  toogleValue(obj: SystemConfig) {
     Object.keys(obj).forEach((key) => {
-      const typedKey = key as keyof AcademicSession;
+      const typedKey = key as keyof SystemConfig;
       const val = obj[typedKey];
 
       if (val === true) {
@@ -128,19 +122,5 @@ export class AddSessionComponent implements OnInit {
         (obj[typedKey] as any) = 0;
       }
     });
-  }
-
-  onEndYearModelChange(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      const year = date.getFullYear();
-      this.academicSession.endDate = year;
-    }
-  }
-
-  onStartYearModelChange(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      const year = date.getFullYear();
-      this.academicSession.startDate = year;
-    }
   }
 }

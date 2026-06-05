@@ -14,8 +14,8 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
   private END_POINT = `api/session`;
   private SAVE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/create`;
   private UPDATE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/update`;
-  private DELETE_FEATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/delete`;
-  private SINGLE_FEATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/find`;
+  private DELETE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/delete`;
+  private SINGLE_SESSION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/find`;
 
   constructor(
     private http: HttpClient,
@@ -30,11 +30,11 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
     );
   }
 
-  getSingleFeature(academicSessionNo: any) {
+  getSingleSession(academicSessionNo: any) {
     console.log('fn', academicSessionNo);
     const params = new HttpParams().append('id', academicSessionNo);
     return this.http
-      .get(this.SINGLE_FEATURE, { params })
+      .get(this.SINGLE_SESSION, { params })
       .pipe(map((data: any) => data.obj));
   }
   saveSession(data: any) {
@@ -47,10 +47,10 @@ export class AcademicSessionService extends ResourceService<AcademicSession> {
       .put(this.UPDATE_SESSION, data)
       .pipe(map((data: any) => data));
   }
-  deleteFeature(data: string | number | boolean) {
+  deleteSession(data: string | number | boolean) {
     const params = new HttpParams().append('id', data);
     return this.http
-      .delete(this.DELETE_FEATURE, { params })
+      .delete(this.DELETE_SESSION, { params })
       .pipe(map((data: any) => data));
   }
 }
