@@ -1,418 +1,446 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<div
+  class="modal-header border-0 py-2 px-3"
+  style="background: var(--bs-light)"
+>
+  <div class="d-flex align-items-center gap-2">
+    <div
+      class="rounded-2 d-flex align-items-center justify-content-center bg-info bg-opacity-10"
+      style="width: 26px; height: 26px; min-width: 26px"
+    >
+      <i class="ti ti-user-edit text-info" style="font-size: 14px"></i>
+    </div>
+    <div>
+      <div
+        class="fw-bold base-txt-primary"
+        style="font-size: 13px; line-height: 1.2"
+      >
+        {{ title }}
+      </div>
+      <div class="text-muted" style="font-size: 11px">User management</div>
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
-    aria-label="Close"
+    class="btn btn-sm btn-light border d-flex align-items-center justify-content-center p-0"
+    style="width: 24px; height: 24px"
     (click)="bsModalRef.hide()"
+    aria-label="Close"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x" style="font-size: 12px"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <!-- Action Bar -->
-  <div class="card border border-2 action-bar mb-2 bg-light">
+<div class="modal-body p-0 d-flex" style="min-height: 460px; font-size: 13px">
+  <!-- ═══ LEFT COLUMN — User Info ═══ -->
+  <div class="d-flex flex-column p-3 border-end" style="width: 52%; gap: 0">
     <div
-      class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-1 px-3"
+      class="text-muted fw-bold text-uppercase mb-2"
+      style="font-size: 10px; letter-spacing: 0.06em"
     >
-      <button
-        type="button"
-        (click)="bsModalRef.hide()"
-        class="btn btn-sm btn-danger fw-medium px-3 mb-xxl-0"
-        data-dismiss="modal"
-      >
-        Close
-      </button>
-
-      <button
-        type="button"
-        class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-        (click)="saveUpdateUser()"
-        [disabled]="isSaving || invalidId || invalidUser || invalidPassword"
-      >
-        {{ isSaving ? "Saving" : "Save" }}
-      </button>
+      <i
+        class="ti ti-id-badge"
+        style="font-size: 11px; vertical-align: -1px; margin-right: 4px"
+      ></i
+      >User information
     </div>
-  </div>
 
-  <!-- patient Info -->
-  <div class="patient-info bg-light p-3 rounded border mb-2">
     <div class="row g-2">
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="empInfo" class="form-label base-txt-primary"
-            >Emp. Info:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="empInfo"
-              class="form-control form-control-sm"
-              [(ngModel)]="empSelect"
-              [typeahead]="employeeDatasource"
-              (typeaheadLoading)="changeTypeaheadLoading($event)"
-              (typeaheadNoResults)="typeaheadNoResults($event)"
-              (typeaheadOnSelect)="selectEmployee($event)"
-              [typeaheadOptionsLimit]="7"
-              [typeaheadMinLength]="3"
-              [typeaheadItemTemplate]="customEmpTemplate"
-              typeaheadOptionField="doctorName"
-              (keydown.backspace)="onEmpBackspace()"
-              placeholder="Search by ID or Name"
-              autocomplete="off"
-            />
-          </div>
-
-          <ng-template #customEmpTemplate let-model="item" let-index="index">
-            <table>
-              <tr>
-                <td class="float-left" style="width: 100%">
-                  <label class="doctorTilte">Name</label>
-                  <span class="docSpan">: {{ model.empName }}</span>
-                </td>
-                <td class="float-right" style="width: 100%">
-                  <label class="doctorTilte">ID</label>
-                  <span class="docSpan">: {{ model.empId }}</span>
-                </td>
-              </tr>
-            </table>
-          </ng-template>
+      <div class="col-12">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+        >
+          <i
+            class="ti ti-search"
+            style="font-size: 11px; vertical-align: -1px; margin-right: 3px"
+          ></i
+          >Emp. info
+        </label>
+        <div class="position-relative">
+          <input
+            type="text"
+            class="form-control form-control-sm ps-4"
+            [(ngModel)]="empSelect"
+            [typeahead]="employeeDatasource"
+            (typeaheadLoading)="changeTypeaheadLoading($event)"
+            (typeaheadNoResults)="typeaheadNoResults($event)"
+            (typeaheadOnSelect)="selectEmployee($event)"
+            [typeaheadOptionsLimit]="7"
+            [typeaheadMinLength]="3"
+            [typeaheadItemTemplate]="customEmpTemplate"
+            typeaheadOptionField="doctorName"
+            (keydown.backspace)="onEmpBackspace()"
+            placeholder="Search by ID or Name"
+            autocomplete="off"
+          />
+          <i
+            class="ti ti-search position-absolute text-muted"
+            style="
+              font-size: 12px;
+              left: 9px;
+              top: 50%;
+              transform: translateY(-50%);
+            "
+          ></i>
         </div>
+        <ng-template #customEmpTemplate let-model="item">
+          <div class="d-flex gap-3" style="font-size: 12px">
+            <span><b>Name:</b> {{ model.empName }}</span>
+            <span><b>ID:</b> {{ model.empId }}</span>
+          </div>
+        </ng-template>
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="userId" class="form-label base-txt-primary"
-            >User ID:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="userId"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.userId"
-              (blur)="validateUser()"
-              (ngModelChange)="invalidId = false"
-              [ngClass]="{ 'invalid-input': invalidId }"
-              (keydown.space)="$event.preventDefault()"
-              required
-            />
-          </div>
-        </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+        >
+          User ID <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.userId"
+          (blur)="validateUser()"
+          (ngModelChange)="invalidId = false"
+          [ngClass]="{ 'is-invalid': invalidId }"
+          (keydown.space)="$event.preventDefault()"
+        />
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="userName" class="form-label base-txt-primary"
-            >Username:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="userName"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.userName"
-              (blur)="validateUser()"
-              (ngModelChange)="invalidUser = false"
-              [ngClass]="{ 'invalid-input': invalidUser }"
-              (keydown.space)="$event.preventDefault()"
-            />
-          </div>
-        </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+        >
+          Username <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.userName"
+          (blur)="validateUser()"
+          (ngModelChange)="invalidUser = false"
+          [ngClass]="{ 'is-invalid': invalidUser }"
+          (keydown.space)="$event.preventDefault()"
+        />
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12" *ngIf="showPassword">
-        <div class="form-group">
-          <label for="password" class="form-label base-txt-primary"
-            >Password:</label
-          >
-          <div class="input-group required">
-            <input
-              type="password"
-              id="password"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.password"
-              (blur)="validatePassword()"
-              (ngModelChange)="invalidPassword = false"
-              [ngClass]="{ 'invalid-input': invalidPassword }"
-              (keydown.space)="$event.preventDefault()"
-              autocomplete="off"
-            />
-          </div>
-        </div>
+      <div class="col-6" *ngIf="showPassword">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+        >
+          Password <span class="text-danger">*</span>
+        </label>
+        <input
+          type="password"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.password"
+          (blur)="validatePassword()"
+          (ngModelChange)="invalidPassword = false"
+          [ngClass]="{ 'is-invalid': invalidPassword }"
+          (keydown.space)="$event.preventDefault()"
+          autocomplete="off"
+        />
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="personalId" class="form-label base-txt-primary"
-            >Personal ID:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="personalId"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.personalNumber"
-              autocomplete="off"
-            />
-          </div>
-        </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+          >Personal ID</label
+        >
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.personalNumber"
+          autocomplete="off"
+        />
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="defaultPageLink" class="form-label base-txt-primary"
-            >Default Pagelink:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="defaultPageLink"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.defaultPageLink"
-            />
-          </div>
-        </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+          >Default pagelink</label
+        >
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.defaultPageLink"
+        />
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="expiryDate" class="form-label base-txt-primary"
-            >Expiry Date:</label
-          >
-          <div class="input-group required">
-            <input
-              type="text"
-              id="expiryDate"
-              class="form-control form-control-sm"
-              [(ngModel)]="user.accountExpireDate"
-              bsDatepicker
-              [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
-              [minDate]="today"
-            />
-          </div>
-        </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 11px"
+        >
+          <i
+            class="ti ti-calendar"
+            style="font-size: 11px; vertical-align: -1px; margin-right: 3px"
+          ></i
+          >Expiry date
+        </label>
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          [(ngModel)]="user.accountExpireDate"
+          bsDatepicker
+          [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+          [minDate]="today"
+        />
       </div>
     </div>
-  </div>
 
-  <!-- Flags -->
-  <div class="card flags mb-2">
-    <div class="card-header">Flags</div>
-    <div class="card-body">
-      <div class="d-flex flex-wrap">
-        <div class="form-check me-3 mb-2 mb-md-0">
+    <!-- Flags as toggle pills -->
+    <div class="mt-2">
+      <div
+        class="text-muted fw-bold text-uppercase mb-2"
+        style="font-size: 10px; letter-spacing: 0.06em"
+      >
+        <i
+          class="ti ti-toggle-right"
+          style="font-size: 11px; vertical-align: -1px; margin-right: 4px"
+        ></i
+        >Flags
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <div class="form-check form-check-inline m-0">
           <input
-            class="form-check-input me-2"
+            class="form-check-input d-none"
             type="checkbox"
-            id="activeStatus"
+            id="f1"
             [(ngModel)]="user.activeStatus"
           />
-          <label class="form-check-label" for="activeStatus">
-            Active Status
+          <label for="f1" class="flag-pill" [class.flag-on]="user.activeStatus">
+            <i class="ti ti-check" style="font-size: 10px"></i> Active
           </label>
         </div>
-
-        <div class="form-check me-3 mb-2 mb-md-0">
+        <div class="form-check form-check-inline m-0">
           <input
-            class="form-check-input me-2"
+            class="form-check-input d-none"
             type="checkbox"
-            id="accountExpired"
+            id="f2"
             [(ngModel)]="user.accountExpired"
           />
-          <label class="form-check-label" for="accountExpired">
-            Expiry Status
+          <label
+            for="f2"
+            class="flag-pill"
+            [class.flag-on]="user.accountExpired"
+          >
+            <i class="ti ti-clock" style="font-size: 10px"></i> Expiry
           </label>
         </div>
-
-        <div class="form-check me-3 mb-2 mb-md-0">
+        <div class="form-check form-check-inline m-0">
           <input
-            class="form-check-input me-2"
+            class="form-check-input d-none"
             type="checkbox"
-            id="enabled"
+            id="f3"
             [(ngModel)]="user.enabled"
           />
-          <label class="form-check-label" for="enabled">
-            Account Enabled?
+          <label for="f3" class="flag-pill" [class.flag-on]="user.enabled">
+            <i class="ti ti-check" style="font-size: 10px"></i> Enabled
           </label>
         </div>
-
-        <div class="form-check me-3 mb-2 mb-md-0">
+        <div class="form-check form-check-inline m-0">
           <input
-            class="form-check-input me-2"
+            class="form-check-input d-none"
             type="checkbox"
-            id="pwdChangeRequired"
+            id="f4"
             [(ngModel)]="user.pwdChangeRequired"
           />
-          <label class="form-check-label" for="pwdChangeRequired">
-            Password Change Required
+          <label
+            for="f4"
+            class="flag-pill"
+            [class.flag-on]="user.pwdChangeRequired"
+          >
+            <i class="ti ti-lock" style="font-size: 10px"></i> Pwd change
           </label>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Employee Info -->
-  @if (showInfo) {
-    <div class="patient-info bg-light p-3 rounded border mb-2">
-      <div class="row g-2">
-        <div class="col-md-4 col-sm-6 col-12">
-          <div class="info-group">
-            <label class="form-label info-label">Emp. ID :</label>
-            <div class="info-value base-bg-subtle-primary py-1 px-2 rounded">
+    <!-- Employee readonly info -->
+    @if (showInfo) {
+      <div
+        class="mt-2 rounded-2 border p-2"
+        style="background: var(--bs-light)"
+      >
+        <div
+          class="text-muted fw-bold text-uppercase mb-2"
+          style="font-size: 10px; letter-spacing: 0.06em"
+        >
+          <i
+            class="ti ti-info-circle"
+            style="font-size: 11px; vertical-align: -1px; margin-right: 4px"
+          ></i
+          >Employee info
+        </div>
+        <div class="row g-1">
+          <div class="col-4">
+            <div class="text-muted" style="font-size: 10px">Emp. ID</div>
+            <div class="fw-semibold text-info" style="font-size: 12px">
               {{ selectedEmp?.empId || receivedEmp?.empId }}
             </div>
           </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-12">
-          <div class="info-group">
-            <label class="form-label info-label">Emp. Name :</label>
-            <div class="info-value base-bg-subtle-primary py-1 px-2 rounded">
+          <div class="col-4">
+            <div class="text-muted" style="font-size: 10px">Name</div>
+            <div class="fw-semibold base-txt-primary" style="font-size: 12px">
               {{ selectedEmp?.fname || receivedEmp?.fname }}
             </div>
           </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-12">
-          <div class="info-group">
-            <label class="form-label info-label">Department :</label>
-            <div class="info-value base-bg-subtle-primary py-1 px-2 rounded">
+          <div class="col-4">
+            <div class="text-muted" style="font-size: 10px">Department</div>
+            <div class="fw-semibold base-txt-primary" style="font-size: 12px">
               {{ deptName }}
             </div>
           </div>
         </div>
       </div>
+    }
+  </div>
+
+  <!-- ═══ RIGHT COLUMN — Tabs ═══ -->
+  <div class="d-flex flex-column p-3" style="flex: 1; min-width: 0">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <!-- tab pills -->
+      <div class="d-flex gap-1">
+        <button
+          type="button"
+          class="tab-pill-btn"
+          [class.active]="activeTab === 'modules'"
+          (click)="activeTab = 'modules'"
+        >
+          <i class="ti ti-layout-grid" style="font-size: 12px"></i> Modules
+        </button>
+        <button
+          type="button"
+          class="tab-pill-btn"
+          [class.active]="activeTab === 'role'"
+          (click)="activeTab = 'role'"
+        >
+          <i class="ti ti-shield-check" style="font-size: 12px"></i> Role
+        </button>
+      </div>
+      <div class="flex-fill"></div>
+      <button
+        *ngIf="activeTab === 'modules'"
+        type="button"
+        class="btn btn-sm btn-light border py-0 px-2"
+        style="font-size: 11px"
+        (click)="toggleTabs()"
+      >
+        <i class="fas fa-hand-pointer me-1"></i>{{ toggleButton }}
+      </button>
     </div>
-  }
-</div>
 
-<!-- divider -->
-<hr />
+    <!-- Modules tab -->
+    <div *ngIf="activeTab === 'modules'" style="flex: 1; overflow-y: auto">
+      <accordion class="base-accordion">
+        @for (module of moduleList3; track $index) {
+          <accordion-group [heading]="module.displayName" [isOpen]="isOpen">
+            <app-sub-module
+              [parent]="self"
+              [subModules]="module"
+            ></app-sub-module>
+          </accordion-group>
+        }
+      </accordion>
+    </div>
 
-<div class="modal-body">
-  <tabset class="tab-menu-style" type="pills">
-    <tab heading="Modules & Features">
-      <div id="userInfo" class="tab-pane active pt-1">
-        <div class="row">
-          <div class="col-md-12 accordionCustom paddingLeft0 paddingRight0">
-            <div class="col-md-12 text-right mb-2">
-              <button
-                type="button"
-                class="btn btn-info btnAcc"
-                (click)="toggleTabs()"
-              >
-                <i class="fas fa-hand-pointer"></i> {{ toggleButton }}
-              </button>
-            </div>
-            <div class="col-md-12">
-              <accordion class="base-accordion">
-                @for (module of moduleList3; track $index) {
-                  <accordion-group
-                    [heading]="module.displayName"
-                    [isOpen]="isOpen"
-                  >
-                    <app-sub-module
-                      [parent]="self"
-                      [subModules]="module"
-                    ></app-sub-module>
-                  </accordion-group>
-                }
-              </accordion>
-            </div>
-          </div>
-        </div>
+    <!-- Role tab -->
+    <div *ngIf="activeTab === 'role'" style="flex: 1; overflow-y: auto">
+      <div class="mb-2">
+        <ng-select
+          [items]="roleWithUserGrantList"
+          placeholder="Search or choose role..."
+          notFoundText="No role found"
+          bindLabel="roleName"
+          bindValue="roleNo"
+          [(ngModel)]="selectedRoleNo"
+          (change)="filterGrantRole()"
+        >
+        </ng-select>
       </div>
-    </tab>
-    <tab heading="Role">
-      <div id="userInfo" class="tab-pane active pt-1">
-        <div class="row">
-          <div class="col-md-6 offset-md-6">
-            <ng-select
-              [items]="roleWithUserGrantList"
-              placeholder="Choose Role"
-              notFoundText="No Role found"
-              bindLabel="roleName"
-              bindValue="roleNo"
-              [(ngModel)]="selectedRoleNo"
-              (change)="filterGrantRole()"
-              class="form-select mb-2"
+      <div class="d-flex flex-column gap-1">
+        <div
+          *ngFor="let roleGrant of grantRoleViewList; let i = index"
+          class="d-flex align-items-center justify-content-between px-2 py-2 rounded-2 border"
+          style="background: var(--bs-light); font-size: 12px"
+        >
+          <span class="fw-semibold base-txt-primary">{{
+            roleGrant["roleName"]
+          }}</span>
+          <div class="d-flex align-items-center gap-2">
+            <div class="form-check mb-0">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="cbCanGrant{{ roleGrant.roleNo }}"
+                [checked]="roleGrant.canGrant == 1"
+                (change)="getSelectedRoleValue(i, 'canGrant', $event)"
+              />
+              <label
+                class="form-check-label"
+                for="cbCanGrant{{ roleGrant.roleNo }}"
+                >Grant</label
+              >
+            </div>
+            <div class="form-check mb-0">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="cbActive{{ roleGrant.roleNo }}"
+                [checked]="roleGrant.activeStatus == 1"
+                (change)="getSelectedRoleValue(i, 'activeStatus', $event)"
+              />
+              <label
+                class="form-check-label"
+                for="cbActive{{ roleGrant.roleNo }}"
+                >Active</label
+              >
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-info py-0 px-2"
+              style="font-size: 11px"
+              (click)="loadRoleFeatures(roleGrant)"
             >
-            </ng-select>
-          </div>
-          <div class="col-md-12 accordionCustom">
-            <accordion class="base-accordion">
-              <accordion-group
-                *ngFor="let roleGrant of grantRoleViewList; let i = index"
-                [heading]="roleGrant['roleName']"
-                [panelClass]="cardHeader"
-                [isOpen]="false"
-                [id]="roleGrant.id != null ? 'user_grant_role' : ''"
-              >
-                <span class="form-check form-check-inline subSpan">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="cbCanGrant{{ roleGrant.roleNo }}"
-                    [checked]="roleGrant.canGrant == 1 ? true : false"
-                    (change)="getSelectedRoleValue(i, 'canGrant', $event)"
-                  />
-                  <label
-                    class="form-check-label"
-                    for="cbCanGrant{{ roleGrant.roleNo }}"
-                    >Grant</label
-                  >
-                </span>
-
-                <span class="form-check form-check-inline subSpan">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="cbActive{{ roleGrant.roleNo }}"
-                    [checked]="roleGrant.activeStatus == 1 ? true : false"
-                    (change)="getSelectedRoleValue(i, 'activeStatus', $event)"
-                  />
-                  <label
-                    class="form-check-label"
-                    for="cbActive{{ roleGrant.roleNo }}"
-                    >Active</label
-                  >
-                </span>
-
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-info mr-2"
-                  (click)="loadRoleFeatures(roleGrant)"
-                  [title]="'View features for ' + roleGrant.roleName"
-                >
-                  <i class="fas fa-list mr-1"></i>
-                  <span *ngIf="!roleGrant.loadingFeatures"> View Features</span>
-                </button>
-              </accordion-group>
-            </accordion>
+              <i class="ti ti-list me-1" style="font-size: 11px"></i>
+              <span *ngIf="!roleGrant.loadingFeatures">Features</span>
+            </button>
           </div>
         </div>
       </div>
-    </tab>
-  </tabset>
+    </div>
+  </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<div
+  class="modal-footer border-0 py-2 px-3"
+  style="background: var(--bs-light)"
+>
+  <span class="text-muted me-auto" style="font-size: 11px">
+    <i class="ti ti-asterisk text-danger" style="font-size: 10px"></i> required
+    fields
+  </span>
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary"
+    class="btn btn-sm btn-light border fw-medium px-3 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
-
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-3 ms-2 fixed-width-btn d-flex align-items-center gap-1"
     (click)="saveUpdateUser()"
-    [disabled]="isSaving"
+    [disabled]="isSaving || invalidId || invalidUser || invalidPassword"
   >
-    {{ isSaving ? "Saving" : "Save" }}
+    <i class="ti ti-device-floppy" style="font-size: 12px"></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

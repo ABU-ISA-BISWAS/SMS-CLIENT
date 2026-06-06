@@ -1,0 +1,122 @@
+<div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Building <span class="text-danger">*</span>
+      </span>
+      <select class="form-select" [(ngModel)]="room.buildingNo">
+        <option [ngValue]="undefined">-- Select Building --</option>
+        <option *ngFor="let b of buildingList" [value]="b.id">
+          {{ b.buildingName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Room Code <span class="text-danger">*</span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="room.roomCode"
+        placeholder="e.g. R-101"
+        [disabled]="!!room.id"
+      />
+    </div>
+
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Room Name
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="room.roomName"
+        placeholder="e.g. Class Room 101"
+      />
+    </div>
+
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Room Type <span class="text-danger">*</span>
+      </span>
+      <select class="form-select" [(ngModel)]="room.roomType">
+        <option *ngFor="let t of roomTypes" [value]="t.value">
+          {{ t.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Floor No.
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="room.floorNo"
+        min="0"
+        placeholder="0 = Ground"
+      />
+    </div>
+
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Capacity
+      </span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="room.capacity"
+        min="1"
+        placeholder="e.g. 50"
+      />
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-12 d-flex justify-content-end">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="room.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveRoom()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>

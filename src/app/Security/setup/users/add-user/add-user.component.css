@@ -1,33 +1,73 @@
 .input-group .input-group-text:nth-child(1) {
-    background-color: transparent;
-    width: 150px;
-    text-align: right;
-    border: 0;
-    display: inline;
-    font-weight: 600;
+  background-color: transparent;
+  width: 150px;
+  text-align: right;
+  border: 0;
+  display: inline;
+  font-weight: 600;
 }
 
 .searchDept {
-    width: 350px;
-
-
+  width: 350px;
 }
 
 ::ng-deep app-add-user .tab-container .nav.nav-tabs {
-    --bs-bg-opacity: 1;
-    border: 1px solid var(--base-primary-subtle);
-    border-radius: 6px;
-    margin-bottom: 5px;
-    overflow: hidden;
-    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+  --bs-bg-opacity: 1;
+  border: 1px solid var(--base-primary-subtle);
+  border-radius: 6px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
 }
 
 ::ng-deep app-add-user .tab-container .tab-content {
-    border: 1px solid var(--base-primary-subtle);
-    padding: 1rem;
-    /* border-radius: 6px; */
+  border: 1px solid var(--base-primary-subtle);
+  padding: 1rem;
+  /* border-radius: 6px; */
 }
 
 .fixed-width-btn {
-    min-width: 80px;
+  min-width: 80px;
+}
+
+/* Flag toggle pills */
+.flag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 0.5px solid #dee2e6;
+  background: #f8f9fa;
+  color: #6c757d;
+  transition: all 0.15s;
+  user-select: none;
+}
+.flag-pill.flag-on {
+  background: #cfe2ff;
+  border-color: #9ec5fe;
+  color: #084298;
+}
+
+/* Tab pills */
+.tab-pill-btn {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 0.5px solid #dee2e6;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+}
+.tab-pill-btn.active {
+  background: #cfe2ff;
+  border-color: #9ec5fe;
+  color: #084298;
 }

@@ -6,6 +6,7 @@ import { AcademicSectionComponent } from './setup/academic-section/academic-sect
 import { AcademicSessionComponent } from './setup/academic-session/academic-session.component';
 import { AcademicShiftComponent } from './setup/academic-shift/academic-shift.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
+import { BuildingComponent } from './setup/building/building.component';
 import { ClassSubjectMappingComponent } from './setup/class-subject-mapping/class-subject-mapping.component';
 import { DepartmentNewComponent } from './setup/department-new/department-new.component';
 import { EmployeesComponent } from './setup/employee/employees.component';
@@ -16,6 +17,8 @@ import { GuardianRelationComponent } from './setup/guardian-relation/guardian-re
 import { HolidayComponent } from './setup/holiday/holiday.component';
 import { ModulesComponent } from './setup/modules/modules.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
+import { RoomComponent } from './setup/room/room.component';
+import { SalaryGradeComponent } from './setup/salary-grade/salary-grade.component';
 import { SmsTemplateComponent } from './setup/sms-template/sms-template.component';
 import { StudentCategoryComponent } from './setup/student-category/student-category.component';
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
@@ -228,6 +231,33 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Holiday',
+    },
+  },
+  {
+    path: 'setup/building',
+    canActivate: [AuthGuard],
+    component: BuildingComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Building',
+    },
+  },
+  {
+    path: 'setup/room',
+    canActivate: [AuthGuard],
+    component: RoomComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Room',
+    },
+  },
+  {
+    path: 'setup/salary-grade',
+    canActivate: [AuthGuard],
+    component: SalaryGradeComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Salary Grade',
     },
   },
 ];

@@ -23,6 +23,8 @@ import { AddShiftComponent } from './setup/academic-shift/add-shift/add-shift.co
 import { AddBankInfoComponent } from './setup/bankInfo/add-bank-info/add-bank-info.component';
 import { BankInfoComponent } from './setup/bankInfo/bank-info.component';
 
+import { AddBuildingComponent } from './setup/building/add-building/add-building.component';
+import { BuildingComponent } from './setup/building/building.component';
 import { AddClassSubjectMappingComponent } from './setup/class-subject-mapping/add-class-subject-mapping/add-class-subject-mapping.component';
 import { ClassSubjectMappingComponent } from './setup/class-subject-mapping/class-subject-mapping.component';
 import { AddDepartmentModalComponent } from './setup/department-new/add-department-modal/add-department-modal.component';
@@ -49,6 +51,10 @@ import { AddModuleComponent } from './setup/modules/add-module/add-module.compon
 import { ModulesComponent } from './setup/modules/modules.component';
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
+import { AddRoomComponent } from './setup/room/add-room/add-room.component';
+import { RoomComponent } from './setup/room/room.component';
+import { AddSalaryGradeComponent } from './setup/salary-grade/add-salary-grade/add-salary-grade.component';
+import { SalaryGradeComponent } from './setup/salary-grade/salary-grade.component';
 import { SetupComponent } from './setup/setup.component';
 import { AddSmsTemplateComponent } from './setup/sms-template/add-sms-template/add-sms-template.component';
 import { SmsTemplateComponent } from './setup/sms-template/sms-template.component';
@@ -118,6 +124,12 @@ import { UsersComponent } from './setup/users/users.component';
     SmsTemplateComponent,
     AddHolidayComponent,
     HolidayComponent,
+    AddBuildingComponent,
+    BuildingComponent,
+    AddRoomComponent,
+    RoomComponent,
+    SalaryGradeComponent,
+    AddSalaryGradeComponent,
   ],
   imports: [
     SharedModule,

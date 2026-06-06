@@ -70,7 +70,7 @@ export class FeeStructureComponent implements OnInit, AfterViewInit {
   addFeeStructure() {
     const initialState = { title: 'Add Fee Structure' };
     this.bsModalRef = this.modalService.show(AddFeeStructureComponent, {
-      class: 'modal-lg base-modal',
+      class: 'modal-md base-modal',
       initialState,
       backdrop: 'static',
     });
@@ -98,7 +98,7 @@ export class FeeStructureComponent implements OnInit, AfterViewInit {
       feeStructure,
     };
     this.bsModalRef = this.modalService.show(AddFeeStructureComponent, {
-      class: 'modal-lg base-modal',
+      class: 'modal-md base-modal',
       initialState,
       backdrop: 'static',
     });

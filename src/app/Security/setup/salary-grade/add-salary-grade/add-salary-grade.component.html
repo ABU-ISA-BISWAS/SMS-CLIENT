@@ -1,0 +1,440 @@
+<!-- <div class="modal-header border-0">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="border p-3 mb-3">
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Grade Code <span class="text-danger">*</span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="grade.gradeCode"
+        placeholder="e.g. GRADE-1"
+        [disabled]="!!grade.id"
+      />
+    </div>
+
+    <div class="input-group required mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Grade Name <span class="text-danger">*</span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="grade.gradeName"
+        placeholder="e.g. Senior Teacher Grade"
+      />
+    </div>
+
+
+    <div class="border rounded p-2 mb-3 bg-light">
+      <small class="text-muted fw-semibold d-block mb-2">
+        <i class="fas fa-coins text-warning me-1"></i> Salary Components
+      </small>
+
+      <div class="input-group required mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          Basic Salary (৳) <span class="text-danger">*</span>
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.basicSalary"
+          min="0"
+          placeholder="0.00"
+        />
+      </div>
+
+      <div class="input-group mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          House Rent (%)
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.houseRentPct"
+          min="0"
+          max="100"
+        />
+        <span
+          class="input-group-text bg-light text-muted"
+          style="min-width: 100px"
+        >
+          = ৳ {{ houseRentAmount | number: "1.0-0" }}
+        </span>
+      </div>
+
+      <div class="input-group mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          Medical Allow. (৳)
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.medicalAllowance"
+          min="0"
+        />
+      </div>
+
+      <div class="input-group mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          Transport Allow. (৳)
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.transportAllowance"
+          min="0"
+        />
+      </div>
+
+      <div class="input-group mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          Conveyance (৳)
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.conveyance"
+          min="0"
+        />
+      </div>
+
+      <div class="input-group mb-2 positionRelative">
+        <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+          Other Allow. (৳)
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="grade.otherAllowance"
+          min="0"
+        />
+      </div>
+
+
+      <div
+        class="alert alert-success py-2 mb-0 mt-2 d-flex justify-content-between align-items-center"
+      >
+        <span class="fw-semibold">
+          <i class="fas fa-calculator me-1"></i> Total Gross Salary
+        </span>
+        <span class="fs-6 fw-bold">৳ {{ grossSalary | number: "1.0-0" }}</span>
+      </div>
+    </div>
+
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Effective From
+      </span>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="grade.effectiveFrom"
+      />
+    </div>
+
+    <div class="input-group mb-2 positionRelative">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Effective To
+      </span>
+      <input type="date" class="form-control" [(ngModel)]="grade.effectiveTo" />
+    </div>
+
+
+    <div class="row mt-2">
+      <div class="col-12 d-flex justify-content-end">
+        <div class="form-check flex-nowrap">
+          <label class="form-check-label text-dark text-nowrap ms-1"
+            >Status</label
+          >
+          <input
+            type="checkbox"
+            [(ngModel)]="grade.activeStatus"
+            class="form-check-input"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveGrade()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div> -->
+
+<div class="modal-header border-0 pb-2">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body pt-1 pb-2">
+  <!-- Row 1: Grade Code & Grade Name -->
+  <div class="row g-2 mb-2">
+    <div class="col-6">
+      <label
+        class="form-label fw-semibold base-txt-primary mb-1"
+        style="font-size: 0.75rem"
+      >
+        Grade Code <span class="text-danger">*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="grade.gradeCode"
+        placeholder="e.g. GRADE-1"
+        [disabled]="!!grade.id"
+      />
+    </div>
+    <div class="col-6">
+      <label
+        class="form-label fw-semibold base-txt-primary mb-1"
+        style="font-size: 0.75rem"
+      >
+        Grade Name <span class="text-danger">*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="grade.gradeName"
+        placeholder="e.g. Senior Teacher Grade"
+      />
+    </div>
+  </div>
+
+  <!-- Salary Components -->
+  <div
+    class="border rounded-2 p-2 mb-2"
+    style="background: #f8fffe; border-color: #d1fae5 !important"
+  >
+    <div class="mb-2 d-flex align-items-center gap-1">
+      <i class="fas fa-coins text-warning" style="font-size: 0.72rem"></i>
+      <small
+        class="fw-bold text-muted text-uppercase"
+        style="font-size: 0.68rem; letter-spacing: 0.05em"
+        >Salary Components</small
+      >
+    </div>
+
+    <!-- Row 2: Basic + House Rent -->
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          Basic Salary (৳) <span class="text-danger">*</span>
+        </label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          [(ngModel)]="grade.basicSalary"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          House Rent (%)
+        </label>
+        <div class="input-group input-group-sm">
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            [(ngModel)]="grade.houseRentPct"
+            min="0"
+            max="100"
+            placeholder="0"
+          />
+          <span
+            class="input-group-text bg-light text-muted"
+            style="font-size: 0.72rem; min-width: 70px"
+          >
+            ৳ {{ houseRentAmount | number: "1.0-0" }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Medical + Transport -->
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          Medical Allow. (৳)
+        </label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          [(ngModel)]="grade.medicalAllowance"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          Transport Allow. (৳)
+        </label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          [(ngModel)]="grade.transportAllowance"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+    </div>
+
+    <!-- Row 4: Conveyance + Other -->
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          Conveyance (৳)
+        </label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          [(ngModel)]="grade.conveyance"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+      <div class="col-6">
+        <label
+          class="form-label fw-semibold base-txt-primary mb-1"
+          style="font-size: 0.75rem"
+        >
+          Other Allow. (৳)
+        </label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          [(ngModel)]="grade.otherAllowance"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+    </div>
+
+    <!-- Gross Total -->
+    <div
+      class="d-flex justify-content-between align-items-center px-2 py-1 rounded-2 mt-1"
+      style="
+        background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+        border: 1px solid #6ee7b7;
+      "
+    >
+      <span class="fw-semibold text-success" style="font-size: 0.75rem">
+        <i class="fas fa-calculator me-1"></i> Total Gross Salary
+      </span>
+      <span class="fw-bold text-success" style="font-size: 0.9rem">
+        ৳ {{ grossSalary | number: "1.0-0" }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Row 5: Effective From + Effective To + Status -->
+  <div class="row g-2 align-items-end">
+    <div class="col-5">
+      <label
+        class="form-label fw-semibold base-txt-primary mb-1"
+        style="font-size: 0.75rem"
+      >
+        Effective From
+      </label>
+      <input
+        type="date"
+        class="form-control form-control-sm"
+        [(ngModel)]="grade.effectiveFrom"
+      />
+    </div>
+    <div class="col-5">
+      <label
+        class="form-label fw-semibold base-txt-primary mb-1"
+        style="font-size: 0.75rem"
+      >
+        Effective To
+      </label>
+      <input
+        type="date"
+        class="form-control form-control-sm"
+        [(ngModel)]="grade.effectiveTo"
+      />
+    </div>
+    <div class="col-2 d-flex flex-column align-items-center pb-1">
+      <label
+        class="form-label fw-semibold base-txt-primary mb-1"
+        style="font-size: 0.75rem"
+      >
+        Status
+      </label>
+      <input
+        type="checkbox"
+        [(ngModel)]="grade.activeStatus"
+        class="form-check-input mt-1"
+        style="width: 16px; height: 16px"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer border-0 bg-light py-2">
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="saveGrade()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>

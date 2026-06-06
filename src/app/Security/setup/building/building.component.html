@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Building Setup</h6>
+    </div>
+    <div class="card-body">
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-1 px-3"
+        >
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="disableOrEnable()"
+          >
+            <i class="fas fa-toggle-on mr-1"></i>&nbsp;{{ disableButton }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="addBuilding()"
+          >
+            <i class="fas fa-plus"></i> Add
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="editBuilding()"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-3"
+            (click)="deleteBuilding()"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
+
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-0 px-2"
+        >
+          <div class="row justify-content-center align-items-center">
+            <div class="mt-3 mt-xl-0">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="bldActive"
+                    name="bldStatus"
+                    (click)="statusCheck('A')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="A"
+                  />
+                  <label class="form-check-label p-2" for="bldActive"
+                    >Active</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="bldInactive"
+                    name="bldStatus"
+                    (click)="statusCheck('I')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="I"
+                  />
+                  <label class="form-check-label p-2" for="bldInactive"
+                    >Inactive</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #buildingGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

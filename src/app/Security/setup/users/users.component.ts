@@ -94,7 +94,7 @@ export class UsersComponent implements OnInit {
       showPassword: true,
     };
     this.bsModalRef = this.modalService.show(AddUserComponent, {
-      class: 'modal-xl modalAuto base-modal',
+      class: 'modal-lg modalAuto base-modal',
       initialState,
       backdrop: 'static',
     });
@@ -113,7 +113,7 @@ export class UsersComponent implements OnInit {
         receivedEmp: this.selectedEmp,
       };
       this.bsModalRef = this.modalService.show(AddUserComponent, {
-        class: 'modal-xl modalAuto base-modal',
+        class: 'modal-lg modalAuto base-modal',
         initialState,
         backdrop: 'static',
       });

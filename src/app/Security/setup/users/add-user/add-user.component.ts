@@ -23,7 +23,9 @@ import { RoleFeaturesModalComponent } from '../role-features-modal/role-features
 })
 export class AddUserComponent implements OnInit {
   nsSelectedStoreNo: any;
-  activeTab: string = 'modulesFeatures';
+  // activeTab: string = 'modulesFeatures';
+
+  activeTab: 'modules' | 'role' = 'modules';
 
   get self(): AddUserComponent {
     return this;
@@ -643,7 +645,7 @@ export class AddUserComponent implements OnInit {
       RoleFeaturesModalComponent,
       {
         initialState,
-        class: 'sub-modal modal-xl',
+        class: 'sub-modal modal-lg',
         backdrop: 'static',
         keyboard: true,
       },

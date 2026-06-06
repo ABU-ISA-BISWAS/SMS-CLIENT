@@ -1,0 +1,270 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header py-3">
+      <h6 class="m-0 fw-bold base-txt-primary">Salary Grade Setup</h6>
+    </div>
+    <div class="card-body">
+      <div class="card border border-2 action-bar mb-2">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-1 px-3"
+        >
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="disableOrEnable()"
+          >
+            <i class="fas fa-toggle-on mr-1"></i>&nbsp;{{ disableButton }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="addGrade()"
+          >
+            <i class="fas fa-plus"></i> Add
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="editGrade()"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-3"
+            (click)="deleteGrade()"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
+
+      <div class="card border border-2 filter-bar mb-2 bg-light">
+        <div
+          class="card-body d-flex flex-wrap gap-2 justify-content-end py-0 px-2"
+        >
+          <div class="row justify-content-center align-items-center">
+            <div class="mt-3 mt-xl-0">
+              <div class="custom-radio-group d-flex flex-wrap">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="sgActive"
+                    name="sgStatus"
+                    (click)="statusCheck('A')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="A"
+                  />
+                  <label class="form-check-label p-2" for="sgActive"
+                    >Active</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    id="sgInactive"
+                    name="sgStatus"
+                    (click)="statusCheck('I')"
+                    [(ngModel)]="activeInactiveFlag"
+                    class="custom-control-input"
+                    value="I"
+                  />
+                  <label class="form-check-label p-2" for="sgInactive"
+                    >Inactive</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  #salaryGrid
+                  class="row-border hover table table-sm"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gross Salary Modal -->
+<!-- Gross Salary Modal -->
+<div
+  class="modal fade"
+  id="grossModal"
+  tabindex="-1"
+  aria-labelledby="grossModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 360px">
+    <div
+      class="modal-content border-0 shadow overflow-hidden"
+      *ngIf="selectedGradeGross"
+    >
+      <!-- Header -->
+      <div
+        class="px-3 pt-3 pb-2 d-flex align-items-center justify-content-between"
+        style="background: linear-gradient(135deg, #0f5132, #198754)"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <div>
+            <div
+              class="text-white fw-bold"
+              style="font-size: 0.85rem; line-height: 1.2"
+            >
+              Gross Salary
+            </div>
+            <div class="text-white text-opacity-75" style="font-size: 0.7rem">
+              {{ selectedGradeGross.gradeCode }}
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          style="font-size: 0.65rem"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Grade Name Strip -->
+      <div
+        class="px-3 py-2 d-flex align-items-center justify-content-between"
+        style="background: #f0faf4; border-bottom: 1px solid #d1fae5"
+      >
+        <span class="text-muted" style="font-size: 0.72rem">Grade</span>
+        <span class="fw-semibold text-dark" style="font-size: 0.78rem">{{
+          selectedGradeGross.gradeName
+        }}</span>
+      </div>
+
+      <!-- Breakdown -->
+      <ng-container *ngIf="getGrossBreakdown(selectedGradeGross) as b">
+        <div class="px-3 py-2">
+          <div
+            *ngFor="
+              let item of [
+                {
+                  label: 'Basic Salary',
+                  value: b.basic,
+                  color: '#198754',
+                  badge: null,
+                },
+                {
+                  label: 'House Rent',
+                  value: b.houseRent,
+                  color: '#20c997',
+                  badge: selectedGradeGross.houseRentPct + '%',
+                },
+                {
+                  label: 'Medical Allowance',
+                  value: b.medical,
+                  color: '#0dcaf0',
+                  badge: null,
+                },
+                {
+                  label: 'Transport Allowance',
+                  value: b.transport,
+                  color: '#6610f2',
+                  badge: null,
+                },
+                {
+                  label: 'Conveyance',
+                  value: b.conveyance,
+                  color: '#fd7e14',
+                  badge: null,
+                },
+                {
+                  label: 'Other Allowance',
+                  value: b.other,
+                  color: '#6c757d',
+                  badge: null,
+                },
+              ]
+            "
+            class="d-flex align-items-center justify-content-between py-1"
+            style="border-bottom: 1px solid #f1f3f5"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <span
+                class="rounded-circle"
+                style="
+                  width: 6px;
+                  height: 6px;
+                  min-width: 6px;
+                  display: inline-block;
+                "
+                [style.background]="item.color"
+              ></span>
+              <span class="text-secondary" style="font-size: 0.75rem">{{
+                item.label
+              }}</span>
+              <span
+                *ngIf="item.badge"
+                class="badge rounded-pill text-bg-secondary"
+                style="font-size: 0.62rem; padding: 1px 6px"
+                >{{ item.badge }}</span
+              >
+            </div>
+            <span class="fw-semibold text-dark" style="font-size: 0.78rem"
+              >৳ {{ item.value | number }}</span
+            >
+          </div>
+        </div>
+
+        <!-- Total -->
+        <div
+          class="mx-3 mb-3 mt-1 rounded-2 px-3 py-2 d-flex justify-content-between align-items-center"
+          style="
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 1px solid #6ee7b7;
+          "
+        >
+          <div>
+            <div
+              class="fw-bold text-success"
+              style="
+                font-size: 0.72rem;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+              "
+            >
+              Total Gross
+            </div>
+            <div class="text-success opacity-75" style="font-size: 0.65rem">
+              All allowances included
+            </div>
+          </div>
+          <div class="fw-bold text-success" style="font-size: 1.15rem">
+            ৳ {{ b.gross | number }}
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Footer -->
+      <div class="px-3 pb-3 pt-0">
+        <button
+          type="button"
+          class="btn btn-success btn-sm w-100"
+          style="font-size: 0.78rem"
+          data-bs-dismiss="modal"
+        >
+          <i class="ri-check-line me-1"></i>Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
