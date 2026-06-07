@@ -1,0 +1,101 @@
+<div class="page-shell" [class.drawer-pushed]="isDrawerOpen">
+
+  <!-- ── Page Header ── -->
+  <div class="page-topbar">
+    <div class="page-topbar__left">
+      <h5 class="page-title">Student Admission</h5>
+      <span class="page-breadcrumb">Student Management &rsaquo; Admission</span>
+    </div>
+    <div class="page-topbar__right">
+      <button class="act-btn act-btn--primary" (click)="openAddDrawer()">
+        <i class="fas fa-user-plus"></i> New Admission
+      </button>
+      <button class="act-btn act-btn--warning" (click)="openEditDrawer()">
+        <i class="fas fa-edit"></i> Edit
+      </button>
+      <button class="act-btn act-btn--ghost" (click)="viewProfile()">
+        <i class="fas fa-eye"></i> View Profile
+      </button>
+
+      <!-- Status Dropdown -->
+      <div class="dropdown">
+        <button class="act-btn act-btn--ghost dropdown-toggle"
+          data-bs-toggle="dropdown">
+          <i class="fas fa-exchange-alt"></i> Change Status
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+          <li *ngFor="let opt of admissionStatusOptions">
+            <a class="dropdown-item" href="javascript:void(0)"
+              (click)="changeStatus(opt.value)">
+              <span class="status-pill {{ opt.cls }} me-2"
+                style="font-size:11px">{{ opt.label }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Filter Bar ── -->
+  <div class="filter-strip">
+    <div class="filter-strip__controls">
+      <div class="filter-item">
+        <label>Session</label>
+        <select [(ngModel)]="filterSessionNo">
+          <option [ngValue]="null">All Sessions</option>
+          <option *ngFor="let s of sessionList" [value]="s.id">
+            {{ s.sessionName }}
+          </option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label>Class</label>
+        <select [(ngModel)]="filterClassNo">
+          <option [ngValue]="null">All Classes</option>
+          <option *ngFor="let c of classList" [value]="c.id">
+            {{ c.className }}
+          </option>
+        </select>
+      </div>
+      <button class="filter-btn filter-btn--apply" (click)="applyFilter()">
+        <i class="fas fa-search"></i> Search
+      </button>
+      <button class="filter-btn filter-btn--clear" (click)="clearFilter()">
+        <i class="fas fa-times"></i> Clear
+      </button>
+    </div>
+    <div class="filter-strip__status">
+      <label class="radio-pill"
+        [class.radio-pill--active]="activeInactiveFlag === 'A'">
+        <input type="radio" [(ngModel)]="activeInactiveFlag" value="A"
+          (change)="applyFilter()" /> Active
+      </label>
+      <label class="radio-pill"
+        [class.radio-pill--inactive]="activeInactiveFlag === 'I'">
+        <input type="radio" [(ngModel)]="activeInactiveFlag" value="I"
+          (change)="applyFilter()" /> Inactive
+      </label>
+    </div>
+  </div>
+
+  <!-- ── Grid ── -->
+  <div class="grid-card">
+    <div class="table-responsive">
+      <table #admissionGrid class="row-border hover table table-sm"></table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Side Drawer ── -->
+<div class="drawer-overlay" [class.open]="isDrawerOpen" (click)="closeDrawer()"></div>
+
+<div class="side-drawer" [class.open]="isDrawerOpen">
+  <app-admission-drawer
+    *ngIf="isDrawerOpen"
+    [mode]="drawerMode"
+    [admissionData]="drawerAdmission"
+    (onClose)="closeDrawer()"
+    (onSaved)="onDrawerSaved()">
+  </app-admission-drawer>
+</div>

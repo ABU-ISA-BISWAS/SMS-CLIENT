@@ -35,6 +35,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Security/security.module').then((m) => m.SecurityModule),
       },
+      {
+        path: 'student-management',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./student-management/student-management.module').then((m) => m.StudentManagementModule),
+      },
     ],
   },
   {
