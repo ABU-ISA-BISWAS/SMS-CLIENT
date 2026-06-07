@@ -22,6 +22,11 @@ import { RoleFeaturesModalComponent } from '../role-features-modal/role-features
   standalone: false,
 })
 export class AddUserComponent implements OnInit {
+  selectedMfModule: any = null;
+
+  // Role filter
+  grSearchText: string = '';
+  grFilter: 'all' | 'granted' = 'all';
   nsSelectedStoreNo: any;
   // activeTab: string = 'modulesFeatures';
 
@@ -670,6 +675,117 @@ export class AddUserComponent implements OnInit {
           roleGrant.changedFeatures = result.changedFeatures;
         }
       },
+    );
+  }
+
+  get grantedRoleCount(): number {
+    return this.roleWithUserGrantList.filter((role) => role.id != null).length;
+  }
+
+  get filteredGrantRoleList(): UserGrantRole[] {
+    let list = this.grantRoleViewList;
+    if (this.grFilter === 'granted') {
+      list = list.filter((role) => role.id != null);
+    }
+    const q = this.grSearchText.trim().toLowerCase();
+    if (q) {
+      list = list.filter(
+        (role) => role.roleName && role.roleName.toLowerCase().includes(q),
+      );
+    }
+    return list;
+  }
+
+  // ── Methods to add ───────────────────────────────────────────────────────────
+
+  setGrFilter(filter: 'all' | 'granted') {
+    this.grFilter = filter;
+  }
+
+  onRoleFlagChange(roleGrant: UserGrantRole, property: string, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.roleWithUserGrantList.forEach((element, index) => {
+      if (element.roleNo == roleGrant.roleNo) {
+        (this.roleWithUserGrantList[index] as any)[property] = checked ? 1 : 0;
+        this.roleWithUserGrantList[index].isChange = true;
+      }
+    });
+  }
+
+  // ── Modules & Features helpers ──────────────────────────────────────────
+
+  getMfLeaves(module: any): any[] {
+    const result: any[] = [];
+    this._collectMfLeaves(module.children || [], result);
+    return result;
+  }
+
+  private _collectMfLeaves(children: any[], result: any[]) {
+    for (const child of children) {
+      if (
+        child.featureDtosList &&
+        child.featureDtosList.length > 0 &&
+        child.children &&
+        child.children.length === 0
+      ) {
+        if (child['_open'] === undefined) child['_open'] = true;
+        result.push(child);
+      } else if (child.children && child.children.length > 0) {
+        this._collectMfLeaves(child.children, result);
+      }
+    }
+  }
+
+  isMfFeatureGranted(feature: any): boolean {
+    return feature.updatedStatus !== undefined
+      ? feature.updatedStatus
+      : !!feature.isGranted;
+  }
+
+  toggleMfFeature(feature: any) {
+    this.getSelectedFeature(feature, !this.isMfFeatureGranted(feature));
+  }
+
+  toggleMfSub(sub: any) {
+    sub['_open'] = sub['_open'] === false ? true : false;
+  }
+
+  toggleMfSubAll(sub: any) {
+    const granted = this.getMfSubGranted(sub);
+    const total = this.getMfSubTotal(sub);
+    const newVal = granted < total;
+    (sub.featureDtosList || []).forEach((f: any) =>
+      this.getSelectedFeature(f, newVal),
+    );
+  }
+
+  getMfSubGranted(sub: any): number {
+    return (sub.featureDtosList || []).filter((f: any) =>
+      this.isMfFeatureGranted(f),
+    ).length;
+  }
+
+  getMfSubTotal(sub: any): number {
+    return (sub.featureDtosList || []).length;
+  }
+
+  getMfSubPct(sub: any): number {
+    const t = this.getMfSubTotal(sub);
+    return t === 0 ? 0 : Math.round((this.getMfSubGranted(sub) / t) * 100);
+  }
+
+  getMfProgressColor(pct: number): string {
+    if (pct === 0) return '#9aa0bc';
+    if (pct === 100) return '#1fc98a';
+    if (pct >= 60) return '#4b8df8';
+    return '#f0a040';
+  }
+
+  denyAllMf(module: any) {
+    this.getMfLeaves(module).forEach((sub) =>
+      sub.featureDtosList.forEach((f: any) =>
+        this.getSelectedFeature(f, false),
+      ),
     );
   }
 }
