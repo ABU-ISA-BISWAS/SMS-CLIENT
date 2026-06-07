@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Optional,
+  Output,
+} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
@@ -10,7 +17,6 @@ import { UserModel } from '../../../_coreSecurity/models/user.model';
 import { DepartmentService } from '../../../_coreSecurity/services/department.service';
 import { ModuleService } from '../../../_coreSecurity/services/module.service';
 import { RoleService } from '../../../_coreSecurity/services/role.service';
-import { UserGrantDepartmentService } from '../../../_coreSecurity/services/user-grant-department.service';
 import { UserGrantRoleService } from '../../../_coreSecurity/services/user-grant-role.service';
 import { UserService } from '../../../_coreSecurity/services/user.service';
 import { RoleFeaturesModalComponent } from '../role-features-modal/role-features-modal.component';
@@ -24,6 +30,14 @@ import { RoleFeaturesModalComponent } from '../role-features-modal/role-features
 export class AddUserComponent implements OnInit {
   selectedMfModule: any = null;
 
+  @Input() selectedUser: any = null;
+  @Input() receivedEmp: any = null;
+  @Input() title: string = '';
+  @Input() showPassword: boolean = false;
+
+  @Output() onSaveSuccess = new EventEmitter<void>();
+  @Output() onSavingChange = new EventEmitter<boolean>();
+
   // Role filter
   grSearchText: string = '';
   grFilter: 'all' | 'granted' = 'all';
@@ -36,9 +50,7 @@ export class AddUserComponent implements OnInit {
     return this;
   }
   user: UserModel = new UserModel();
-  title: string = '';
-  selectedUser: any;
-  receivedEmp: any;
+
   today: Date = new Date();
   future: Date = new Date();
   selectedModuleId!: number;
@@ -47,8 +59,6 @@ export class AddUserComponent implements OnInit {
   moduleList: any;
   allroleList: any;
   selectedRoles: any[] = [];
-  isOpen: boolean = false;
-  toggleButton: string = 'Close All';
   employeeDatasource!: Observable<any>;
   selectEmp!: string;
   selectEmpNo!: number;
@@ -65,7 +75,6 @@ export class AddUserComponent implements OnInit {
   invalidPassword!: boolean;
   userId!: string;
   userName!: string;
-  showPassword!: boolean;
   changedFeatureList: any[] = [];
   selectedRoleNo!: number;
 
@@ -92,16 +101,15 @@ export class AddUserComponent implements OnInit {
   roleFeaturesMap: Map<number, any[]> = new Map();
   allRoleFeaturesChanged: any[] = [];
   constructor(
-    public bsModalRef: BsModalRef,
     private moduleService: ModuleService,
     private deptService: DepartmentService,
     private roleService: RoleService,
     private userService: UserService,
     private toastr: ToastrService,
-    private userGrantDepartmentService: UserGrantDepartmentService,
     private userGrantRoleService: UserGrantRoleService,
     public featureBsModalRef: BsModalRef,
     private modalService: BsModalService,
+    @Optional() public bsModalRef: BsModalRef,
   ) {
     this.onClose = new Subject();
   }
@@ -160,7 +168,6 @@ export class AddUserComponent implements OnInit {
       this.showInfo = true;
     }
 
-    this.getDepartmentWithUserGrantList();
     this.getRoleWithUserGrantList();
   }
 
@@ -185,13 +192,6 @@ export class AddUserComponent implements OnInit {
     }
 
     this.moduleList3 = roots;
-  }
-
-  toggleTabs() {
-    this.isOpen = !this.isOpen;
-    this.isOpen
-      ? (this.toggleButton = 'Close All')
-      : (this.toggleButton = 'Expand All');
   }
 
   searchEmployee(token: any) {
@@ -242,6 +242,7 @@ export class AddUserComponent implements OnInit {
 
   saveUpdateUser() {
     this.isSaving = true;
+    this.onSavingChange.emit(true);
     this.user.pwdChangeRequired = this.user.pwdChangeRequired ? 1 : 0;
     const data = {
       user: this.user,
@@ -254,6 +255,7 @@ export class AddUserComponent implements OnInit {
         .pipe(
           finalize(() => {
             this.isSaving = false;
+            this.onSavingChange.emit(false);
           }),
         )
         .subscribe({
@@ -263,8 +265,9 @@ export class AddUserComponent implements OnInit {
               this.toastr.success(res.message || 'User updated successfully.');
               this.saveUserGrantDepartments();
               this.saveUserGrantRole();
-              this.onClose.next(true);
-              this.bsModalRef.hide();
+
+              this.onSaveSuccess.emit(); // ← REPLACE
+              this.bsModalRef?.hide();
             } else {
               this.toastr.warning(res.message || 'Failed to update user.');
             }
@@ -286,6 +289,7 @@ export class AddUserComponent implements OnInit {
         .pipe(
           finalize(() => {
             this.isSaving = false;
+            this.onSavingChange.emit(false);
           }),
         )
         .subscribe({
@@ -299,8 +303,8 @@ export class AddUserComponent implements OnInit {
               this.user = res.obj;
               this.saveUserGrantDepartments();
               this.saveUserGrantRole();
-              this.onClose.next(true);
-              this.bsModalRef.hide();
+              this.onSaveSuccess.emit(); // ← REPLACE
+              this.bsModalRef?.hide();
             } else {
               this.toastr.warning(res.message || 'Failed to save user.');
             }
@@ -448,26 +452,6 @@ export class AddUserComponent implements OnInit {
     console.log(changedFeature, this.changedFeatureList);
   }
 
-  //-------for User Grant Department Flag--------
-  getDepartmentWithUserGrantList() {
-    let userGrantDep: UserGrantDepartment = new UserGrantDepartment();
-    userGrantDep.userNo = this.user.id;
-
-    this.userGrantDepartmentService
-      .getDepartmentWithUserGrantList(userGrantDep)
-      .subscribe((res) => {
-        if (res.success) {
-          this.departmentWithUserGrantList = res.items;
-
-          this.departmentWithUserGrantList = this.departmentWithUserGrantList
-            .sort((a, b) => (a.id > b.id ? 1 : -1))
-            .reverse();
-
-          this.grantDepartmentViewList = this.departmentWithUserGrantList;
-        }
-      });
-  }
-
   getSelectedDepartmentValue(dIndex: number, property: string, event: Event) {
     const input = event.target as HTMLInputElement | null;
     const isChecked = input?.checked ?? false;
@@ -494,18 +478,6 @@ export class AddUserComponent implements OnInit {
         finalDepartmentList.push(element);
       }
     });
-
-    this.userGrantDepartmentService
-      .saveUserGrantDepartmentList(finalDepartmentList)
-      .subscribe((res) => {
-        if (res.success) {
-          // this.toastr.success(res.message)
-          this.onClose.next(true);
-          this.bsModalRef.hide();
-        } else {
-          this.toastr.warning(res.message);
-        }
-      });
   }
 
   filterGrantDepartment() {
@@ -650,7 +622,7 @@ export class AddUserComponent implements OnInit {
       RoleFeaturesModalComponent,
       {
         initialState,
-        class: 'sub-modal modal-lg',
+        class: 'base-modal modal-lg',
         backdrop: 'static',
         keyboard: true,
       },

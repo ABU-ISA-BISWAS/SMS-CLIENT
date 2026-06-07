@@ -597,5 +597,14 @@ div.dt-container .dt-paging .dt-paging-button {
 }
 
 .modal-xl {
-  --bs-modal-width: 1200px;
+  --bs-modal-width: 950px;
+}
+
+.modal-lg {
+  --bs-modal-width: 800px;
+}
+
+.modal-lg .modal-body {
+  height: 420px;
+  overflow-y: auto;
 }

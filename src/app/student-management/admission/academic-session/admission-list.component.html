@@ -1,101 +1,983 @@
-<div class="page-shell" [class.drawer-pushed]="isDrawerOpen">
+<div class="container-fluid">
+  <div class="card">
+    <!-- ═══════════════════════════════════════════════════
+         LIST VIEW
+    ════════════════════════════════════════════════════ -->
+    <ng-container *ngIf="!isFormVisible">
+      <!-- Card Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <h6 class="m-0 fw-bold base-txt-primary">Student Admission</h6>
 
-  <!-- ── Page Header ── -->
-  <div class="page-topbar">
-    <div class="page-topbar__left">
-      <h5 class="page-title">Student Admission</h5>
-      <span class="page-breadcrumb">Student Management &rsaquo; Admission</span>
-    </div>
-    <div class="page-topbar__right">
-      <button class="act-btn act-btn--primary" (click)="openAddDrawer()">
-        <i class="fas fa-user-plus"></i> New Admission
-      </button>
-      <button class="act-btn act-btn--warning" (click)="openEditDrawer()">
-        <i class="fas fa-edit"></i> Edit
-      </button>
-      <button class="act-btn act-btn--ghost" (click)="viewProfile()">
-        <i class="fas fa-eye"></i> View Profile
-      </button>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="changeStatus()"
+          >
+            <i class="fas fa-exchange-alt mr-1"></i>&nbsp;Change Status
+          </button>
 
-      <!-- Status Dropdown -->
-      <div class="dropdown">
-        <button class="act-btn act-btn--ghost dropdown-toggle"
-          data-bs-toggle="dropdown">
-          <i class="fas fa-exchange-alt"></i> Change Status
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-          <li *ngFor="let opt of admissionStatusOptions">
-            <a class="dropdown-item" href="javascript:void(0)"
-              (click)="changeStatus(opt.value)">
-              <span class="status-pill {{ opt.cls }} me-2"
-                style="font-size:11px">{{ opt.label }}</span>
-            </a>
-          </li>
-        </ul>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="openForm('add')"
+          >
+            <i class="fas fa-user-plus"></i> New Admission
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="openForm('edit')"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-info fw-medium px-3 text-white"
+            (click)="viewProfile()"
+          >
+            <i class="fas fa-eye"></i> View Profile
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ── Filter Bar ── -->
-  <div class="filter-strip">
-    <div class="filter-strip__controls">
-      <div class="filter-item">
-        <label>Session</label>
-        <select [(ngModel)]="filterSessionNo">
-          <option [ngValue]="null">All Sessions</option>
-          <option *ngFor="let s of sessionList" [value]="s.id">
-            {{ s.sessionName }}
-          </option>
-        </select>
+      <div class="card-body">
+        <!-- Filter Bar -->
+        <div class="card border border-2 action-bar mb-2">
+          <div class="card-body py-1 px-3">
+            <div class="row align-items-center g-2">
+              <div class="col-auto">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                  >
+                    Session
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterSessionNo"
+                    style="min-width: 160px"
+                  >
+                    <option [ngValue]="null">All Sessions</option>
+                    <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                      {{ s.sessionName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-auto">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                  >
+                    Class
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterClassNo"
+                    style="min-width: 140px"
+                  >
+                    <option [ngValue]="null">All Classes</option>
+                    <option *ngFor="let c of classList" [ngValue]="c.id">
+                      {{ c.className }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-auto">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary fw-semibold"
+                  >
+                    Status
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterAdmissionStatus"
+                    style="min-width: 130px"
+                  >
+                    <option [ngValue]="null">All Status</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="TC_ISSUED">TC Issued</option>
+                    <option value="PASSED_OUT">Passed Out</option>
+                    <option value="DROPOUT">Dropout</option>
+                    <option value="EXPELLED">Expelled</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-auto">
+                <button
+                  class="btn btn-sm btn-primary px-3 ms-1"
+                  (click)="applyFilter()"
+                >
+                  <i class="fas fa-filter"></i> Filter
+                </button>
+                <button
+                  class="btn btn-sm btn-danger px-3 ms-1"
+                  (click)="clearFilter()"
+                >
+                  <i class="fas fa-times"></i> Clear
+                </button>
+              </div>
+
+              <div class="col-auto ms-auto">
+                <div class="custom-radio-group d-flex flex-wrap">
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      id="admActive"
+                      name="admStatus"
+                      (click)="statusCheck('A')"
+                      [(ngModel)]="activeInactiveFlag"
+                      class="custom-control-input"
+                      value="A"
+                    />
+                    <label class="form-check-label p-2" for="admActive"
+                      >Active</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      id="admInactive"
+                      name="admStatus"
+                      (click)="statusCheck('I')"
+                      [(ngModel)]="activeInactiveFlag"
+                      class="custom-control-input"
+                      value="I"
+                    />
+                    <label class="form-check-label p-2" for="admInactive"
+                      >Inactive</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DataTable -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    #admissionGrid
+                    class="row-border hover table table-sm"
+                  ></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="filter-item">
-        <label>Class</label>
-        <select [(ngModel)]="filterClassNo">
-          <option [ngValue]="null">All Classes</option>
-          <option *ngFor="let c of classList" [value]="c.id">
-            {{ c.className }}
-          </option>
-        </select>
+    </ng-container>
+
+    <!-- ═══════════════════════════════════════════════════
+         FORM VIEW  (replaces list in same card)
+    ════════════════════════════════════════════════════ -->
+    <ng-container *ngIf="isFormVisible">
+      <!-- Form Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h6 class="m-0 fw-bold base-txt-primary">
+            {{
+              formMode === "add" ? "New Student Admission" : "Edit Admission"
+            }}
+          </h6>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-muted" style="font-size: 12px">
+            Step {{ currentStep }} of {{ totalSteps }}
+          </span>
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
       </div>
-      <button class="filter-btn filter-btn--apply" (click)="applyFilter()">
-        <i class="fas fa-search"></i> Search
-      </button>
-      <button class="filter-btn filter-btn--clear" (click)="clearFilter()">
-        <i class="fas fa-times"></i> Clear
-      </button>
-    </div>
-    <div class="filter-strip__status">
-      <label class="radio-pill"
-        [class.radio-pill--active]="activeInactiveFlag === 'A'">
-        <input type="radio" [(ngModel)]="activeInactiveFlag" value="A"
-          (change)="applyFilter()" /> Active
-      </label>
-      <label class="radio-pill"
-        [class.radio-pill--inactive]="activeInactiveFlag === 'I'">
-        <input type="radio" [(ngModel)]="activeInactiveFlag" value="I"
-          (change)="applyFilter()" /> Inactive
-      </label>
-    </div>
+
+      <div class="card-body p-0">
+        <!-- Step Tabs -->
+        <div class="adm-step-tabs">
+          <div
+            *ngFor="let s of steps"
+            class="adm-step-tab"
+            [class.active]="currentStep === s.no"
+            [class.done]="currentStep > s.no"
+            (click)="goToStep(s.no)"
+          >
+            <div class="adm-step-tab__circle">
+              <i *ngIf="currentStep > s.no" class="fas fa-check"></i>
+              <span *ngIf="currentStep <= s.no">{{ s.no }}</span>
+            </div>
+            <div class="adm-step-tab__label">{{ s.label }}</div>
+          </div>
+        </div>
+
+        <!-- Step Content Area -->
+        <div class="adm-form-body">
+          <!-- Loading -->
+          <div *ngIf="isLoading" class="adm-loading">
+            <div
+              class="spinner-border spinner-border-sm text-primary me-2"
+            ></div>
+            Loading...
+          </div>
+
+          <div *ngIf="!isLoading">
+            <!-- ── STEP 1: Personal Info ── -->
+            <div *ngIf="currentStep === 1">
+              <div class="adm-section-title">Personal Information</div>
+
+              <!-- Photo + Basic Info side by side -->
+              <div class="row g-3">
+                <!-- Photo -->
+                <div class="col-auto">
+                  <div
+                    class="adm-photo-box"
+                    [style.backgroundImage]="
+                      photoPreview ? 'url(' + photoPreview + ')' : 'none'
+                    "
+                  >
+                    <span *ngIf="!photoPreview" class="adm-photo-placeholder">
+                      <i class="fas fa-camera"></i><br />Photo
+                    </span>
+                    <button
+                      *ngIf="photoPreview"
+                      class="adm-photo-remove"
+                      (click)="clearPhoto()"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <label class="adm-photo-upload-btn mt-1">
+                    <i class="fas fa-upload"></i> Upload
+                    <input
+                      type="file"
+                      accept="image/*"
+                      (change)="onPhotoChange($event)"
+                      hidden
+                    />
+                  </label>
+                  <div class="adm-photo-hint">JPG/PNG · Max 2MB</div>
+                </div>
+
+                <!-- Right side fields -->
+                <div class="col">
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                      <div class="input-group input-group-sm required">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        >
+                          Full Name <span class="text-danger ms-1">*</span>
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.fullName"
+                          placeholder="Student's full name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        >
+                          পূর্ণ নাম (বাংলায়)
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.fullNameBn"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm required">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        >
+                          Date of Birth <span class="text-danger ms-1">*</span>
+                        </span>
+                        <input
+                          type="date"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.dateOfBirth"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm required">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        >
+                          Gender <span class="text-danger ms-1">*</span>
+                        </span>
+                        <select
+                          class="form-select form-select-sm"
+                          [(ngModel)]="student.genderNo"
+                        >
+                          <option [ngValue]="undefined">Select</option>
+                          <option *ngFor="let g of genderList" [ngValue]="g.id">
+                            {{ g.genderName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        >
+                          Blood Group
+                        </span>
+                        <select
+                          class="form-select form-select-sm"
+                          [(ngModel)]="student.bloodGroupNo"
+                        >
+                          <option [ngValue]="undefined">Select</option>
+                          <option
+                            *ngFor="let b of bloodGroupList"
+                            [ngValue]="b.id"
+                          >
+                            {{ b.bloodGroupName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 2 -->
+              <div class="row g-2 mt-1">
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Religion
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="student.religionNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let r of religionList" [ngValue]="r.id">
+                        {{ r.religionName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Category
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="student.studentCategoryNo"
+                    >
+                      <option [ngValue]="undefined">General</option>
+                      <option *ngFor="let c of categoryList" [ngValue]="c.id">
+                        {{ c.categoryName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Mobile No
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.mobileNo"
+                      placeholder="01XXXXXXXXX"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Nationality
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.nationality"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Birth Cert. No
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.birthCertNo"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      NID No
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.nidNo"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.email"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Present Address
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.presentAddress"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Permanent Address
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.permanentAddress"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── STEP 2: Guardian ── -->
+            <div *ngIf="currentStep === 2">
+              <div class="adm-section-title">Guardian / Parent Information</div>
+
+              <div
+                class="alert alert-info py-2 px-3 mb-3"
+                style="font-size: 12px"
+              >
+                <i class="fas fa-info-circle me-1"></i>
+                Enter the primary guardian details. Additional guardians can be
+                added after admission from the student profile.
+              </div>
+
+              <div class="row g-2">
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm required">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Guardian Name <span class="text-danger ms-1">*</span>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.guardianName"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      নাম (বাংলায়)
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.guardianNameBn"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm required">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Relation <span class="text-danger ms-1">*</span>
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="guardian.relationNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let r of relationList" [ngValue]="r.id">
+                        {{ r.relationName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm required">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Mobile No <span class="text-danger ms-1">*</span>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.mobileNo"
+                      placeholder="01XXXXXXXXX"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Occupation
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.occupation"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      NID No
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.nidNo"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Annual Income (৳)
+                    </span>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.annualIncome"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.email"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── STEP 3: Admission ── -->
+            <div *ngIf="currentStep === 3">
+              <div class="adm-section-title">Academic Assignment</div>
+
+              <div class="row g-2">
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm required">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Session <span class="text-danger ms-1">*</span>
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.academicSessionNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                        {{ s.sessionName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm required">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Class <span class="text-danger ms-1">*</span>
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.classMasterNo"
+                      (change)="onClassChange(admission.classMasterNo)"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let c of classList" [ngValue]="c.id">
+                        {{ c.className }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Section
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.sectionMasterNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                        {{ s.sectionName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Shift
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.shiftMasterNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let s of shiftList" [ngValue]="s.id">
+                        {{ s.shiftName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Group / Version
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.groupVersionNo"
+                    >
+                      <option [ngValue]="undefined">Select</option>
+                      <option *ngFor="let g of groupList" [ngValue]="g.id">
+                        {{ g.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Roll No
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="admission.rollNo"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Adm. Type
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="admission.admissionType"
+                    >
+                      <option value="NEW">New</option>
+                      <option value="TRANSFER">Transfer</option>
+                      <option value="RE_ADMISSION">Re-Admission</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Adm. Date
+                    </span>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="admission.admissionDate"
+                    />
+                  </div>
+                </div>
+
+                <!-- Transfer fields -->
+                <ng-container *ngIf="admission.admissionType === 'TRANSFER'">
+                  <div class="col-12">
+                    <div class="adm-section-title mt-1">
+                      Previous School Info
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                      <span
+                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      >
+                        Prev. School
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="admission.prevSchool"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                      <span
+                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      >
+                        Prev. Class
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="admission.prevClass"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                      <span
+                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      >
+                        Prev. Roll
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="admission.prevRoll"
+                      />
+                    </div>
+                  </div>
+                </ng-container>
+
+                <div class="col-md-8">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                    >
+                      Remarks
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="admission.remarks"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── STEP 4: Documents ── -->
+            <div *ngIf="currentStep === 4">
+              <div class="adm-section-title">Document Upload</div>
+
+              <div
+                class="alert alert-success py-2 px-3 mb-3"
+                style="font-size: 12px"
+                *ngIf="savedAdmissionNo"
+              >
+                <i class="fas fa-check-circle me-1"></i>
+                Admission saved successfully. Upload supporting documents below
+                (optional but recommended).
+              </div>
+
+              <div class="row g-2">
+                <div
+                  *ngFor="let doc of docEntries; let i = index"
+                  class="col-md-4"
+                >
+                  <div class="adm-doc-card">
+                    <div class="adm-doc-card__header">
+                      {{ docTypeList[i]?.docTypeName }}
+                      <span
+                        *ngIf="docTypeList[i]?.isMandatory === 1"
+                        class="text-danger ms-1"
+                        >*</span
+                      >
+                    </div>
+                    <div class="adm-doc-card__body" [class.has-file]="doc.file">
+                      <ng-container *ngIf="!doc.file">
+                        <label class="adm-doc-choose">
+                          <i class="fas fa-cloud-upload-alt"></i>
+                          <span>Choose File</span>
+                          <input
+                            type="file"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            (change)="onDocFileChange($event, i)"
+                            hidden
+                          />
+                        </label>
+                        <small
+                          class="text-muted d-block text-center mt-1"
+                          style="font-size: 10px"
+                        >
+                          PDF, JPG, PNG · Max 5MB
+                        </small>
+                      </ng-container>
+                      <ng-container *ngIf="doc.file">
+                        <img
+                          *ngIf="doc.preview !== 'pdf'"
+                          [src]="doc.preview"
+                          style="
+                            max-width: 100%;
+                            max-height: 60px;
+                            object-fit: cover;
+                          "
+                        />
+                        <div
+                          *ngIf="doc.preview === 'pdf'"
+                          class="text-center text-danger"
+                          style="font-size: 11px"
+                        >
+                          <i
+                            class="fas fa-file-pdf"
+                            style="font-size: 24px; display: block"
+                          ></i>
+                          {{ doc.file.name }}
+                        </div>
+                        <button class="adm-doc-remove" (click)="removeDoc(i)">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Footer -->
+        <div class="adm-form-footer">
+          <button
+            class="btn btn-sm btn-light border px-3"
+            *ngIf="currentStep > 1 && currentStep < 4"
+            (click)="prevStep()"
+          >
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <button
+            class="btn btn-sm btn-light border px-3"
+            *ngIf="currentStep === 1"
+            (click)="closeForm()"
+          >
+            Cancel
+          </button>
+
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-sm base-btn-primary px-3"
+              *ngIf="currentStep < 3"
+              (click)="nextStep()"
+            >
+              Next <i class="fas fa-arrow-right ms-1"></i>
+            </button>
+            <button
+              class="btn btn-sm base-btn-primary px-3"
+              *ngIf="currentStep === 3"
+              (click)="nextStep()"
+              [disabled]="isSaving"
+            >
+              <span *ngIf="!isSaving">
+                Save &amp; Continue
+                <i class="fas fa-arrow-right ms-1"></i>
+              </span>
+              <span *ngIf="isSaving">
+                <span class="spinner-border spinner-border-sm me-1"></span>
+                Saving...
+              </span>
+            </button>
+            <button
+              class="btn btn-sm btn-success px-3"
+              *ngIf="currentStep === 4"
+              (click)="finishAndClose()"
+            >
+              <i class="fas fa-check me-1"></i> Finish
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
-
-  <!-- ── Grid ── -->
-  <div class="grid-card">
-    <div class="table-responsive">
-      <table #admissionGrid class="row-border hover table table-sm"></table>
-    </div>
-  </div>
-
-</div>
-
-<!-- ── Side Drawer ── -->
-<div class="drawer-overlay" [class.open]="isDrawerOpen" (click)="closeDrawer()"></div>
-
-<div class="side-drawer" [class.open]="isDrawerOpen">
-  <app-admission-drawer
-    *ngIf="isDrawerOpen"
-    [mode]="drawerMode"
-    [admissionData]="drawerAdmission"
-    (onClose)="closeDrawer()"
-    (onSaved)="onDrawerSaved()">
-  </app-admission-drawer>
 </div>

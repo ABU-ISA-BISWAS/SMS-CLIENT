@@ -21,7 +21,7 @@ const routes: Routes = [
   // },
 
   {
-    path: 'setup/admission-list',
+    path: 'admission/admission-list',
     canActivate: [AuthGuard],
     component: AdmissionListComponent,
     data: {
@@ -29,7 +29,6 @@ const routes: Routes = [
       title: 'Admission List',
     },
   },
-
 ];
 
 @NgModule({

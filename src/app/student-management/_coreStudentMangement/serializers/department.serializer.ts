@@ -1,4 +1,4 @@
-import { Department } from '../models/department.model';
+import { Department } from '../../../Security/_coreSecurity/models/department.model';
 
 export class DepartmentSerializers {
   fromJson(json: any): Department {

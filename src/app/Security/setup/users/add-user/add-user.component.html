@@ -295,11 +295,6 @@
             grantedRoleCount
           }}</span>
         </button>
-        <div class="eu-tab-actions" *ngIf="activeTab === 'modules'">
-          <button type="button" class="eu-bulk-btn" (click)="toggleTabs()">
-            <i class="fas fa-hand-pointer"></i> {{ toggleButton }}
-          </button>
-        </div>
       </div>
 
       <!-- ──────────── MODULES TAB ──────────── -->
@@ -480,9 +475,7 @@
               Total
             </span>
             <span class="dp-stat-badge dp-stat-badge--granted">
-              <i class="fas fa-shield-alt"></i>&nbsp;{{
-                grantedRoleCount
-              }}
+              <i class="fas fa-shield-alt"></i>&nbsp;{{ grantedRoleCount }}
               Granted
             </span>
           </div>
@@ -526,19 +519,6 @@
               *ngIf="grFilter === 'granted' || roleGrant['expanded']"
             >
               <div class="gd-flags-grid">
-                <div class="gd-flag-item">
-                  <label class="dp-switch">
-                    <input
-                      type="checkbox"
-                      [checked]="
-                        roleGrant['granted'] != null && roleGrant['granted'] > 0
-                      "
-                      (change)="onRoleFlagChange(roleGrant, 'granted', $event)"
-                    />
-                    <span class="dp-slider"></span>
-                  </label>
-                  <span class="gd-flag-lbl">Granted</span>
-                </div>
                 <div class="gd-flag-item">
                   <label class="dp-switch">
                     <input

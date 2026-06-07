@@ -1,5 +1,86 @@
-
 ::ng-deep table.dataTable tbody tr.selected-row > td {
   background-color: #6a95b6 !important;
   color: white !important;
+}
+
+/* ── Form header bar ─────────────────────────────────────── */
+.uf-back-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e4e8f0;
+  flex-wrap: wrap;
+}
+
+.uf-back-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #d4d9ee;
+  background: #f4f6fc;
+  color: #5a6282;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    border-color 0.18s;
+  outline: none;
+}
+.uf-back-btn:hover {
+  background: #e8edf8;
+  border-color: #4b8df8;
+  color: #4b8df8;
+}
+
+.uf-back-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: "DM Sans", sans-serif;
+}
+.uf-bc-root {
+  color: #6c757d;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.uf-bc-root:hover {
+  color: #4b8df8;
+}
+.uf-bc-root i {
+  font-size: 12px;
+}
+.uf-bc-sep {
+  font-size: 9px;
+  color: #adb5bd;
+}
+.uf-bc-current {
+  font-weight: 700;
+  color: #1a1f36;
+}
+
+/* ── Form body — hide modal chrome from AddUserComponent ─── */
+.uf-form-body ::ng-deep .modal-header,
+.uf-form-body ::ng-deep .modal-footer {
+  display: none !important;
+}
+
+.uf-form-body ::ng-deep .modal-body {
+  display: flex !important;
+  min-height: 520px;
+}
+
+.uf-form-body ::ng-deep .eu-user-panel {
+  width: 100%;
 }

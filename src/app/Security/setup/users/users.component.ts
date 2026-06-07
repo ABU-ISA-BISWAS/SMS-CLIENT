@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -20,8 +20,11 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   styleUrls: ['./users.component.css'],
   standalone: false,
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, AfterViewInit {
   @ViewChild('userGrid') userGrid: any;
+  // Reference to the embedded AddUserComponent
+  @ViewChild('addUserRef') addUserRef!: AddUserComponent;
+
   bsModalRef!: BsModalRef;
   userTable: any;
   userTableObj: any;
@@ -46,6 +49,15 @@ export class UsersComponent implements OnInit {
   selectUnituser: any = 0;
   mAccUser: boolean = false;
   accDtl: boolean = false;
+
+  // ── Flip state ────────────────────────────────────────────────────────────
+  isFlipped: boolean = false;
+  formTitle: string = '';
+  formSelectedUser: any = null;
+  formSelectedEmp: any = null;
+  formShowPassword: boolean = false;
+  isSavingForm: boolean = false;
+
   constructor(
     private moduleService: ModuleService,
     private modalService: BsModalService,
@@ -61,15 +73,66 @@ export class UsersComponent implements OnInit {
     this.getPreviledge();
     this.getmodule();
     this.initiateTypeaheadData();
-
     this.initTypeAheadEmpIdDataSource();
     this.initTypeAheadEmpNameDataSource();
     this.initTypeAheadUserIdDataSource();
     this.initTypeAheadUserNameDataSource();
   }
+
   ngAfterViewInit() {
     this.initUserGrid();
   }
+
+  // ── Flip helpers ──────────────────────────────────────────────────────────
+
+  /** Open the Add form (back face) */
+  addFG() {
+    this.formTitle = 'Add New User';
+    this.formShowPassword = true;
+    this.formSelectedUser = null;
+    this.formSelectedEmp = null;
+    this.isFlipped = true;
+  }
+
+  /** Open the Edit form (back face) */
+  editFG() {
+    if (!this.selectedUser) {
+      this.toastr.warning('Please select a user first!');
+      return;
+    }
+    this.formTitle = 'Edit User';
+    this.formShowPassword = false;
+    this.formSelectedUser = this.selectedUser;
+    this.formSelectedEmp = this.selectedEmp;
+    this.isFlipped = true;
+  }
+
+  /** Close back face — flip back to list */
+  closeForm() {
+    this.isFlipped = false;
+    this.formSelectedUser = null;
+    this.formSelectedEmp = null;
+    this.selectedUser = null;
+    this.userTableObj.draw();
+  }
+
+  /** Called by Save button in header — delegates to embedded component */
+  triggerSave() {
+    if (this.addUserRef) {
+      this.addUserRef.saveUpdateUser();
+    }
+  }
+
+  /** Called via (onSaveSuccess) output from AddUserComponent */
+  onFormSaved() {
+    this.isFlipped = false;
+    this.formSelectedUser = null;
+    this.formSelectedEmp = null;
+    this.selectedUser = null;
+    this.userTableObj?.draw();
+  }
+
+  // ── Rest of existing logic (unchanged) ───────────────────────────────────
 
   getPreviledge() {
     this.featureService.getAuthorizePreviledge().subscribe((res) => {
@@ -88,50 +151,9 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  addFG() {
-    const initialState = {
-      title: 'Add New User',
-      showPassword: true,
-    };
-    this.bsModalRef = this.modalService.show(AddUserComponent, {
-      class: 'modal-lg modalAuto base-modal',
-      initialState,
-      backdrop: 'static',
-    });
-    this.bsModalRef.content.onClose.subscribe(() => {
-      this.userTableObj.draw();
-    });
-  }
-
-  editFG() {
-    if (!this.selectedUser) {
-      this.toastr.warning('Please select an user first!');
-    } else {
-      const initialState = {
-        selectedUser: this.selectedUser,
-        title: 'Edit User',
-        receivedEmp: this.selectedEmp,
-      };
-      this.bsModalRef = this.modalService.show(AddUserComponent, {
-        class: 'modal-lg modalAuto base-modal',
-        initialState,
-        backdrop: 'static',
-      });
-      this.bsModalRef.content.onClose.subscribe((res: any) => {
-        if (res) {
-          this.userTableObj.draw();
-          // console.log(res);
-          this.selectedUser = null;
-        }
-      });
-    }
-  }
-
   deleteFG() {}
-
   docSetup() {}
 
-  // Data Grid
   initUserGrid() {
     let that = this;
     this.userTable = $(this.userGrid.nativeElement);
@@ -180,30 +202,11 @@ export class UsersComponent implements OnInit {
       },
       order: [[0, 'desc']],
       columns: [
-        {
-          visible: false,
-          data: 'userModifiedOn',
-          name: 'userModifiedOn',
-        },
-        {
-          title: 'User ID.',
-          data: 'userId',
-          name: 'userId',
-        },
-        {
-          title: 'User Name',
-          data: 'userName',
-          name: 'userName',
-        },
-        {
-          title: 'Emp. ID',
-          data: 'empId',
-        },
-        {
-          title: 'Emp. Name',
-          data: 'empName',
-          name: 'empName',
-        },
+        { visible: false, data: 'userModifiedOn', name: 'userModifiedOn' },
+        { title: 'User ID.', data: 'userId', name: 'userId' },
+        { title: 'User Name', data: 'userName', name: 'userName' },
+        { title: 'Emp. ID', data: 'empId' },
+        { title: 'Emp. Name', data: 'empName', name: 'empName' },
         {
           title: 'Job Title',
           data: 'jobtitle',
@@ -221,7 +224,6 @@ export class UsersComponent implements OnInit {
           title: 'Status',
           data: 'enabled',
           render: (data: number) => {
-            console.log('data:active:', data);
             if (data == 1) {
               return '<span class="badge rounded-pill bg-success-subtle px-3 py-2 text-success">Active</span>';
             } else {
@@ -249,7 +251,6 @@ export class UsersComponent implements OnInit {
             self.selectedEmp = null;
           }
           self.selectedUser = data;
-
           this.setUserOrEmpData(data, data);
           if ($(row).hasClass('selected-row')) {
             $(row).removeClass('selected-row');
@@ -286,8 +287,6 @@ export class UsersComponent implements OnInit {
   processMenuTree(menuList: any[]) {
     let roots = [];
     const nodes: { [key: string]: any } = {};
-    let dispval = [];
-
     for (let i in menuList) {
       let menu = menuList[i];
       nodes[menu.id] = {
@@ -300,16 +299,13 @@ export class UsersComponent implements OnInit {
         roots.push(nodes[menu.id]);
       } else if (nodes[menu.prentId]) {
         nodes[menu.prentId].children.push(nodes[menu.id]);
-      } else {
       }
     }
     this.moduleList3 = roots;
   }
 
   getmodule() {
-    const reg = {
-      findParentOnly: true,
-    };
+    const reg = { findParentOnly: true };
     this.moduleService.allPatentModules(reg).subscribe((res: any) => {
       this.moduleList = res;
     });
@@ -320,13 +316,12 @@ export class UsersComponent implements OnInit {
       observer.next(this.searchModuleStr);
     }).pipe(mergeMap((token: string) => this.getTpeaheadDataList(token))));
   }
+
   getTpeaheadDataList(searchString: string): any {
-    const reqObj = {
-      menuName: searchString,
-      findParentOnly: true,
-    };
+    const reqObj = { menuName: searchString, findParentOnly: true };
     return this.moduleService.allPatentModules(reqObj);
   }
+
   changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
   }
@@ -334,6 +329,7 @@ export class UsersComponent implements OnInit {
   noResultsFound(event: boolean): void {
     this.noResult = event;
   }
+
   onSelectModule(event: any) {
     const dupItem = this.selecteDataArr.filter((element: { id: any }) => {
       return element.id === event.item.id;
@@ -352,79 +348,66 @@ export class UsersComponent implements OnInit {
 
   disableFG(): void {
     if (!this.selectedUser) {
-      this.toastr.warning('Please select an user first!');
-    } else {
-      const initialState = {
-        title: 'Do you want to ' + this.disableButton + ' this user?',
-      };
-      this.bsModalRef = this.modalService.show(ConfirmationDialog, {
-        initialState,
-        class: '',
-      });
-      this.bsModalRef.content.onClose.subscribe((res: any) => {
-        if (res) {
-          this.selectedUser.enabled = this.enabledDisabledFlag == 'D' ? 1 : 0;
-          this.userService
-            .disableUser(this.selectedUser)
-            .subscribe((res: { success: any; message: string | undefined }) => {
-              if (res.success) {
-                this.toastr.success(res.message);
-              } else {
-                this.toastr.warning(res.message);
-              }
-              this.userTableObj.draw();
-            });
-        }
-      });
+      this.toastr.warning('Please select a user first!');
+      return;
     }
+    const initialState = {
+      title: 'Do you want to ' + this.disableButton + ' this user?',
+    };
+    this.bsModalRef = this.modalService.show(ConfirmationDialog, {
+      initialState,
+      class: '',
+    });
+    this.bsModalRef.content.onClose.subscribe((res: any) => {
+      if (res) {
+        this.selectedUser.enabled = this.enabledDisabledFlag == 'D' ? 1 : 0;
+        this.userService
+          .disableUser(this.selectedUser)
+          .subscribe((res: { success: any; message: string | undefined }) => {
+            if (res.success) {
+              this.toastr.success(res.message);
+            } else {
+              this.toastr.warning(res.message);
+            }
+            this.userTableObj.draw();
+          });
+      }
+    });
   }
 
   changePassword() {
     if (!this.selectedUser) {
-      this.toastr.warning('Please select an user first!');
-    } else {
-      const initialState = {
-        selectedUser: this.selectedUser,
-      };
-      this.bsModalRef = this.modalService.show(ChangePasswordComponent, {
-        class: 'modal-md base-modal',
-        initialState,
-      });
-      this.bsModalRef.content.onClose.subscribe((res: any) => {
-        if (res) {
-          this.userTableObj.draw();
-          this.selectedUser = null;
-        }
-      });
+      this.toastr.warning('Please select a user first!');
+      return;
     }
+    const initialState = { selectedUser: this.selectedUser };
+    this.bsModalRef = this.modalService.show(ChangePasswordComponent, {
+      class: 'modal-md base-modal',
+      initialState,
+    });
+    this.bsModalRef.content.onClose.subscribe((res: any) => {
+      if (res) {
+        this.userTableObj.draw();
+        this.selectedUser = null;
+      }
+    });
   }
 
   statusCheck(status: string) {
     this.enabledDisabledFlag = status;
-    if (this.enabledDisabledFlag == 'E') {
-      this.disableButton = 'Disable';
-    } else {
-      this.disableButton = 'Enable';
-    }
+    this.disableButton = status == 'E' ? 'Disable' : 'Enable';
     this.userTableObj.draw();
   }
 
   getSelectedActive(checked: any) {
-    if (checked) {
-      this.selectActiveSta = 1;
-    } else {
-      this.selectActiveSta = 0;
-    }
-  }
-  getSelectedUnitUser(checked: any) {
-    if (checked) {
-      this.selectUnituser = 1;
-    } else {
-      this.selectUnituser = 0;
-    }
+    this.selectActiveSta = checked ? 1 : 0;
   }
 
-  //=======typeAhead: User=================
+  getSelectedUnitUser(checked: any) {
+    this.selectUnituser = checked ? 1 : 0;
+  }
+
+  // ── Typeahead: User ──────────────────────────────────────────────────────
   userNameDataSource!: Observable<any>;
   userIdDataSource!: Observable<any>;
   userNameSearchText!: string;
@@ -436,25 +419,27 @@ export class UsersComponent implements OnInit {
       observer.next(this.userNameSearchText);
     }).pipe(mergeMap((token) => this.searchByUserIdOrName(token)));
   }
+
   initTypeAheadUserIdDataSource(): any {
     this.userIdDataSource = Observable.create((observer: any) => {
       observer.next(this.userIdSearchText);
     }).pipe(mergeMap((token) => this.searchByUserIdOrName(token)));
   }
+
   searchByUserIdOrName(token: any) {
-    let searchObj = {
+    return this.userService.getUserListByNameID({
       userIdOrName: token.toUpperCase(),
-    };
-    return this.userService.getUserListByNameID(searchObj);
+    });
   }
+
   selectUser(getVal: any) {
     this.taSelectedUser = getVal.item;
     this.userIdSearchText = this.taSelectedUser.userId;
     this.userNameSearchText = this.taSelectedUser.userName;
-
     this.setUserOrEmpData(this.taSelectedUser, null);
   }
-  //=======typeAhead: Employee=================
+
+  // ── Typeahead: Employee ──────────────────────────────────────────────────
   employeeNameDataSource!: Observable<any>;
   employeeIdDataSource!: Observable<any>;
   empNameSearchText!: string;
@@ -466,23 +451,21 @@ export class UsersComponent implements OnInit {
       observer.next(this.empNameSearchText);
     }).pipe(mergeMap((token) => this.searchByEmployeeIdOrName(token)));
   }
+
   initTypeAheadEmpIdDataSource(): any {
     this.employeeIdDataSource = Observable.create((observer: any) => {
       observer.next(this.empIdSearchText);
     }).pipe(mergeMap((token) => this.searchByEmployeeIdOrName(token)));
   }
-  searchByEmployeeIdOrName(token: any) {
-    let searchObj = {
-      empIdOrName: token,
-    };
 
-    return this.userService.getUserListByNameID(searchObj);
+  searchByEmployeeIdOrName(token: any) {
+    return this.userService.getUserListByNameID({ empIdOrName: token });
   }
+
   selectEmployee(getVal: any) {
     this.taSelectedEmployee = getVal.item;
     this.empIdSearchText = this.taSelectedEmployee.empId;
     this.empNameSearchText = this.taSelectedEmployee.empName;
-
     this.setUserOrEmpData(null, this.taSelectedEmployee);
   }
 
@@ -491,18 +474,12 @@ export class UsersComponent implements OnInit {
     emp: { userId: string; userName: string } | null,
   ) {
     if (user) {
-      this.taSelectedEmployee = {
-        empId: user.empId,
-        empName: user.empName,
-      };
+      this.taSelectedEmployee = { empId: user.empId, empName: user.empName };
       this.empNameSearchText = user.empName;
       this.empIdSearchText = user.empId;
     }
     if (emp) {
-      this.taSelectedUser = {
-        userId: emp.userId,
-        userName: emp.userName,
-      };
+      this.taSelectedUser = { userId: emp.userId, userName: emp.userName };
       this.userIdSearchText = emp.userId;
       this.userNameSearchText = emp.userName;
     }

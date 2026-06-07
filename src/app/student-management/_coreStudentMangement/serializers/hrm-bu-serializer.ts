@@ -1,16 +1,13 @@
-import { HrBusinessUnit } from '../models/hr-bu.model';
+import { HrBusinessUnit } from '../../../Security/_coreSecurity/models/hr-bu.model';
 
 export class HrBuSerializer {
-    fromJson(json: any): HrBusinessUnit {
+  fromJson(json: any): HrBusinessUnit {
+    const buList = new HrBusinessUnit();
 
-        const buList = new HrBusinessUnit();
+    return buList;
+  }
 
-        return buList;
-    }
-
-    toJson(patientType: HrBusinessUnit): any {
-        return {
-            
-        };
-    }
+  toJson(patientType: HrBusinessUnit): any {
+    return {};
+  }
 }

@@ -6,108 +6,115 @@ import { Subject } from 'rxjs';
   selector: 'app-role-features-modal',
   templateUrl: './role-features-modal.component.html',
   styleUrls: ['./role-features-modal.component.css'],
-  standalone: false
+  standalone: false,
 })
 export class RoleFeaturesModalComponent implements OnInit {
-
   title!: string;
   features: any[] = [];
   roleNo!: number;
-  
+  roleName!: string;
 
   searchText: string = '';
   filteredFeatures: any[] = [];
-
   changedFeatures: any[] = [];
-  
 
   public onClose!: Subject<any>;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef) {}
 
   ngOnInit() {
     this.onClose = new Subject();
-    
 
     if (!this.features) {
       this.features = [];
     }
-    
 
-    this.features = this.features.map(feature => ({
+    // Normalise activeStatus to boolean for [(ngModel)] on checkboxes
+    this.features = this.features.map((feature) => ({
       ...feature,
-      activeStatus: this.toBoolean(feature.activeStatus)
+      activeStatus: this.toBoolean(feature.activeStatus),
     }));
-    
 
     this.filteredFeatures = [...this.features];
   }
 
-
-  private toBoolean(value: any): boolean {
-    if (value === 1 || value === '1' || value === 'true' || value === true) {
-      return true;
-    }
-    return false;
+  // ── Computed stat ──────────────────────────────────────────
+  get activeCount(): number {
+    return this.features.filter((f) => f.activeStatus).length;
   }
 
-  onStatusChange(feature: any) {
-    const existing = this.changedFeatures.find(
-      f => f.submenuNo === feature.submenuNo
-    );
-  
-    if (existing) {
-      existing.activeStatus = feature.activeStatus ? 1 : 0;
-    } else {
-      
-      this.changedFeatures.push({
-        submenuNo: feature.submenuNo,
-        featureId: feature.featureId,
-        roleNo: feature.roleNo,
-        roleName: feature.roleName,
-        accessType: feature.accessType,
-        typeName: feature.typeName,
-        submenuName: feature.submenuName,
-        menuName: feature.menuName,
-        activeStatus: feature.activeStatus ? 1 : 0
-      });
-    }
-  
-    console.log("Changed Features → ", this.changedFeatures);
-  }
-  
-
-
+  // ── Search fix: filter against this.features (source of truth) ─
   filterFeatures() {
-    if (!this.searchText.trim()) {
+    const term = this.searchText.trim().toLowerCase();
+
+    if (!term) {
       this.filteredFeatures = [...this.features];
       return;
     }
-    
-    const searchTerm = this.searchText.toLowerCase();
-    this.filteredFeatures = this.features.filter(feature => {
 
-      return (
-        (feature.submenuName && feature.submenuName.toLowerCase().includes(searchTerm)) ||
-        (feature.menuName && feature.menuName.toLowerCase().includes(searchTerm)) ||
-        (feature.submenuNo && feature.submenuNo.toLowerCase().includes(searchTerm))
-      );
-    });
+    this.filteredFeatures = this.features.filter(
+      (feature) =>
+        (feature.menuName && feature.menuName.toLowerCase().includes(term)) ||
+        (feature.submenuName &&
+          feature.submenuName.toLowerCase().includes(term)) ||
+        (feature.typeName && feature.typeName.toLowerCase().includes(term)) ||
+        (feature.roleName && feature.roleName.toLowerCase().includes(term)) ||
+        (feature.accessType && feature.accessType.toLowerCase().includes(term)),
+    );
   }
-
 
   clearSearch() {
     this.searchText = '';
     this.filteredFeatures = [...this.features];
   }
 
+  // ── Track changed rows ─────────────────────────────────────
+  isChanged(feature: any): boolean {
+    return this.changedFeatures.some((f) => f.featureId === feature.featureId);
+  }
+
+  onStatusChange(feature: any) {
+    // featureId as unique key (fallback to submenuNo)
+    const key = feature.featureId ?? feature.submenuNo;
+    const existing = this.changedFeatures.find(
+      (f) => (f.featureId ?? f.submenuNo) === key,
+    );
+
+    const payload = {
+      submenuNo: feature.submenuNo,
+      featureId: feature.featureId,
+      roleNo: feature.roleNo,
+      roleName: feature.roleName,
+      accessType: feature.accessType,
+      typeName: feature.typeName,
+      submenuName: feature.submenuName,
+      menuName: feature.menuName,
+      activeStatus: feature.activeStatus ? 1 : 0,
+    };
+
+    if (existing) {
+      existing.activeStatus = payload.activeStatus;
+    } else {
+      this.changedFeatures.push(payload);
+    }
+
+    // Mirror change back to source array so stats stay accurate
+    const src = this.features.find((f) => (f.featureId ?? f.submenuNo) === key);
+    if (src) src.activeStatus = feature.activeStatus;
+
+    console.log('Changed Features →', this.changedFeatures);
+  }
 
   onCloseModal() {
-    const result = {
+    this.onClose.next({
       roleNo: this.roleNo,
-      changedFeatures: this.changedFeatures
-    };
-    this.onClose.next(result);
+      changedFeatures: this.changedFeatures,
+    });
     this.bsModalRef.hide();
+  }
+
+  // ── Helpers ────────────────────────────────────────────────
+  private toBoolean(value: any): boolean {
+    return value === 1 || value === '1' || value === 'true' || value === true;
   }
 }

@@ -1,239 +1,286 @@
-/* ── Layout ── */
-.page-shell {
-  padding: 0 20px 20px;
-  transition: margin-right 0.3s ease;
+/* ─── Step Tabs ─────────────────────────────────────── */
+.adm-step-tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
 }
-.page-shell.drawer-pushed {
-  margin-right: 540px;
-}
-
-/* ── Topbar ── */
-.page-topbar {
+.adm-step-tab {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 0 12px;
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 14px;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.page-topbar__left { display: flex; flex-direction: column; gap: 2px; }
-.page-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
-  color: #1a1a2e;
-}
-.page-breadcrumb { font-size: 11px; color: #888; }
-.page-topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-/* ── Action Buttons ── */
-.act-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
+  gap: 7px;
+  padding: 10px 20px;
+  cursor: pointer;
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid transparent;
-  cursor: pointer;
-  white-space: nowrap;
-  border-radius: 3px;
+  color: #999;
+  border-bottom: 2px solid transparent;
   transition: all 0.15s;
+  white-space: nowrap;
 }
-.act-btn--primary {
-  background: var(--bs-primary, #0d6efd);
-  color: #fff;
-  border-color: var(--bs-primary, #0d6efd);
+.adm-step-tab:hover {
+  color: #555;
+  background: #f0f0f0;
 }
-.act-btn--primary:hover { filter: brightness(0.9); }
-.act-btn--warning {
-  background: #fff3cd;
-  color: #856404;
-  border-color: #ffc107;
-}
-.act-btn--warning:hover { background: #ffc107; color: #fff; }
-.act-btn--ghost {
+.adm-step-tab.active {
+  color: var(--bs-primary, #0d6efd);
+  border-bottom-color: var(--bs-primary, #0d6efd);
   background: #fff;
-  color: #444;
-  border-color: #d0d0d0;
 }
-.act-btn--ghost:hover { background: #f5f5f5; }
-
-/* ── Filter Strip ── */
-.filter-strip {
+.adm-step-tab.done {
+  color: #2e7d32;
+}
+.adm-step-tab.done .adm-step-tab__circle {
+  background: #2e7d32;
+  border-color: #2e7d32;
+  color: #fff;
+}
+.adm-step-tab__circle {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #fafafa;
-  border: 1px solid #e8e8e8;
-  padding: 8px 14px;
-  margin-bottom: 12px;
-  gap: 12px;
-  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  background: #fff;
+  color: #aaa;
+  flex-shrink: 0;
 }
-.filter-strip__controls {
+.adm-step-tab.active .adm-step-tab__circle {
+  background: var(--bs-primary, #0d6efd);
+  border-color: var(--bs-primary, #0d6efd);
+  color: #fff;
+}
+
+/* ─── Form Body ──────────────────────────────────────── */
+.adm-form-body {
+  padding: 16px 20px;
+  min-height: 300px;
+}
+
+/* ─── Loading ────────────────────────────────────────── */
+.adm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* ─── Section Title ──────────────────────────────────── */
+.adm-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ─── Photo ──────────────────────────────────────────── */
+.adm-photo-box {
+  width: 80px;
+  height: 96px;
+  border: 1px solid #d0d0d0;
+  background: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.adm-photo-placeholder {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+}
+.adm-photo-placeholder i {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 3px;
+}
+.adm-photo-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adm-photo-upload-btn {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  padding: 3px 0;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  cursor: pointer;
+  color: #555;
+  width: 80px;
+}
+.adm-photo-upload-btn:hover {
+  background: #f5f5f5;
+}
+.adm-photo-hint {
+  font-size: 10px;
+  color: #bbb;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ─── Document Cards ─────────────────────────────────── */
+.adm-doc-card {
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+.adm-doc-card__header {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #555;
+  padding: 6px 8px;
+  background: #f0f0f0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.adm-doc-card__body {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #d0d0d0;
+  margin: 6px;
+  position: relative;
+  background: #fff;
+}
+.adm-doc-card__body.has-file {
+  border-style: solid;
+  border-color: #4caf50;
+}
+.adm-doc-choose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  color: #999;
+  font-size: 11px;
+}
+.adm-doc-choose i {
+  font-size: 20px;
+  color: #ccc;
+}
+.adm-doc-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  background: #e53935;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Form Footer ────────────────────────────────────── */
+.adm-form-footer {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
-}
-.filter-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-}
-.filter-item label { color: #555; font-weight: 500; white-space: nowrap; }
-.filter-item select {
-  font-size: 12px;
-  padding: 4px 8px;
-  border: 1px solid #d0d0d0;
-  outline: none;
-  min-width: 140px;
-  color: #333;
-  border-radius: 2px;
-}
-.filter-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  font-size: 12px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  border-radius: 2px;
-}
-.filter-btn--apply {
-  background: var(--bs-primary, #0d6efd);
-  color: #fff;
-  border-color: var(--bs-primary);
-}
-.filter-btn--clear {
-  background: #fff;
-  color: #555;
-  border-color: #d0d0d0;
+  padding: 10px 20px;
+  border-top: 1px solid #e8e8e8;
+  background: #fafafa;
 }
 
-/* ── Status Radio Pill ── */
-.filter-strip__status { display: flex; gap: 4px; }
-.radio-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
-  font-size: 12px;
-  border: 1px solid #d0d0d0;
-  cursor: pointer;
-  border-radius: 2px;
-  color: #555;
-}
-.radio-pill input[type="radio"] { display: none; }
-.radio-pill--active {
-  background: #e8f5e9;
-  border-color: #4caf50;
-  color: #2e7d32;
-  font-weight: 500;
-}
-.radio-pill--inactive {
-  background: #fdecea;
-  border-color: #ef5350;
-  color: #c62828;
-  font-weight: 500;
-}
-
-/* ── Grid Card ── */
-.grid-card {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  padding: 12px;
-}
-
-/* ── Student Cell in Grid ── */
-.student-cell { display: flex; align-items: center; gap: 8px; }
-.student-avatar {
-  width: 28px;
-  height: 28px;
+/* ─── Grid: Avatar ───────────────────────────────────── */
+.adm-avatar {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #e3eaff;
   color: #3f51b5;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.student-name { font-size: 12px; font-weight: 500; color: #222; }
-.student-meta { font-size: 11px; color: #888; }
 
-/* ── Tags & Status Pills ── */
+/* ─── Grid: Tags & Status ────────────────────────────── */
 .adm-tag {
   display: inline-block;
-  padding: 2px 7px;
+  padding: 1px 7px;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.4px;
-  border-radius: 2px;
   text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-radius: 2px;
 }
-.tag-new      { background: #e3f2fd; color: #1565c0; }
-.tag-transfer { background: #fff3e0; color: #e65100; }
-.tag-readmit  { background: #f3e5f5; color: #6a1b9a; }
+.adm-tag-new {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.adm-tag-tr {
+  background: #fff3e0;
+  color: #e65100;
+}
+.adm-tag-re {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
 
-.status-pill {
+.adm-status {
   display: inline-block;
   padding: 2px 8px;
   font-size: 10px;
   font-weight: 600;
-  border-radius: 2px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  border-radius: 2px;
 }
-.status-active  { background: #e8f5e9; color: #2e7d32; }
-.status-tc      { background: #e3f2fd; color: #1565c0; }
-.status-passed  { background: #f3e5f5; color: #6a1b9a; }
-.status-dropout { background: #fff3e0; color: #e65100; }
-.status-expelled{ background: #fdecea; color: #c62828; }
-
-/* ── Drawer ── */
-.drawer-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 1040;
+.adm-status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
 }
-.drawer-overlay.open { display: block; }
-
-.side-drawer {
-  position: fixed;
-  top: 0;
-  right: -560px;
-  width: 540px;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e0e0e0;
-  z-index: 1050;
-  transition: right 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+.adm-status-tc {
+  background: #e3f2fd;
+  color: #1565c0;
 }
-.side-drawer.open { right: 0; }
+.adm-status-passed {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+.adm-status-drop {
+  background: #fff3e0;
+  color: #e65100;
+}
+.adm-status-exp {
+  background: #fdecea;
+  color: #c62828;
+}
 
-/* ── DataTable Selected Row ── */
+/* ─── DataTable Selected Row ─────────────────────────── */
 ::ng-deep table.dataTable tbody tr.selected-row > td {
   background-color: #6a95b6 !important;
   color: white !important;
-}
-::ng-deep table.dataTable tbody tr.selected-row .student-avatar {
-  background: rgba(255,255,255,0.25) !important;
-  color: #fff !important;
 }

@@ -1,50 +1,48 @@
 <div class="container-fluid">
   <div class="card">
-    <div class="card-header py-3">
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
       <h6 class="m-0 fw-bold base-txt-primary">Academic Section Setup</h6>
-    </div>
 
-    <div class="card-body">
-      <!-- Action Bar -->
-      <div class="card border border-2 action-bar mb-2">
-        <div
-          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-1 px-3"
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <button
+          type="button"
+          class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
+          (click)="disableOrEnableSection()"
         >
-          <button
-            type="button"
-            class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
-            (click)="disableOrEnableSection()"
-          >
-            <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
-              disableButton
-            }}
-          </button>
+          <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
+            disableButton
+          }}
+        </button>
 
-          <button
-            type="button"
-            class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
-            (click)="addSection()"
-            title="Add Section"
-          >
-            <i class="fas fa-user-plus" aria-hidden="true"></i> Add
-          </button>
+        <button
+          type="button"
+          class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
+          (click)="addSection()"
+          title="Add Section"
+        >
+          <i class="fas fa-user-plus" aria-hidden="true"></i> Add
+        </button>
 
-          <button
-            type="button"
-            class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
-            (click)="editSection()"
-            title="Add Bank Info"
-          >
-            <i class="fas fa-edit" aria-hidden="true"></i> Edit
-          </button>
-          <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0"
+        <button
+          type="button"
+          class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
+          (click)="editSection()"
+          title="Add Bank Info"
+        >
+          <i class="fas fa-edit" aria-hidden="true"></i> Edit
+        </button>
+        <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0"
             (click)="deleteSection()">
             <i class="fas fa-trash-alt"></i> Delete
           </button> -->
-        </div>
       </div>
+    </div>
+
+    <div class="card-body">
       <!-- Filtar Bar -->
-      <div class="card border border-2 filter-bar mb-2 bg-light">
+      <div class="card border border-2 action-bar mb-2">
         <div
           class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-0 px-2"
         >
