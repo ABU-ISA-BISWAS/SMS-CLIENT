@@ -54,7 +54,6 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
   // ── Form dropdowns ────────────────────────────────────
   genderList: any[] = [];
   maritalStatusList: any[] = [];
-  hrTypeList: any[] = [];
   districtList: any[] = [];
   countryList: any[] = [];
   bloodGroupList: any[] = [];
@@ -92,36 +91,24 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     private empService: EmployeeService,
   ) {}
 
-  ngOnInit() {
-    this.loadInitialData();
+ ngOnInit() {
     this.getDeptName();
-    this.getJobTitle();
+    this.getJobTitleAndJobType();
+    this.getEmpType();
+    this.getMaritalStatus();
+    this.getGender();
+    this.getBloodGroup();
+    this.getReligion();
+    this.getDistrict();
+
+
   }
 
   ngAfterViewInit(): void {
     this.initEmpGrid();
+    console.log("Job Type List", this.hrJobTitleList);
   }
-
   // ── Initial data load ─────────────────────────────────
-  loadInitialData(): void {
-    this.empService.initEmpSetupList().subscribe({
-      next: (res: any) => {
-        if (res.success) {
-          this.districtList = res.obj.districtList || [];
-          this.empTypeList = res.obj.empTypeList || [];
-          this.maritalStatusList = res.obj.maritalStatusList || [];
-          this.hrTypeList = res.obj.hrTypeList || [];
-          this.religionList = res.obj.religionList || [];
-          this.jobTypeList = res.obj.jobTypeList || [];
-          this.bloodGroupList = res.obj.bloodGroupList || [];
-          this.countryList = res.obj.countryList || [];
-          this.genderList = res.obj.genderList || [];
-          this.salutationList = res.obj.salutationList || [];
-        }
-      },
-      error: (err: any) => console.error('Error loading initial data', err),
-    });
-  }
 
   getDeptName(): void {
     this.empService.getDeptName().subscribe({
@@ -129,9 +116,42 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  getJobTitle(): void {
-    this.empService.getJobTitleList().subscribe({
+ getJobTitleAndJobType(): void {
+    this.empService.getJobTitleAndJobType().subscribe({
       next: (res: any) => (this.hrJobTitleList = res || []),
+    });
+  }
+
+    getEmpType(): void {
+    this.empService.getEmpType().subscribe({
+      next: (res: any) => (this.empTypeList = res || []),
+    });
+  }
+
+    getMaritalStatus(): void {
+    this.empService.getMaritalStatus().subscribe({
+      next: (res: any) => (this.maritalStatusList = res || []),
+    });
+  }
+
+    getDistrict(): void {
+    this.empService.getDistrict().subscribe({
+      next: (res: any) => (this.districtList = res || []),
+    });
+  }
+    getGender(): void {
+    this.empService.getGender().subscribe({
+      next: (res: any) => (this.genderList = res || []),
+    });
+  }
+    getBloodGroup(): void {
+    this.empService.getBloodGroup().subscribe({
+      next: (res: any) => (this.bloodGroupList = res || []),
+    });
+  }
+    getReligion(): void {
+    this.empService.getReligion().subscribe({
+      next: (res: any) => (this.religionList = res || []),
     });
   }
 
