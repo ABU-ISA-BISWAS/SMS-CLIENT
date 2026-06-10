@@ -100,11 +100,8 @@
                     (ngModelChange)="onChangeJobtitle()"
                   >
                     <option [ngValue]="0">All Job Titles</option>
-                    <option
-                      *ngFor="let j of hrJobTitleList"
-                      [ngValue]="j.jobtitleNo"
-                    >
-                      {{ j.jobtitle }}
+                    <option *ngFor="let j of hrJobTitleList" [ngValue]="j.id">
+                      {{ j.desigName }}
                     </option>
                   </select>
                 </div>
@@ -124,7 +121,7 @@
                   >
                     <option [ngValue]="0">All Job Types</option>
                     <option *ngFor="let j of jobTypeList" [ngValue]="j.id">
-                      {{ j.detailName }}
+                      {{ j.jobTypeName }}
                     </option>
                   </select>
                 </div>
@@ -144,7 +141,7 @@
                   >
                     <option [ngValue]="0">All Types</option>
                     <option *ngFor="let e of empTypeList" [ngValue]="e.id">
-                      {{ e.detailName }}
+                      {{ e.employeeTypeName }}
                     </option>
                   </select>
                 </div>
@@ -225,7 +222,6 @@
           <div *ngIf="activeTab === 'officialInfo'">
             <app-official-info-tab
               #officialTab
-              [hrType]="hrTypeList"
               [empType]="empTypeList"
               [bloodGroup]="bloodGroupList"
               [religionList]="religionList"
@@ -240,6 +236,7 @@
               [district]="districtList"
               [country]="countryList"
               [editAddressTab]="editAddressTab"
+              [guardianRelationList]="guardianRelationList"
             >
             </app-address-tab>
           </div>

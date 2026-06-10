@@ -13,6 +13,7 @@ export class AddressTabComponent implements OnInit {
   @Input('country') countryList: any;
   @Input('editAddressTab')
   editAddressTab!: EmployeeModel;
+  @Input('guardianRelationList') guardianRelationList: any;
 
   employeeaddress: EmployeeModel = new EmployeeModel();
 

@@ -25,7 +25,7 @@
         [items]="bloodGroupList"
         placeholder="Choose"
         notFoundText="Not found"
-        bindLabel="detailName"
+        bindLabel="bloodGroupName"
         bindValue="id"
         [(ngModel)]="employee.bloodGrp"
       >
@@ -43,24 +43,6 @@
         class="form-control"
         [(ngModel)]="employee.nationality"
       />
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="input-group input-group-sm">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        HR Type
-      </span>
-      <ng-select
-        class="form-control p-0"
-        [items]="hrTypeList"
-        placeholder="Choose"
-        notFoundText="Not found"
-        bindLabel="detailName"
-        bindValue="id"
-        [(ngModel)]="employee.hrType"
-      >
-      </ng-select>
     </div>
   </div>
 
@@ -88,7 +70,7 @@
         [items]="emptypelist"
         placeholder="Choose"
         notFoundText="Not found"
-        bindLabel="detailName"
+        bindLabel="employeeTypeName"
         bindValue="id"
         [(ngModel)]="employee.empType"
       >
@@ -106,7 +88,7 @@
         [items]="religionList"
         placeholder="Choose"
         notFoundText="Not found"
-        bindLabel="detailName"
+        bindLabel="religionName"
         bindValue="id"
         [(ngModel)]="employee.religion"
       >

@@ -1,62 +1,98 @@
 <div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{title}}</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="bsModalRef.hide()">
+  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+  <button
+    type="button"
+    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 
-
 <div class="modal-body">
-
   <div class="registartionTab tab-menu-style">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs nav-tabs2">
       <li class="nav-item">
-        <a class="nav-link" [class.active]="activeTab === 'personalInfo'" (click)="activeTab = 'personalInfo'">Basic
-          Information</a>
+        <a
+          class="nav-link"
+          [class.active]="activeTab === 'personalInfo'"
+          (click)="activeTab = 'personalInfo'"
+          >Basic Information</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class.active]="activeTab === 'officialInfo'" (click)="activeTab = 'officialInfo'">Other
-          Information</a>
+        <a
+          class="nav-link"
+          [class.active]="activeTab === 'officialInfo'"
+          (click)="activeTab = 'officialInfo'"
+          >Other Information</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class.active]="activeTab === 'address'" (click)="activeTab = 'address'">Address Details</a>
+        <a
+          class="nav-link"
+          [class.active]="activeTab === 'address'"
+          (click)="activeTab = 'address'"
+          >Address Details</a
+        >
       </li>
     </ul>
-
-
 
     <!-- Tab panes -->
     <div class="tab-content">
       <div *ngIf="activeTab === 'personalInfo'">
-        <app-personal-info-tab [jobType]="jobTypeList" [maritalStatus]="maritalStatusList" [jobTitle]="hrJobTitleList"
-          [department]="hrBuList" [editPersonalInfo]="editPersonalInfo" [gender]="genderList" [doctorNo]="doctorName"
-         >
+        <app-personal-info-tab
+          [jobType]="jobTypeList"
+          [maritalStatus]="maritalStatusList"
+          [jobTitle]="hrJobTitleList"
+          [department]="hrBuList"
+          [editPersonalInfo]="editPersonalInfo"
+          [gender]="genderList"
+          [doctorNo]="doctorName"
+        >
         </app-personal-info-tab>
       </div>
 
       <div *ngIf="activeTab === 'officialInfo'">
-        <app-official-info-tab [hrType]="hrTypeList" [empType]="empTypeList" [bloodGroup]="bloodGroupList"
-          [religionList]="religionList" [editOfficialInfo]="editOfficialInfo">
+        <app-official-info-tab
+          [hrType]="hrTypeList"
+          [empType]="empTypeList"
+          [bloodGroup]="bloodGroupList"
+          [religionList]="religionList"
+          [editOfficialInfo]="editOfficialInfo"
+        >
         </app-official-info-tab>
       </div>
 
       <div *ngIf="activeTab === 'address'">
-        <app-address-tab [district]="districtList" [country]="countryList" [editAddressTab]="editAddressTab">
+        <app-address-tab
+          [district]="districtList"
+          [country]="countryList"
+          [editAddressTab]="editAddressTab"
+          [guardianRelationList]="guardianRelationList"
+        >
         </app-address-tab>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <div class="modal-footer border-0 bg-light">
-  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
-    (click)="bsModalRef.hide()">Close</button>
-  <button type="button" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="onSaveOrUpdate()" [disabled]="isSaving">
-    {{isSaving? "Saving":"Save"}}
+  <button
+    type="button"
+    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    (click)="onSaveOrUpdate()"
+    [disabled]="isSaving"
+  >
+    {{ isSaving ? "Saving" : "Save" }}
   </button>
 </div>

@@ -14,7 +14,7 @@ import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
 })
 export class EmployeeService extends ResourceService<EmployeeModel> {
   private END_POINT = `api/employee`;
-  private END_POINT_LOOKUP = `/api/lookup`;
+  private END_POINT_LOOKUP = `api/lookup`;
 
   private JOBLIST = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/jobtitle/list`;
   private DEPT_LIST = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/dept/list`;
@@ -28,12 +28,14 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
   private ADD_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/add-emp-signature`;
   private GET_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/getEmpSignature`;
   private JOB_TITEL_AND_TYPE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/job-title/all`;
+  private JOB_TYPE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/job-type/all`;
   private EMP_TYPE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/emp-type/all`;
   private MERITAL_STATUS = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/marital-status/all`;
   private DISTRICT = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/district/all`;
   private GENDER = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/gender/all`;
   private BLOOD_GROUP = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/blood-grp/all`;
   private RELIGION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/religion/all`;
+  private GUARDIAN_RELATION = `${environment.baseUrl}${environment.authApiUrl}/api/guardian-relation/all`;
 
   constructor(
     private http: HttpClient,
@@ -81,13 +83,31 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
       .get(this.DEPT_LIST, { headers })
       .pipe(map((data: any) => data.items));
   }
-  getJobTitleAndJobType() {
+  getGuardianRelation() {
+    const token = this.authService.getAccessToken(); // get token from your auth service
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http
+      .get(this.GUARDIAN_RELATION, { headers })
+      .pipe(map((data: any) => data.items));
+  }
+  getJobTitle() {
     const token = this.authService.getAccessToken(); // get token from your auth service
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http
       .get(this.JOB_TITEL_AND_TYPE, { headers })
+      .pipe(map((data: any) => data.items));
+  }
+  getJobType() {
+    const token = this.authService.getAccessToken(); // get token from your auth service
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http
+      .get(this.JOB_TYPE, { headers })
       .pipe(map((data: any) => data.items));
   }
   getEmpType() {
@@ -145,8 +165,6 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
       .pipe(map((data: any) => data.items));
   }
 
-
-
   saveEmployee(data: any) {
     const token = this.authService.getAccessToken(); // get token from your auth service
     const headers = new HttpHeaders({
@@ -182,7 +200,6 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
       .delete<any>(this.DELETE_EMP, options)
       .pipe(map((response) => response));
   }
-
 
   searchByPersonalNumber(data: string | number | boolean) {
     const token = this.authService.getAccessToken(); // get token from your auth service

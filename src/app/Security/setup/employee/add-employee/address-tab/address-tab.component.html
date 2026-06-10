@@ -75,7 +75,7 @@
             [items]="districtlist"
             placeholder="Choose district"
             notFoundText="Not found"
-            bindLabel="detailName"
+            bindLabel="districtName"
             bindValue="id"
             [(ngModel)]="employeeaddress.prAddrDist"
           >
@@ -95,7 +95,7 @@
             [items]="countryList"
             placeholder="Choose country"
             notFoundText="Not found"
-            bindLabel="detailName"
+            bindLabel="countryName"
             bindValue="id"
             [(ngModel)]="employeeaddress.prAddrCountry"
           >
@@ -192,7 +192,7 @@
             [items]="districtlist"
             placeholder="Choose district"
             notFoundText="Not found"
-            bindLabel="detailName"
+            bindLabel="districtName"
             bindValue="id"
             [(ngModel)]="employeeaddress.peAddrDist"
           >
@@ -212,7 +212,7 @@
             [items]="countryList"
             placeholder="Choose country"
             notFoundText="Not found"
-            bindLabel="detailName"
+            bindLabel="countryName"
             bindValue="id"
             [(ngModel)]="employeeaddress.peAddrCountry"
           >
@@ -248,11 +248,17 @@
           >
             Relation
           </span>
-          <input
-            type="text"
-            class="form-control"
+
+          <ng-select
+            class="form-control p-0"
+            [items]="guardianRelationList"
+            placeholder="Choose relation"
+            notFoundText="Not found"
+            bindLabel="name"
+            bindValue="id"
             [(ngModel)]="employeeaddress.contractRelation"
-          />
+          >
+          </ng-select>
         </div>
       </div>
 

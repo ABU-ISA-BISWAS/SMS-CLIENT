@@ -59,6 +59,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
   bloodGroupList: any[] = [];
   religionList: any[] = [];
   salutationList: any[] = [];
+  guardianRelationList: any[] = [];
   doctorName: any;
 
   // ── View toggle ───────────────────────────────────────
@@ -91,22 +92,28 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     private empService: EmployeeService,
   ) {}
 
- ngOnInit() {
+  ngOnInit() {
     this.getDeptName();
-    this.getJobTitleAndJobType();
+    this.getJobTitle();
+    this.getJobType();
     this.getEmpType();
     this.getMaritalStatus();
     this.getGender();
     this.getBloodGroup();
     this.getReligion();
     this.getDistrict();
-
-
+    this.getGuardianRelation();
+    this.countryList = [
+      {
+        id: 1,
+        countryName: 'Bangladesh',
+      },
+    ];
   }
 
   ngAfterViewInit(): void {
     this.initEmpGrid();
-    console.log("Job Type List", this.hrJobTitleList);
+    console.log('Job Type List', this.hrJobTitleList);
   }
   // ── Initial data load ─────────────────────────────────
 
@@ -116,40 +123,52 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
- getJobTitleAndJobType(): void {
-    this.empService.getJobTitleAndJobType().subscribe({
+  getGuardianRelation(): void {
+    this.empService.getGuardianRelation().subscribe({
+      next: (res: any) => (this.guardianRelationList = res || []),
+    });
+  }
+
+  getJobTitle(): void {
+    this.empService.getJobTitle().subscribe({
       next: (res: any) => (this.hrJobTitleList = res || []),
     });
   }
 
-    getEmpType(): void {
+  getJobType(): void {
+    this.empService.getJobType().subscribe({
+      next: (res: any) => (this.jobTypeList = res || []),
+    });
+  }
+
+  getEmpType(): void {
     this.empService.getEmpType().subscribe({
       next: (res: any) => (this.empTypeList = res || []),
     });
   }
 
-    getMaritalStatus(): void {
+  getMaritalStatus(): void {
     this.empService.getMaritalStatus().subscribe({
       next: (res: any) => (this.maritalStatusList = res || []),
     });
   }
 
-    getDistrict(): void {
+  getDistrict(): void {
     this.empService.getDistrict().subscribe({
       next: (res: any) => (this.districtList = res || []),
     });
   }
-    getGender(): void {
+  getGender(): void {
     this.empService.getGender().subscribe({
       next: (res: any) => (this.genderList = res || []),
     });
   }
-    getBloodGroup(): void {
+  getBloodGroup(): void {
     this.empService.getBloodGroup().subscribe({
       next: (res: any) => (this.bloodGroupList = res || []),
     });
   }
-    getReligion(): void {
+  getReligion(): void {
     this.empService.getReligion().subscribe({
       next: (res: any) => (this.religionList = res || []),
     });
