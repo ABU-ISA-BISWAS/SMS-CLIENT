@@ -1,107 +1,141 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-settings fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage system configuration</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Config Key <span class="text-danger">*</span></span
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="sysconfig-form-grid">
+    <!-- Config Key -->
+    <div class="field-group">
+      <label class="field-label"
+        >Config Key <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="systemConfig.configKey"
-      />
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Config Value <span class="text-danger">*</span></span
-      >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="systemConfig.configValue"
-      />
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Config Group <span class="text-danger">*</span></span
-      >
-      <select
-        class="form-select"
-        [(ngModel)]="systemConfig.configGroup"
-        name="configGroup"
-      >
-        <option value="GENERAL">GENERAL</option>
-        <option value="SMS">SMS</option>
-        <option value="EMAIL">EMAIL</option>
-        <option value="FEE">FEE</option>
-        <option value="ATTENDANCE">ATTENDANCE</option>
-        <option value="RESULT">RESULT</option>
-      </select>
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Description <span class="text-danger">*</span></span
-      >
-      <textarea
-        type="text"
-        class="form-control"
-        [(ngModel)]="systemConfig.description"
-      >
-      </textarea>
+      <div class="input-field-wrapper">
+        <i class="ti ti-key field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter config key"
+          [(ngModel)]="systemConfig.configKey"
+        />
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end flex-wrap">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <!-- Config Group -->
+    <div class="field-group">
+      <label class="field-label"
+        >Config Group <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-layout-list field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="systemConfig.configGroup"
+          name="configGroup"
+        >
+          <option value="" disabled selected>Select group</option>
+          <option value="GENERAL">GENERAL</option>
+          <option value="SMS">SMS</option>
+          <option value="EMAIL">EMAIL</option>
+          <option value="FEE">FEE</option>
+          <option value="ATTENDANCE">ATTENDANCE</option>
+          <option value="RESULT">RESULT</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Config Value -->
+    <div class="field-group sysconfig-col-full">
+      <label class="field-label"
+        >Config Value <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-code field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter config value"
+          [(ngModel)]="systemConfig.configValue"
+        />
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="field-group sysconfig-col-full">
+      <label class="field-label"
+        >Description <span class="text-danger">*</span></label
+      >
+      <textarea
+        class="form-control field-textarea"
+        rows="3"
+        placeholder="Enter description"
+        [(ngModel)]="systemConfig.description"
+      ></textarea>
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="field-group sysconfig-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="systemConfig.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Is Editable</label
-          >
+          <span class="checkbox-label">Active Status</span>
+        </label>
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="systemConfig.isEditable"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Is Editable</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveConfigs()"
     [disabled]="isSaving"
   >
-    {{ isSaving ? "Saving" : "Save" }}
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

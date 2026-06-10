@@ -1,26 +1,103 @@
-<div class="card-body" *ngFor="let subModule of subModules.children">
-  <div class="card-bodyInner">
-  <div *ngIf="subModule?.children.length == 0 && subModule?.featureDtosList == null">
-      <h5 class="h5SubModule">{{subModule.displayName}}</h5>
-      <app-sub-module  [parent]="parent" [subModules]="subModule"></app-sub-module>
-  </div>
-  <div *ngIf="subModule?.children.length > 0 && subModule?.featureDtosList == null">
-      <h5 class="h5SubModule">{{subModule.displayName}}</h5>
-      <app-sub-module [parent]="parent" [subModules]="subModule"></app-sub-module>
-  </div>
-  <div *ngIf="subModule?.children.length == 0 && subModule?.featureDtosList != null">
-    <div class="subModuleArea">
-    <h5 class="h5SubModule">{{subModule.displayName}}</h5>
-    <span class="form-check form-check-inline subSpan" *ngFor="let feature of subModule.featureDtosList">
-      <input type="checkbox" class="form-check-input" 
-        [attr.id]="feature.featureId" 
-        [attr.name]="feature.featureId"
-        [value]="feature" 
-        [checked]="feature.isGranted"
-        (change)="getSelectedFeature(feature, $event.target.checked)">
-      <label class="form-check-label" [attr.for]="feature.featureId">{{feature.featureName}}</label>
-    </span>
-  </div>
-  </div>
-</div>
+<div *ngFor="let subModule of subModules.children" class="smr-block">
+  <!-- ── Has children → recurse ── -->
+  <ng-container *ngIf="subModule?.children?.length > 0">
+    <div class="smr-group-head">
+      <i class="fas fa-folder smr-folder-ico"></i>
+      <span class="smr-group-name">{{ subModule.displayName }}</span>
+    </div>
+    <div class="smr-group-body">
+      <app-sub-module-role
+        [parent]="parent"
+        [subModules]="subModule"
+        (featureSelected)="featureSelected.emit($event)"
+      >
+      </app-sub-module-role>
+    </div>
+  </ng-container>
+
+  <!-- ── Leaf node with features ── -->
+  <ng-container
+    *ngIf="
+      subModule?.children?.length === 0 &&
+      subModule?.featureDtosList?.length > 0
+    "
+  >
+    <div
+      class="smr-sub-block"
+      [class.smr-sub-block--full]="
+        getGranted(subModule) === subModule.featureDtosList.length
+      "
+      [class.smr-sub-block--partial]="
+        getGranted(subModule) > 0 &&
+        getGranted(subModule) < subModule.featureDtosList.length
+      "
+    >
+      <!-- Sub-block header -->
+      <div class="smr-sub-head">
+        <!-- bulk toggle checkbox -->
+        <div
+          class="smr-bulk-check"
+          [class.smr-bulk-check--full]="
+            getGranted(subModule) === subModule.featureDtosList.length
+          "
+          [class.smr-bulk-check--partial]="
+            getGranted(subModule) > 0 &&
+            getGranted(subModule) < subModule.featureDtosList.length
+          "
+          (click)="toggleAll(subModule)"
+        ></div>
+        <div class="smr-sub-ico"><i class="fas fa-list-alt"></i></div>
+        <div class="smr-sub-name">{{ subModule.displayName }}</div>
+        <!-- progress -->
+        <div class="smr-progress">
+          <div class="smr-prog-bar">
+            <div
+              class="smr-prog-fill"
+              [style.width.%]="getPct(subModule)"
+              [style.background]="getColor(getPct(subModule))"
+            ></div>
+          </div>
+          <span
+            class="smr-prog-txt"
+            [style.color]="getColor(getPct(subModule))"
+          >
+            {{ getPct(subModule) }}%
+          </span>
+        </div>
+        <span class="smr-pill"
+          >{{ getGranted(subModule) }}/{{
+            subModule.featureDtosList.length
+          }}</span
+        >
+      </div>
+
+      <!-- Feature chips -->
+      <div class="smr-feat-grid">
+        <div
+          class="smr-feat-item"
+          *ngFor="let feature of subModule.featureDtosList"
+          [class.smr-feat-item--granted]="isGranted(feature)"
+          (click)="toggle(feature)"
+        >
+          <div class="smr-feat-cb">
+            <i class="fas fa-check"></i>
+          </div>
+          <span class="smr-feat-name">{{ feature.featureName }}</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ── Leaf node without features (empty) ── -->
+  <ng-container
+    *ngIf="
+      subModule?.children?.length === 0 &&
+      (!subModule?.featureDtosList || subModule?.featureDtosList?.length === 0)
+    "
+  >
+    <div class="smr-empty-leaf">
+      <i class="fas fa-minus-circle"></i>
+      <span>{{ subModule.displayName }} — no features</span>
+    </div>
+  </ng-container>
 </div>

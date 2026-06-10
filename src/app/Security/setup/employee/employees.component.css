@@ -1,4 +1,95 @@
+/* ── Tab Navigation ─────────────────────────────────── */
+.emp-tab-nav {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+  overflow-x: auto;
+}
+.emp-tab-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.emp-tab-nav__item:hover {
+  color: #555;
+  background: #f0f0f0;
+}
+.emp-tab-nav__item.active {
+  color: var(--bs-primary, #0d6efd);
+  border-bottom-color: var(--bs-primary, #0d6efd);
+  background: #fff;
+  font-weight: 600;
+}
 
+/* ── Tab Body ────────────────────────────────────────── */
+.emp-tab-body {
+  padding: 16px 20px;
+  min-height: 320px;
+}
+
+/* ── Form Footer ─────────────────────────────────────── */
+.emp-form-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-top: 1px solid #e8e8e8;
+  background: #fafafa;
+}
+
+/* ── Grid: Employee Cell ─────────────────────────────── */
+.emp-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.emp-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #e0e0e0;
+}
+.emp-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #222;
+}
+.emp-meta {
+  font-size: 11px;
+  color: #888;
+}
+
+/* ── Grid: Status ────────────────────────────────────── */
+.emp-status {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-radius: 2px;
+}
+.emp-status--active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.emp-status--inactive {
+  background: #fdecea;
+  color: #c62828;
+}
+
+/* ── DataTable Selected Row ──────────────────────────── */
 ::ng-deep table.dataTable tbody tr.selected-row > td {
   background-color: #6a95b6 !important;
   color: white !important;

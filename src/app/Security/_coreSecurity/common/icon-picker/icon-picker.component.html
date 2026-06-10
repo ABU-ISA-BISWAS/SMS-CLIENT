@@ -1,20 +1,29 @@
-<!-- <div class="modal-header">
-  <h5 class="modal-title">Select Icon</h5>
-  <button type="button" (click)="iconModal.hide()" class="close" data-dismiss="modal" aria-label="Close"> <span
-      aria-hidden="true">&times;</span> </button>
-</div> -->
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">Select Icon</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="iconModal.hide()">
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-icons fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">Select Icon</h6>
+      <small class="text-body-secondary fs-11px"
+        >Choose an icon for the feature</small
+      >
+    </div>
+  </div>
+  <button
+    type="button"
+    class="modal-close-btn btn btn-sm btn-light border"
+    aria-label="Close"
+    (click)="iconModal.hide()"
+  >
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="table-responsive dataGridTable dataGridTableRegister">
-    <table #iconGrid class="row-border hover">
-    </table>
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="table-responsive">
+    <table #iconGrid class="row-border hover w-100"></table>
   </div>
-
 </div>

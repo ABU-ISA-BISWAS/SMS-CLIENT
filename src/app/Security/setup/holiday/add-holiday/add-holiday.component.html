@@ -1,129 +1,170 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-beach fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage holiday information</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="holiday-form-grid">
     <!-- Holiday Name -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Holiday Name <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="holiday.holidayName"
-      />
+    <div class="field-group">
+      <label class="field-label"
+        >Holiday Name <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-calendar-event field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter holiday name"
+          [(ngModel)]="holiday.holidayName"
+        />
+      </div>
     </div>
 
     <!-- Holiday Name Bangla -->
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        নাম (বাংলায়)
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="holiday.holidayNameBn"
-      />
+    <div class="field-group">
+      <label class="field-label">নাম (বাংলায়)</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-language field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="ছুটির নাম বাংলায়"
+          [(ngModel)]="holiday.holidayNameBn"
+        />
+      </div>
     </div>
 
     <!-- Academic Session -->
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Academic Session
-      </span>
-      <select
-        class="form-select"
-        [(ngModel)]="holiday.academicSessionNo"
-        name="academicSessionNo"
-      >
-        <option [ngValue]="undefined">-- Select Session --</option>
-        <option *ngFor="let s of sessionList" [ngValue]="s.id">
-          {{ s.sessionName }}
-        </option>
-      </select>
+    <div class="field-group">
+      <label class="field-label">Academic Session</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-calendar field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="holiday.academicSessionNo"
+          name="academicSessionNo"
+        >
+          <option [ngValue]="undefined">-- Select Session --</option>
+          <option *ngFor="let s of sessionList" [ngValue]="s.id">
+            {{ s.sessionName }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Holiday Type -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Holiday Type <span class="text-danger">*</span>
-      </span>
-      <select class="form-select" [(ngModel)]="holiday.holidayType">
-        <option [ngValue]="undefined">-- Select Type --</option>
-        <option *ngFor="let t of holidayTypes" [value]="t.value">
-          {{ t.label }}
-        </option>
-      </select>
+    <div class="field-group">
+      <label class="field-label"
+        >Holiday Type <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="holiday.holidayType"
+        >
+          <option [ngValue]="undefined">-- Select Type --</option>
+          <option *ngFor="let t of holidayTypes" [value]="t.value">
+            {{ t.label }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- From Date -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        From Date <span class="text-danger">*</span>
-      </span>
-      <input type="date" class="form-control" [(ngModel)]="holiday.fromDate" />
+    <div class="field-group">
+      <label class="field-label"
+        >From Date <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-calendar-plus field-icon-left" aria-hidden="true"></i>
+        <input
+          type="date"
+          class="form-control field-input"
+          [(ngModel)]="holiday.fromDate"
+        />
+      </div>
     </div>
 
     <!-- To Date -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        To Date <span class="text-danger">*</span>
-      </span>
-      <input type="date" class="form-control" [(ngModel)]="holiday.toDate" />
+    <div class="field-group">
+      <label class="field-label"
+        >To Date <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-calendar-minus field-icon-left" aria-hidden="true"></i>
+        <input
+          type="date"
+          class="form-control field-input"
+          [(ngModel)]="holiday.toDate"
+        />
+      </div>
     </div>
 
-    <!-- Recurring & Status -->
-    <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-end flex-wrap gap-4">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1">
-            Recurring Every Year
-          </label>
+    <!-- Checkboxes -->
+    <div class="field-group holiday-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="holiday.isRecurring"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+          <span class="checkbox-label">Recurring Every Year</span>
+        </label>
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="holiday.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveHoliday()"
     [disabled]="isSaving"
   >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
     {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

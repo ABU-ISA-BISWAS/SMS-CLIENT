@@ -1,25 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal'; 
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-icon-picker',
   templateUrl: './icon-picker.component.html',
   styleUrls: ['./icon-picker.component.css'],
-  standalone:false
+  standalone: false,
 })
 export class IconPickerComponent implements OnInit {
-
-  @ViewChild('iconGrid') iconGrid!: { nativeElement: any; };
+  @ViewChild('iconGrid')
+  iconGrid!: { nativeElement: any };
   iconTable: any;
   iconTableObj: any;
   selectedIcon!: Subject<string>;
-  
-  constructor(public iconModal: BsModalRef) { }
+
+  constructor(public iconModal: BsModalRef) {}
 
   ngOnInit() {
-    this.initModGrid();
     this.selectedIcon = new Subject();
+  }
+
+  ngAfterViewInit() {
+    this.initModGrid();
   }
 
   // Data Grid
@@ -33,31 +36,36 @@ export class IconPickerComponent implements OnInit {
 
       ajax: {
         url: './assets/json/font-awesome.json',
-        type: "GET",
-        beforeSend: function (xhr: any) {
-        },
-        dataSrc: function (response: { draw: any; recordsTotal: any; recordsFiltered: any; data: any; }) {
+        type: 'GET',
+        beforeSend: function (xhr: any) {},
+        dataSrc: function (response: {
+          draw: any;
+          recordsTotal: any;
+          recordsFiltered: any;
+          data: any;
+        }) {
           response.draw = response.draw;
           response.recordsTotal = response.recordsTotal;
           response.recordsFiltered = response.recordsFiltered;
           return response.data;
         },
-        error: function (request: { responseText: any; }) {
-          console.log("Data Grid Rendering Error", request.responseText);
-        }
+        error: function (request: { responseText: any }) {
+          console.log('Data Grid Rendering Error', request.responseText);
+        },
       },
-      order: [[0, "asc"]],
+      order: [[0, 'asc']],
       columns: [
         {
           title: 'Icon Name',
-          data: 'iconKey'
-        }, {
+          data: 'iconKey',
+        },
+        {
           title: 'Icon',
           data: 'iconValue',
           render: (data: string) => {
-            return '<i class="'+data+' fa-2x"></i>';
-          }
-        }
+            return '<i class="' + data + ' fa-2x"></i>';
+          },
+        },
       ],
       select: true,
       responsive: true,
@@ -73,7 +81,6 @@ export class IconPickerComponent implements OnInit {
         });
         return row;
       },
-    })
+    });
   }
-
 }

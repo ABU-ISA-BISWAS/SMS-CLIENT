@@ -278,10 +278,10 @@
                 <!-- Right side fields -->
                 <div class="col">
                   <div class="row g-2">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="input-group input-group-sm required">
                         <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                         >
                           Full Name <span class="text-danger ms-1">*</span>
                         </span>
@@ -293,10 +293,10 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="input-group input-group-sm">
                         <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                         >
                           পূর্ণ নাম (বাংলায়)
                         </span>
@@ -308,9 +308,23 @@
                       </div>
                     </div>
                     <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Email
+                        </span>
+                        <input
+                          type="email"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
                       <div class="input-group input-group-sm required">
                         <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                         >
                           Date of Birth <span class="text-danger ms-1">*</span>
                         </span>
@@ -324,7 +338,7 @@
                     <div class="col-md-4">
                       <div class="input-group input-group-sm required">
                         <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                         >
                           Gender <span class="text-danger ms-1">*</span>
                         </span>
@@ -342,7 +356,7 @@
                     <div class="col-md-4">
                       <div class="input-group input-group-sm">
                         <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary"
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                         >
                           Blood Group
                         </span>
@@ -360,123 +374,119 @@
                         </select>
                       </div>
                     </div>
+
+                    <!-- --------------- -->
+                    <!-- -------------- -->
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Religion
+                        </span>
+                        <select
+                          class="form-select form-select-sm"
+                          [(ngModel)]="student.religionNo"
+                        >
+                          <option [ngValue]="undefined">Select</option>
+                          <option
+                            *ngFor="let r of religionList"
+                            [ngValue]="r.id"
+                          >
+                            {{ r.religionName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Category
+                        </span>
+                        <select
+                          class="form-select form-select-sm"
+                          [(ngModel)]="student.studentCategoryNo"
+                        >
+                          <option [ngValue]="undefined">General</option>
+                          <option
+                            *ngFor="let c of categoryList"
+                            [ngValue]="c.id"
+                          >
+                            {{ c.categoryName }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Mobile No
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.mobileNo"
+                          placeholder="01XXXXXXXXX"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Nationality
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.nationality"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          Birth Cert. No
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.birthCertNo"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm">
+                        <span
+                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                        >
+                          NID No
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          [(ngModel)]="student.nidNo"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <!-- Row 2 -->
               <div class="row g-2 mt-1">
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Religion
-                    </span>
-                    <select
-                      class="form-select form-select-sm"
-                      [(ngModel)]="student.religionNo"
-                    >
-                      <option [ngValue]="undefined">Select</option>
-                      <option *ngFor="let r of religionList" [ngValue]="r.id">
-                        {{ r.religionName }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Category
-                    </span>
-                    <select
-                      class="form-select form-select-sm"
-                      [(ngModel)]="student.studentCategoryNo"
-                    >
-                      <option [ngValue]="undefined">General</option>
-                      <option *ngFor="let c of categoryList" [ngValue]="c.id">
-                        {{ c.categoryName }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Mobile No
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="student.mobileNo"
-                      placeholder="01XXXXXXXXX"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Nationality
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="student.nationality"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Birth Cert. No
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="student.birthCertNo"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      NID No
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="student.nidNo"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Email
-                    </span>
-                    <input
-                      type="email"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="student.email"
-                    />
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Present Address
                     </span>
@@ -490,7 +500,7 @@
                 <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Permanent Address
                     </span>
@@ -518,10 +528,10 @@
               </div>
 
               <div class="row g-2">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="input-group input-group-sm required">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Guardian Name <span class="text-danger ms-1">*</span>
                     </span>
@@ -532,10 +542,10 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       নাম (বাংলায়)
                     </span>
@@ -546,10 +556,25 @@
                     />
                   </div>
                 </div>
+
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                    >
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="guardian.email"
+                    />
+                  </div>
+                </div>
                 <div class="col-md-4">
                   <div class="input-group input-group-sm required">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Relation <span class="text-danger ms-1">*</span>
                     </span>
@@ -567,7 +592,7 @@
                 <div class="col-md-4">
                   <div class="input-group input-group-sm required">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Mobile No <span class="text-danger ms-1">*</span>
                     </span>
@@ -582,7 +607,7 @@
                 <div class="col-md-4">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Occupation
                     </span>
@@ -596,7 +621,7 @@
                 <div class="col-md-4">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       NID No
                     </span>
@@ -610,7 +635,7 @@
                 <div class="col-md-4">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
                       Annual Income (৳)
                     </span>
@@ -618,20 +643,6 @@
                       type="number"
                       class="form-control form-control-sm"
                       [(ngModel)]="guardian.annualIncome"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group input-group-sm">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                    >
-                      Email
-                    </span>
-                    <input
-                      type="email"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="guardian.email"
                     />
                   </div>
                 </div>
@@ -643,10 +654,10 @@
               <div class="adm-section-title">Academic Assignment</div>
 
               <div class="row g-2">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="input-group input-group-sm required">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Session <span class="text-danger ms-1">*</span>
                     </span>
@@ -661,10 +672,10 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="input-group input-group-sm required">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Class <span class="text-danger ms-1">*</span>
                     </span>
@@ -680,10 +691,10 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Section
                     </span>
@@ -701,7 +712,7 @@
                 <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Shift
                     </span>
@@ -719,7 +730,7 @@
                 <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Group / Version
                     </span>
@@ -734,10 +745,10 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Roll No
                     </span>
@@ -751,7 +762,7 @@
                 <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Adm. Type
                     </span>
@@ -768,7 +779,7 @@
                 <div class="col-md-3">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Adm. Date
                     </span>
@@ -790,7 +801,7 @@
                   <div class="col-md-4">
                     <div class="input-group input-group-sm">
                       <span
-                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                       >
                         Prev. School
                       </span>
@@ -804,7 +815,7 @@
                   <div class="col-md-4">
                     <div class="input-group input-group-sm">
                       <span
-                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                       >
                         Prev. Class
                       </span>
@@ -818,7 +829,7 @@
                   <div class="col-md-4">
                     <div class="input-group input-group-sm">
                       <span
-                        class="input-group-text base-bg-subtle-primary base-txt-primary"
+                        class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                       >
                         Prev. Roll
                       </span>
@@ -831,10 +842,10 @@
                   </div>
                 </ng-container>
 
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="input-group input-group-sm">
                     <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width-st3"
                     >
                       Remarks
                     </span>

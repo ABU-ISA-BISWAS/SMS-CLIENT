@@ -1,8 +1,191 @@
-.input-group .input-group-text:nth-child(1) {
-    background-color: transparent;
-    width: 150px;
-    text-align: right;
-    border: 0;
-    display: inline;
-    font-weight: 600;
+/* ── Section Title ───────────────────────────────────── */
+.emp-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ── Input Group Label ───────────────────────────────── */
+.input-group .input-group-text {
+  /* background-color: transparent; */
+  min-width: 130px;
+  max-width: 130px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Standard input ──────────────────────────────────── */
+.input-group .form-control {
+  font-size: 12px;
+  min-height: 31px;
+  height: 31px;
+  padding: 4px 8px;
+}
+
+/* ── Textarea override ───────────────────────────────── */
+.input-group textarea.form-control {
+  height: auto !important;
+  min-height: 60px;
+  resize: none;
+  padding: 6px 8px;
+}
+
+/* ── ng-select wrapper ───────────────────────────────── */
+.input-group ng-select {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 !important;
+  border: none !important;
+  height: 31px !important;
+  font-size: 12px;
+}
+
+::ng-deep .input-group ng-select .ng-select-container {
+  min-height: 31px !important;
+  height: 31px !important;
+  border: 1px solid #dee2e6 !important;
+  /* border-left: none !important; */
+  border-radius: 0 4px 4px 0 !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  background: #fff;
+  cursor: pointer;
+}
+
+::ng-deep .input-group ng-select.ng-select-focused .ng-select-container {
+  border-color: #86b7fe !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .input-group ng-select .ng-value-container {
+  padding-left: 8px !important;
+  padding-top: 0 !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+::ng-deep .input-group ng-select .ng-placeholder {
+  color: #6c757d !important;
+  font-size: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  position: absolute !important;
+  padding-left: 8px !important;
+  pointer-events: none;
+}
+
+::ng-deep .input-group ng-select .ng-input {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+::ng-deep .input-group ng-select .ng-input > input {
+  font-size: 12px !important;
+  height: auto !important;
+}
+
+::ng-deep .input-group ng-select .ng-value {
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+::ng-deep .input-group ng-select .ng-value-label {
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+::ng-deep .input-group ng-select .ng-clear-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 31px !important;
+  width: 20px !important;
+  padding: 0 !important;
+  color: #6c757d;
+}
+
+::ng-deep .input-group ng-select .ng-clear-wrapper:hover .ng-clear {
+  color: #dc3545;
+}
+
+::ng-deep .input-group ng-select .ng-clear {
+  font-size: 16px !important;
+  line-height: 1 !important;
+  font-weight: 400;
+}
+
+::ng-deep .input-group ng-select .ng-arrow-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 31px !important;
+  width: 24px !important;
+  padding: 0 !important;
+}
+
+::ng-deep .input-group ng-select .ng-arrow {
+  border-color: #6c757d transparent transparent !important;
+  border-width: 5px 4px 0 !important;
+  margin-top: 0 !important;
+}
+
+::ng-deep .input-group ng-select.ng-select-opened .ng-arrow {
+  border-color: transparent transparent #6c757d !important;
+  border-width: 0 4px 5px !important;
+  top: -2px !important;
+}
+
+::ng-deep .input-group ng-select .ng-dropdown-panel {
+  font-size: 12px !important;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 4px !important;
+  margin-top: 2px !important;
+  z-index: 9999 !important;
+}
+
+::ng-deep .input-group ng-select .ng-dropdown-panel .ng-option {
+  font-size: 12px !important;
+  padding: 6px 10px !important;
+  color: #333 !important;
+}
+
+::ng-deep .input-group ng-select .ng-dropdown-panel .ng-option:hover,
+::ng-deep
+  .input-group
+  ng-select
+  .ng-dropdown-panel
+  .ng-option.ng-option-marked {
+  background-color: #f0f4ff !important;
+  color: #0d6efd !important;
+}
+
+::ng-deep
+  .input-group
+  ng-select
+  .ng-dropdown-panel
+  .ng-option.ng-option-selected {
+  background-color: #e8f0fe !important;
+  color: #0d6efd !important;
+  font-weight: 500 !important;
+}
+
+.input-group > .input-group-text:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.input-group > .form-control:last-child,
+.input-group > ng-select:last-child .ng-select-container {
+  border-radius: 0 4px 4px 0 !important;
 }

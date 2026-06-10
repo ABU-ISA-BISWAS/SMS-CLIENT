@@ -1,122 +1,155 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-door fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px">Manage room information</small>
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Building <span class="text-danger">*</span>
-      </span>
-      <select class="form-select" [(ngModel)]="room.buildingNo">
-        <option [ngValue]="undefined">-- Select Building --</option>
-        <option *ngFor="let b of buildingList" [value]="b.id">
-          {{ b.buildingName }}
-        </option>
-      </select>
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="room-form-grid">
+    <!-- Building -->
+    <div class="field-group">
+      <label class="field-label"
+        >Building <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-building field-icon-left" aria-hidden="true"></i>
+        <select class="form-select field-select" [(ngModel)]="room.buildingNo">
+          <option [ngValue]="undefined">-- Select Building --</option>
+          <option *ngFor="let b of buildingList" [value]="b.id">
+            {{ b.buildingName }}
+          </option>
+        </select>
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Room Code <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="room.roomCode"
-        placeholder="e.g. R-101"
-        [disabled]="!!room.id"
-      />
+    <!-- Room Code -->
+    <div class="field-group">
+      <label class="field-label"
+        >Room Code <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. R-101"
+          [(ngModel)]="room.roomCode"
+          [disabled]="!!room.id"
+        />
+      </div>
     </div>
 
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Room Name
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="room.roomName"
-        placeholder="e.g. Class Room 101"
-      />
+    <!-- Room Type -->
+    <div class="field-group">
+      <label class="field-label"
+        >Room Type <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
+        <select class="form-select field-select" [(ngModel)]="room.roomType">
+          <option *ngFor="let t of roomTypes" [value]="t.value">
+            {{ t.label }}
+          </option>
+        </select>
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Room Type <span class="text-danger">*</span>
-      </span>
-      <select class="form-select" [(ngModel)]="room.roomType">
-        <option *ngFor="let t of roomTypes" [value]="t.value">
-          {{ t.label }}
-        </option>
-      </select>
+    <!-- Room Name -->
+    <div class="field-group">
+      <label class="field-label">Room Name</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-door field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. Class Room 101"
+          [(ngModel)]="room.roomName"
+        />
+      </div>
     </div>
 
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Floor No.
-      </span>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="room.floorNo"
-        min="0"
-        placeholder="0 = Ground"
-      />
+    <!-- Floor No -->
+    <div class="field-group">
+      <label class="field-label">Floor No.</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-stairs field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="0 = Ground"
+          [(ngModel)]="room.floorNo"
+          min="0"
+        />
+      </div>
     </div>
 
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Capacity
-      </span>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="room.capacity"
-        min="1"
-        placeholder="e.g. 50"
-      />
+    <!-- Capacity -->
+    <div class="field-group">
+      <label class="field-label">Capacity</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-users field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="e.g. 50"
+          [(ngModel)]="room.capacity"
+          min="1"
+        />
+      </div>
     </div>
 
-    <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-end">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <!-- Status -->
+    <div class="field-group room-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="room.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveRoom()"
     [disabled]="isSaving"
   >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
     {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

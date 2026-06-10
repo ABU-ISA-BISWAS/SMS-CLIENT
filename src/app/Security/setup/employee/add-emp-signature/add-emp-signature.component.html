@@ -1,33 +1,85 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">Add Signature</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="bsModalRef.hide()">
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-signature fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">
+        Add Signature
+      </h6>
+      <small class="text-body-secondary fs-11px"
+        >Upload your signature image</small
+      >
+    </div>
+  </div>
+  <button
+    type="button"
+    class="modal-close-btn btn btn-sm btn-light border ms-auto"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="signature-preview-container">
-    <div>
-      <h3 class="text-center">View</h3>
-      <div class="signature-preview">
-        <img [src]="profileImgURL" *ngIf="profileImgURL" alt="User Signature">
-        <img *ngIf="!profileImgURL" alt="No Signature Available" src="/assets/images/no-sig.png">
-      </div>
-
-    </div>
-    <div class="upload-sign-image">
-      <input #file type="file" accept="image/*" (change)="processFile(file.files)" style="display: none">
-      <button class="select-btn" (click)="file.click()">Select Signature</button>
-    </div>
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <!-- Preview Area -->
+  <div class="sig-section-label">Preview</div>
+  <div class="sig-preview-box mb-3">
+    <ng-container *ngIf="profileImgURL; else noSig">
+      <img [src]="profileImgURL" alt="User Signature" class="sig-preview-img" />
+    </ng-container>
+    <ng-template #noSig>
+      <i class="ti ti-writing sig-placeholder-icon" aria-hidden="true"></i>
+      <p class="sig-placeholder-text">No signature uploaded</p>
+    </ng-template>
   </div>
 
+  <!-- Upload Row -->
+  <div class="sig-upload-row mb-1">
+    <div class="d-flex align-items-center gap-2">
+      <i class="ti ti-photo fs-16px text-body-secondary" aria-hidden="true"></i>
+      <div>
+        <p class="sig-upload-title">Signature image</p>
+        <p class="sig-upload-hint">PNG, JPG accepted</p>
+      </div>
+    </div>
+    <input
+      #file
+      type="file"
+      accept="image/*"
+      (change)="processFile(file.files)"
+      style="display: none"
+    />
+    <button class="btn btn-sm sig-select-btn" (click)="file.click()">
+      <i class="ti ti-upload fs-13px me-1" aria-hidden="true"></i>
+      Select file
+    </button>
+  </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
-  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
-    (click)="bsModalRef.hide()">Cancel</button>
-  <button type="submit" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn" (click)="onSubmit()" [disabled]="isSaving">
-    {{ isSaving ? 'Saving' : 'Save'}}
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
+  <button
+    type="button"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Cancel
+  </button>
+  <button
+    type="submit"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
+    (click)="onSubmit()"
+    [disabled]="isSaving"
+  >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

@@ -1,129 +1,290 @@
-<div class="persoanlInfoArea">
-  <div class="row">
-    <div class="col-md-7 col-sm-12 ">
-      <table>
-        <tr>
-          <td>
-            <table>
-              <tr>
-                <th style="font-size: 13px;padding-bottom: 6px !important;padding-top: 7px !important;" colspan="2">
-                  Present Address</th>
-              </tr>
-              <tr class="input-group mb-2">
-                  <span class="input-group-text base-bg-subtle-primary base-txt-primary">C/O:</span>
-                  <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prCareOfAddr">
-              </tr>
-              <tr class="input-group mb-2">
-                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Address1:</span>
-                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddr1">
-              </tr>
-              <tr class="input-group mb-2">
-                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Address2:</span>
-                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddr2">
-              </tr>
-              <tr class="input-group mb-2">
-                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Post Office:</span>
-                <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.prAddrPost">
-              </tr>
-              <tr class="input-group mb-2">
-                <span class="input-group-text base-bg-subtle-primary base-txt-primary">District:</span>
-                  <ng-select [items]="districtlist" placeholder="Choose district" notFoundText="No district found"
-                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.prAddrDist" class="form-control form-select rounded">
-                  </ng-select>
-              </tr>
+<div class="row g-3">
+  <!-- Present Address -->
+  <div class="col-md-5">
+    <div class="emp-section-title">Present Address</div>
+    <div class="row g-2">
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            C/O
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.prCareOfAddr"
+          />
+        </div>
+      </div>
 
-              <tr class="input-group mb-2">
-                <span class="input-group-text base-bg-subtle-primary base-txt-primary">Country:</span>
-                  <ng-select [items]="countryList" placeholder="Choose a country" notFoundText="No country found"
-                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.prAddrCountry" class="form-control form-select rounded">
-                  </ng-select>
-              </tr>
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Address 1
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.prAddr1"
+          />
+        </div>
+      </div>
 
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr>
-                <th></th>
-                <th style="font-size: 13px;padding-bottom: 6px !important;padding-top: 7px !important;">Permanent
-                  Address</th>
-              </tr>
-              <tr>
-                <td rowspan="8" style="width: 60px; vertical-align: middle; text-align: center;"><button
-                    class=" btnnext btn btn-primary" (click)="copyPresentAddress()">
-                    <i class="fas fa-angle-double-right"></i>
-                  </button></td>
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Address 2
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.prAddr2"
+          />
+        </div>
+      </div>
 
-              </tr>
-            
-              <tr class="input-group mb-2">
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Post Office
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.prAddrPost"
+          />
+        </div>
+      </div>
 
-                  <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peCareOfAddr">
-              </tr>
-              <tr class="input-group mb-2">
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            District
+          </span>
+          <ng-select
+            class="form-control p-0"
+            [items]="districtlist"
+            placeholder="Choose district"
+            notFoundText="Not found"
+            bindLabel="detailName"
+            bindValue="id"
+            [(ngModel)]="employeeaddress.prAddrDist"
+          >
+          </ng-select>
+        </div>
+      </div>
 
-                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddr1">
-              </tr>
-              <tr class="input-group mb-2">
-
-                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddr2">
-              </tr>
-              <tr class="input-group mb-2">
-
-                <input type="text" class="form-control" placeholder="" [(ngModel)]="employeeaddress.peAddrPost">
-              </tr>
-              <tr class="input-group mb-2">
-
-                  <ng-select [items]="districtlist" placeholder="Choose district" notFoundText="No district found"
-                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.peAddrDist" class="form-control form-select">
-                  </ng-select>
-              </tr>
-
-              <tr class="input-group mb-2">
-
-                  <ng-select [items]="countryList" placeholder="Choose a country" notFoundText="No country found"
-                    bindLabel="detailName" bindValue="id" [(ngModel)]="employeeaddress.peAddrCountry" class="form-control form-select">
-                  </ng-select>
-              </tr>
-              
-    
-
-            </table>
-          </td>
-        </tr>
-      </table>
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Country
+          </span>
+          <ng-select
+            class="form-control p-0"
+            [items]="countryList"
+            placeholder="Choose country"
+            notFoundText="Not found"
+            bindLabel="detailName"
+            bindValue="id"
+            [(ngModel)]="employeeaddress.prAddrCountry"
+          >
+          </ng-select>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Contact person -->
-    <div class="col-md-5 col-sm-12 border border-left-0">
-      <div class="row">
-        <strong class="header sm-3 py-2 pl-3">Emergency Contact Details</strong>
-      </div>
-      <div class="form-group row pr-2">
-         <div class="input-group mb-2">
-        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Name:</span>
-        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractPersonName">
-      </div>
-          <div class="input-group mb-2">
-        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Relation:</span>
-        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractRelation">
-      </div>
-         <div class="input-group mb-2">
-        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Phone No.</span>
-        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractPhone">
-      </div>
-        <div class="input-group mb-2">
-        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Mobile</span>
-        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractMobile">
-      </div>
-        <div class="input-group mb-2">
-        <span for="" class="input-group-text base-bg-subtle-primary base-txt-primary">Email</span>
-        <input type="text" class="form-control rounded" placeholder="" [(ngModel)]="employeeaddress.contractEmail">
-      </div>
-       
+  <!-- Copy Arrow -->
+  <div class="col-md-1 d-flex align-items-center justify-content-center">
+    <button
+      class="btn btn-sm base-btn-primary"
+      (click)="copyPresentAddress()"
+      title="Copy to Permanent Address"
+    >
+      <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+
+  <!-- Permanent Address -->
+  <div class="col-md-5">
+    <div class="emp-section-title">Permanent Address</div>
+    <div class="row g-2">
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            C/O
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.peCareOfAddr"
+          />
+        </div>
       </div>
 
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Address 1
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.peAddr1"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Address 2
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.peAddr2"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Post Office
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.peAddrPost"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            District
+          </span>
+          <ng-select
+            class="form-control p-0"
+            [items]="districtlist"
+            placeholder="Choose district"
+            notFoundText="Not found"
+            bindLabel="detailName"
+            bindValue="id"
+            [(ngModel)]="employeeaddress.peAddrDist"
+          >
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Country
+          </span>
+          <ng-select
+            class="form-control p-0"
+            [items]="countryList"
+            placeholder="Choose country"
+            notFoundText="Not found"
+            bindLabel="detailName"
+            bindValue="id"
+            [(ngModel)]="employeeaddress.peAddrCountry"
+          >
+          </ng-select>
+        </div>
+      </div>
     </div>
+  </div>
 
+  <!-- Emergency Contact -->
+  <div class="col-12">
+    <div class="emp-section-title mt-1">Emergency Contact Details</div>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Contact Name
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.contractPersonName"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Relation
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.contractRelation"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Mobile
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="employeeaddress.contractMobile"
+          />
+        </div>
+      </div>
+
+      <!-- <div class="col-md-6">
+        <div class="input-group input-group-sm">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary"
+          >
+            Email
+          </span>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="employeeaddress.contractEmail"
+          />
+        </div>
+      </div> -->
+    </div>
   </div>
 </div>

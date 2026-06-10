@@ -29,6 +29,7 @@
     "@angular/router": "^20.0.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@ng-select/ng-select": "^20.1.2",
+    "@tabler/icons-webfont": "^3.44.0",
     "angular-datatables": "^18.0.0",
     "angular-user-idle": "^4.0.0",
     "bootstrap": "^5.3.7",

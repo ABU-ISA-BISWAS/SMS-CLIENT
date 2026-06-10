@@ -1,125 +1,161 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{title}}</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="bsModalRef.hide()">
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
-  </button>
-</div>
-
-<div class="modal-body ">
-  <!-- patient Info -->
-  <div class="patient-info bg-light p-3 rounded border mb-2">
-    <div class="row g-2">
-      <div class="col-md-6 col-sm-6 col-12">
-        <div class="row g-2">
-          <!-- info -->
-          <div class="col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="roleName" class="form-label base-txt-primary">Role Name:</label>
-              <div class="input-group required">
-                <input type="text" id="roleName" class="form-control form-control-sm" [(ngModel)]="role.roleName"
-                  [class.is-invalid]="invalidRoleName" [ngClass]="{ 'invalid-input': invalidRoleName }" required />
-                <div *ngIf="invalidRoleName">
-                  Role Name is required
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- info -->
-          <div class="col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="roleName" class="form-label base-txt-primary">Role ID:</label>
-              <div class="input-group required">
-                <input type="text" id="roleName" class="form-control form-control-sm" [(ngModel)]="role.roleId"
-                  [class.is-invalid]="invalidRoleId" [ngClass]="{ 'invalid-input': invalidRoleId }" required />
-                <div *ngIf="invalidRoleId">
-                  Role ID is required
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
+<!-- ═══════════════════════════════════════════════════════════
+     INLINE FORM BODY  (modal-header & modal-footer hidden by
+     parent's .uf-form-body ::ng-deep rule — same as AddUser)
+══════════════════════════════════════════════════════════════ -->
+<div class="modal-body arn-body p-0">
+  <div class="arn-panel">
+    <!-- ───────────────────────────────────────────
+         LEFT PANEL — Role Info & Status
+    ─────────────────────────────────────────── -->
+    <div class="arn-left">
+      <div class="arn-section-head">
+        <i class="fas fa-id-card"></i> Role Information
       </div>
 
-      <!-- Description -->
-      <div class="col-md-6 col-sm-6 col-12">
-        <div class="form-group">
-          <label for="roleName" class="form-label base-txt-primary">Description:</label>
-          <div class="input-group required">
-            <textarea class="form-control form-control-sm" [(ngModel)]="role.descr" rows="1"> </textarea>
+      <div class="arn-field-row">
+        <div>
+          <div class="arn-f-label">
+            Role ID <span class="arn-required">*</span>
+          </div>
+          <input
+            type="text"
+            class="arn-f-input"
+            [(ngModel)]="role.roleId"
+            [ngClass]="{ 'arn-f-input--invalid': invalidRoleId }"
+            (ngModelChange)="invalidRoleId = false"
+            (keydown.space)="$event.preventDefault()"
+            placeholder="e.g. ROLE_ADMIN"
+          />
+          <div class="arn-validation-msg" *ngIf="invalidRoleId">
+            Role ID is required
           </div>
         </div>
 
+        <div>
+          <div class="arn-f-label">
+            Role Name <span class="arn-required">*</span>
+          </div>
+          <input
+            type="text"
+            class="arn-f-input"
+            [(ngModel)]="role.roleName"
+            [ngClass]="{ 'arn-f-input--invalid': invalidRoleName }"
+            (ngModelChange)="invalidRoleName = false"
+            placeholder="e.g. Administrator"
+          />
+          <div class="arn-validation-msg" *ngIf="invalidRoleName">
+            Role Name is required
+          </div>
+        </div>
+
+        <div class="arn-full-col">
+          <div class="arn-f-label">Description</div>
+          <textarea
+            class="arn-f-input arn-f-textarea"
+            [(ngModel)]="role.descr"
+            rows="2"
+            placeholder="Optional description…"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Status toggle -->
+      <div class="arn-section-head" style="margin-top: 12px">
+        <i class="fas fa-toggle-on"></i> Status
+      </div>
+
+      <div class="arn-status-row">
+        <div class="arn-tog-group">
+          <div class="arn-tog-label">
+            <i
+              class="fas fa-circle"
+              style="font-size: 7px; color: #1fc98a; margin-right: 4px"
+            ></i
+            >Active Status
+          </div>
+          <label class="arn-switch">
+            <input
+              type="checkbox"
+              [checked]="role.activeStatus === 1"
+              (change)="onStatusChange($event)"
+            />
+            <span class="arn-slider"></span>
+          </label>
+          <span
+            class="arn-status-lbl"
+            [class.arn-status-on]="role.activeStatus === 1"
+          >
+            {{ role.activeStatus === 1 ? "Active" : "Inactive" }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Summary card (shown when editing) -->
+      <div class="arn-info-card" *ngIf="role.id">
+        <div class="arn-section-head" style="margin-top: 4px">
+          <i class="fas fa-info-circle"></i> Role Summary
+        </div>
+        <div class="arn-ro-grid">
+          <div>
+            <div class="arn-ro-label">Role ID</div>
+            <div class="arn-ro-value">{{ role.roleId || "—" }}</div>
+          </div>
+          <div>
+            <div class="arn-ro-label">Role Name</div>
+            <div class="arn-ro-value">{{ role.roleName || "—" }}</div>
+          </div>
+          <div>
+            <div class="arn-ro-label">Status</div>
+            <div>
+              <span
+                class="arn-status-pill"
+                [class.arn-status-pill--on]="role.activeStatus === 1"
+              >
+                {{ role.activeStatus === 1 ? "Active" : "Inactive" }}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <!-- /arn-left -->
 
-  <!-- Flags -->
-  <div class="card flags mb-2">
-    <div class="card-header">Status</div>
-    <div class="card-body">
+    <div class="arn-divider-v"></div>
 
-      <div class="d-flex flex-wrap">
-        <div class="form-check me-3 mb-2 mb-md-0">
-          <input class="form-check-input me-2" type="checkbox" id="activeStatus" [checked]="role.activeStatus === 1"
-            (change)="onStatusChange($event)" />
-
-          <button type="button" class="status-btn"
-            [ngClass]="role.activeStatus === 1 ? 'status-active' : 'status-inactive'" disabled>
-            <span class="dot"></span>
-            {{ role.activeStatus === 1 ? 'Active' : 'Inactive' }}
+    <!-- ───────────────────────────────────────────
+         RIGHT PANEL — Modules & Features
+    ─────────────────────────────────────────── -->
+    <div class="arn-right">
+      <!-- Tab nav (mirrors eu-tab-nav) -->
+      <div class="arn-tab-nav">
+        <button type="button" class="arn-tab-btn arn-tab-btn--active">
+          <i class="fas fa-th-large"></i> Modules &amp; Features
+        </button>
+        <div class="arn-tab-actions">
+          <button type="button" class="arn-bulk-btn" (click)="toggleTabs()">
+            <i class="fas fa-hand-pointer"></i> {{ toggleButton }}
           </button>
-
         </div>
       </div>
 
+      <!-- Module accordion -->
+      <div class="arn-tab-pane">
+        <accordion class="base-accordion">
+          @for (module of moduleList3; track $index) {
+            <accordion-group [heading]="module.displayName" [isOpen]="isOpen">
+              <app-sub-module-role
+                [parent]="self"
+                [subModules]="module"
+                (featureSelected)="
+                  getSelectedFeature($event.feature, $event.checked)
+                "
+              ></app-sub-module-role>
+            </accordion-group>
+          }
+        </accordion>
+      </div>
     </div>
+    <!-- /arn-right -->
   </div>
-</div>
-<!-- divider -->
-<hr />
-<div class="modal-body">
-
-  <tabset class="tab-menu-style" type="pills">
-    <tab heading="Modules & Features">
-      <div id="userInfo" class="tab-pane active  pt-1">
-        <div class="row">
-          <div class="col-md-12 accordionCustom paddingLeft0 paddingRight0">
-            <div class="col-md-12 text-right mb-2">
-              <button type="button" class="btn btn-info btnAcc" (click)="toggleTabs()">
-                <i class="fas fa-hand-pointer"></i> {{toggleButton}}
-              </button>
-            </div>
-            <div class="col-md-12">
-              <accordion class="base-accordion">
-                @for(module of moduleList3; track $index){
-                <accordion-group [heading]="module.displayName" [isOpen]="isOpen">
-                  <app-sub-module-role [parent]="self" [subModules]="module"
-                    (featureSelected)="getSelectedFeature($event.feature, $event.checked)">
-                  </app-sub-module-role>
-                </accordion-group>
-
-                }
-              </accordion>
-            </div>
-          </div>
-        </div>
-      </div>
-    </tab>
-  </tabset>
-
-</div>
-
-<div class="modal-footer border-0 bg-light">
-  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary"
-    (click)="bsModalRef.hide()"> Close </button>
-
-  <button type="button" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="saveUpdateRole()">
-    {{role.id ? 'Update' : 'Save'}}
-  </button>
+  <!-- /arn-panel -->
 </div>

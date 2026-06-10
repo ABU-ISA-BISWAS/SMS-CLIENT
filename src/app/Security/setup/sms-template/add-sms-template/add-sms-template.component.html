@@ -1,66 +1,86 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-message-code fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px">Manage SMS template</small>
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="template-form-grid">
     <!-- Template Code -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Template Code <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="template.templateCode"
-        placeholder="e.g. FEE_DUE"
-        [disabled]="!!template.id"
-      />
-    </div>
-
-    <!-- Template Name -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Template Name <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="template.templateName"
-      />
+    <div class="field-group">
+      <label class="field-label"
+        >Template Code <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. FEE_DUE"
+          [(ngModel)]="template.templateCode"
+          [disabled]="!!template.id"
+        />
+      </div>
     </div>
 
     <!-- Template Type -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Template Type <span class="text-danger">*</span>
-      </span>
-      <select class="form-select" [(ngModel)]="template.templateType">
-        <option [ngValue]="undefined">-- Select Type --</option>
-        <option *ngFor="let t of templateTypes" [value]="t.value">
-          {{ t.label }}
-        </option>
-      </select>
+    <div class="field-group">
+      <label class="field-label"
+        >Template Type <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="template.templateType"
+        >
+          <option [ngValue]="undefined">-- Select Type --</option>
+          <option *ngFor="let t of templateTypes" [value]="t.value">
+            {{ t.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Template Name -->
+    <div class="field-group template-col-full">
+      <label class="field-label"
+        >Template Name <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-forms field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter template name"
+          [(ngModel)]="template.templateName"
+        />
+      </div>
     </div>
 
     <!-- Placeholders -->
-    <div class="mb-2">
-      <small class="text-muted fw-semibold d-block mb-1">
-        Available Placeholders (click to insert):
-      </small>
-      <div class="d-flex flex-wrap gap-1">
+    <div class="field-group template-col-full">
+      <label class="field-label">Available Placeholders</label>
+      <div class="placeholder-chip-area">
         <span
           *ngFor="let ph of availablePlaceholders"
-          class="badge bg-secondary-subtle text-secondary border px-2 py-1"
-          style="cursor: pointer; font-size: 11px"
+          class="placeholder-chip"
           (click)="insertPlaceholder(ph)"
         >
           {{ ph }}
@@ -69,27 +89,22 @@
     </div>
 
     <!-- Template Body -->
-    <div class="mb-2 positionRelative">
-      <div class="input-group align-items-start">
-        <span
-          class="input-group-text base-bg-subtle-primary base-txt-primary"
-          style="align-self: flex-start; padding-top: 8px"
-        >
-          Template Body <span class="text-danger">*</span>
-        </span>
-        <textarea
-          class="form-control"
-          [(ngModel)]="template.templateBody"
-          rows="4"
-          maxlength="500"
-          placeholder="Type message here or click placeholders above..."
-        >
-        </textarea>
-      </div>
-      <div class="text-end mt-1">
+    <div class="field-group template-col-full">
+      <label class="field-label"
+        >Template Body <span class="text-danger">*</span></label
+      >
+      <textarea
+        class="form-control field-textarea"
+        [(ngModel)]="template.templateBody"
+        rows="1"
+        maxlength="500"
+        placeholder="Type message here or click placeholders above..."
+      ></textarea>
+      <div class="d-flex justify-content-end mt-1">
         <small
           [class.text-danger]="charCount > 450"
-          [class.text-muted]="charCount <= 450"
+          [class.text-body-secondary]="charCount <= 450"
+          style="font-size: 11px"
         >
           {{ charCount }} / 500 characters
         </small>
@@ -97,57 +112,53 @@
     </div>
 
     <!-- Template Body Bangla -->
-    <div class="mb-2 positionRelative">
-      <div class="input-group align-items-start">
-        <span
-          class="input-group-text base-bg-subtle-primary base-txt-primary"
-          style="align-self: flex-start; padding-top: 8px"
-        >
-          Body (Bangla)
-        </span>
-        <textarea
-          class="form-control"
-          [(ngModel)]="template.templateBodyBn"
-          rows="3"
-          maxlength="500"
-          placeholder="বাংলায় SMS টেমপ্লেট (ঐচ্ছিক)"
-        >
-        </textarea>
-      </div>
+    <div class="field-group template-col-full">
+      <label class="field-label">Body (Bangla)</label>
+      <textarea
+        class="form-control field-textarea"
+        [(ngModel)]="template.templateBodyBn"
+        rows="1"
+        maxlength="500"
+        placeholder="বাংলায় SMS টেমপ্লেট (ঐচ্ছিক)"
+      ></textarea>
     </div>
 
     <!-- Status -->
-    <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-end">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <div class="field-group template-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="template.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveTemplate()"
     [disabled]="isSaving"
   >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
     {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

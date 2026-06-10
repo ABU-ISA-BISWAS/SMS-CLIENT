@@ -279,6 +279,12 @@
   color: #c62828;
 }
 
+.custom-width {
+  width: 140px;
+}
+.custom-width-st3 {
+  width: 110px;
+}
 /* ─── DataTable Selected Row ─────────────────────────── */
 ::ng-deep table.dataTable tbody tr.selected-row > td {
   background-color: #6a95b6 !important;

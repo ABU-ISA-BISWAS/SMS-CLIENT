@@ -1,176 +1,276 @@
 <div class="container-fluid">
   <div class="card">
-    <div
-      class="card-header py-2 d-flex justify-content-between align-items-center"
-    >
-      <h6 class="m-0 fw-bold base-txt-primary">Employee Setup</h6>
-      <div class="d-flex flex-wrap gap-2 align-items-center">
-        <button
-          type="button"
-          class="btn btn-sm base-btn-outline-skyblue fw-medium px-2 mb-xxl-0"
-          (click)="addSignature()"
-          title="Add Signature"
-        >
-          <i class="fas fa-user-plus"></i> Add Signature
-        </button>
+    <!-- ═══════════════════════════════════════════
+         LIST VIEW
+    ════════════════════════════════════════════ -->
+    <ng-container *ngIf="!isFormVisible">
+      <!-- Card Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <h6 class="m-0 fw-bold base-txt-primary">Employee Setup</h6>
 
-        <button
-          type="button"
-          class="btn btn-sm base-btn-outline-purple fw-medium px-2 mb-xxl-0"
-          (click)="addBankInfo()"
-          title="Add Bank Info"
-        >
-          <i class="fas fa-user-circle"></i> Add Bank Info
-        </button>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-skyblue fw-medium px-2"
+            (click)="addSignature()"
+            title="Add Signature"
+          >
+            <i class="fas fa-signature"></i> Add Signature
+          </button>
 
-        <button
-          type="button"
-          class="btn btn-sm btn-outline-danger fw-medium px-2 mb-xxl-0"
-          (click)="resetFilter()"
-        >
-          <i class="fas fa-trash-alt"></i> Clear Filter
-        </button>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-purple fw-medium px-2"
+            (click)="addBankInfo()"
+            title="Add Bank Info"
+          >
+            <i class="fas fa-university"></i> Add Bank Info
+          </button>
 
-        <div class="vr"></div>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-danger fw-medium px-2"
+            (click)="resetFilter()"
+          >
+            <i class="fas fa-times"></i> Clear Filter
+          </button>
 
-        <button
-          type="button"
-          class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
-          (click)="addPersonnel()"
-        >
-          <i class="fas fa-plus-circle"></i> Add
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
-          (click)="editPersonnel()"
-        >
-          <i class="fas fa-edit"></i> Edit
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-danger fw-medium px-2 mb-xxl-0"
-          (click)="deletePersonnel()"
-        >
-          <i class="fas fa-trash-alt"></i> Delete
-        </button>
+          <div class="vr"></div>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="openForm('add')"
+          >
+            <i class="fas fa-plus-circle"></i> Add
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="openForm('edit')"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-danger fw-medium px-2"
+            (click)="deletePersonnel()"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="card-body">
-      <!-- Filter Bar -->
-
-      <div class="card border border-2 action-bar mb-2">
-        <div class="card-body py-1">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-xl-12 col-lg-12 col-12">
-              <div class="row g-2">
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      >Departments</span
-                    >
-                    <select
-                      name="Department"
-                      class="form-control form-select"
-                      [(ngModel)]="departmentFilter"
-                      (ngModelChange)="onChangeDept()"
-                    >
-                      <option [ngValue]="0" selected>All Departments</option>
-                      <option
-                        *ngFor="let department of hrBuList"
-                        [ngValue]="department.id"
-                      >
-                        {{ department.deptName }}
-                      </option>
-                      <!-- @for(department of hrBuList; track $index){
-											<option [ngValue]="department.id">{{department.buName}}</option>
-											} -->
-                    </select>
-                  </div>
+      <div class="card-body">
+        <!-- Filter Bar -->
+        <div class="card border border-2 action-bar mb-2">
+          <div class="card-body py-1">
+            <div class="row g-2">
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Department
+                  </span>
+                  <select
+                    class="form-control form-select"
+                    [(ngModel)]="departmentFilter"
+                    (ngModelChange)="onChangeDept()"
+                  >
+                    <option [ngValue]="0">All Departments</option>
+                    <option *ngFor="let d of hrBuList" [ngValue]="d.id">
+                      {{ d.deptName }}
+                    </option>
+                  </select>
                 </div>
+              </div>
 
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      >Job Title</span
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Job Title
+                  </span>
+                  <select
+                    class="form-control form-select"
+                    [(ngModel)]="jobTitleFilter"
+                    (ngModelChange)="onChangeJobtitle()"
+                  >
+                    <option [ngValue]="0">All Job Titles</option>
+                    <option
+                      *ngFor="let j of hrJobTitleList"
+                      [ngValue]="j.jobtitleNo"
                     >
-                    <select
-                      name="JobTitle"
-                      class="form-control form-select"
-                      [(ngModel)]="jobTitleFilter"
-                      (ngModelChange)="onChangeJobtitle()"
-                    >
-                      <option [ngValue]="0" selected>Job Title</option>
-
-                      @for (job of hrJobTitleList; track $index) {
-                        <option [ngValue]="job.jobtitleNo">
-                          {{ job.jobtitle }}
-                        </option>
-                      }
-                    </select>
-                  </div>
+                      {{ j.jobtitle }}
+                    </option>
+                  </select>
                 </div>
+              </div>
 
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      >Job Type</span
-                    >
-                    <select
-                      name="JobType"
-                      class="form-control form-select"
-                      [(ngModel)]="jobTypeFilter"
-                      (ngModelChange)="onChangeJobType()"
-                    >
-                      <option [ngValue]="0" selected>Job Type</option>
-                      @for (job of jobTypeList; track $index) {
-                        <option [ngValue]="job.id">{{ job.detailName }}</option>
-                      }
-                    </select>
-                  </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Job Type
+                  </span>
+                  <select
+                    class="form-control form-select"
+                    [(ngModel)]="jobTypeFilter"
+                    (ngModelChange)="onChangeJobType()"
+                  >
+                    <option [ngValue]="0">All Job Types</option>
+                    <option *ngFor="let j of jobTypeList" [ngValue]="j.id">
+                      {{ j.detailName }}
+                    </option>
+                  </select>
                 </div>
+              </div>
 
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span
-                      class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      >Emp. Type</span
-                    >
-                    <select
-                      name="EmpType"
-                      class="form-control form-select"
-                      [(ngModel)]="empTypeFilter"
-                      (ngModelChange)="onChangeEmpType()"
-                    >
-                      <option [ngValue]="0" selected>Emp. Type</option>
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Emp. Type
+                  </span>
+                  <select
+                    class="form-control form-select"
+                    [(ngModel)]="empTypeFilter"
+                    (ngModelChange)="onChangeEmpType()"
+                  >
+                    <option [ngValue]="0">All Types</option>
+                    <option *ngFor="let e of empTypeList" [ngValue]="e.id">
+                      {{ e.detailName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                      @for (emp of empTypeList; track $index) {
-                        <option [ngValue]="emp.id">{{ emp.detailName }}</option>
-                      }
-                    </select>
-                  </div>
+        <!-- DataTable -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    #empGrid
+                    class="row-border hover table table-sm"
+                  ></table>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </ng-container>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table #empGrid class="row-border hover table table-sm"></table>
-              </div>
-            </div>
+    <!-- ═══════════════════════════════════════════
+         FORM VIEW
+    ════════════════════════════════════════════ -->
+    <ng-container *ngIf="isFormVisible">
+      <!-- Form Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h6 class="m-0 fw-bold base-txt-primary">
+            {{ formMode === "add" ? "Add New Employee" : "Edit Employee" }}
+          </h6>
+        </div>
+        <button class="btn btn-sm btn-light border" (click)="closeForm()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="card-body p-0">
+        <!-- Tab Navigation -->
+        <div class="emp-tab-nav">
+          <div
+            *ngFor="let tab of tabs"
+            class="emp-tab-nav__item"
+            [class.active]="activeTab === tab.key"
+            (click)="activeTab = tab.key"
+          >
+            <i class="fas {{ tab.icon }}"></i>
+            {{ tab.label }}
+          </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="emp-tab-body">
+          <div *ngIf="activeTab === 'personalInfo'">
+            <app-personal-info-tab
+              #personalTab
+              [jobType]="jobTypeList"
+              [maritalStatus]="maritalStatusList"
+              [jobTitle]="hrJobTitleList"
+              [department]="hrBuList"
+              [editPersonalInfo]="editPersonalInfo"
+              [gender]="genderList"
+              [doctorNo]="doctorName"
+            >
+            </app-personal-info-tab>
+          </div>
+
+          <div *ngIf="activeTab === 'officialInfo'">
+            <app-official-info-tab
+              #officialTab
+              [hrType]="hrTypeList"
+              [empType]="empTypeList"
+              [bloodGroup]="bloodGroupList"
+              [religionList]="religionList"
+              [editOfficialInfo]="editOfficialInfo"
+            >
+            </app-official-info-tab>
+          </div>
+
+          <div *ngIf="activeTab === 'address'">
+            <app-address-tab
+              #addressTab
+              [district]="districtList"
+              [country]="countryList"
+              [editAddressTab]="editAddressTab"
+            >
+            </app-address-tab>
+          </div>
+        </div>
+
+        <!-- Form Footer -->
+        <div class="emp-form-footer">
+          <button
+            class="btn btn-sm btn-light border px-3"
+            (click)="closeForm()"
+          >
+            Cancel
+          </button>
+          <div class="ms-auto">
+            <button
+              class="btn btn-sm base-btn-primary px-4"
+              (click)="collectAndSave()"
+              [disabled]="isSaving"
+            >
+              <span *ngIf="!isSaving">
+                <i class="fas fa-save me-1"></i>
+                {{ formMode === "add" ? "Save Employee" : "Update Employee" }}
+              </span>
+              <span *ngIf="isSaving">
+                <span class="spinner-border spinner-border-sm me-1"></span>
+                Saving...
+              </span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>

@@ -10,12 +10,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
-import { AdmissionDrawerComponent } from './admission/academic-session/admission-drawer/admission-drawer.component';
-import { AdmissionListComponent } from './admission/academic-session/admission-list.component';
+import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
 import { StudentManagementRoutingModule } from './student-management-routing.module';
 
 @NgModule({
-  declarations: [AdmissionDrawerComponent, AdmissionListComponent],
+  declarations: [AdmissionListComponent],
   imports: [
     SharedModule,
     CommonModule,

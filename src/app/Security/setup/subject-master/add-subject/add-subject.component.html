@@ -1,156 +1,223 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-book fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage subject information</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Subject Code <span class="text-danger">*</span></span
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="subject-form-grid">
+    <!-- Subject Code -->
+    <div class="field-group">
+      <label class="field-label"
+        >Subject Code <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="subject.subjectCode"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter subject code"
+          [(ngModel)]="subject.subjectCode"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Subject Name <span class="text-danger">*</span></span
+    <!-- Sort Order -->
+    <div class="field-group">
+      <label class="field-label"
+        >Sort Order <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="subject.subjectName"
-      />
+      <div class="input-field-wrapper">
+        <i
+          class="ti ti-sort-ascending-numbers field-icon-left"
+          aria-hidden="true"
+        ></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter sort order"
+          [(ngModel)]="subject.sortOrder"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Subject Name Bangla <span class="text-danger">*</span></span
+    <!-- Subject Name -->
+    <div class="field-group">
+      <label class="field-label"
+        >Subject Name <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="subject.subjectNameBn"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-book field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter subject name"
+          [(ngModel)]="subject.subjectName"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Subject Type <span class="text-danger">*</span>
-      </span>
-
-      <select class="form-select" [(ngModel)]="subject.subjectType" name="type">
-        <option value="COMPULSORY">COMPULSORY</option>
-        <option value="OPTIONAL">OPTIONAL</option>
-        <option value="PRACTICAL">PRACTICAL</option>
-        <option value="VOCATIONAL">VOCATIONAL</option>
-        <option value="ISLAMIC">ISLAMIC</option>
-      </select>
-    </div>
-
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Subject Category <span class="text-danger">*</span>
-      </span>
-
-      <select
-        class="form-select"
-        [(ngModel)]="subject.subjectCategory"
-        name="type"
+    <!-- Subject Name Bangla -->
+    <div class="field-group">
+      <label class="field-label"
+        >Subject Name (Bangla) <span class="text-danger">*</span></label
       >
-        <option value="THEORY">THEORY</option>
-        <option value="PRACTICAL">PRACTICAL</option>
-        <option value="MCQ">MCQ</option>
-        <option value="BOTH">BOTH</option>
-      </select>
+      <div class="input-field-wrapper">
+        <i class="ti ti-language field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="বিষয়ের নাম"
+          [(ngModel)]="subject.subjectNameBn"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Full Marks <span class="text-danger">*</span></span
+    <!-- Subject Type -->
+    <div class="field-group">
+      <label class="field-label"
+        >Subject Type <span class="text-danger">*</span></label
       >
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="subject.fullMarks"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="subject.subjectType"
+          name="subjectType"
+        >
+          <option value="" disabled selected>Select type</option>
+          <option value="COMPULSORY">COMPULSORY</option>
+          <option value="OPTIONAL">OPTIONAL</option>
+          <option value="PRACTICAL">PRACTICAL</option>
+          <option value="VOCATIONAL">VOCATIONAL</option>
+          <option value="ISLAMIC">ISLAMIC</option>
+        </select>
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Pass Marks <span class="text-danger">*</span></span
+    <!-- Subject Category -->
+    <div class="field-group">
+      <label class="field-label"
+        >Subject Category <span class="text-danger">*</span></label
       >
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="subject.passMarks"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-category field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="subject.subjectCategory"
+          name="subjectCategory"
+        >
+          <option value="" disabled selected>Select category</option>
+          <option value="THEORY">THEORY</option>
+          <option value="PRACTICAL">PRACTICAL</option>
+          <option value="MCQ">MCQ</option>
+          <option value="BOTH">BOTH</option>
+        </select>
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Credit Hour <span class="text-danger">*</span></span
+    <!-- Full Marks -->
+    <div class="field-group">
+      <label class="field-label"
+        >Full Marks <span class="text-danger">*</span></label
       >
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="subject.creditHour"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-trophy field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter full marks"
+          [(ngModel)]="subject.fullMarks"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Sort Order <span class="text-danger">*</span></span
+    <!-- Pass Marks -->
+    <div class="field-group">
+      <label class="field-label"
+        >Pass Marks <span class="text-danger">*</span></label
       >
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="subject.sortOrder"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-check field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter pass marks"
+          [(ngModel)]="subject.passMarks"
+        />
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end flex-wrap">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <!-- Credit Hour -->
+    <div class="field-group">
+      <label class="field-label"
+        >Credit Hour <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-clock field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter credit hour"
+          [(ngModel)]="subject.creditHour"
+        />
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="field-group subject-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="subject.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveSubjects()"
     [disabled]="isSaving"
   >
-    {{ isSaving ? "Saving" : "Save" }}
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

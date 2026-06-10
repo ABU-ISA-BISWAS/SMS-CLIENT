@@ -1,121 +1,164 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-building-bank fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage bank account details</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Bank Name <span class="text-danger">*</span></span
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="bank-form-grid">
+    <!-- Bank Name -->
+    <div class="field-group">
+      <label class="field-label"
+        >Bank Name <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="bankInfoModel.bankName"
-        name="bankName"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-building-bank field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter bank name"
+          [(ngModel)]="bankInfoModel.bankName"
+          name="bankName"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Bank Account No <span class="text-danger">*</span></span
+    <!-- Bank Account Name -->
+    <div class="field-group">
+      <label class="field-label"
+        >Account Holder Name <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="bankInfoModel.bankAccountNo"
-        name="bankAccountNo"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-user field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter account holder name"
+          [(ngModel)]="bankInfoModel.bankAccountName"
+          name="bankAccountName"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Bank Account Name<span class="text-danger">*</span></span
+    <!-- Bank Account No -->
+    <div class="field-group">
+      <label class="field-label"
+        >Account No <span class="text-danger">*</span></label
       >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="bankInfoModel.bankAccountName"
-        name="bankAccountName"
-      />
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Bank Account Type <span class="text-danger">*</span></span
-      >
-      <ng-select
-        [items]="bankAccTypeList"
-        bindLabel="name"
-        bindValue="shortName"
-        placeholder="Choose Bank Account Type"
-        notFoundText="No Type found"
-        [(ngModel)]="bankInfoModel.bankAccountType"
-        name="bankAccountType"
-        class="form-control"
-      >
-      </ng-select>
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Bank Branch <span class="text-danger">*</span></span
-      >
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="bankInfoModel.bankBranch"
-        name="bankBranch"
-      />
-    </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Swift Code <span class="text-danger">*</span></span
-      >
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="bankInfoModel.bankAccountSwiftcode"
-        name="bankAccountSwiftcode"
-      />
+      <div class="input-field-wrapper">
+        <i class="ti ti-credit-card field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter account number"
+          [(ngModel)]="bankInfoModel.bankAccountNo"
+          name="bankAccountNo"
+        />
+      </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end flex-wrap">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <!-- Bank Account Type -->
+    <div class="field-group">
+      <label class="field-label"
+        >Account Type <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-category field-icon-left" aria-hidden="true"></i>
+        <ng-select
+          [items]="bankAccTypeList"
+          bindLabel="name"
+          bindValue="shortName"
+          placeholder="Choose account type"
+          notFoundText="No type found"
+          [(ngModel)]="bankInfoModel.bankAccountType"
+          name="bankAccountType"
+          class="ng-select-custom"
+        ></ng-select>
+      </div>
+    </div>
+
+    <!-- Bank Branch -->
+    <div class="field-group">
+      <label class="field-label"
+        >Bank Branch <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-map-pin field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter branch name"
+          [(ngModel)]="bankInfoModel.bankBranch"
+          name="bankBranch"
+        />
+      </div>
+    </div>
+
+    <!-- Swift Code -->
+    <div class="field-group">
+      <label class="field-label"
+        >Swift Code <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-world field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter SWIFT code"
+          [(ngModel)]="bankInfoModel.bankAccountSwiftcode"
+          name="bankAccountSwiftcode"
+        />
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="field-group field-group--full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="bankInfoModel.activeStatus"
             name="activeStatus"
             (ngModelChange)="bankInfoModel.activeStatus = $event ? 1 : 0"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveBankInfo()"
   >
     Save

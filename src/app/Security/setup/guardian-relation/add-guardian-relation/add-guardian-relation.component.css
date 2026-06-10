@@ -1,12 +1,229 @@
-.input-group .input-group-text:nth-child(1) {
-    background-color: transparent;
-    width: 150px;
-    text-align: right;
-    border: 0;
-    display: inline;
-    font-weight: 600;
+/* ── Modal Header ───────────────────────────────── */
+.modal-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: rgba(var(--bs-primary-rgb), 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-header-icon i {
+  color: var(--bs-primary);
+}
+
+.modal-close-btn {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--bs-secondary-color);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--bs-secondary-bg);
+}
+
+/* ── Field Group ────────────────────────────────── */
+.field-group {
+  margin-bottom: 0.65rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bs-secondary-color);
+  margin-bottom: 5px;
+}
+
+.input-field-wrapper {
+  position: relative;
+}
+
+.field-icon-left {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: var(--bs-secondary-color);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.field-input {
+  padding-left: 32px;
+  font-size: 13px;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.field-input:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.12);
+}
+
+.field-select {
+  padding-left: 32px;
+  font-size: 13px;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.field-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.12);
+}
+
+/* ── Input with append button ───────────────────── */
+.field-input-group {
+  display: flex;
+  gap: 0;
+}
+
+.field-input-group .field-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  flex: 1;
+}
+
+.field-input-group .field-append-btn {
+  height: 38px;
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: 0 6px 6px 0;
+  border: 1px solid var(--bs-border-color);
+  border-left: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: -1px;
+}
+
+/* ── ng-select fix ──────────────────────────────── */
+::ng-deep .ng-select-custom {
+  display: block;
+}
+
+::ng-deep .ng-select-custom .ng-select-container {
+  height: 36px !important;
+  min-height: 36px !important;
+  border: 1px solid var(--bs-border-color) !important;
+  border-radius: 6px !important;
+  font-size: 13px;
+  padding-left: 32px;
+  background-color: var(--bs-body-bg);
+  cursor: pointer;
+}
+
+::ng-deep .ng-select-custom .ng-value-container {
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  align-items: center;
+}
+
+::ng-deep .ng-select-custom .ng-value-container .ng-input {
+  padding-left: 0 !important;
+  top: auto !important;
+}
+
+::ng-deep .ng-select-custom .ng-value-container .ng-input input {
+  padding: 0 !important;
+  font-size: 13px;
+}
+
+::ng-deep .ng-select-custom .ng-placeholder {
+  color: var(--bs-secondary-color) !important;
+  font-size: 13px;
+  padding: 0 !important;
+}
+
+::ng-deep .ng-select-custom.ng-select-focused .ng-select-container {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.12) !important;
+}
+
+::ng-deep .ng-select-custom .ng-arrow-wrapper {
+  padding-right: 8px;
+  padding-left: 4px;
+}
+
+::ng-deep .ng-select-custom .ng-clear-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Checkbox Row ───────────────────────────────── */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--bs-secondary-bg);
+  border: 1px solid var(--bs-border-color-translucent);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox-input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: var(--bs-primary);
+}
+
+.checkbox-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bs-body-color);
+  user-select: none;
+}
+
+/* ── Modal Footer ───────────────────────────────── */
+.modal-footer-custom {
+  background-color: var(--bs-secondary-bg);
+  border-top: 1px solid var(--bs-border-color-translucent) !important;
+  padding: 0.75rem 1rem;
+  gap: 8px;
 }
 
 .fixed-width-btn {
-  min-width: 80px; 
+  min-width: 80px;
+}
+
+/* ── Spinner ────────────────────────────────────── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+
+.field-error {
+  font-size: 11px;
+  color: var(--bs-danger);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }

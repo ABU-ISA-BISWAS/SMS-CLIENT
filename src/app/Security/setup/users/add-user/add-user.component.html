@@ -436,7 +436,14 @@
               placeholder="Search role by name..."
             />
           </div>
-          <div style="min-width: 200px">
+          <div
+            style="
+              min-width: 200px;
+              border: 1px solid #d4d9ee;
+              padding: 4px;
+              border-radius: 4px;
+            "
+          >
             <ng-select
               [items]="roleWithUserGrantList"
               placeholder="— or pick a role —"

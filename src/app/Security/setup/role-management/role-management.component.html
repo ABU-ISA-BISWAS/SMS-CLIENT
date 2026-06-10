@@ -1,169 +1,216 @@
 <div class="container-fluid">
-  <div class="card">
-    <div
-      class="card-header py-2 d-flex justify-content-between align-items-center"
-    >
-      <h6 class="m-0 fw-bold base-txt-primary">Role Setup</h6>
-      <div class="d-flex flex-wrap gap-2 align-items-center">
-        <button
-          type="button"
-          class="btn btn-sm base-btn-outline-orange fw-medium px-2 mb-xxl-0"
-          (click)="activeInactive()"
-        >
-          <i class="fas fa-toggle-on mr-1" aria-hidden="true"></i>&nbsp;{{
-            disableButton
-          }}
-        </button>
+  <!-- ══════════════════════════════════════
+       VIEW 1 — Role List
+  ═══════════════════════════════════════ -->
+  <div [hidden]="isFlipped">
+    <div class="card">
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <h6 class="m-0 fw-bold base-txt-primary">
+          <i
+            class="fas fa-shield-alt me-2"
+            style="color: #4b8df8; font-size: 14px"
+          ></i
+          >Role Setup
+        </h6>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <button
+            type="button"
+            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
+            (click)="activeInactive()"
+          >
+            <i class="fas fa-toggle-on me-1"></i>{{ disableButton }}
+          </button>
+          <div class="vr"></div>
+          <button
+            type="button"
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="addRole()"
+          >
+            <i class="fas fa-plus-circle me-1"></i> Add
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="editRole()"
+          >
+            <i class="fas fa-edit me-1"></i> Edit
+          </button>
+        </div>
+      </div>
 
-        <button
-          type="button"
-          class="btn btn-sm base-btn-primary fw-medium px-3 mb-xxl-0"
-          (click)="addRole()"
-        >
-          <i class="fas fa-user-plus mr-1" aria-hidden="true"></i> Add
-        </button>
+      <div class="card-body">
+        <!-- Selected role info bar -->
+        <div class="card border border-2 filter-bar mb-2">
+          <div class="card-body py-1">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group">
+                  <span class="input-group-text base-txt-primary"
+                    >Role Id:</span
+                  >
+                  <div class="form-control base-bg-subtle-primary px-2">
+                    {{ roleViewObj.roleId || "&nbsp;" }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="input-group">
+                  <span class="input-group-text base-txt-primary"
+                    >Role Name:</span
+                  >
+                  <div class="form-control base-bg-subtle-primary px-2">
+                    {{ roleViewObj.roleName || "&nbsp;" }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <div class="info-value mt-1 px-2">
+                  <button
+                    type="button"
+                    class="status-btn"
+                    [ngClass]="
+                      roleViewObj.activeStat === 1
+                        ? 'status-active'
+                        : 'status-inactive'
+                    "
+                    disabled
+                  >
+                    <span class="dot"></span>
+                    {{ roleViewObj.activeStat === 1 ? "Active" : "Inactive" }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <button
-          type="button"
-          class="btn btn-sm btn-warning fw-medium px-3 mb-xxl-0"
-          (click)="editRole()"
-        >
-          <i class="fas fa-edit" aria-hidden="true"></i> Edit
-        </button>
+        <!-- Filter bar -->
+        <div class="card border border-2 action-bar mb-2">
+          <div
+            class="card-body d-flex flex-wrap gap-2 justify-content-end py-0 px-2"
+          >
+            <div class="row justify-content-center align-items-center">
+              <div class="col mt-3 mt-xl-0">
+                <div class="custom-radio-group d-flex flex-wrap">
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      id="inlineRadi1"
+                      name="roleStatus"
+                      [(ngModel)]="activeStatus"
+                      (ngModelChange)="onChangeRadioButton()"
+                      value=""
+                      class="custom-control-input"
+                    />
+                    <label class="form-check-label p-2" for="inlineRadi1"
+                      >All</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      id="inlineRadi2"
+                      name="roleStatus"
+                      [(ngModel)]="activeStatus"
+                      (ngModelChange)="onChangeRadioButton()"
+                      value="1"
+                      class="custom-control-input"
+                    />
+                    <label class="form-check-label p-2" for="inlineRadi2"
+                      >Active</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      id="inlineRadi3"
+                      name="roleStatus"
+                      [(ngModel)]="activeStatus"
+                      (ngModelChange)="onChangeRadioButton()"
+                      value="0"
+                      class="custom-control-input"
+                    />
+                    <label class="form-check-label p-2" for="inlineRadi3"
+                      >InActive</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <!-- <button type="button" class="btn btn-sm btn-danger fw-medium px-2 mb-2 mb-xxl-0" (click)="onDeleteModal()">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button> -->
+        <!-- DataTable -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    #roleGrid
+                    class="row-border hover table table-sm"
+                  ></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="card-body">
-      <div class="card border border-2 filter-bar mb-2">
-        <div class="card-body py-1">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-xl-12 col-lg-12 col-12">
-              <div class="row g-2">
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span class="input-group-text base-txt-primary"
-                      >Role Id:</span
-                    >
-                    <div class="form-control base-bg-subtle-primary px-2">
-                      {{ roleViewObj.roleId || "&nbsp;" }}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="input-group">
-                    <span class="input-group-text base-txt-primary"
-                      >Role Name:</span
-                    >
-                    <div class="form-control base-bg-subtle-primary px-2">
-                      {{ roleViewObj.roleName || "&nbsp;" }}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-xl-3 col-xxl-3">
-                  <div class="info-value mt-1 px-2">
-                    <button
-                      type="button"
-                      class="status-btn"
-                      [ngClass]="
-                        roleViewObj.activeStat === 1
-                          ? 'status-active'
-                          : 'status-inactive'
-                      "
-                      disabled
-                    >
-                      <span class="dot"></span>
-                      {{ roleViewObj.activeStat === 1 ? "Active" : "Inactive" }}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <!-- ══════════════════════════════════════
+       VIEW 2 — Add / Edit Role (inline)
+  ═══════════════════════════════════════ -->
+  <div [hidden]="!isFlipped">
+    <div class="card border-0 shadow-sm">
+      <!-- Form header -->
+      <div class="uf-back-header">
+        <button type="button" class="uf-back-btn" (click)="closeForm()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="uf-back-breadcrumb">
+          <span class="uf-bc-root" (click)="closeForm()">
+            <i class="fas fa-shield-alt"></i> Role Setup
+          </span>
+          <i class="fas fa-chevron-right uf-bc-sep"></i>
+          <span class="uf-bc-current">{{ formTitle }}</span>
+        </div>
+        <div class="ms-auto d-flex gap-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-light border fw-medium px-3"
+            style="font-size: 12px"
+            (click)="closeForm()"
+          >
+            <i class="fas fa-times me-1"></i> Cancel
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm fw-medium px-3"
+            style="
+              font-size: 12px;
+              background: linear-gradient(135deg, #4b8df8, #7b61ff);
+              color: #fff;
+              border: none;
+            "
+            (click)="triggerSave()"
+          >
+            <i class="fas fa-save me-1"></i> Save
+          </button>
         </div>
       </div>
 
-      <!-- Filtar Bar -->
-      <div class="card border border-2 action-bar mb-2">
-        <div
-          class="card-body d-flex flex-wrap gap-2 justify-content-xxl-end justify-content-end py-0 px-2"
-        >
-          <div class="row justify-content-center align-items-center">
-            <div class="mt-3 mt-xl-0">
-              <div class="custom-radio-group d-flex flex-wrap">
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    value="all"
-                    id="inlineRadi1"
-                    name="item"
-                    [(ngModel)]="activeStatus"
-                    (ngModelChange)="onChangeRadioButton()"
-                    value=""
-                    checked
-                    class="custom-control-input"
-                    checked
-                  />
-                  <label class="form-check-label p-2" for="inlineRadi1"
-                    >All</label
-                  >
-                </div>
-
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    value="all"
-                    name="roleStatus"
-                    id="inlineRadi2"
-                    [(ngModel)]="activeStatus"
-                    (ngModelChange)="onChangeRadioButton()"
-                    value="1"
-                    class="custom-control-input"
-                  />
-                  <label class="form-check-label p-2" for="inlineRadi2"
-                    >Active</label
-                  >
-                </div>
-
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    value="all"
-                    [(ngModel)]="activeStatus"
-                    (ngModelChange)="onChangeRadioButton()"
-                    value="0"
-                    id="inlineRadi3"
-                    name="roleStatus"
-                    class="custom-control-input"
-                  />
-                  <label class="form-check-label p-2" for="inlineRadi3"
-                    >InActive</label
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table
-                  #roleGrid
-                  class="row-border hover table table-sm"
-                ></table>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Embedded AddRoleNewComponent -->
+      <div class="uf-form-body" *ngIf="isFlipped">
+        <app-add-role-new
+          #addRoleRef
+          [selectedRole]="formSelectedRole"
+          [title]="formTitle"
+          (onSaveSuccess)="onFormSaved()"
+        ></app-add-role-new>
       </div>
     </div>
   </div>

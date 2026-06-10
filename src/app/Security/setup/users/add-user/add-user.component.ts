@@ -530,7 +530,7 @@ export class AddUserComponent implements OnInit {
         if (res.success) {
           this.roleWithUserGrantList = res.items;
           this.roleWithUserGrantList = this.roleWithUserGrantList
-            .sort((a, b) => (a.id > b.id ? 1 : -1))
+            ?.sort((a, b) => (a.id > b.id ? 1 : -1))
             .reverse();
           this.grantRoleViewList = this.roleWithUserGrantList;
           console.log('this.grantRoleViewList', this.grantRoleViewList);
@@ -651,7 +651,7 @@ export class AddUserComponent implements OnInit {
   }
 
   get grantedRoleCount(): number {
-    return this.roleWithUserGrantList.filter((role) => role.id != null).length;
+    return this.roleWithUserGrantList?.filter((role) => role.id != null).length;
   }
 
   get filteredGrantRoleList(): UserGrantRole[] {

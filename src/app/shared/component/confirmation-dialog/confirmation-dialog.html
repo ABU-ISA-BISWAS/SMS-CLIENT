@@ -1,73 +1,91 @@
-<!-- <div class="modal-body text-center pt-5 pb-5">
-    <p class="pConfirmation" [innerHTML]="title"></p>
-    <div *ngIf="cancelFlag ">
-        <div class="searchHeaderField col-md-9 offset-md-2 pt-4 pl-3 pr-5">
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text lebelBg">Cancel Reason:</div>
-                </div>
-                <input type="text" class="form-control" [(ngModel)]="cancelReason"
-                    (ngModelChange)="cancelReason.length > 0 ? cancelReasonChecker = false : cancelReasonChecker = true">
-            </div>
-        </div>
+<!-- Modal Header (close button only) -->
+<div class="modal-header border-0 pb-0 pe-3 pt-3">
+  <button
+    type="button"
+    class="confirm-close-btn btn btn-sm btn-light border ms-auto"
+    aria-label="Close"
+    (click)="onCancel()"
+  >
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
+  </button>
+</div>
+
+<!-- Modal Body -->
+<div class="modal-body confirm-body text-center px-4 pb-4 pt-2">
+  <!-- Icon -->
+  <div class="confirm-icon-wrap mb-3">
+    <div class="confirm-icon">
+      <i class="ti ti-help" aria-hidden="true"></i>
     </div>
+  </div>
 
+  <!-- Title & Subtitle -->
+  <h5 class="confirm-title" [innerHTML]="title"></h5>
+  <p class="confirm-subtitle">
+    Please review the details before confirming this action.
+  </p>
 
-    <div *ngIf="personalNumber ">
-        <div class="searchHeaderField col-md-9 offset-md-2 pt-4 pl-3 pr-5">
-            <div class="form-group mb-2">
-                <label for="formGroupExampleInput" class="text-center labelConfirm">
-                    <strong>Personal Number to confirm:</strong>
-                </label>
-                <input type="text" class="form-control perNumberConfirm" [(ngModel)]="validationString"
-                    (ngModelChange)="validationString == personalNumber ? unitCheck = false : unitCheck = true">
-            </div>
-        </div>
+  <!-- Cancel Reason (conditional) -->
+  <div *ngIf="cancelFlag" class="confirm-field-card text-start mb-3">
+    <label class="confirm-field-label">
+      Cancel reason <span class="text-danger">*</span>
+    </label>
+    <div class="confirm-input-wrap">
+      <i class="ti ti-message confirm-input-icon" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control confirm-input"
+        placeholder="Enter reason for cancellation"
+        [(ngModel)]="cancelReason"
+        (ngModelChange)="
+          cancelReason.length > 0
+            ? (cancelReasonChecker = false)
+            : (cancelReasonChecker = true)
+        "
+      />
     </div>
+  </div>
 
-    <button type="button" class="btn btn-success paddC mt-2" (click)="onConfirm()"
-        [disabled]="cancelReasonChecker || unitCheck">Yes
+  <!-- Personal Number Confirm (conditional) -->
+  <div *ngIf="personalNumber" class="confirm-field-card text-start mb-3">
+    <label class="confirm-field-label">Confirm personal number</label>
+    <div class="confirm-input-wrap">
+      <i class="ti ti-id-badge confirm-input-icon" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control confirm-input"
+        placeholder="Enter your personal number"
+        [(ngModel)]="validationString"
+        (ngModelChange)="
+          validationString == personalNumber
+            ? (unitCheck = false)
+            : (unitCheck = true)
+        "
+      />
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <hr class="confirm-divider" />
+
+  <!-- Action Buttons -->
+  <div class="confirm-btn-row">
+    <button
+      type="button"
+      class="btn btn-sm confirm-btn-no fw-medium"
+      (click)="onCancel()"
+    >
+      <i class="ti ti-x fs-13px me-1" aria-hidden="true"></i>
+      No, cancel
     </button>
-    <button type="button" class="btn btn-danger paddC mt-2 mx-3 " (click)="onCancel()">No
+    <button
+      type="button"
+      class="btn btn-sm confirm-btn-yes fw-medium"
+      (click)="onConfirm()"
+      [disabled]="cancelReasonChecker || unitCheck"
+    >
+      <i class="ti ti-check fs-13px me-1" aria-hidden="true"></i>
+      Yes, confirm
     </button>
-</div> -->
-            
-    <div class="modal-body modal-body px-4 py-5 text-center">
-        
-        <div class="icon-container icon-question">
-            <i class="fas fa-question"></i>
-        </div>
-        
-        <h5 class="main-title" [innerHTML]="title"></h5>
-        <p class="sub-text">Please review the details before confirming this action.</p>
-
-        <div *ngIf="cancelFlag" class="pt-4">
-            <div class="input-group mb-3">
-                <span class="input-group-text lebelBg">Cancel Reason:</span>
-                <input type="text" class="form-control" [(ngModel)]="cancelReason"
-                    (ngModelChange)="cancelReason.length > 0 ? cancelReasonChecker = false : cancelReasonChecker = true">
-            </div>
-        </div>
-
-        <div *ngIf="personalNumber" class="pt-4">
-            <div class="form-group mb-3">
-                <label for="perNumberConfirm" class="text-center labelConfirm d-block">
-                    <strong>Personal Number to confirm:</strong>
-                </label>
-                <input type="text" class="form-control perNumberConfirm" [(ngModel)]="validationString"
-                    (ngModelChange)="validationString == personalNumber ? unitCheck = false : unitCheck = true">
-            </div>
-        </div>
-
-        <div class="hstack gap-3 mt-4">
-            <button type="button" class="btn btn-full-width btn-secondary-white" (click)="onCancel()">
-                No
-            </button>
-            
-            <button type="button" class="btn btn-full-width btn-primary-blue" (click)="onConfirm()"
-                [disabled]="cancelReasonChecker || unitCheck">
-                Yes
-            </button>
-        </div>
-    </div>
-                
+  </div>
+</div>

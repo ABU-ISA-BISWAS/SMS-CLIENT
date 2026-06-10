@@ -1,50 +1,112 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{title}}</h6>
-  <button type="button" class="btn-close close pull-right fs-13px btn btn-sm btn-light" aria-label="Close"
-    (click)="bsModalRef.hide()">
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-layout-grid fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px">Manage system module</small>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="modal-close-btn btn btn-sm btn-light border"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-
-  <div class="border p-3  mb-3">
-
-    <div class="input-group required mb-2  positionRelative">
-      <span for="fatherName" class="input-group-text base-bg-subtle-primary base-txt-primary">Module Name:</span>
-      <input type="text" class="form-control" 
-        [(ngModel)]="module.menuName" />
-    </div>
-
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Parent Module:</span>
-      <input  type="number" class="form-control" [(ngModel)]="module.parentMenuNo">
-    </div>
-
-       <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Module Code:</span>
-      <input type="text" class="form-control" [(ngModel)]="module.menuId">
-    </div>
-
- 
-
-    <div class="input-group mb-2">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">Module Icon:</span>
-      <input type="text" class="form-control" [(ngModel)]="module.menuIcon">
-      <button class="btn btn-info addfeature" (click)="selectIcon()" type="button">
-        <i class="fas fa-plus " aria-hidden="true"></i>
-      </button>
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <!-- Module Name -->
+  <div class="field-group">
+    <label class="field-label">Module Name</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-puzzle field-icon-left" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control field-input"
+        placeholder="Enter module name"
+        [(ngModel)]="module.menuName"
+      />
     </div>
   </div>
 
+  <!-- Parent Module -->
+  <div class="field-group">
+    <label class="field-label">Parent Module</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-hierarchy field-icon-left" aria-hidden="true"></i>
+      <input
+        type="number"
+        class="form-control field-input"
+        placeholder="Enter parent module number"
+        [(ngModel)]="module.parentMenuNo"
+      />
+    </div>
+  </div>
+
+  <!-- Module Code -->
+  <div class="field-group">
+    <label class="field-label">Module Code</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-code field-icon-left" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control field-input"
+        placeholder="Enter module code"
+        [(ngModel)]="module.menuId"
+      />
+    </div>
+  </div>
+
+  <!-- Module Icon -->
+  <div class="field-group">
+    <label class="field-label">Module Icon</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-icons field-icon-left" aria-hidden="true"></i>
+      <div class="field-input-group">
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter icon class"
+          [(ngModel)]="module.menuIcon"
+        />
+        <button
+          class="btn btn-sm base-btn-primary field-append-btn"
+          (click)="selectIcon()"
+          type="button"
+        >
+          <i class="ti ti-plus fs-13px" aria-hidden="true"></i> Pick
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<div class="modal-footer border-0 bg-light">
-  <button type="button" class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
-    (click)="bsModalRef.hide()">Close</button>
-  <button type="button" class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
-    (click)="saveModule()" [disabled] = "isSaving">
-    {{ isSaving ? 'Saving' : 'Save'}}
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
+  <button
+    type="button"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
+    (click)="saveModule()"
+    [disabled]="isSaving"
+  >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

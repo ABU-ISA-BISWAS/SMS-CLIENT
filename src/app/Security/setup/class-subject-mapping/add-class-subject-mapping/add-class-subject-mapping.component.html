@@ -1,123 +1,149 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-git-merge fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage class-subject mapping</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="mapping-form-grid">
     <!-- Class -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Class <span class="text-danger">*</span>
-      </span>
-      <select
-        class="form-select"
-        [(ngModel)]="mapping.classMasterNo"
-        name="classMasterNo"
+    <div class="field-group">
+      <label class="field-label"
+        >Class <span class="text-danger">*</span></label
       >
-        <option [ngValue]="undefined">-- Select Class --</option>
-        <option *ngFor="let cls of classList" [value]="cls.id">
-          {{ cls.className }}
-        </option>
-      </select>
+      <div class="input-field-wrapper">
+        <i class="ti ti-school field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="mapping.classMasterNo"
+          name="classMasterNo"
+        >
+          <option [ngValue]="undefined">-- Select Class --</option>
+          <option *ngFor="let cls of classList" [value]="cls.id">
+            {{ cls.className }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Group / Version -->
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Group / Version
-      </span>
-      <select
-        class="form-select"
-        [(ngModel)]="mapping.groupVersionNo"
-        name="groupVersionNo"
-      >
-        <option [ngValue]="undefined">-- All Groups --</option>
-        <option *ngFor="let grp of groupList" [value]="grp.id">
-          {{ grp.name }}
-        </option>
-      </select>
+    <div class="field-group">
+      <label class="field-label">Group / Version</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-layout-list field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="mapping.groupVersionNo"
+          name="groupVersionNo"
+        >
+          <option [ngValue]="undefined">-- All Groups --</option>
+          <option *ngFor="let grp of groupList" [value]="grp.id">
+            {{ grp.name }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Subject -->
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Subject <span class="text-danger">*</span>
-      </span>
-      <select
-        class="form-select"
-        [(ngModel)]="mapping.subjectMasterNo"
-        name="subjectMasterNo"
+    <div class="field-group">
+      <label class="field-label"
+        >Subject <span class="text-danger">*</span></label
       >
-        <option [ngValue]="undefined">-- Select Subject --</option>
-        <option *ngFor="let sub of subjectList" [value]="sub.id">
-          {{ sub.subjectCode }} - {{ sub.subjectName }}
-        </option>
-      </select>
+      <div class="input-field-wrapper">
+        <i class="ti ti-book field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="mapping.subjectMasterNo"
+          name="subjectMasterNo"
+        >
+          <option [ngValue]="undefined">-- Select Subject --</option>
+          <option *ngFor="let sub of subjectList" [value]="sub.id">
+            {{ sub.subjectCode }} - {{ sub.subjectName }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <!-- Sort Order -->
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Sort Order
-      </span>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="mapping.sortOrder"
-        min="0"
-      />
+    <div class="field-group">
+      <label class="field-label">Sort Order</label>
+      <div class="input-field-wrapper">
+        <i
+          class="ti ti-sort-ascending-numbers field-icon-left"
+          aria-hidden="true"
+        ></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter sort order"
+          [(ngModel)]="mapping.sortOrder"
+          min="0"
+        />
+      </div>
     </div>
 
-    <!-- Optional & Status -->
-    <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-end flex-wrap gap-4">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1">
-            Optional Subject
-          </label>
+    <!-- Checkboxes -->
+    <div class="field-group mapping-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="mapping.isOptional"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1">
-            Status
-          </label>
+          <span class="checkbox-label">Optional Subject</span>
+        </label>
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="mapping.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveMapping()"
     [disabled]="isSaving"
   >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
     {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

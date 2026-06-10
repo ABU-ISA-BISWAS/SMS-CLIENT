@@ -1,76 +1,146 @@
-<!-- Official Information -->
+<div class="emp-section-title">Other / Official Information</div>
 
-<div class="row g-3">
+<div class="row g-2">
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Card No.
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Card number"
+        [(ngModel)]="employee.cardNo"
+      />
+    </div>
+  </div>
 
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Blood Group
+      </span>
+      <ng-select
+        class="form-control p-0"
+        [items]="bloodGroupList"
+        placeholder="Choose"
+        notFoundText="Not found"
+        bindLabel="detailName"
+        bindValue="id"
+        [(ngModel)]="employee.bloodGrp"
+      >
+      </ng-select>
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Card No.:</label>
-			<input type="text" class="form-control" placeholder="Enter card no." [(ngModel)]="employee.cardNo" />
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Nationality
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="employee.nationality"
+      />
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Blood Group:</label>
-			<ng-select [items]="bloodGroupList" placeholder="Choose blood group" notFoundText="No blood group found"
-				bindLabel="detailName" bindValue="id" [(ngModel)]="employee.bloodGrp"
-				class="form-control form-select"></ng-select>
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        HR Type
+      </span>
+      <ng-select
+        class="form-control p-0"
+        [items]="hrTypeList"
+        placeholder="Choose"
+        notFoundText="Not found"
+        bindLabel="detailName"
+        bindValue="id"
+        [(ngModel)]="employee.hrType"
+      >
+      </ng-select>
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Nationality:</label>
-			<input type="text" class="form-control" placeholder="Enter nationality" [(ngModel)]="employee.nationality" />
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Official Email
+      </span>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="official@email.com"
+        [(ngModel)]="employee.emailOfficial"
+      />
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">HR Type:</label>
-			<ng-select [items]="hrTypeList" placeholder="Choose HR type" notFoundText="No HR type found"
-				bindLabel="detailName" bindValue="id" [(ngModel)]="employee.hrType"
-				class="form-control form-select"></ng-select>
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Emp. Type
+      </span>
+      <ng-select
+        class="form-control p-0"
+        [items]="emptypelist"
+        placeholder="Choose"
+        notFoundText="Not found"
+        bindLabel="detailName"
+        bindValue="id"
+        [(ngModel)]="employee.empType"
+      >
+      </ng-select>
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Email:</label>
-			<input type="text" class="form-control" placeholder="Enter email address" [(ngModel)]="employee.emailOfficial" />
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Religion
+      </span>
+      <ng-select
+        class="form-control p-0"
+        [items]="religionList"
+        placeholder="Choose"
+        notFoundText="Not found"
+        bindLabel="detailName"
+        bindValue="id"
+        [(ngModel)]="employee.religion"
+      >
+      </ng-select>
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Emp. Type:</label>
-			<ng-select [items]="emptypelist" placeholder="Choose Emp. type" notFoundText="No Emp. type found"
-				bindLabel="detailName" bindValue="id" [(ngModel)]="employee.empType"
-				class="form-control form-select"></ng-select>
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
+        Passport / NID
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="employee.passportNo"
+      />
+    </div>
+  </div>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Religion:</label>
-			<ng-select [items]="religionList" placeholder="Choose Religion" notFoundText="No Religion found"
-				bindLabel="detailName" bindValue="id" [(ngModel)]="employee.religion"
-				class="form-control form-select"></ng-select>
-		</div>
-	</div>
+  <div class="col-md-4">
+    <div class="input-group input-group-sm align-items-start">
+      <span
+        class="input-group-text base-bg-subtle-primary base-txt-primary"
+        style="align-self: flex-start; padding-top: 6px"
+      >
+        Emp. Signature
+      </span>
 
-	<div class="col-lg-3 col-sm-6 col-12">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Passport/NID:</label>
-			<input type="text" class="form-control" placeholder="Enter passport or NID" [(ngModel)]="employee.passportNo" />
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<div class="form-group">
-			<label class="form-label base-txt-primary">Employee Signature:</label>
-			<textarea class="form-control" [(ngModel)]="employee.empSignature" name="docSignature" rows="2"></textarea>
-		</div>
-	</div>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="employee.empSignature"
+      />
+    </div>
+  </div>
 </div>

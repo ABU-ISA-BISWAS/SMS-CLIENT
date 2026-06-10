@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -8,8 +15,9 @@ import { ConfirmationDialog } from '../../../shared/component/confirmation-dialo
 import { EmployeeService } from '../../_coreSecurity/services/employee.service';
 import { AddEmpBankInfoComponent } from './add-emp-bank-info/add-emp-bank-info.component';
 import { AddEmpSignatureComponent } from './add-emp-signature/add-emp-signature.component';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AddressTabComponent } from './add-employee/address-tab/address-tab.component';
+import { OfficialInfoTabComponent } from './add-employee/official-info-tab/official-info-tab.component';
+import { PersonalInfoTabComponent } from './add-employee/personal-info-tab/personal-info-tab.component';
 
 @Component({
   selector: 'app-personnel',
@@ -17,34 +25,65 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   styleUrls: ['./employees.component.css'],
   standalone: false,
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('empGrid', { static: false }) empGrid!: ElementRef;
+
+  // ── Tab child refs ────────────────────────────────────
+  @ViewChild('personalTab') personalTab!: PersonalInfoTabComponent;
+  @ViewChild('officialTab') officialTab!: OfficialInfoTabComponent;
+  @ViewChild('addressTab') addressTab!: AddressTabComponent;
+
+  bsModalRef!: BsModalRef;
   empTable: any;
   empTableObj: any;
-  token!: string;
-  bsModalRef!: BsModalRef;
-  selectedPersonnel: any;
-  genderList: any;
-  maritalStatusList: any;
-  hrTypeList: any;
-  empTypeList: any;
-  jobTypeList: any;
-  districtList: any;
-  countryList: any;
-  bloodGroupList: any;
-  religionList: any;
-  hrBuList: any;
-  hrJobTitleList: any;
-  salutationList: any;
-  reportsToList: any;
-  upazilaList: any;
-  singlePersonnel: any;
-  doctorName: any;
-  gridDataParam: any = {};
+
+  selectedPersonnel: any = null;
+  singlePersonnel: any = null;
+
+  // ── Filter dropdowns ──────────────────────────────────
+  hrBuList: any[] = [];
+  hrJobTitleList: any[] = [];
+  jobTypeList: any[] = [];
+  empTypeList: any[] = [];
+
   departmentFilter: number = 0;
   jobTitleFilter: number = 0;
   jobTypeFilter: number = 0;
   empTypeFilter: number = 0;
+
+  // ── Form dropdowns ────────────────────────────────────
+  genderList: any[] = [];
+  maritalStatusList: any[] = [];
+  hrTypeList: any[] = [];
+  districtList: any[] = [];
+  countryList: any[] = [];
+  bloodGroupList: any[] = [];
+  religionList: any[] = [];
+  salutationList: any[] = [];
+  doctorName: any;
+
+  // ── View toggle ───────────────────────────────────────
+  isFormVisible = false;
+  formMode: 'add' | 'edit' = 'add';
+
+  activeTab: 'personalInfo' | 'officialInfo' | 'address' = 'personalInfo';
+
+  tabs: {
+    key: 'personalInfo' | 'officialInfo' | 'address';
+    label: string;
+    icon: string;
+  }[] = [
+    { key: 'personalInfo', label: 'Basic Information', icon: 'fa-user' },
+    { key: 'officialInfo', label: 'Other Information', icon: 'fa-briefcase' },
+    { key: 'address', label: 'Address Details', icon: 'fa-map-marker-alt' },
+  ];
+
+  // ── Edit data refs ────────────────────────────────────
+  editPersonalInfo: any = {};
+  editOfficialInfo: any = {};
+  editAddressTab: any = {};
+
+  isSaving = false;
 
   constructor(
     private modalService: BsModalService,
@@ -54,7 +93,7 @@ export class EmployeesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getInitialDataList();
+    this.loadInitialData();
     this.getDeptName();
     this.getJobTitle();
   }
@@ -63,196 +102,291 @@ export class EmployeesComponent implements OnInit {
     this.initEmpGrid();
   }
 
-  getInitialDataList(): void {
-    //   this.empService.initEmpSetupList().subscribe(
-    //     (res: {
-    //       success: any;
-    //       obj: {
-    //         districtList: any;
-    //         empTypeList: any;
-    //         upazilaList: any;
-    //         maritalStatusList: any;
-    //         hrTypeList: any;
-    //         religionList: any;
-    //         jobTypeList: any;
-    //         bloodGroupList: any;
-    //         countryList: any;
-    //         genderList: any;
-    //         salutationList: any;
-    //       };
-    //     }) => {
-    //       if (res.success) {
-    //         this.districtList = res.obj.districtList;
-    //         this.empTypeList = res.obj.empTypeList;
-    //         this.upazilaList = res.obj.upazilaList;
-    //         this.maritalStatusList = res.obj.maritalStatusList;
-    //         this.hrTypeList = res.obj.hrTypeList;
-    //         this.religionList = res.obj.religionList;
-    //         this.jobTypeList = res.obj.jobTypeList;
-    //         this.bloodGroupList = res.obj.bloodGroupList;
-    //         this.countryList = res.obj.countryList;
-    //         this.genderList = res.obj.genderList;
-    //         this.salutationList = res.obj.salutationList;
-    //       }
-    //     },
-    //     (err: any) => {
-    //       console.error('Error occured when get all Initial Data response ', err);
-    //     },
-    //   );
-  }
-
-  getDeptName(): any {
-    this.empService.getDeptName().subscribe((res: any) => {
-      this.hrBuList = res;
-      console.log('BuName', res);
-    });
-  }
-  getJobTitle(): any {
-    this.empService.getJobTitleList().subscribe((res: any) => {
-      this.hrJobTitleList = res;
-      console.log('jobtitle', res);
+  // ── Initial data load ─────────────────────────────────
+  loadInitialData(): void {
+    this.empService.initEmpSetupList().subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.districtList = res.obj.districtList || [];
+          this.empTypeList = res.obj.empTypeList || [];
+          this.maritalStatusList = res.obj.maritalStatusList || [];
+          this.hrTypeList = res.obj.hrTypeList || [];
+          this.religionList = res.obj.religionList || [];
+          this.jobTypeList = res.obj.jobTypeList || [];
+          this.bloodGroupList = res.obj.bloodGroupList || [];
+          this.countryList = res.obj.countryList || [];
+          this.genderList = res.obj.genderList || [];
+          this.salutationList = res.obj.salutationList || [];
+        }
+      },
+      error: (err: any) => console.error('Error loading initial data', err),
     });
   }
 
-  addPersonnel() {
-    const initialState = {
-      title: 'Add New Employee',
-      genderList: this.genderList,
-      maritalStatusList: this.maritalStatusList,
-      hrTypeList: this.hrTypeList,
-      empTypeList: this.empTypeList,
-      jobTypeList: this.jobTypeList,
-      districtList: this.districtList,
-      countryList: this.countryList,
-      bloodGroupList: this.bloodGroupList,
-      religionList: this.religionList,
-      hrBuList: this.hrBuList,
-      hrJobTitleList: this.hrJobTitleList,
-      salutationList: this.salutationList,
+  getDeptName(): void {
+    this.empService.getDeptName().subscribe({
+      next: (res: any) => (this.hrBuList = res || []),
+    });
+  }
+
+  getJobTitle(): void {
+    this.empService.getJobTitleList().subscribe({
+      next: (res: any) => (this.hrJobTitleList = res || []),
+    });
+  }
+
+  // ── Form Open / Close ─────────────────────────────────
+  openForm(mode: 'add' | 'edit') {
+    if (mode === 'edit') {
+      if (!this.singlePersonnel) {
+        this.toastr.warning('Please select an employee to edit.');
+        return;
+      }
+    }
+
+    this.formMode = mode;
+    this.activeTab = 'personalInfo';
+
+    if (mode === 'edit' && this.singlePersonnel) {
+      this.editPersonalInfo = { ...this.singlePersonnel };
+      this.editOfficialInfo = { ...this.singlePersonnel };
+      this.editAddressTab = { ...this.singlePersonnel };
+    } else {
+      this.editPersonalInfo = {};
+      this.editOfficialInfo = {};
+      this.editAddressTab = {};
+    }
+
+    this.isFormVisible = true;
+
+    if (this.empTableObj) {
+      this.empTableObj.destroy();
+      this.empTableObj = null;
+    }
+  }
+
+  closeForm() {
+    this.isFormVisible = false;
+    this.editPersonalInfo = {};
+    this.editOfficialInfo = {};
+    this.editAddressTab = {};
+    this.isSaving = false;
+    setTimeout(() => this.initEmpGrid(), 50);
+  }
+
+  // ── Collect data from all tabs and save ───────────────
+  collectAndSave() {
+    const personnelData = {
+      ...this.personalTab?.employee,
+      ...this.officialTab?.employee,
+      ...this.addressTab?.employeeaddress,
     };
-    this.bsModalRef = this.modalService.show(AddEmployeeComponent, {
-      class: 'modal-xl base-modal',
+    this.onSaveOrUpdate(personnelData);
+  }
+
+  onSaveOrUpdate(personnelData: any): void {
+    this.isSaving = true;
+
+    personnelData.activeStat = personnelData.activeStat ? 1 : 0;
+    personnelData.cashierFlag = personnelData.cashierFlag ? 1 : 0;
+    personnelData.salesrepFlag = personnelData.salesrepFlag ? 1 : 0;
+    personnelData.nurseFlag = personnelData.nurseFlag ? 1 : 0;
+    personnelData.sinOfficerFlag = personnelData.sinOfficerFlag ? 1 : 0;
+    personnelData.prepByEmpFlag = personnelData.prepByEmpFlag ? 1 : 0;
+
+    if (!personnelData.buNo) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Department Name!');
+      return;
+    }
+    if (!personnelData.empId) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Employee ID!');
+      return;
+    }
+    if (!personnelData.fname) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Employee Name!');
+      return;
+    }
+    if (!personnelData.gender) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Gender!');
+      return;
+    }
+    if (!personnelData.jobtitleNo) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Job Title!');
+      return;
+    }
+    if (!personnelData.joinDate) {
+      this.isSaving = false;
+      this.toastr.warning('Please enter Join Date!');
+      return;
+    }
+
+    const req$ = personnelData.id
+      ? this.empService.updateEmployee(personnelData)
+      : this.empService.saveEmployee(personnelData);
+
+    req$.subscribe({
+      next: (res: { success: boolean; message?: string }) => {
+        this.isSaving = false;
+        if (res.success) {
+          this.toastr.success(
+            res.message ||
+              (personnelData.id
+                ? 'Employee updated successfully!'
+                : 'Employee saved successfully!'),
+          );
+          this.closeForm();
+        } else {
+          this.toastr.warning(res.message || 'Operation failed.');
+        }
+      },
+      error: () => {
+        this.isSaving = false;
+        this.toastr.error('Something went wrong. Please try again.');
+      },
+    });
+  }
+
+  // ── Get single employee (for edit) ────────────────────
+  getEditPersonnel(empNo: any) {
+    this.empService.getSingleEmployee(empNo).subscribe((res: any) => {
+      this.singlePersonnel = res;
+    });
+  }
+
+  // ── Delete ────────────────────────────────────────────
+  deletePersonnel() {
+    if (!this.selectedPersonnel) {
+      this.toastr.warning('Please select an Employee.');
+      return;
+    }
+    const initialState = { title: 'Do you want to Delete this Employee?' };
+    this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      backdrop: 'static',
+      class: 'modal-sm',
     });
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
-      if (result == true) {
-        this.empTableObj.draw();
+      if (result) {
+        this.empService
+          .deleteEmployeeById(this.selectedPersonnel.id.toString())
+          .subscribe({
+            next: () => {
+              this.toastr.success('Employee deleted successfully!');
+              this.selectedPersonnel = null;
+              this.singlePersonnel = null;
+              this.empTableObj.draw();
+            },
+            error: () => this.toastr.error('Error occurred when deleting.'),
+          });
       }
     });
   }
 
-  editPersonnel() {
-    if (this.singlePersonnel) {
-      const initialState = {
-        title: 'Edit Employee',
-        receiveEditPersonnel: this.singlePersonnel,
-        genderList: this.genderList,
-        maritalStatusList: this.maritalStatusList,
-        hrTypeList: this.hrTypeList,
-        empTypeList: this.empTypeList,
-        jobTypeList: this.jobTypeList,
-        districtList: this.districtList,
-        countryList: this.countryList,
-        bloodGroupList: this.bloodGroupList,
-        religionList: this.religionList,
-        hrBuList: this.hrBuList,
-        hrJobTitleList: this.hrJobTitleList,
-        doctorName: this.doctorName,
-        salutationList: this.salutationList,
-      };
-      this.bsModalRef = this.modalService.show(AddEmployeeComponent, {
-        class: 'modal-xl base-modal',
-        initialState,
-        backdrop: 'static',
-      });
-      this.bsModalRef.content.onClose.subscribe((result: boolean) => {
-        if (result == true) {
-          this.empTableObj.draw();
-        }
-      });
-    } else {
-      this.toastr.warning('Please select an employee');
+  // ── Add Signature ─────────────────────────────────────
+  addSignature(): void {
+    if (!this.selectedPersonnel) {
+      this.toastr.warning('Please select an Employee first.');
+      return;
     }
-  }
-
-  getEditPersonnel(empNo: string | number | boolean) {
-    this.empService
-      .getSingleEmployee(empNo)
-      .subscribe((res: { doctorNo: any }) => {
-        this.singlePersonnel = res;
-        console.log('single emp from db', res);
-      });
-  }
-
-  resetPassword() {
-    this.bsModalRef = this.modalService.show(ResetPasswordComponent, {
+    const initialState = {
+      title: 'Add / Update Signature',
+      employeeObj: this.selectedPersonnel,
+    };
+    this.bsModalRef = this.modalService.show(AddEmpSignatureComponent, {
       class: 'modal-md base-modal',
+      initialState,
+      backdrop: 'static',
+    });
+    this.bsModalRef.content.onClose?.subscribe((result: boolean) => {
+      if (result) this.empTableObj?.draw();
     });
   }
 
+  // ── Add Bank Info ─────────────────────────────────────
+  addBankInfo(): void {
+    if (!this.selectedPersonnel) {
+      this.toastr.warning('Please select an Employee first.');
+      return;
+    }
+    const initialState = {
+      title: 'Bank Information',
+      employeeObj: this.selectedPersonnel,
+    };
+    this.bsModalRef = this.modalService.show(AddEmpBankInfoComponent, {
+      class: 'modal-lg base-modal',
+      initialState,
+      backdrop: 'static',
+    });
+    this.bsModalRef.content.onClose?.subscribe((result: boolean) => {
+      if (result) this.empTableObj?.draw();
+    });
+  }
+
+  // ── Filter ────────────────────────────────────────────
   resetFilter() {
     this.departmentFilter = 0;
     this.jobTitleFilter = 0;
     this.jobTypeFilter = 0;
     this.empTypeFilter = 0;
-    this.empTableObj.draw();
+    this.empTableObj?.draw();
   }
 
-  initEmpGrid() {
-    let that = this;
-    this.empTable = $(this.empGrid.nativeElement);
+  onChangeDept() {
+    this.empTableObj?.draw();
+  }
+  onChangeJobtitle() {
+    this.empTableObj?.draw();
+  }
+  onChangeJobType() {
+    this.empTableObj?.draw();
+  }
+  onChangeEmpType() {
+    this.empTableObj?.draw();
+  }
 
+  // ── DataTable ─────────────────────────────────────────
+  initEmpGrid() {
+    if (!this.empGrid?.nativeElement) return;
+    const that = this;
+
+    this.empTable = $(this.empGrid.nativeElement);
     this.empTableObj = this.empTable.DataTable({
       pagingType: 'full_numbers',
       pageLength: 10,
       serverSide: true,
       processing: true,
-
       ajax: {
         url:
           environment.baseUrl +
           environment.authApiUrl +
           '/api/employee/gridList',
         type: 'GET',
-        data: function (sendData: {
-          businessUnitNo: number;
-          jobtitleNo: number;
-          jobTypeNo: number;
-          empTypeNo: number;
-        }) {
-          sendData.businessUnitNo = that.departmentFilter;
-          sendData.jobtitleNo = that.jobTitleFilter;
-          sendData.jobTypeNo = that.jobTypeFilter;
-          sendData.empTypeNo = that.empTypeFilter;
+        data: function (d: any) {
+          d.businessUnitNo = that.departmentFilter;
+          d.jobtitleNo = that.jobTitleFilter;
+          d.jobTypeNo = that.jobTypeFilter;
+          d.empTypeNo = that.empTypeFilter;
+          return d;
         },
-        beforeSend: function (xhr: {
-          setRequestHeader: (arg0: string, arg1: string) => void;
-        }) {
+        beforeSend: function (xhr: any) {
           xhr.setRequestHeader(
             'Authorization',
             'bearer ' + that.authService.getAccessToken(),
           );
           xhr.setRequestHeader('Content-Type', 'application/json');
         },
-        dataSrc: function (response: {
-          draw: any;
-          obj: {
-            draw: any;
-            recordsTotal: any;
-            recordsFiltered: any;
-            data: any;
-          };
-          recordsTotal: any;
-          recordsFiltered: any;
-        }) {
+        dataSrc: function (response: any) {
           response.draw = response.obj.draw;
           response.recordsTotal = response.obj.recordsTotal;
           response.recordsFiltered = response.obj.recordsFiltered;
           return response.obj.data;
         },
-        error: function (request: { responseText: any }) {
-          console.log('request.responseText', request.responseText);
+        error: function (req: any) {
+          console.error('Grid Error', req.responseText);
         },
       },
       order: [[0, 'asc']],
@@ -260,168 +394,65 @@ export class EmployeesComponent implements OnInit {
         {
           title: 'Employee',
           data: 'empName',
-          name: 'empName',
-          render: function (
-            data: any,
-            type: any,
-            row: { photo: string; empName: string },
-          ) {
-            if (row.photo) {
-              return (
-                '<div><img src="data:image/jpeg;base64,' +
-                row.photo +
-                '" width="50px" height="50px" class="rounded-circle boder"><span class="p-1">' +
-                row.empName +
-                '</span></div>'
-              );
-            } else {
-              return (
-                '<div><img src="assets/images/profile-placeholder.jpg" width="50px" height="50px" class="rounded-circle"><span class="p-1">' +
-                row.empName +
-                '</span></div>'
-              );
-            }
+          render: (_: any, __: any, row: any) => {
+            const photo = row.photo
+              ? `data:image/jpeg;base64,${row.photo}`
+              : `assets/images/profile-placeholder.jpg`;
+            return `<div class="emp-cell">
+              <img src="${photo}" class="emp-avatar-img" />
+              <div>
+                <div class="emp-name">${row.empName || ''}</div>
+                <div class="emp-meta">${row.empId || ''}</div>
+              </div>
+            </div>`;
           },
         },
-        {
-          title: 'Emp ID.',
-          data: 'empId',
-          name: 'empId',
-        },
-        {
-          title: 'Emp Name',
-          data: 'empName',
-          name: 'empName',
-        },
-        {
-          title: 'Dept.',
-          data: 'buNo',
-        },
-        {
-          title: 'Job Title',
-          data: 'jobtitleNo',
-        },
+        { title: 'Emp ID', data: 'empId', width: '100px' },
+        { title: 'Department', data: 'buNo', width: '130px' },
+        { title: 'Job Title', data: 'jobtitleNo', width: '130px' },
         {
           title: 'Join Date',
           data: 'joinDate',
-          render: (data: string | number | Date) => {
-            return moment(new Date(data)).format('DD-MM-YYYY').toString();
-          },
+          width: '100px',
+          render: (data: any) =>
+            data ? moment(new Date(data)).format('DD-MM-YYYY') : '—',
+        },
+        {
+          title: 'Status',
+          data: 'activeStat',
+          width: '80px',
+          render: (data: number) =>
+            data === 1
+              ? '<span class="emp-status emp-status--active">Active</span>'
+              : '<span class="emp-status emp-status--inactive">Inactive</span>',
         },
       ],
       select: true,
       responsive: true,
-      autoWidth: true,
-      rowCallback: (row: Node, data: any[] | Object) => {
-        const self = this;
-        $('td', row).off('click');
-        $('td', row).on('click', () => {
-          self.selectedPersonnel = data;
-          this.singlePersonnel = this.getEditPersonnel(
-            self.selectedPersonnel.id,
-          );
-          if ($(row).hasClass('selected-row')) {
-            $(row).removeClass('selected-row');
-          } else {
-            $(row).closest('tbody').find('tr').removeClass('selected-row');
-            $(row).addClass('selected-row');
-          }
-          if (self.selectedPersonnel.joinDate != null) {
-            self.selectedPersonnel.joinDate = new Date(
-              self.selectedPersonnel.joinDate,
-            );
-          }
-          if (self.selectedPersonnel.dob != null) {
-            self.selectedPersonnel.dob = new Date(self.selectedPersonnel.dob);
-          }
-          console.log('Selected Personnel ', self.selectedPersonnel);
-        });
+      autoWidth: false,
+      rowCallback: (row: Node, data: any) => {
+        $('td', row)
+          .off('click')
+          .on('click', () => {
+            if ($(row).hasClass('selected-row')) {
+              $(row).removeClass('selected-row');
+              this.selectedPersonnel = null;
+              this.singlePersonnel = null;
+            } else {
+              $(row).closest('tbody').find('tr').removeClass('selected-row');
+              $(row).addClass('selected-row');
+              this.selectedPersonnel = data;
+              if (data.joinDate) data.joinDate = new Date(data.joinDate);
+              if (data.dob) data.dob = new Date(data.dob);
+              this.getEditPersonnel(data.id);
+            }
+          });
         return row;
       },
     });
   }
 
-  onChangeDept(): void {
-    this.empTableObj.draw();
-  }
-  onChangeJobtitle() {
-    this.empTableObj.draw();
-  }
-  onChangeJobType() {
-    this.empTableObj.draw();
-  }
-  onChangeEmpType() {
-    this.empTableObj.draw();
-  }
-
-  deletePersonnel() {
-    if (this.selectedPersonnel) {
-      const initialState = { title: 'Do you want to Delete?' };
-      this.bsModalRef = this.modalService.show(ConfirmationDialog, {
-        initialState,
-        class: '',
-      });
-      this.bsModalRef.content.onClose.subscribe((result: boolean) => {
-        if (result == true) {
-          this.empService
-            .deleteEmployeeById(this.selectedPersonnel.id.toString())
-            .subscribe(
-              () => {
-                this.toastr.success('', 'Delete Successfull');
-                this.empTableObj.draw();
-                this.selectedPersonnel = '';
-              },
-              () => {
-                this.toastr.warning('', 'Error occuree when Deleting Employee');
-              },
-            );
-        }
-      });
-    } else {
-      this.toastr.warning('Please select an Employee');
-    }
-  }
-
-  changeFloor() {
-    this.empTableObj.draw();
-  }
-
-  addSignature(): void {
-    console.log('selectedPersonnel:', this.selectedPersonnel);
-    if (this.selectedPersonnel) {
-      const initialState = {
-        employeeObj: this.selectedPersonnel,
-      };
-      this.bsModalRef = this.modalService.show(AddEmpSignatureComponent, {
-        class: 'modal-md base-modal',
-        initialState,
-        backdrop: 'static',
-      });
-    } else {
-      this.toastr.warning('', 'Please select a Employee');
-    }
-  }
-
-  addBankInfo(): void {
-    console.log('selectedPersonnel:', this.selectedPersonnel);
-    if (this.selectedPersonnel) {
-      const initialState = {
-        title: 'Bank Information',
-        employeeObj: this.selectedPersonnel,
-      };
-      this.bsModalRef = this.modalService.show(AddEmpBankInfoComponent, {
-        class: 'modal-lg base-modal',
-        initialState,
-        backdrop: 'static',
-      });
-    } else {
-      this.toastr.warning('', 'Please select a Employee');
-    }
-  }
-
   ngOnDestroy(): void {
-    if (this.bsModalRef) {
-      this.bsModalRef.hide();
-    }
+    if (this.bsModalRef) this.bsModalRef.hide();
   }
 }

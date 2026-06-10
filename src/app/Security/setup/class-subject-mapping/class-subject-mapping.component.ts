@@ -43,7 +43,7 @@ export class ClassSubjectMappingComponent implements OnInit, AfterViewInit {
   addMapping() {
     const initialState = { title: 'Add Class Subject Mapping' };
     this.bsModalRef = this.modalService.show(AddClassSubjectMappingComponent, {
-      class: 'modal-lg base-modal',
+      class: 'modal-md base-modal',
       initialState,
       backdrop: 'static',
     });
@@ -72,7 +72,7 @@ export class ClassSubjectMappingComponent implements OnInit, AfterViewInit {
     };
 
     this.bsModalRef = this.modalService.show(AddClassSubjectMappingComponent, {
-      class: 'modal-lg base-modal',
+      class: 'modal-md base-modal',
       initialState,
       backdrop: 'static',
     });

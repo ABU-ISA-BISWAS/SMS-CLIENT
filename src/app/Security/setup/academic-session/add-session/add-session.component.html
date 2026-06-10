@@ -1,117 +1,133 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-calendar-event fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px">Manage academic session</small>
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Session Name <span class="text-danger">*</span></span
-      >
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <!-- Session Name -->
+  <div class="field-group">
+    <label class="field-label"
+      >Session Name <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-calendar field-icon-left" aria-hidden="true"></i>
       <input
         type="text"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="Enter session name"
         [(ngModel)]="academicSession.sessionName"
       />
     </div>
+  </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Remarks <span class="text-danger">*</span></span
-      >
+  <!-- Remarks -->
+  <div class="field-group">
+    <label class="field-label"
+      >Remarks <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-notes field-icon-left" aria-hidden="true"></i>
       <input
         type="text"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="Enter remarks"
         [(ngModel)]="academicSession.remarks"
       />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-start flex-wrap mb-2">
-        <div class="input-group input-group-sm flex-nowrap">
-          <span
-            class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium"
-            id="startDate"
-            >Start Date</span
-          >
-
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Select Year"
-            bsDatepicker
-            [bsConfig]="{
-              minMode: 'year',
-              dateInputFormat: 'YYYY',
-              containerClass: 'brand-theme',
-            }"
-            [ngModel]="academicSession.startDate"
-            (ngModelChange)="onStartYearModelChange($event)"
-          />
-        </div>
-      </div>
-
-      <div class="col-12 d-flex justify-content-start flex-wrap mb-2">
-        <div class="input-group input-group-sm flex-nowrap">
-          <span
-            class="input-group-text base-bg-subtle-primary base-txt-primary fw-medium"
-            id="endDate"
-            >End Date</span
-          >
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Select Year"
-            bsDatepicker
-            [bsConfig]="{
-              minMode: 'year',
-              dateInputFormat: 'YYYY',
-              containerClass: 'brand-theme',
-            }"
-            [ngModel]="academicSession.endDate"
-            (ngModelChange)="onEndYearModelChange($event)"
-          />
-        </div>
-      </div>
-
-      <div class="col-12 d-flex justify-content-end flex-wrap">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
-          <input
-            type="checkbox"
-            [(ngModel)]="academicSession.activeStatus"
-            class="form-check-input"
-          />
-        </div>
-      </div>
+  <!-- Start Date -->
+  <div class="field-group">
+    <label class="field-label">Start Date</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-calendar-plus field-icon-left" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control field-input"
+        placeholder="Select year"
+        bsDatepicker
+        [bsConfig]="{
+          minMode: 'year',
+          dateInputFormat: 'YYYY',
+          containerClass: 'brand-theme',
+        }"
+        [ngModel]="academicSession.startDate"
+        (ngModelChange)="onStartYearModelChange($event)"
+      />
     </div>
+  </div>
+
+  <!-- End Date -->
+  <div class="field-group">
+    <label class="field-label">End Date</label>
+    <div class="input-field-wrapper">
+      <i class="ti ti-calendar-minus field-icon-left" aria-hidden="true"></i>
+      <input
+        type="text"
+        class="form-control field-input"
+        placeholder="Select year"
+        bsDatepicker
+        [bsConfig]="{
+          minMode: 'year',
+          dateInputFormat: 'YYYY',
+          containerClass: 'brand-theme',
+        }"
+        [ngModel]="academicSession.endDate"
+        (ngModelChange)="onEndYearModelChange($event)"
+      />
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="checkbox-row">
+    <label class="checkbox-item">
+      <input
+        type="checkbox"
+        [(ngModel)]="academicSession.activeStatus"
+        class="checkbox-input"
+      />
+      <span class="checkbox-label">Active Status</span>
+    </label>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveSessions()"
     [disabled]="isSaving"
   >
-    {{ isSaving ? "Saving" : "Save" }}
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

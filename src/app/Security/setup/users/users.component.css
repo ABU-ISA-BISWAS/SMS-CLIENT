@@ -10,8 +10,9 @@
   gap: 12px;
   padding: 10px 16px;
   background: #ffffff;
-  border-bottom: 1px solid #e4e8f0;
+  border: 1px solid #e4e8f0;
   flex-wrap: wrap;
+  background-color: var(--base-skyblue-subtle);
 }
 
 .uf-back-btn {

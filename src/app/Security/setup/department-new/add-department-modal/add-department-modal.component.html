@@ -1,107 +1,146 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-building fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage department information</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Name <span class="text-danger">*</span></span
-      >
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <!-- Department Name -->
+  <div class="field-group">
+    <label class="field-label"
+      >Department Name <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-building field-icon-left" aria-hidden="true"></i>
       <input
         type="text"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="Enter department name"
         [(ngModel)]="department.deptName"
         name="deptName"
       />
     </div>
+  </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Dept. Name(Bangla) <span class="text-danger">*</span></span
-      >
+  <!-- Dept. Name (Bangla) -->
+  <div class="field-group">
+    <label class="field-label"
+      >Dept. Name (Bangla) <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-language field-icon-left" aria-hidden="true"></i>
       <input
         type="text"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="বিভাগের নাম লিখুন"
         [(ngModel)]="department.deptNameBn"
         name="deptNameBn"
       />
     </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Code <span class="text-danger">*</span></span
-      >
+  </div>
+
+  <!-- Department Code -->
+  <div class="field-group">
+    <label class="field-label"
+      >Department Code <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
       <input
         type="text"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="Enter department code"
         [(ngModel)]="department.deptCode"
         name="deptCode"
       />
     </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Department Type <span class="text-danger">*</span></span
-      >
+  </div>
+
+  <!-- Department Type -->
+  <div class="field-group">
+    <label class="field-label"
+      >Department Type <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
       <select
-        class="form-select"
+        class="form-select field-select"
         [(ngModel)]="department.deptType"
         name="deptType"
       >
+        <option value="" disabled selected>Select type</option>
         <option value="SUPPORT">SUPPORT</option>
         <option value="ACADEMIC">ACADEMIC</option>
         <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
         <option value="MANAGEMENT">MANAGEMENT</option>
       </select>
     </div>
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary"
-        >Sort Order <span class="text-danger">*</span></span
-      >
+  </div>
+
+  <!-- Sort Order -->
+  <div class="field-group">
+    <label class="field-label"
+      >Sort Order <span class="text-danger">*</span></label
+    >
+    <div class="input-field-wrapper">
+      <i
+        class="ti ti-sort-ascending-numbers field-icon-left"
+        aria-hidden="true"
+      ></i>
       <input
         type="number"
-        class="form-control"
+        class="form-control field-input"
+        placeholder="Enter sort order"
         [(ngModel)]="department.sortOrder"
         name="sortOrder"
       />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end flex-wrap">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
-          <input
-            type="checkbox"
-            [(ngModel)]="department.activeStatus"
-            name="activeStatus"
-            class="form-check-input"
-          />
-        </div>
-      </div>
-    </div>
+  <!-- Status -->
+  <div class="checkbox-row">
+    <label class="checkbox-item">
+      <input
+        type="checkbox"
+        [(ngModel)]="department.activeStatus"
+        name="activeStatus"
+        class="checkbox-input"
+      />
+      <span class="checkbox-label">Active Status</span>
+    </label>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="onSaveOrUpdate()"
   >
     Save

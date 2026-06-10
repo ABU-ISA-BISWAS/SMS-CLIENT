@@ -387,7 +387,7 @@ div.dt-container .dt-paging .dt-paging-button {
 /* =================================== */
 
 .base-modal .modal-content {
-  border-radius: 16px;
+  border-radius: 4px;
   /* overflow: hidden; */
 }
 
@@ -395,6 +395,7 @@ div.dt-container .dt-paging .dt-paging-button {
   /* background-color: #F5F5F5 !important; */
   background-color: var(--base-primary-subtle) !important;
   padding: 14px 20px;
+  border-radius: 4px;
 }
 
 .base-modal .modal-body {
@@ -405,12 +406,13 @@ div.dt-container .dt-paging .dt-paging-button {
   /* background-color: #F5F5F5 !important; */
   background-color: var(--base-primary-subtle) !important;
   padding: 12px 20px;
+  border-radius: 4px;
 }
 
 /* *************Sub Modal*********** */
 
 .sub-modal .modal-content {
-  border-radius: 16px;
+  border-radius: 4px;
   /* overflow: hidden; */
 }
 
@@ -418,6 +420,7 @@ div.dt-container .dt-paging .dt-paging-button {
   /* background-color: #F5F5F5 !important; */
   background-color: var(--base-primary-subtle-for-sub-modal) !important;
   padding: 10px 14px;
+  border-radius: 4px;
 }
 
 .sub-modal .modal-body {
@@ -428,6 +431,7 @@ div.dt-container .dt-paging .dt-paging-button {
   /* background-color: #F5F5F5 !important; */
   background-color: var(--base-primary-subtle-for-sub-modal) !important;
   padding: 4px 14px;
+  border-radius: 4px;
 }
 
 /* =================================== */

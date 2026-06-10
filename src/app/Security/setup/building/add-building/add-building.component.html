@@ -1,96 +1,128 @@
-<div class="modal-header border-0">
-  <h6 class="modal-title m-0 fw-bold base-txt-primary">{{ title }}</h6>
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-building fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage building information</small
+      >
+    </div>
+  </div>
   <button
     type="button"
-    class="btn-close close pull-right fs-13px btn btn-sm btn-light"
+    class="modal-close-btn btn btn-sm btn-light border"
     aria-label="Close"
     (click)="bsModalRef.hide()"
   >
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
   </button>
 </div>
 
-<div class="modal-body">
-  <div class="border p-3 mb-3">
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Building Code <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="building.buildingCode"
-        placeholder="e.g. MAIN"
-        [disabled]="!!building.id"
-      />
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="building-form-grid">
+    <!-- Building Code -->
+    <div class="field-group">
+      <label class="field-label"
+        >Building Code <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. MAIN"
+          [(ngModel)]="building.buildingCode"
+          [disabled]="!!building.id"
+        />
+      </div>
     </div>
 
-    <div class="input-group required mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Building Name <span class="text-danger">*</span>
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="building.buildingName"
-      />
+    <!-- Total Floor -->
+    <div class="field-group">
+      <label class="field-label">Total Floor</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-stairs field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="e.g. 5"
+          [(ngModel)]="building.totalFloor"
+          min="1"
+          max="20"
+        />
+      </div>
     </div>
 
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        নাম (বাংলায়)
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="building.buildingNameBn"
-      />
+    <!-- Building Name -->
+    <div class="field-group">
+      <label class="field-label"
+        >Building Name <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-building field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="Enter building name"
+          [(ngModel)]="building.buildingName"
+        />
+      </div>
     </div>
 
-    <div class="input-group mb-2 positionRelative">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Total Floor
-      </span>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="building.totalFloor"
-        min="1"
-        max="20"
-      />
+    <!-- Building Name Bangla -->
+    <div class="field-group">
+      <label class="field-label">নাম (বাংলায়)</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-language field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="ভবনের নাম বাংলায়"
+          [(ngModel)]="building.buildingNameBn"
+        />
+      </div>
     </div>
 
-    <div class="row mt-2">
-      <div class="col-12 d-flex justify-content-end">
-        <div class="form-check flex-nowrap">
-          <label class="form-check-label text-dark text-nowrap ms-1"
-            >Status</label
-          >
+    <!-- Status -->
+    <div class="field-group building-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
           <input
             type="checkbox"
             [(ngModel)]="building.activeStatus"
-            class="form-check-input"
+            class="checkbox-input"
           />
-        </div>
+          <span class="checkbox-label">Active Status</span>
+        </label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-footer border-0 bg-light">
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
   <button
     type="button"
-    class="btn btn-sm btn-light fw-medium close px-3 m-0 text-body-secondary fixed-width-btn"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
     (click)="bsModalRef.hide()"
   >
     Close
   </button>
   <button
     type="button"
-    class="btn btn-sm base-btn-primary fw-medium py-1 px-3 m-0 ms-3 fixed-width-btn"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
     (click)="saveBuilding()"
     [disabled]="isSaving"
   >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
     {{ isSaving ? "Saving..." : "Save" }}
   </button>
 </div>

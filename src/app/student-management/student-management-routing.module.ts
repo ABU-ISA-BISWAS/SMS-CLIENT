@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
-import { AdmissionListComponent } from './admission/academic-session/admission-list.component';
+import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
 
 const routes: Routes = [
   {
