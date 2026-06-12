@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { EmployeeModel } from '../../../_coreSecurity/models/employee.model';
 import { EmployeeService } from '../../../_coreSecurity/services/employee.service';
-import { AddressTabComponent } from './address-tab/address-tab.component';
-import { OfficialInfoTabComponent } from './official-info-tab/official-info-tab.component';
-import { PersonalInfoTabComponent } from './personal-info-tab/personal-info-tab.component';
 
 @Component({
   selector: 'app-add-personnel',
@@ -16,38 +13,31 @@ import { PersonalInfoTabComponent } from './personal-info-tab/personal-info-tab.
   standalone: false,
 })
 export class AddEmployeeComponent implements OnInit {
+  // ── Passed from parent ────────────────────────────────
   genderList: any;
   maritalStatusList: any;
-  hrTypeList: any;
   empTypeList: any;
   jobTypeList: any;
   hrBuList: any;
   hrJobTitleList: any;
   districtList: any;
-  thanaList: any;
   countryList: any;
   bloodGroupList: any;
   religionList: any;
   guardianRelationList: any;
-  personnelData: any;
   doctorName: any;
   title = '';
+
+  imgFile!: File;
+
+  // ── For edit: passed from parent ──────────────────────
+  receiveEditPersonnel: EmployeeModel = new EmployeeModel();
+
+  // ── Single shared model (replaces editPersonalInfo etc.) ─
+  sharedEmployee: EmployeeModel = new EmployeeModel();
+
   activeTab: string = 'personalInfo';
   isSaving: boolean = false;
-
-  receiveEditPersonnel: EmployeeModel = new EmployeeModel();
-  editPersonalInfo: EmployeeModel = new EmployeeModel();
-  editOfficialInfo: EmployeeModel = new EmployeeModel();
-  editAddressTab: EmployeeModel = new EmployeeModel();
-
-  @ViewChild(PersonalInfoTabComponent)
-  personalTab!: PersonalInfoTabComponent;
-
-  @ViewChild(OfficialInfoTabComponent)
-  officialTab!: OfficialInfoTabComponent;
-
-  @ViewChild(AddressTabComponent)
-  addressTab!: AddressTabComponent;
 
   public onClose!: Subject<boolean>;
 
@@ -58,115 +48,78 @@ export class AddEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.receiveEditPersonnel) {
-      console.log('received', this.receiveEditPersonnel);
-      this.editPersonalInfo = this.receiveEditPersonnel;
-      this.editOfficialInfo = this.receiveEditPersonnel;
-      this.editAddressTab = this.receiveEditPersonnel;
-    }
     this.onClose = new Subject();
+
+    // Patch shared model if editing
+    if (this.receiveEditPersonnel?.id) {
+      Object.assign(this.sharedEmployee, this.receiveEditPersonnel);
+    }
   }
 
   onSaveOrUpdate(): void {
     this.isSaving = true;
-    this.personnelData = {
-      ...this.personalTab?.employee,
-      ...this.officialTab?.employee,
-      ...this.addressTab?.employeeaddress,
-    };
 
-    this.personnelData.activeStat = this.personnelData.activeStat ? 1 : 0;
-    this.personnelData.cashierFlag = this.personnelData.cashierFlag ? 1 : 0;
-    this.personnelData.salesrepFlag = this.personnelData.salesrepFlag ? 1 : 0;
-    this.personnelData.nurseFlag = this.personnelData.nurseFlag ? 1 : 0;
-    this.personnelData.sinOfficerFlag = this.personnelData.sinOfficerFlag
-      ? 1
-      : 0;
-    this.personnelData.prepByEmpFlag = this.personnelData.prepByEmpFlag ? 1 : 0;
+    const payload: any = { ...this.sharedEmployee };
+    payload.activeStat = payload.activeStat ? 1 : 0;
 
-    if (!this.personnelData.buNo) {
+    if (!payload.buNo) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Department Name to save the Employee!');
+      this.toastr.warning('Please enter Department Name!');
       return;
     }
-    if (!this.personnelData.empId) {
+    if (!payload.empId) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Employee ID to save the Employee!');
+      this.toastr.warning('Please enter Employee ID!');
       return;
     }
-    if (!this.personnelData.fname) {
+    if (!payload.fname) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Employee Name to save the Employee!');
+      this.toastr.warning('Please enter Employee Name!');
       return;
     }
-    if (!this.personnelData.gender) {
+    if (!payload.gender) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Gender Data to save the Employee!');
+      this.toastr.warning('Please enter Gender!');
       return;
     }
-    if (!this.personnelData.jobtitleNo) {
+    if (!payload.jobtitleNo) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Job Title to save the Employee!');
+      this.toastr.warning('Please enter Job Title!');
       return;
     }
-    if (!this.personnelData.joinDate) {
+    if (!payload.joinDate) {
       this.isSaving = false;
-      this.toastr.warning('Please enter Join Date to save the Employee!');
+      this.toastr.warning('Please enter Join Date!');
       return;
     }
 
-    if (this.personnelData.id) {
-      this.empService
-        .updateEmployee(this.personnelData)
-        .pipe(
-          finalize(() => {
-            this.isSaving = false;
-          }),
-        )
-        .subscribe({
-          next: (res: { success: boolean; message?: string }) => {
-            if (res.success) {
-              this.toastr.success(
-                res.message || 'Employee updated successfully!',
-              );
-              this.onClose.next(true);
-              this.bsModalRef.hide();
-            } else {
-              this.toastr.warning(res.message || 'Failed to update employee!');
-            }
-          },
-          error: (err) => {
-            this.toastr.error(
-              'Something went wrong while updating. Please check your connection or try again.',
-            );
-          },
-        });
-    } else {
-      this.empService
-        .saveEmployee(this.personnelData)
-        .pipe(
-          finalize(() => {
-            this.isSaving = false;
-          }),
-        )
-        .subscribe({
-          next: (res: { success: boolean; message?: string }) => {
-            if (res.success) {
-              this.toastr.success(
-                res.message || 'Employee saved successfully!',
-              );
-              this.onClose.next(true);
-              this.bsModalRef.hide();
-            } else {
-              this.toastr.warning(res.message || 'Failed to save employee!');
-            }
-          },
-          error: (err) => {
-            this.toastr.error(
-              'Something went wrong while saving. Please check your network or try again.',
-            );
-          },
-        });
-    }
+    const req$ = payload.id
+      ? this.empService.updateEmployeeWithImage(payload, this.imgFile)
+      : this.empService.saveEmployeeWithImage(payload, this.imgFile);
+
+    req$.pipe(finalize(() => (this.isSaving = false))).subscribe({
+      next: (res: { success: boolean; message?: string }) => {
+        if (res.success) {
+          this.toastr.success(
+            res.message ||
+              (payload.id
+                ? 'Employee updated successfully!'
+                : 'Employee saved successfully!'),
+          );
+          this.onClose.next(true);
+          this.bsModalRef.hide();
+        } else {
+          this.toastr.warning(res.message || 'Operation failed.');
+        }
+      },
+      error: () => {
+        this.toastr.error('Something went wrong. Please try again.');
+      },
+    });
+  }
+
+  fileImmite(imgFiledata: any) {
+    this.imgFile = imgFiledata;
+    console.log('imgFile', this.imgFile);
   }
 }

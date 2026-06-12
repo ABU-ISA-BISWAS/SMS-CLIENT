@@ -4,20 +4,6 @@
   <div class="col-md-4">
     <div class="input-group input-group-sm">
       <span class="input-group-text base-bg-subtle-primary base-txt-primary">
-        Card No.
-      </span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Card number"
-        [(ngModel)]="employee.cardNo"
-      />
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="input-group input-group-sm">
-      <span class="input-group-text base-bg-subtle-primary base-txt-primary">
         Blood Group
       </span>
       <ng-select
@@ -26,7 +12,7 @@
         placeholder="Choose"
         notFoundText="Not found"
         bindLabel="bloodGroupName"
-        bindValue="id"
+        bindValue="bloodGroupName"
         [(ngModel)]="employee.bloodGrp"
       >
       </ng-select>
@@ -71,7 +57,7 @@
         placeholder="Choose"
         notFoundText="Not found"
         bindLabel="employeeTypeName"
-        bindValue="id"
+        bindValue="employeeTypeName"
         [(ngModel)]="employee.empType"
       >
       </ng-select>
@@ -105,23 +91,6 @@
         type="text"
         class="form-control"
         [(ngModel)]="employee.passportNo"
-      />
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="input-group input-group-sm align-items-start">
-      <span
-        class="input-group-text base-bg-subtle-primary base-txt-primary"
-        style="align-self: flex-start; padding-top: 6px"
-      >
-        Emp. Signature
-      </span>
-
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="employee.empSignature"
       />
     </div>
   </div>

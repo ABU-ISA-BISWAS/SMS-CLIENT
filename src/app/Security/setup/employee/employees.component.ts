@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/_service/auth-service';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
+import { EmployeeModel } from '../../_coreSecurity/models/employee.model';
 import { EmployeeService } from '../../_coreSecurity/services/employee.service';
 import { AddEmpBankInfoComponent } from './add-emp-bank-info/add-emp-bank-info.component';
 import { AddEmpSignatureComponent } from './add-emp-signature/add-emp-signature.component';
@@ -48,42 +49,56 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   departmentFilter: number = 0;
   jobTitleFilter: number = 0;
-  jobTypeFilter: number = 0;
-  empTypeFilter: number = 0;
+
+  jobTypeFilter: string = '';
+  empTypeFilter: string = '';
 
   // ── Form dropdowns ────────────────────────────────────
   genderList: any[] = [];
   maritalStatusList: any[] = [];
-  districtList: any[] = [];
-  countryList: any[] = [];
   bloodGroupList: any[] = [];
   religionList: any[] = [];
-  salutationList: any[] = [];
+  districtList: any[] = [];
+  countryList: any[] = [];
   guardianRelationList: any[] = [];
   doctorName: any;
 
-  // ── View toggle ───────────────────────────────────────
+  // ── View / Step ───────────────────────────────────────
   isFormVisible = false;
   formMode: 'add' | 'edit' = 'add';
 
-  activeTab: 'personalInfo' | 'officialInfo' | 'address' = 'personalInfo';
+  currentStep = 1;
+  totalSteps = 3;
 
-  tabs: {
+  steps: {
+    no: number;
     key: 'personalInfo' | 'officialInfo' | 'address';
     label: string;
     icon: string;
   }[] = [
-    { key: 'personalInfo', label: 'Basic Information', icon: 'fa-user' },
-    { key: 'officialInfo', label: 'Other Information', icon: 'fa-briefcase' },
-    { key: 'address', label: 'Address Details', icon: 'fa-map-marker-alt' },
+    { no: 1, key: 'personalInfo', label: 'Basic Information', icon: 'fa-user' },
+    {
+      no: 2,
+      key: 'officialInfo',
+      label: 'Other Information',
+      icon: 'fa-briefcase',
+    },
+    {
+      no: 3,
+      key: 'address',
+      label: 'Address Details',
+      icon: 'fa-map-marker-alt',
+    },
   ];
 
-  // ── Edit data refs ────────────────────────────────────
-  editPersonalInfo: any = {};
-  editOfficialInfo: any = {};
-  editAddressTab: any = {};
+  // ── Shared employee data object (single source of truth) ─
+  // Tab components ও এই same object এ bind করবে
+  sharedEmployee: EmployeeModel = new EmployeeModel();
 
+  // ── State ─────────────────────────────────────────────
   isSaving = false;
+
+  imgFile!: File;
 
   constructor(
     private modalService: BsModalService,
@@ -93,85 +108,75 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.getMaritalStatus();
+    this.getGender();
+    this.getBloodGroup();
+    this.getGuardianRelation();
     this.getDeptName();
     this.getJobTitle();
     this.getJobType();
     this.getEmpType();
-    this.getMaritalStatus();
-    this.getGender();
-    this.getBloodGroup();
+
     this.getReligion();
     this.getDistrict();
-    this.getGuardianRelation();
-    this.countryList = [
-      {
-        id: 1,
-        countryName: 'Bangladesh',
-      },
-    ];
+
+    this.countryList = [{ id: 1, countryName: 'Bangladesh' }];
   }
 
   ngAfterViewInit(): void {
     this.initEmpGrid();
-    console.log('Job Type List', this.hrJobTitleList);
-  }
-  // ── Initial data load ─────────────────────────────────
-
-  getDeptName(): void {
-    this.empService.getDeptName().subscribe({
-      next: (res: any) => (this.hrBuList = res || []),
-    });
   }
 
-  getGuardianRelation(): void {
-    this.empService.getGuardianRelation().subscribe({
-      next: (res: any) => (this.guardianRelationList = res || []),
-    });
+  // ── Dropdown loaders ──────────────────────────────────
+  getDeptName() {
+    this.empService
+      .getDeptName()
+      .subscribe({ next: (r: any) => (this.hrBuList = r || []) });
   }
-
-  getJobTitle(): void {
-    this.empService.getJobTitle().subscribe({
-      next: (res: any) => (this.hrJobTitleList = res || []),
-    });
+  getJobTitle() {
+    this.empService
+      .getJobTitle()
+      .subscribe({ next: (r: any) => (this.hrJobTitleList = r || []) });
   }
-
-  getJobType(): void {
-    this.empService.getJobType().subscribe({
-      next: (res: any) => (this.jobTypeList = res || []),
-    });
+  getJobType() {
+    this.empService
+      .getJobType()
+      .subscribe({ next: (r: any) => (this.jobTypeList = r || []) });
   }
-
-  getEmpType(): void {
-    this.empService.getEmpType().subscribe({
-      next: (res: any) => (this.empTypeList = res || []),
-    });
+  getEmpType() {
+    this.empService
+      .getEmpType()
+      .subscribe({ next: (r: any) => (this.empTypeList = r || []) });
   }
-
-  getMaritalStatus(): void {
-    this.empService.getMaritalStatus().subscribe({
-      next: (res: any) => (this.maritalStatusList = res || []),
-    });
+  getMaritalStatus() {
+    this.empService
+      .getMaritalStatus()
+      .subscribe({ next: (r: any) => (this.maritalStatusList = r || []) });
   }
-
-  getDistrict(): void {
-    this.empService.getDistrict().subscribe({
-      next: (res: any) => (this.districtList = res || []),
-    });
+  getGender() {
+    this.empService
+      .getGender()
+      .subscribe({ next: (r: any) => (this.genderList = r || []) });
   }
-  getGender(): void {
-    this.empService.getGender().subscribe({
-      next: (res: any) => (this.genderList = res || []),
-    });
+  getBloodGroup() {
+    this.empService
+      .getBloodGroup()
+      .subscribe({ next: (r: any) => (this.bloodGroupList = r || []) });
   }
-  getBloodGroup(): void {
-    this.empService.getBloodGroup().subscribe({
-      next: (res: any) => (this.bloodGroupList = res || []),
-    });
+  getReligion() {
+    this.empService
+      .getReligion()
+      .subscribe({ next: (r: any) => (this.religionList = r || []) });
   }
-  getReligion(): void {
-    this.empService.getReligion().subscribe({
-      next: (res: any) => (this.religionList = res || []),
-    });
+  getDistrict() {
+    this.empService
+      .getDistrict()
+      .subscribe({ next: (r: any) => (this.districtList = r || []) });
+  }
+  getGuardianRelation() {
+    this.empService
+      .getGuardianRelation()
+      .subscribe({ next: (r: any) => (this.guardianRelationList = r || []) });
   }
 
   // ── Form Open / Close ─────────────────────────────────
@@ -184,16 +189,29 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.formMode = mode;
-    this.activeTab = 'personalInfo';
+    this.currentStep = 1;
+    this.isSaving = false;
 
+    // Reset shared model
+    this.sharedEmployee = new EmployeeModel();
+
+    // Edit: patch shared model with selected employee data
     if (mode === 'edit' && this.singlePersonnel) {
-      this.editPersonalInfo = { ...this.singlePersonnel };
-      this.editOfficialInfo = { ...this.singlePersonnel };
-      this.editAddressTab = { ...this.singlePersonnel };
+      Object.assign(this.sharedEmployee, this.singlePersonnel);
+      // Date fix
+      if (this.sharedEmployee.joinDate) {
+        this.sharedEmployee.joinDate = moment(
+          new Date(this.sharedEmployee.joinDate),
+        ).toDate();
+      }
+      if (this.sharedEmployee.dob) {
+        this.sharedEmployee.dob = moment(
+          new Date(this.sharedEmployee.dob),
+        ).toDate();
+      }
     } else {
-      this.editPersonalInfo = {};
-      this.editOfficialInfo = {};
-      this.editAddressTab = {};
+      // Add: default join date
+      this.sharedEmployee.joinDate = new Date();
     }
 
     this.isFormVisible = true;
@@ -206,67 +224,77 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   closeForm() {
     this.isFormVisible = false;
-    this.editPersonalInfo = {};
-    this.editOfficialInfo = {};
-    this.editAddressTab = {};
+    this.sharedEmployee = new EmployeeModel();
     this.isSaving = false;
     setTimeout(() => this.initEmpGrid(), 50);
   }
 
-  // ── Collect data from all tabs and save ───────────────
-  collectAndSave() {
-    const personnelData = {
-      ...this.personalTab?.employee,
-      ...this.officialTab?.employee,
-      ...this.addressTab?.employeeaddress,
-    };
-    this.onSaveOrUpdate(personnelData);
+  // ── Step Navigation ───────────────────────────────────
+  get activeStepKey(): 'personalInfo' | 'officialInfo' | 'address' {
+    return this.steps[this.currentStep - 1].key;
   }
 
-  onSaveOrUpdate(personnelData: any): void {
+  goToStep(stepNo: number) {
+    if (stepNo > this.currentStep) {
+      // Only allow forward navigation if current step validates
+      if (!this.validateStep(this.currentStep)) return;
+    }
+    this.currentStep = stepNo;
+  }
+
+  nextStep() {
+    if (!this.validateStep(this.currentStep)) return;
+    if (this.currentStep < this.totalSteps) this.currentStep++;
+  }
+
+  prevStep() {
+    if (this.currentStep > 1) this.currentStep--;
+  }
+
+  validateStep(step: number): boolean {
+    if (step === 1) {
+      if (!this.sharedEmployee.fname) {
+        this.toastr.warning("Employee name can't be empty!");
+        return false;
+      }
+      if (!this.sharedEmployee.empId) {
+        this.toastr.warning("Employee ID can't be empty!");
+        return false;
+      }
+      if (!this.sharedEmployee.buNo) {
+        this.toastr.warning("Department can't be empty!");
+        return false;
+      }
+      if (!this.sharedEmployee.jobtitleNo) {
+        this.toastr.warning("Job Title can't be empty!");
+        return false;
+      }
+      if (!this.sharedEmployee.gender) {
+        this.toastr.warning("Gender can't be empty!");
+        return false;
+      }
+      if (!this.sharedEmployee.joinDate) {
+        this.toastr.warning("Join Date can't be empty!");
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // ── Save ──────────────────────────────────────────────
+  saveEmployee() {
+    if (!this.validateStep(1)) {
+      this.currentStep = 1;
+      return;
+    }
+
     this.isSaving = true;
+    const payload: any = { ...this.sharedEmployee };
+    payload.activeStat = payload.activeStat ? 1 : 0;
 
-    personnelData.activeStat = personnelData.activeStat ? 1 : 0;
-    personnelData.cashierFlag = personnelData.cashierFlag ? 1 : 0;
-    personnelData.salesrepFlag = personnelData.salesrepFlag ? 1 : 0;
-    personnelData.nurseFlag = personnelData.nurseFlag ? 1 : 0;
-    personnelData.sinOfficerFlag = personnelData.sinOfficerFlag ? 1 : 0;
-    personnelData.prepByEmpFlag = personnelData.prepByEmpFlag ? 1 : 0;
-
-    if (!personnelData.buNo) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Department Name!');
-      return;
-    }
-    if (!personnelData.empId) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Employee ID!');
-      return;
-    }
-    if (!personnelData.fname) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Employee Name!');
-      return;
-    }
-    if (!personnelData.gender) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Gender!');
-      return;
-    }
-    if (!personnelData.jobtitleNo) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Job Title!');
-      return;
-    }
-    if (!personnelData.joinDate) {
-      this.isSaving = false;
-      this.toastr.warning('Please enter Join Date!');
-      return;
-    }
-
-    const req$ = personnelData.id
-      ? this.empService.updateEmployee(personnelData)
-      : this.empService.saveEmployee(personnelData);
+    const req$ = payload.id
+      ? this.empService.updateEmployeeWithImage(payload, this.imgFile)
+      : this.empService.saveEmployeeWithImage(payload, this.imgFile);
 
     req$.subscribe({
       next: (res: { success: boolean; message?: string }) => {
@@ -274,7 +302,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
         if (res.success) {
           this.toastr.success(
             res.message ||
-              (personnelData.id
+              (payload.id
                 ? 'Employee updated successfully!'
                 : 'Employee saved successfully!'),
           );
@@ -287,13 +315,6 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isSaving = false;
         this.toastr.error('Something went wrong. Please try again.');
       },
-    });
-  }
-
-  // ── Get single employee (for edit) ────────────────────
-  getEditPersonnel(empNo: any) {
-    this.empService.getSingleEmployee(empNo).subscribe((res: any) => {
-      this.singlePersonnel = res;
     });
   }
 
@@ -365,12 +386,19 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  // ── Get single (for edit) ─────────────────────────────
+  getEditPersonnel(empNo: any) {
+    this.empService.getSingleEmployee(empNo).subscribe((res: any) => {
+      this.singlePersonnel = res;
+    });
+  }
+
   // ── Filter ────────────────────────────────────────────
   resetFilter() {
     this.departmentFilter = 0;
     this.jobTitleFilter = 0;
-    this.jobTypeFilter = 0;
-    this.empTypeFilter = 0;
+    this.jobTypeFilter = '';
+    this.empTypeFilter = '';
     this.empTableObj?.draw();
   }
 
@@ -407,8 +435,8 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
         data: function (d: any) {
           d.businessUnitNo = that.departmentFilter;
           d.jobtitleNo = that.jobTitleFilter;
-          d.jobTypeNo = that.jobTypeFilter;
-          d.empTypeNo = that.empTypeFilter;
+          d.jobTypeName = that.jobTypeFilter;
+          d.employeeTypeName = that.empTypeFilter;
           return d;
         },
         beforeSend: function (xhr: any) {
@@ -431,35 +459,42 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
       order: [[0, 'asc']],
       columns: [
         {
-          title: 'Employee',
+          title: 'Employee Name',
           data: 'empName',
-          render: (_: any, __: any, row: any) => {
-            const photo = row.photo
-              ? `data:image/jpeg;base64,${row.photo}`
-              : `assets/images/profile-placeholder.jpg`;
-            return `<div class="emp-cell">
-              <img src="${photo}" class="emp-avatar-img" />
-              <div>
-                <div class="emp-name">${row.empName || ''}</div>
-                <div class="emp-meta">${row.empId || ''}</div>
-              </div>
-            </div>`;
+          naem: 'empName',
+        },
+        { title: 'Emp ID', data: 'empId' },
+
+        {
+          title: 'Department',
+          data: 'buNo',
+          className: 'dt-left',
+          render: (data: any) => {
+            const dept = this.hrBuList.find((x) => x.id === data);
+            return dept ? dept.deptName : '';
           },
         },
-        { title: 'Emp ID', data: 'empId', width: '100px' },
-        { title: 'Department', data: 'buNo', width: '130px' },
-        { title: 'Job Title', data: 'jobtitleNo', width: '130px' },
+
+        {
+          title: 'Job Title',
+          data: 'jobtitleNo',
+          className: 'dt-left',
+          render: (data: any) => {
+            const job = this.hrJobTitleList.find((x) => x.id === data);
+            return job ? job.desigName : '';
+          },
+        },
         {
           title: 'Join Date',
           data: 'joinDate',
-          width: '100px',
+
           render: (data: any) =>
             data ? moment(new Date(data)).format('DD-MM-YYYY') : '—',
         },
         {
           title: 'Status',
           data: 'activeStat',
-          width: '80px',
+
           render: (data: number) =>
             data === 1
               ? '<span class="emp-status emp-status--active">Active</span>'
@@ -491,7 +526,16 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  fileImmite(imgFiledata: any) {
+    this.imgFile = imgFiledata;
+    console.log('imgFile', this.imgFile);
+  }
+
   ngOnDestroy(): void {
     if (this.bsModalRef) this.bsModalRef.hide();
+  }
+
+  get stepProgress(): number {
+    return ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
   }
 }

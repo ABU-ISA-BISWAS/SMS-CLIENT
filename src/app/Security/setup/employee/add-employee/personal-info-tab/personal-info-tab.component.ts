@@ -1,7 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import moment from 'moment';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { EmployeeModel } from '../../../../_coreSecurity/models/employee.model';
 import { EmployeeService } from '../../../../_coreSecurity/services/employee.service';
 
@@ -17,104 +16,88 @@ export class PersonalInfoTabComponent implements OnInit {
   @Input('jobTitle') jobTitleList: any;
   @Input('department') departmentList: any;
   @Input('gender') genderList: any;
-
-
-  @Input('editPersonalInfo')
-  editPersonalInfo!: EmployeeModel;
-
-  @ViewChild('doctorField')
-  doctorField!: ElementRef;
-  doctorEmpty: boolean = false;
-  employee: EmployeeModel = new EmployeeModel();
-
   @Input('doctorNo') doctorSelect: string | null = null;
-  doctorDatasource!: Observable<any>;
-  selectedDoctor: any;
-  typeaheadLoading: boolean = false;
-  noResult: boolean = false;
-  showInfo: boolean = false;
+
+  // ── Shared model from parent ──────────────────────────
+  @Input('sharedEmployee') employee!: EmployeeModel;
+
+  @Output() imgImmite: EventEmitter<any> = new EventEmitter<any>();
 
   empNoChecker: boolean = false;
   personalNumberChecker: boolean = false;
   oldEmpId!: string | null;
 
+  //image Procesing
+  employeeImgURL: any;
+  imageErrorMessage!: string;
+  imgFile!: File;
+
   constructor(
     private empService: EmployeeService,
     private toastr: ToastrService,
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit() {
-    this.employee.joinDate = new Date();
-
-    if (this.editPersonalInfo) {
-      console.log('inside personal tab', this.editPersonalInfo);
-      this.employee = this.editPersonalInfo;
-      this.oldEmpId = this.editPersonalInfo.empId;
-      this.employee.dob = moment(new Date(this.employee.dob)).toDate();
-      this.employee.joinDate = moment(
-        new Date(this.employee.joinDate),
-      ).toDate();
-    }
-  }
-
-  changeTypeaheadLoading(e: boolean): void {
-    if (!this.doctorSelect?.length) {
-      this.selectedDoctor = null;
+    // Store old empId for duplicate check during edit
+    if (this.employee?.id) {
+      this.oldEmpId = this.employee.empId;
     }
 
-    this.typeaheadLoading = e;
-  }
-
-  typeaheadNoResults(e: boolean): void {
-    this.noResult = e;
-    this.showInfo = false;
-  }
-
-  selectDoctor(getVal: any) {
-    if (getVal.item.doctorNo != null || getVal.item.doctorNo != undefined) {
-      this.selectedDoctor = getVal.item;
-      this.employee.fname = getVal.item.firstName;
-      this.doctorSelect = getVal.item.doctorName;
-      this.employee.doctorNo = getVal.item.doctorNo;
-
-      this.showInfo = true;
-      console.log('selected Emp', this.selectedDoctor);
-    } else {
-      this.toastr.warning('DoctorNo is Undefined!');
-      this.doctorSelect = '';
+    if (this.employee && this.employee.id) {
+      this.findEmployeePhoto(this.employee.id);
     }
   }
 
   validateEmpNo(data: string | number | boolean) {
     if (!this.employee.id) {
       this.empService.validateEmpId(data).subscribe((res: { success: any }) => {
-        res.success ? (this.empNoChecker = true) : (this.empNoChecker = false);
+        this.empNoChecker = !!res.success;
       });
+      return;
     }
-    console.log('here', this.oldEmpId, this.employee.empId);
-    if (
-      this.employee.id &&
-      this.employee.empId?.toLowerCase() !== this.oldEmpId?.toLowerCase()
-    ) {
-      console.log('true');
-
+    if (this.employee.empId?.toLowerCase() !== this.oldEmpId?.toLowerCase()) {
       this.empService.validateEmpId(data).subscribe((res: { success: any }) => {
-        res.success ? (this.empNoChecker = true) : (this.empNoChecker = false);
+        this.empNoChecker = !!res.success;
       });
     }
   }
 
-  searchByPersonalNumber() {
-    if (this.employee.personalNumber) {
-      this.empService
-        .searchByPersonalNumber(this.employee.personalNumber)
-        .subscribe((res: { success: any; message: string | undefined }) => {
-          if (!res.success) {
-            this.employee.personalNumber = null;
-            this.toastr.warning(res.message);
-            this.personalNumberChecker = true;
-          }
-        });
+  processFile(files: any) {
+    if (files.length === 0) return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.imageErrorMessage = 'Only image are Supported.';
+      return;
     }
+
+    this.imgFile = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.imgFile);
+    reader.onload = (_event) => {
+      this.employeeImgURL = reader.result;
+    };
+
+    this.imgImmite.emit(this.imgFile);
+    // this.basicInfo.get('file').setValue(this.file);
+  }
+
+  findEmployeePhoto(empNo: any) {
+    this.empService.findEmployeePhoto(empNo).subscribe(
+      (res) => {
+        if (res.success) {
+          this.employeeImgURL =
+            res.obj != null
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/*;base64,' + res.obj,
+                )
+              : null;
+        }
+      },
+      (err) => {
+        console.log(' Error ', err);
+      },
+    );
   }
 }

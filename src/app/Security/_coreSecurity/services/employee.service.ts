@@ -23,7 +23,6 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
   private DELETE_EMP = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/delete`;
   private SINGLE_EMP = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/findByEmpNo`;
   private SINGLE_EMP_BY_ID = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/findByEmpId`;
-  private SEARCH_BY_PERSONAL_NUMBER = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/findByPersonalNumber`;
 
   private ADD_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/add-emp-signature`;
   private GET_SIGNATURE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/getEmpSignature`;
@@ -36,6 +35,10 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
   private BLOOD_GROUP = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/blood-grp/all`;
   private RELIGION = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT_LOOKUP}/religion/all`;
   private GUARDIAN_RELATION = `${environment.baseUrl}${environment.authApiUrl}/api/guardian-relation/all`;
+  private FIND_EMPLOYEE_PHOTO = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/find-employee-photo`;
+  private UPDATE_EMPLOYEE_WITH_IMAGE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/update-emp-with-image`;
+
+  private SAVE_EMPLOYEE_WITH_IMAGE = `${environment.baseUrl}${environment.authApiUrl}/${this.END_POINT}/create-emp-with-image`;
 
   constructor(
     private http: HttpClient,
@@ -165,23 +168,41 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
       .pipe(map((data: any) => data.items));
   }
 
-  saveEmployee(data: any) {
-    const token = this.authService.getAccessToken(); // get token from your auth service
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+  // saveEmployee(data: any) {
+  //   const token = this.authService.getAccessToken(); // get token from your auth service
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${token}`,
+  //   });
+  //   return this.http
+  //     .post(this.SAVE_EMPLOYEE, data, { headers })
+  //     .pipe(map((data: any) => data));
+  // }
+
+  saveEmployeeWithImage(data: any, image: File) {
+    const formData = new FormData();
+    formData.append('reqobj', JSON.stringify(data));
+    formData.append('file', image);
     return this.http
-      .post(this.SAVE_EMPLOYEE, data, { headers })
+      .post(this.SAVE_EMPLOYEE_WITH_IMAGE, formData)
       .pipe(map((data: any) => data));
   }
 
-  updateEmployee(data: any) {
-    const token = this.authService.getAccessToken(); // get token from your auth service
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+  // updateEmployee(data: any) {
+  //   const token = this.authService.getAccessToken(); // get token from your auth service
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${token}`,
+  //   });
+  //   return this.http
+  //     .put(this.UPDATE_EMPLOYEE, data, { headers })
+  //     .pipe(map((data: any) => data));
+  // }
+
+  updateEmployeeWithImage(data: any, image: File) {
+    const formData = new FormData();
+    formData.append('reqobj', JSON.stringify(data));
+    formData.append('file', image);
     return this.http
-      .put(this.UPDATE_EMPLOYEE, data, { headers })
+      .put(this.UPDATE_EMPLOYEE_WITH_IMAGE, formData)
       .pipe(map((data: any) => data));
   }
 
@@ -199,17 +220,6 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
     return this.http
       .delete<any>(this.DELETE_EMP, options)
       .pipe(map((response) => response));
-  }
-
-  searchByPersonalNumber(data: string | number | boolean) {
-    const token = this.authService.getAccessToken(); // get token from your auth service
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    const params = new HttpParams().append('personalNumber', data);
-    return this.http
-      .get(this.SEARCH_BY_PERSONAL_NUMBER, { params, headers })
-      .pipe(map((data: any) => data));
   }
 
   addEmpSignature(empObj: any, image: File) {
@@ -231,5 +241,10 @@ export class EmployeeService extends ResourceService<EmployeeModel> {
     });
     const params = new HttpParams().append('empNo', data.id);
     return this.http.get(this.GET_SIGNATURE, { params, headers });
+  }
+
+  findEmployeePhoto(data: any) {
+    const params = new HttpParams().append('empNo', data);
+    return this.http.get<any>(this.FIND_EMPLOYEE_PHOTO, { params });
   }
 }

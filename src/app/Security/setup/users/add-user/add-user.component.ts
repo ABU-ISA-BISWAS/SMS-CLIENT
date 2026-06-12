@@ -226,18 +226,6 @@ export class AddUserComponent implements OnInit {
       .subscribe((res: { buName: any }) => {
         this.deptName = res.buName;
       });
-
-    if (
-      this.selectedEmp &&
-      (this.selectedEmp['doctorNo'] || this.selectedEmp['nurseFlag'] === 1)
-    ) {
-      this.isDocOrNur = true;
-      this.nsDsListTitle = this.selectedEmp['doctorNo']
-        ? 'Doctor Station List'
-        : 'Nurse Station List';
-    } else {
-      this.isDocOrNur = false;
-    }
   }
 
   saveUpdateUser() {

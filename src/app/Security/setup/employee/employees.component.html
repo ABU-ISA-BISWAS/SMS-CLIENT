@@ -4,18 +4,15 @@
          LIST VIEW
     ════════════════════════════════════════════ -->
     <ng-container *ngIf="!isFormVisible">
-      <!-- Card Header -->
       <div
         class="card-header py-2 d-flex justify-content-between align-items-center"
       >
         <h6 class="m-0 fw-bold base-txt-primary">Employee Setup</h6>
-
         <div class="d-flex flex-wrap gap-2 align-items-center">
           <button
             type="button"
             class="btn btn-sm base-btn-outline-skyblue fw-medium px-2"
             (click)="addSignature()"
-            title="Add Signature"
           >
             <i class="fas fa-signature"></i> Add Signature
           </button>
@@ -24,7 +21,6 @@
             type="button"
             class="btn btn-sm base-btn-outline-purple fw-medium px-2"
             (click)="addBankInfo()"
-            title="Add Bank Info"
           >
             <i class="fas fa-university"></i> Add Bank Info
           </button>
@@ -38,6 +34,7 @@
           </button>
 
           <div class="vr"></div>
+
           <button
             type="button"
             class="btn btn-sm base-btn-primary fw-medium px-3"
@@ -86,7 +83,6 @@
                   </select>
                 </div>
               </div>
-
               <div class="col-md-6 col-xl-3">
                 <div class="input-group input-group-sm">
                   <span
@@ -106,7 +102,6 @@
                   </select>
                 </div>
               </div>
-
               <div class="col-md-6 col-xl-3">
                 <div class="input-group input-group-sm">
                   <span
@@ -119,14 +114,16 @@
                     [(ngModel)]="jobTypeFilter"
                     (ngModelChange)="onChangeJobType()"
                   >
-                    <option [ngValue]="0">All Job Types</option>
-                    <option *ngFor="let j of jobTypeList" [ngValue]="j.id">
+                    <option [ngValue]="''">All Job Types</option>
+                    <option
+                      *ngFor="let j of jobTypeList"
+                      [ngValue]="j.jobTypeName"
+                    >
                       {{ j.jobTypeName }}
                     </option>
                   </select>
                 </div>
               </div>
-
               <div class="col-md-6 col-xl-3">
                 <div class="input-group input-group-sm">
                   <span
@@ -139,8 +136,11 @@
                     [(ngModel)]="empTypeFilter"
                     (ngModelChange)="onChangeEmpType()"
                   >
-                    <option [ngValue]="0">All Types</option>
-                    <option *ngFor="let e of empTypeList" [ngValue]="e.id">
+                    <option [ngValue]="''">All Types</option>
+                    <option
+                      *ngFor="let e of empTypeList"
+                      [ngValue]="e.employeeTypeName"
+                    >
                       {{ e.employeeTypeName }}
                     </option>
                   </select>
@@ -169,7 +169,7 @@
     </ng-container>
 
     <!-- ═══════════════════════════════════════════
-         FORM VIEW
+         FORM VIEW  — 3-step wizard
     ════════════════════════════════════════════ -->
     <ng-container *ngIf="isFormVisible">
       <!-- Form Header -->
@@ -184,59 +184,80 @@
             {{ formMode === "add" ? "Add New Employee" : "Edit Employee" }}
           </h6>
         </div>
-        <button class="btn btn-sm btn-light border" (click)="closeForm()">
-          <i class="fas fa-times"></i>
-        </button>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-muted" style="font-size: 12px">
+            Step {{ currentStep }} of {{ totalSteps }}
+          </span>
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
       </div>
 
       <div class="card-body p-0">
-        <!-- Tab Navigation -->
-        <div class="emp-tab-nav">
-          <div
-            *ngFor="let tab of tabs"
-            class="emp-tab-nav__item"
-            [class.active]="activeTab === tab.key"
-            (click)="activeTab = tab.key"
-          >
-            <i class="fas {{ tab.icon }}"></i>
-            {{ tab.label }}
+        <!-- Step Indicator -->
+        <div class="emp-step-wrap">
+          <div class="emp-step-bar">
+            <div
+              class="emp-step-bar__fill"
+              [style.width.%]="stepProgress"
+            ></div>
+          </div>
+          <div class="emp-step-nodes">
+            <div
+              *ngFor="let s of steps"
+              class="emp-step-node"
+              [class.active]="currentStep === s.no"
+              [class.done]="currentStep > s.no"
+              (click)="goToStep(s.no)"
+            >
+              <div class="emp-step-node__circle">
+                <i *ngIf="currentStep > s.no" class="fas fa-check"></i>
+                <span *ngIf="currentStep <= s.no">{{ s.no }}</span>
+              </div>
+              <div class="emp-step-node__label">{{ s.label }}</div>
+            </div>
           </div>
         </div>
 
-        <!-- Tab Content -->
-        <div class="emp-tab-body">
-          <div *ngIf="activeTab === 'personalInfo'">
+        <!-- Step Content -->
+        <div class="emp-step-body">
+          <!-- STEP 1: Basic Information -->
+          <div *ngIf="currentStep === 1">
             <app-personal-info-tab
               #personalTab
               [jobType]="jobTypeList"
               [maritalStatus]="maritalStatusList"
               [jobTitle]="hrJobTitleList"
               [department]="hrBuList"
-              [editPersonalInfo]="editPersonalInfo"
               [gender]="genderList"
               [doctorNo]="doctorName"
+              [sharedEmployee]="sharedEmployee"
+              (imgImmite)="fileImmite($event)"
             >
             </app-personal-info-tab>
           </div>
 
-          <div *ngIf="activeTab === 'officialInfo'">
+          <!-- STEP 2: Other Information -->
+          <div *ngIf="currentStep === 2">
             <app-official-info-tab
               #officialTab
               [empType]="empTypeList"
               [bloodGroup]="bloodGroupList"
               [religionList]="religionList"
-              [editOfficialInfo]="editOfficialInfo"
+              [sharedEmployee]="sharedEmployee"
             >
             </app-official-info-tab>
           </div>
 
-          <div *ngIf="activeTab === 'address'">
+          <!-- STEP 3: Address Details -->
+          <div *ngIf="currentStep === 3">
             <app-address-tab
               #addressTab
               [district]="districtList"
               [country]="countryList"
-              [editAddressTab]="editAddressTab"
               [guardianRelationList]="guardianRelationList"
+              [sharedEmployee]="sharedEmployee"
             >
             </app-address-tab>
           </div>
@@ -244,16 +265,37 @@
 
         <!-- Form Footer -->
         <div class="emp-form-footer">
+          <!-- Back / Cancel -->
           <button
             class="btn btn-sm btn-light border px-3"
+            *ngIf="currentStep > 1"
+            (click)="prevStep()"
+          >
+            <i class="fas fa-arrow-left me-1"></i> Back
+          </button>
+          <button
+            class="btn btn-sm btn-light border px-3"
+            *ngIf="currentStep === 1"
             (click)="closeForm()"
           >
             Cancel
           </button>
-          <div class="ms-auto">
+
+          <div class="ms-auto d-flex gap-2">
+            <!-- Next (steps 1 & 2) -->
             <button
               class="btn btn-sm base-btn-primary px-4"
-              (click)="collectAndSave()"
+              *ngIf="currentStep < totalSteps"
+              (click)="nextStep()"
+            >
+              Next <i class="fas fa-arrow-right ms-1"></i>
+            </button>
+
+            <!-- Save (last step only) -->
+            <button
+              class="btn btn-sm base-btn-primary px-4"
+              *ngIf="currentStep === totalSteps"
+              (click)="saveEmployee()"
               [disabled]="isSaving"
             >
               <span *ngIf="!isSaving">

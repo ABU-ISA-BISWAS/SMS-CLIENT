@@ -14,10 +14,6 @@ export class EmployeeSerializer {
     personnel.gender = json.gender;
     personnel.ssUploadedOn = json.ssUploadedOn;
     personnel.empName = json.empName;
-    personnel.salesrepFlag = json.salesrepFlag;
-    personnel.mpoCommPct = json.mpoCommPct;
-    personnel.slRepGroupNo = json.slRepGroupNo;
-    personnel.targetAmount = json.targetAmount;
     personnel.empSignature = json.empSignature;
     personnel.doctorNo = json.doctorNo;
     personnel.punchCardNo = json.punchCardNo;
@@ -33,7 +29,6 @@ export class EmployeeSerializer {
     personnel.spouseName = json.spouseName;
     personnel.maritalStatus = json.maritalStatus;
     personnel.dob = json.dob;
-    personnel.hrType = json.hrType;
     personnel.empType = json.empType;
     personnel.jobType = json.jobType;
     personnel.bloodGrp = json.bloodGrp;
@@ -55,10 +50,6 @@ export class EmployeeSerializer {
     personnel.prAddrDist = json.prAddrDist;
     personnel.prAddrPost = json.prAddrPost;
     personnel.prAddrCountry = json.prAddrCountry;
-    personnel.cashierFlag = json.cashierFlag;
-    personnel.anaestesiologisFlag = json.anaestesiologisFlag;
-    personnel.nurseFlag = json.nurseFlag;
-    personnel.sampleCollFlag = json.sampleCollFlag;
     personnel.remarks = json.remarks;
     personnel.userName = json.userName;
     personnel.pwd = json.pwd;
@@ -74,7 +65,6 @@ export class EmployeeSerializer {
     personnel.pabxExt = json.pabxExt;
     personnel.salaryBankNo = json.salaryBankNo;
     personnel.salaryBankAccNo = json.salaryBankAccNo;
-    personnel.interest = json.interest;
     personnel.placeOfBirth = json.placeOfBirth;
     personnel.cardNo = json.cardNo;
     personnel.contractDate = json.contractDate;
@@ -100,10 +90,6 @@ export class EmployeeSerializer {
       gender: personnel.gender,
       ssUploadedOn: personnel.ssUploadedOn,
       empName: personnel.empName,
-      salesrepFlag: personnel.salesrepFlag,
-      mpoCommPct: personnel.mpoCommPct,
-      slRepGroupNo: personnel.slRepGroupNo,
-      targetAmount: personnel.targetAmount,
       empSignature: personnel.empSignature,
       doctorNo: personnel.doctorNo,
       punchCardNo: personnel.punchCardNo,
@@ -119,7 +105,6 @@ export class EmployeeSerializer {
       spouseName: personnel.spouseName,
       maritalStatus: personnel.maritalStatus,
       dob: personnel.dob,
-      hrType: personnel.hrType,
       empType: personnel.empType,
       jobType: personnel.jobType,
       bloodGrp: personnel.bloodGrp,
@@ -141,10 +126,6 @@ export class EmployeeSerializer {
       prAddrDist: personnel.prAddrDist,
       prAddrPost: personnel.prAddrPost,
       prAddrCountry: personnel.prAddrCountry,
-      cashierFlag: personnel.cashierFlag,
-      anaestesiologisFlag: personnel.anaestesiologisFlag,
-      nurseFlag: personnel.nurseFlag,
-      sampleCollFlag: personnel.sampleCollFlag,
       remarks: personnel.remarks,
       userName: personnel.userName,
       pwd: personnel.pwd,
@@ -160,7 +141,6 @@ export class EmployeeSerializer {
       pabxExt: personnel.pabxExt,
       salaryBankNo: personnel.salaryBankNo,
       salaryBankAccNo: personnel.salaryBankAccNo,
-      interest: personnel.interest,
       placeOfBirth: personnel.placeOfBirth,
       cardNo: personnel.cardNo,
       contractDate: personnel.contractDate,

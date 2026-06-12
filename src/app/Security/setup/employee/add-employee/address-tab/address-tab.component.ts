@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EmployeeModel } from '../../../../_coreSecurity/models/employee.model';
-import { EmployeeService } from '../../../../_coreSecurity/services/employee.service';
 
 @Component({
   selector: 'app-address-tab',
@@ -11,20 +10,13 @@ import { EmployeeService } from '../../../../_coreSecurity/services/employee.ser
 export class AddressTabComponent implements OnInit {
   @Input('district') districtlist: any;
   @Input('country') countryList: any;
-  @Input('editAddressTab')
-  editAddressTab!: EmployeeModel;
   @Input('guardianRelationList') guardianRelationList: any;
 
-  employeeaddress: EmployeeModel = new EmployeeModel();
+  // ── Shared model from parent ──────────────────────────
+  @Input('sharedEmployee') employeeaddress!: EmployeeModel;
 
-  constructor(private empService: EmployeeService) {}
+  ngOnInit() {}
 
-  ngOnInit() {
-    if (this.editAddressTab) {
-      console.log('inside other tab', this.editAddressTab);
-      this.employeeaddress = this.editAddressTab;
-    }
-  }
   copyPresentAddress() {
     this.employeeaddress.peAddr1 = this.employeeaddress.prAddr1;
     this.employeeaddress.peAddr2 = this.employeeaddress.prAddr2;

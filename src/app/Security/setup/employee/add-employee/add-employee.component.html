@@ -19,28 +19,31 @@
           class="nav-link"
           [class.active]="activeTab === 'personalInfo'"
           (click)="activeTab = 'personalInfo'"
-          >Basic Information</a
         >
+          Basic Information
+        </a>
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
           [class.active]="activeTab === 'officialInfo'"
           (click)="activeTab = 'officialInfo'"
-          >Other Information</a
         >
+          Other Information
+        </a>
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
           [class.active]="activeTab === 'address'"
           (click)="activeTab = 'address'"
-          >Address Details</a
         >
+          Address Details
+        </a>
       </li>
     </ul>
 
-    <!-- Tab panes -->
+    <!-- Tab content -->
     <div class="tab-content">
       <div *ngIf="activeTab === 'personalInfo'">
         <app-personal-info-tab
@@ -48,20 +51,20 @@
           [maritalStatus]="maritalStatusList"
           [jobTitle]="hrJobTitleList"
           [department]="hrBuList"
-          [editPersonalInfo]="editPersonalInfo"
           [gender]="genderList"
           [doctorNo]="doctorName"
+          [sharedEmployee]="sharedEmployee"
+          (imgImmite)="fileImmite($event)"
         >
         </app-personal-info-tab>
       </div>
 
       <div *ngIf="activeTab === 'officialInfo'">
         <app-official-info-tab
-          [hrType]="hrTypeList"
           [empType]="empTypeList"
           [bloodGroup]="bloodGroupList"
           [religionList]="religionList"
-          [editOfficialInfo]="editOfficialInfo"
+          [sharedEmployee]="sharedEmployee"
         >
         </app-official-info-tab>
       </div>
@@ -70,8 +73,8 @@
         <app-address-tab
           [district]="districtList"
           [country]="countryList"
-          [editAddressTab]="editAddressTab"
           [guardianRelationList]="guardianRelationList"
+          [sharedEmployee]="sharedEmployee"
         >
         </app-address-tab>
       </div>
