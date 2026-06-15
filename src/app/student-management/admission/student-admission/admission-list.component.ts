@@ -108,10 +108,10 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   // ── Dropdowns ─────────────────────────────────────────
   loadFilterDropdowns() {
     this.admissionService.getAllSessions().subscribe({
-      next: (res: any[]) => (this.sessionList = res || []),
+      next: (res: any) => (this.sessionList = res.items || []),
     });
     this.admissionService.getAllClasses().subscribe({
-      next: (res: any[]) => (this.classList = res || []),
+      next: (res: any) => (this.classList = res.items || []),
     });
   }
 
@@ -130,14 +130,15 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
         next: (res: any) => {
-          this.genderList = res.genders || [];
-          this.religionList = res.religions || [];
-          this.bloodGroupList = res.bloodGroups || [];
-          this.categoryList = res.categories || [];
-          this.relationList = res.relations || [];
-          this.shiftList = res.shifts || [];
-          this.groupList = res.groups || [];
-          this.docTypeList = res.docTypes || [];
+          console.log('dataaa:::', res.genders.items);
+          this.genderList = res.genders.items || [];
+          this.religionList = res.religions.items || [];
+          this.bloodGroupList = res.bloodGroups.items || [];
+          this.categoryList = res.categories.items || [];
+          this.relationList = res.relations.items || [];
+          this.shiftList = res.shifts.items || [];
+          this.groupList = res.groups.items || [];
+          this.docTypeList = res.docTypes.items || [];
           this.initDocEntries();
         },
         error: () => this.toastr.error('Failed to load form data.'),
@@ -271,7 +272,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     this.sectionList = [];
     if (!classId) return;
     this.admissionService.getAllSections().subscribe({
-      next: (res: any[]) => (this.sectionList = res || []),
+      next: (res: any) => (this.sectionList = res.items || []),
     });
   }
 

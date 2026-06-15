@@ -56,18 +56,15 @@
       </div>
 
       <ng-template #customEmpTemplate let-model="item">
-        <table>
-          <tr>
-            <td style="width: 100%; padding-right: 16px">
-              <label class="eu-ta-label">Name</label>
-              <span class="eu-ta-val">: {{ model.empName }}</span>
-            </td>
-            <td style="width: 100%">
-              <label class="eu-ta-label">ID</label>
-              <span class="eu-ta-val">: {{ model.empId }}</span>
-            </td>
-          </tr>
-        </table>
+        <div class="eu-ta-item">
+          <div class="eu-ta-avatar">
+            {{ model.empName?.charAt(0) }}
+          </div>
+          <div class="eu-ta-info">
+            <div class="eu-ta-name">{{ model.empName }}</div>
+            <div class="eu-ta-id">ID: {{ model.empId }}</div>
+          </div>
+        </div>
       </ng-template>
 
       <!-- Employee Card (shown after selection) -->

@@ -246,12 +246,12 @@
               <div class="row g-3">
                 <!-- Photo -->
                 <div class="col-auto">
-                  <div
-                    class="adm-photo-box"
-                    [style.backgroundImage]="
-                      photoPreview ? 'url(' + photoPreview + ')' : 'none'
-                    "
-                  >
+                  <div class="adm-photo-box">
+                    <img
+                      *ngIf="photoPreview"
+                      [src]="photoPreview"
+                      class="adm-photo-img"
+                    />
                     <span *ngIf="!photoPreview" class="adm-photo-placeholder">
                       <i class="fas fa-camera"></i><br />Photo
                     </span>
@@ -278,7 +278,7 @@
                 <!-- Right side fields -->
                 <div class="col">
                   <div class="row g-2">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="input-group input-group-sm required">
                         <span
                           class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
@@ -293,7 +293,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="input-group input-group-sm">
                         <span
                           class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
@@ -307,20 +307,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="input-group input-group-sm">
-                        <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
-                        >
-                          Email
-                        </span>
-                        <input
-                          type="email"
-                          class="form-control form-control-sm"
-                          [(ngModel)]="student.email"
-                        />
-                      </div>
-                    </div>
+
                     <div class="col-md-4">
                       <div class="input-group input-group-sm required">
                         <span
@@ -434,22 +421,8 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="input-group input-group-sm">
-                        <span
-                          class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
-                        >
-                          Nationality
-                        </span>
-                        <input
-                          type="text"
-                          class="form-control form-control-sm"
-                          [(ngModel)]="student.nationality"
-                        />
-                      </div>
-                    </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="input-group input-group-sm">
                         <span
                           class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
@@ -463,7 +436,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="input-group input-group-sm">
                         <span
                           class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
@@ -488,6 +461,35 @@
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
                     >
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.email"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                    >
+                      Nationality
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="student.nationality"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+                    >
                       Present Address
                     </span>
                     <input
@@ -497,7 +499,7 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
