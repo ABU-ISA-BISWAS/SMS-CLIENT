@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -33,6 +34,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   admissionTable: any;
   admissionTableObj: any;
   selectedAdmission: any = null;
+  admissionNo: any;
+  selectedStudent: any;
 
   // ── Filter ────────────────────────────────────────────
   sessionList: any[] = [];
@@ -73,7 +76,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   docTypeList: any[] = [];
 
   // ── Photo ─────────────────────────────────────────────
-  photoPreview: string | null = null;
+  photoPreview: any = null;
   photoFile: File | null = null;
 
   // ── Documents ─────────────────────────────────────────
@@ -89,12 +92,23 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   savedStudentNo: number | null = null;
   savedAdmissionNo: number | null = null;
 
+  isStatusUpdating = false;
+
+  statusOptions = [
+    { value: 'ACTIVE', label: 'Active', cls: 'status-active' },
+    { value: 'TC_ISSUED', label: 'TC Issued', cls: 'status-tc' },
+    { value: 'PASSED_OUT', label: 'Passed Out', cls: 'status-passed' },
+    { value: 'DROPOUT', label: 'Dropout', cls: 'status-dropout' },
+    { value: 'EXPELLED', label: 'Expelled', cls: 'status-exp' },
+  ];
+
   constructor(
     private router: Router,
     private modalService: BsModalService,
     private authService: AuthService,
     private admissionService: AdmissionService,
     private toastr: ToastrService,
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit() {
@@ -126,6 +140,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       shifts: this.admissionService.getAllShifts(),
       groups: this.admissionService.getAllGroups(),
       docTypes: this.admissionService.getAllDocTypes(),
+      sections: this.admissionService.getAllSections(),
     })
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
@@ -138,7 +153,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           this.relationList = res.relations.items || [];
           this.shiftList = res.shifts.items || [];
           this.groupList = res.groups.items || [];
-          this.docTypeList = res.docTypes.items || [];
+          this.docTypeList = res.docTypes || [];
+          this.sectionList = res.sections.items || [];
           this.initDocEntries();
         },
         error: () => this.toastr.error('Failed to load form data.'),
@@ -156,6 +172,11 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   // ── Form Open / Close ─────────────────────────────────
   openForm(mode: 'add' | 'edit') {
     if (mode === 'edit') {
+      this.admissionNo = this.selectedAdmission.admission.admissionNo;
+      console.log(
+        'response:::::',
+        this.selectedAdmission.admission.admissionNo,
+      );
       if (!this.selectedAdmission) {
         this.toastr.warning('Please select a record to Edit.');
         return;
@@ -168,11 +189,22 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     this.isFormVisible = true;
     this.loadFormDropdowns();
 
-    if (mode === 'edit' && this.selectedAdmission) {
-      this.patchFormData(this.selectedAdmission);
+    if (mode === 'edit') {
+      this.admissionService.getSingle(this.admissionNo).subscribe({
+        next: (res: any) => {
+          if (res && res.obj) {
+            let studentNo = res.obj.student.studentNo;
+            if (studentNo != null && studentNo > 0) {
+              this.findStudentPhoto(studentNo);
+            }
+            console.log('response:::::', res.obj);
+            this.patchFormData(res.obj);
+          }
+        },
+        error: () => this.toastr.error('Failed to load admission data.'),
+      });
     }
 
-    // destroy DataTable while form is visible
     if (this.admissionTableObj) {
       this.admissionTableObj.destroy();
       this.admissionTableObj = null;
@@ -199,10 +231,70 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   }
 
   patchFormData(data: any) {
-    Object.assign(this.student, data.student || data);
-    Object.assign(this.guardian, data.guardian || {});
-    Object.assign(this.admission, data);
-    if (data.photoPath) this.photoPreview = data.photoPath;
+    // API response এ student / guardian / admission আলাদা object আসছে
+    const s = data.student || {};
+    const g = data.guardian || {};
+    const a = data.admission || {};
+
+    // Student — numeric FK গুলো সরাসরি patch হবে
+    Object.assign(this.student, {
+      studentNo: s.studentNo,
+      studentCode: s.studentCode,
+      fullName: s.fullName,
+      fullNameBn: s.fullNameBn,
+      dateOfBirth: s.dateOfBirth,
+      genderNo: s.genderNo, // ← number → ng-select bind হবে
+      religionNo: s.religionNo, // ← number
+      bloodGroupNo: s.bloodGroupNo, // ← number
+      studentCategoryNo: s.studentCategoryNo, // ← number
+      nationality: s.nationality,
+      birthCertNo: s.birthCertNo,
+      nidNo: s.nidNo,
+      mobileNo: s.mobileNo,
+      email: s.email,
+      presentAddress: s.presentAddress,
+      permanentAddress: s.permanentAddress,
+      photoPath: s.photoPath,
+    });
+
+    // if (s.photoPath) {
+    //   this.photoPreview = s.photoPath;
+    // }
+
+    // Guardian
+    Object.assign(this.guardian, {
+      guardianNo: g.guardianNo,
+      studentNo: s.studentNo,
+      relationNo: g.relationNo, // ← number → ng-select bind হবে
+      guardianName: g.guardianName,
+      guardianNameBn: g.guardianNameBn,
+      occupation: g.occupation,
+      mobileNo: g.mobileNo,
+      email: g.email,
+      nidNo: g.nidNo,
+      annualIncome: g.annualIncome,
+      isPrimary: 1,
+    });
+
+    // Admission
+    Object.assign(this.admission, {
+      admissionNo: a.admissionNo,
+      admissionRegNo: a.admissionRegNo,
+      studentNo: s.studentNo,
+      academicSessionNo: a.academicSessionNo, // ← number
+      classMasterNo: a.classMasterNo, // ← number
+      sectionMasterNo: a.sectionMasterNo, // ← number
+      shiftMasterNo: a.shiftMasterNo, // ← number
+      groupVersionNo: a.groupVersionNo, // ← number
+      rollNo: a.rollNo,
+      admissionDate: a.admissionDate,
+      admissionType: a.admissionType,
+      admissionStatus: a.admissionStatus,
+      prevSchool: a.prevSchool,
+      prevClass: a.prevClass,
+      prevRoll: a.prevRoll,
+      remarks: a.remarks,
+    });
   }
 
   // ── Step Navigation ───────────────────────────────────
@@ -336,14 +428,16 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     req$.pipe(finalize(() => (this.isSaving = false))).subscribe({
       next: (res: any) => {
         if (res.success) {
-          this.savedStudentNo = res.obj?.studentNo;
+          this.savedStudentNo = res.id;
           this.savedAdmissionNo = res.obj?.admissionNo;
-
+          console.log('photo:::', this.photoFile);
+          console.log('savedAdmissionNo:::', this.savedAdmissionNo);
           if (this.photoFile && this.savedStudentNo) {
             this.admissionService
               .uploadPhoto(this.savedStudentNo, this.photoFile)
               .subscribe();
           }
+          // this.photoPreview = this.getPhotoUrl(this.savedStudentNo);
           this.currentStep = 4;
           this.toastr.success(res.message || 'Admission saved successfully!');
         } else {
@@ -388,31 +482,21 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       this.toastr.warning('Please select a student first.');
       return;
     }
-    this.router.navigate([
-      '/student/admission/profile',
-      this.selectedAdmission.admissionNo,
-    ]);
-  }
 
-  // ── Status Change ─────────────────────────────────────
-  changeStatus() {
-    if (!this.selectedAdmission) {
-      this.toastr.warning('Please select a student first.');
-      return;
-    }
-    // open small modal for status + optional TC fields
-    const initialState = {
-      title: 'Change Admission Status',
-      admission: this.selectedAdmission,
-    };
-    this.bsModalRef = this.modalService.show(ConfirmationDialog, {
-      initialState,
-      class: 'modal-sm base-modal',
-    });
-    this.bsModalRef.content.onClose.subscribe((result: boolean) => {
-      if (result) this.admissionTableObj?.draw();
-    });
+    this.router.navigate(
+      [
+        'student-management/student/admission/profile',
+        this.selectedAdmission.admission.admissionNo,
+      ],
+      {
+        state: {
+          studentData: this.selectedStudent,
+          admissionData: this.selectedAdmission,
+        },
+      },
+    );
   }
+  // ── Status Change ─────────────────────────────────────
 
   // ── Filter ────────────────────────────────────────────
   applyFilter() {
@@ -440,11 +524,10 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       serverSide: true,
       processing: true,
       ajax: {
-        url: `${environment.baseUrl}${environment.authApiUrl}/api/admission/gridList`,
+        url: `${environment.baseUrl}${environment.studentManagementApiUrl}/api/admission/gridList`,
         type: 'GET',
         data: (d: any) => {
           d.customSearch = d.search.value;
-          d.activeInactiveFlag = that.activeInactiveFlag;
           d.academicSessionNo = that.filterSessionNo || '';
           d.classMasterNo = that.filterClassNo || '';
           d.admissionStatus = that.filterAdmissionStatus || '';
@@ -467,28 +550,36 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       },
       order: [[0, 'desc']],
       columns: [
-        { title: '#', data: 'admissionNo', width: '50px' },
+        { title: '#', data: 'admissionNo', width: '30px' },
+        // grid columns এ Employee cell এ photo URL ব্যবহার করুন
+        // {title: 'Student Name', data: 'fullName',width: '150px',},
+        // { title: 'Reg. No', data: 'admissionRegNo', width: '120px' },
         {
-          title: 'Student',
-          data: 'fullName',
-          render: (data: string, _: any, row: any) =>
-            `<div style="display:flex;align-items:center;gap:8px">
-              <div class="adm-avatar">${data.charAt(0).toUpperCase()}</div>
-              <div>
-                <div style="font-weight:500;font-size:12px">${data}</div>
-                <div style="font-size:11px;color:#888">${row.studentCode || ''}</div>
-              </div>
-            </div>`,
+          title: 'Student Name',
+          data: null,
+          width: '200px',
+          render: function (data, type, row) {
+            return `
+      <div>
+        <div><strong>Name:</strong> ${row.fullName || ''}</div>
+        <div><strong>Reg No:</strong> ${row.admissionRegNo || ''}</div>
+      </div>
+    `;
+          },
         },
-        { title: 'Reg. No', data: 'admissionRegNo', width: '110px' },
-        { title: 'Class', data: 'className', width: '90px' },
-        { title: 'Section', data: 'sectionName', width: '80px' },
-        { title: 'Roll', data: 'rollNo', width: '60px' },
-        { title: 'Guardian', data: 'guardianMobile', width: '110px' },
+        { title: 'Class', data: 'className', width: '120px' },
+        { title: 'Section', data: 'sectionName', width: '120px' },
+        { title: 'Roll', data: 'rollNo', width: '60px', className: 'dt-left' },
         {
-          title: 'Type',
+          title: 'Guardian Mobile',
+          data: 'guardianMobile',
+          width: '120px',
+          className: 'dt-left',
+        },
+        {
+          title: 'Ad. Type',
           data: 'admissionType',
-          width: '90px',
+          width: '80px',
           render: (data: string) => {
             const m: any = {
               NEW: 'adm-tag-new',
@@ -523,22 +614,124 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       ],
       autoWidth: false,
       rowCallback: (row: Node, data: any) => {
-        $('td', row)
-          .off('click')
-          .on('click', () => {
-            if ($(row).hasClass('selected-row')) {
-              $(row).removeClass('selected-row');
-              this.selectedAdmission = null;
-            } else {
-              $(row).closest('tbody').find('tr').removeClass('selected-row');
-              $(row).addClass('selected-row');
-              this.admissionService
-                .getSingle(data.admissionNo)
-                .subscribe((res: any) => (this.selectedAdmission = res));
-            }
-          });
+        const self = this;
+
+        $('td', row).off('click');
+        $('td', row).on('click', () => {
+          console.log('dataaa::', data);
+          self.selectedStudent = data;
+          if ($(row).hasClass('selected-row')) {
+            $(row).removeClass('selected-row');
+            this.selectedAdmission = null;
+          } else {
+            $(row).closest('tbody').find('tr').removeClass('selected-row');
+            $(row).addClass('selected-row');
+            this.admissionService
+              .getSingle(data.admissionNo)
+              .subscribe((res: any) => (this.selectedAdmission = res.obj));
+          }
+        });
         return row;
       },
     });
+  }
+
+  getPhotoUrl(studentNo: number | null): string {
+    if (!studentNo) return 'assets/images/profile-placeholder.jpg';
+    return `${environment.baseUrl}${environment.studentManagementApiUrl}/api/admission/photo/${studentNo}`;
+  }
+
+  findStudentPhoto(empNo: any) {
+    this.admissionService.findStudentPhoto(empNo).subscribe(
+      (res) => {
+        if (res.success) {
+          this.photoPreview =
+            res.obj != null
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/*;base64,' + res.obj,
+                )
+              : null;
+        }
+      },
+      (err) => {
+        console.log(' Error ', err);
+      },
+    );
+  }
+
+  changeStatus(newStatus: string) {
+    const currentStatus = this.selectedAdmission?.admissionStatus;
+    if (newStatus === currentStatus) return;
+
+    if (newStatus === 'TC_ISSUED') {
+      this.openTcModal(newStatus);
+      return;
+    }
+
+    const initialState = {
+      title: `Change status to "${this.getStatusLabel(newStatus)}"?`,
+    };
+    this.bsModalRef = this.modalService.show(ConfirmationDialog, {
+      initialState,
+      class: '',
+    });
+    this.bsModalRef.content.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.callUpdateStatus(newStatus, null, null);
+      }
+    });
+  }
+
+  openTcModal(status: string) {
+    // TC Issue এর জন্য date + reason একটা small modal এ নেব
+    // Simple approach: prompt দিয়ে করা যায় অথবা আলাদা modal
+    const tcDate = window.prompt(
+      'Enter TC Date (YYYY-MM-DD):',
+      new Date().toISOString().split('T')[0],
+    );
+    if (!tcDate) return;
+
+    const tcReason = window.prompt('Enter TC Reason:') || '';
+    this.callUpdateStatus(status, tcDate, tcReason);
+  }
+
+  callUpdateStatus(
+    status: string,
+    tcDate: string | null,
+    tcReason: string | null,
+  ) {
+    this.isStatusUpdating = true;
+    const payload = {
+      admissionNo: this.selectedStudent.admissionNo,
+      admissionStatus: status,
+      tcDate: tcDate || '',
+      tcReason: tcReason || '',
+    };
+    this.admissionService.updateStatus(payload).subscribe({
+      next: (res: any) => {
+        this.isStatusUpdating = false;
+        if (res.success) {
+          this.toastr.success(res.message || 'Status updated!');
+          this.admissionTableObj?.draw();
+        } else {
+          this.toastr.warning(res.message || 'Failed to update status.');
+        }
+      },
+      error: () => {
+        this.isStatusUpdating = false;
+        this.toastr.error('Something went wrong.');
+      },
+    });
+  }
+
+  getStatusLabel(status: string): string {
+    const map: any = {
+      ACTIVE: 'Active',
+      TC_ISSUED: 'TC Issued',
+      PASSED_OUT: 'Passed Out',
+      DROPOUT: 'Dropout',
+      EXPELLED: 'Expelled',
+    };
+    return map[status] || status;
   }
 }

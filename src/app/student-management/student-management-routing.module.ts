@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
 import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
+import { AdmissionProfileComponent } from './admission/student-profile/admission-profile.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,20 @@ const routes: Routes = [
       featureId: 'SAS013',
       title: 'Admission List',
     },
+  },
+
+  // student-routing.module.ts
+  {
+    path: 'student',
+    children: [
+      {
+        path: 'admission',
+        children: [
+          { path: '', component: AdmissionListComponent },
+          { path: 'profile/:id', component: AdmissionProfileComponent },
+        ],
+      },
+    ],
   },
 ];
 

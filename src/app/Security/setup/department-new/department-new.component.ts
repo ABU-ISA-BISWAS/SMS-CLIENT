@@ -183,7 +183,7 @@ export class DepartmentNewComponent implements OnInit {
       const initialState = { title: 'Do you want to Delete?' };
       this.bsModalRef = this.modalService.show(ConfirmationDialog, {
         initialState,
-        class: 'modal-sm',
+        class: '',
       });
       this.bsModalRef.content.onClose.subscribe((result: any) => {
         if (result) {

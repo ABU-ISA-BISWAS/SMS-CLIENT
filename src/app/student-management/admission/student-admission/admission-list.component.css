@@ -354,6 +354,67 @@
 .custom-width-st3 {
   width: 110px;
 }
+
+/* ── Status Badges ───────────────────────────────────── */
+.profile-status-badge {
+  display: inline-block;
+  padding: 2px 30px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.background {
+  background: #e8f5e9;
+}
+
+.status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-active:hover {
+  background: #f7f8f7;
+  color: #2e7d32;
+}
+.status-tc {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-tc:hover {
+  background: #f7f9fb;
+  color: #1565c0;
+}
+.status-passed {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.status-passed:hover {
+  background: #f9f7f9;
+  color: #6a1b9a;
+}
+.status-dropout {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-dropout:hover {
+  background: #fdfbf8;
+  color: #e65100;
+}
+.status-exp {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.status-exp:hover {
+  background: #fbf9f9;
+  color: #c62828;
+}
 /* ─── DataTable Selected Row ─────────────────────────── */
 ::ng-deep table.dataTable tbody tr.selected-row > td {
   background-color: #6a95b6 !important;

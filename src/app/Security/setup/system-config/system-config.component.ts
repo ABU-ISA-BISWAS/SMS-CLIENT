@@ -82,7 +82,7 @@ export class SystemConfigComponent implements OnInit {
       const initialState = { title: 'Do you want to Delete?' };
       this.bsModalRef = this.modalService.show(ConfirmationDialog, {
         initialState,
-        class: 'modal-sm base-modal',
+        class: '',
       });
       this.bsModalRef.content.onClose.subscribe((result: any) => {
         if (result) {

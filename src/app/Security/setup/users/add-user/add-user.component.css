@@ -94,7 +94,7 @@
 
 .eu-user-panel {
   display: grid;
-  grid-template-columns: 340px 1px 1fr;
+  grid-template-columns: 400px 1px 1fr;
   min-height: 520px;
   background: #ffffff;
 }
@@ -284,8 +284,8 @@
 
 .eu-ro-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px 12px;
+  grid-template-columns: 0.8fr 0.9fr 1.3fr;
+  gap: 3px 3px;
 }
 .eu-ro-label {
   font-size: 9.5px;

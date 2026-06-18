@@ -11,10 +11,11 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
+import { AdmissionProfileComponent } from './admission/student-profile/admission-profile.component';
 import { StudentManagementRoutingModule } from './student-management-routing.module';
 
 @NgModule({
-  declarations: [AdmissionListComponent],
+  declarations: [AdmissionListComponent, AdmissionProfileComponent],
   imports: [
     SharedModule,
     CommonModule,

@@ -75,7 +75,7 @@ export class BuildingComponent implements OnInit, AfterViewInit {
     const initialState = { title: 'Do you want to Delete this Building?' };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      class: 'modal-sm base-modal',
+      class: '',
     });
     this.bsModalRef.content.onClose.subscribe((r: boolean) => {
       if (r) {

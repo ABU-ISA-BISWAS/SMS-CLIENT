@@ -1,0 +1,506 @@
+<div class="container-fluid">
+  <div class="card">
+    <!-- ── Header ── -->
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-light border" (click)="closeForm()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h6 class="m-0 fw-bold base-txt-primary">Student Profile</h6>
+      </div>
+      <div class="d-flex align-items-center gap-2" *ngIf="!isLoading">
+        <!-- Status Change Dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      <!-- ── Loading ── -->
+      <div *ngIf="isLoading" class="profile-loading">
+        <div class="spinner-border text-primary"></div>
+        <span class="ms-2">Loading profile...</span>
+      </div>
+
+      <ng-container *ngIf="!isLoading && profileData">
+        <!-- ══════════════════════════════════════
+             TOP SECTION — Photo + Summary
+        ══════════════════════════════════════ -->
+        <div class="profile-top-section">
+          <!-- Photo -->
+          <div class="profile-photo-wrap">
+            <div class="profile-photo-circle">
+              <img
+                [src]="photoPreview || 'assets/images/profile-placeholder.jpg'"
+                alt="Student Photo"
+              />
+            </div>
+          </div>
+
+          <!-- Summary Info -->
+          <div class="profile-summary">
+            <div class="profile-summary__name">
+              {{ profileData?.fullName }}
+              <span
+                *ngIf="profileData?.fullNameBn"
+                class="profile-summary__name-bn"
+              >
+                ({{ profileData?.fullNameBn }})
+              </span>
+            </div>
+            <div class="profile-summary__meta">
+              <span class="meta-pill">
+                <i class="fas fa-id-card me-1"></i>
+                {{ profileData?.admissionRegNo || "—" }}
+              </span>
+              <span class="meta-pill">
+                <i class="fas fa-graduation-cap me-1"></i>
+                {{ profileData?.className || "—" }}
+                <span *ngIf="admissionData?.sectionName">
+                  — {{ admissionData?.sectionName }}
+                </span>
+              </span>
+              <span class="meta-pill">
+                <i class="fas fa-hashtag me-1"></i>
+                Roll: {{ profileData?.rollNo || "—" }}
+              </span>
+              <span
+                class="meta-pill"
+                [ngClass]="getStatusClass(profileData?.admissionStatus)"
+              >
+                {{ getStatusLabel(profileData?.admissionStatus) }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="profile-quick-stats">
+            <div class="quick-stat">
+              <div class="quick-stat__value">
+                {{ profileData?.sessionName || "—" }}
+              </div>
+              <div class="quick-stat__label">Session</div>
+            </div>
+            <div class="quick-stat">
+              <div class="quick-stat__value">
+                {{ profileData?.shiftName || "—" }}
+              </div>
+              <div class="quick-stat__label">Shift</div>
+            </div>
+            <div class="quick-stat">
+              <div class="quick-stat__value">
+                {{ profileData?.groupName || "—" }}
+              </div>
+              <div class="quick-stat__label">Group</div>
+            </div>
+            <div class="quick-stat">
+              <div class="quick-stat__value">
+                {{ admissionTypeLabels[profileData?.admissionType] || "—" }}
+              </div>
+              <div class="quick-stat__label">Type</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TAB NAVIGATION
+        ══════════════════════════════════════ -->
+        <div class="profile-tab-nav">
+          <div
+            class="profile-tab-nav__item"
+            [class.active]="activeTab === 'info'"
+            (click)="activeTab = 'info'"
+          >
+            <i class="fas fa-user me-1"></i> Student Info
+          </div>
+          <div
+            class="profile-tab-nav__item"
+            [class.active]="activeTab === 'documents'"
+            (click)="activeTab = 'documents'"
+          >
+            <i class="fas fa-file-alt me-1"></i> Documents
+            <span *ngIf="documentList.length > 0" class="doc-count-badge">{{
+              documentList.length
+            }}</span>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TAB: Student Info
+        ══════════════════════════════════════ -->
+        <div class="profile-tab-body" *ngIf="activeTab === 'info'">
+          <div class="row g-3">
+            <!-- ── Personal Information ── -->
+            <div class="col-md-6">
+              <div class="info-card">
+                <div class="info-card__title">
+                  <i class="fas fa-user-circle me-2"></i>Personal Information
+                </div>
+                <div class="info-card__body">
+                  <div class="info-row">
+                    <span class="info-row__label">Full Name</span>
+                    <span class="info-row__value">
+                      {{ profileData?.fullName || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">নাম (বাংলা)</span>
+                    <span class="info-row__value">
+                      {{ profileData?.fullNameBn || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Student Code</span>
+                    <span class="info-row__value fw-semibold">
+                      {{ profileData?.studentCode || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Date of Birth</span>
+                    <span class="info-row__value">
+                      {{ profileData?.dob || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Gender</span>
+                    <span class="info-row__value">
+                      {{ profileData?.gender || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Religion</span>
+                    <span class="info-row__value">
+                      {{ profileData?.religion || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Blood Group</span>
+                    <span class="info-row__value">
+                      <span *ngIf="profileData?.bloodGroup" class="blood-badge">
+                        {{ profileData?.bloodGroup }}
+                      </span>
+                      <span *ngIf="!profileData?.bloodGroup">—</span>
+                    </span>
+                  </div>
+
+                  <div class="info-row">
+                    <span class="info-row__label">Category</span>
+                    <span class="info-row__value">
+                      {{ profileData?.categoryName || "General" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Birth Cert. No</span>
+                    <span class="info-row__value">
+                      {{ profileData?.birthCertNo || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">NID No</span>
+                    <span class="info-row__value">
+                      {{ profileData?.nid || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Mobile</span>
+                    <span class="info-row__value">
+                      {{ profileData?.mobileNo || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Email</span>
+                    <span class="info-row__value">
+                      {{ profileData?.email || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Present Address</span>
+                    <span class="info-row__value">
+                      {{ profileData?.presentAddress || "—" }}
+                    </span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-row__label">Permanent Address</span>
+                    <span class="info-row__value">
+                      {{ profileData?.permanentAddress || "—" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="row g-2">
+                <div class="col-md-12">
+                  <!-- Admission Information -->
+                  <div class="info-card">
+                    <div class="info-card__title">
+                      <i class="fas fa-graduation-cap me-2"></i>Admission
+                      Information
+                    </div>
+                    <div class="info-card__body">
+                      <div class="info-row">
+                        <span class="info-row__label">Reg. No</span>
+                        <span
+                          class="info-row__value fw-semibold base-txt-primary"
+                        >
+                          {{ profileData?.admissionRegNo || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Admission Date</span>
+                        <span class="info-row__value">
+                          {{ profileData?.admissionDate | date: "dd-MMM-yyyy" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Session</span>
+                        <span class="info-row__value">
+                          {{ profileData?.sessionName || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Class</span>
+                        <span class="info-row__value">
+                          {{ profileData?.className || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Section</span>
+                        <span class="info-row__value">
+                          {{ profileData?.sectionName || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Shift</span>
+                        <span class="info-row__value">
+                          {{ profileData?.shiftName || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Group / Version</span>
+                        <span class="info-row__value">
+                          {{ profileData?.groupName || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Roll No</span>
+                        <span class="info-row__value">
+                          {{ profileData?.rollNo || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Admission Type</span>
+                        <span class="info-row__value">
+                          {{
+                            admissionTypeLabels[profileData?.admissionType] ||
+                              "—"
+                          }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Status</span>
+                        <span class="info-row__value">
+                          <span
+                            class="profile-status-badge"
+                            [ngClass]="
+                              getStatusClass(profileData?.admissionStatus)
+                            "
+                          >
+                            {{ getStatusLabel(profileData?.admissionStatus) }}
+                          </span>
+                        </span>
+                      </div>
+
+                      <!-- TC Info (only if TC issued) -->
+                      <!-- <ng-container
+                    *ngIf="profileData?.admissionStatus === 'TC_ISSUED'"
+                  >
+                    <div class="info-row">
+                      <span class="info-row__label">TC Date</span>
+                      <span class="info-row__value">
+                        {{ profileData?.tcDate || "—" }}
+                      </span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-row__label">TC Reason</span>
+                      <span class="info-row__value">
+                        {{ profileData?.tcReason || "—" }}
+                      </span>
+                    </div>
+                  </ng-container> -->
+
+                      <!-- Transfer info -->
+                      <!-- <ng-container
+                    *ngIf="admissionData?.admissionType === 'TRANSFER'"
+                  >
+                    <div class="info-divider">Previous School</div>
+                    <div class="info-row">
+                      <span class="info-row__label">School Name</span>
+                      <span class="info-row__value">
+                        {{ admissionData?.prevSchool || "—" }}
+                      </span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-row__label">Previous Class</span>
+                      <span class="info-row__value">
+                        {{ admissionData?.prevClass || "—" }}
+                      </span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-row__label">Previous Roll</span>
+                      <span class="info-row__value">
+                        {{ admissionData?.prevRoll || "—" }}
+                      </span>
+                    </div>
+                  </ng-container> -->
+
+                      <div class="info-row" *ngIf="admissionData?.remarks">
+                        <span class="info-row__label">Remarks</span>
+                        <span class="info-row__value">
+                          {{ profileData?.remarks }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ── Right Column ── -->
+                <div class="col-md-12">
+                  <!-- Guardian Information -->
+                  <div class="info-card mb-3">
+                    <div class="info-card__title">
+                      <i class="fas fa-users me-2"></i>Guardian Information
+                    </div>
+                    <div class="info-card__body">
+                      <div class="info-row">
+                        <span class="info-row__label">Guardian Name</span>
+                        <span class="info-row__value fw-semibold">
+                          {{ profileData?.guardianName || "—" }}
+                        </span>
+                      </div>
+                      <!-- <div class="info-row">
+                    <span class="info-row__label">নাম (বাংলা)</span>
+                    <span class="info-row__value">
+                      {{ profileData?.guardianNameBn || "—" }}
+                    </span>
+                  </div> -->
+                      <div class="info-row">
+                        <span class="info-row__label">Relation</span>
+                        <span class="info-row__value">
+                          {{ profileData?.name || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Mobile</span>
+                        <span class="info-row__value">
+                          {{ profileData?.guardianMobile || "—" }}
+                        </span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-row__label">Occupation</span>
+                        <span class="info-row__value">
+                          {{ profileData?.guardianOccupation || "—" }}
+                        </span>
+                      </div>
+                      <!-- <div class="info-row">
+                    <span class="info-row__label">NID No</span>
+                    <span class="info-row__value">
+                      {{ profileData?.nidNo || "—" }}
+                    </span>
+                  </div> -->
+                      <!-- <div class="info-row">
+                    <span class="info-row__label">Annual Income</span>
+                    <span class="info-row__value">
+                      <span *ngIf="guardianData?.annualIncome">
+                        ৳ {{ profileData?.annualIncome | number }}
+                      </span>
+                      <span *ngIf="!guardianData?.annualIncome">—</span>
+                    </span>
+                  </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TAB: Documents
+        ══════════════════════════════════════ -->
+        <div class="profile-tab-body" *ngIf="activeTab === 'documents'">
+          <div *ngIf="documentList.length === 0" class="no-docs-msg">
+            <i class="fas fa-folder-open"></i>
+            <p>No documents uploaded yet.</p>
+          </div>
+
+          <div class="row g-3" *ngIf="documentList.length > 0">
+            <div *ngFor="let doc of documentList" class="col-md-4 col-lg-3">
+              <div class="doc-card">
+                <!-- Icon -->
+                <div
+                  class="doc-card__icon"
+                  [class.doc-icon--pdf]="doc.fileType === 'PDF'"
+                  [class.doc-icon--img]="doc.fileType !== 'PDF'"
+                >
+                  <i
+                    class="fas"
+                    [class.fa-file-pdf]="doc.fileType === 'PDF'"
+                    [class.fa-file-image]="doc.fileType !== 'PDF'"
+                  >
+                  </i>
+                </div>
+                <!-- Info -->
+                <div class="doc-card__info">
+                  <div class="doc-card__type">{{ doc.docTypeName }}</div>
+                  <div class="doc-card__name">{{ doc.fileName }}</div>
+                  <div class="doc-card__size" *ngIf="doc.fileSize">
+                    {{ (doc.fileSize / 1024).toFixed(1) }} KB
+                  </div>
+                  <div class="doc-card__verified">
+                    <span
+                      *ngIf="doc.isVerified === 1"
+                      class="verified-badge verified-badge--yes"
+                    >
+                      <i class="fas fa-check-circle me-1"></i>Verified
+                    </span>
+                    <span
+                      *ngIf="doc.isVerified !== 1"
+                      class="verified-badge verified-badge--no"
+                    >
+                      <i class="fas fa-clock me-1"></i>Pending
+                    </span>
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="doc-card__actions">
+                  <button
+                    class="btn btn-sm base-btn-primary px-2"
+                    (click)="downloadDocument(doc.stdDocumentNo, doc.fileName)"
+                  >
+                    <i class="fas fa-download me-1"></i> View
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- No data -->
+      <div
+        *ngIf="!isLoading && !profileData"
+        class="profile-loading text-muted"
+      >
+        <i class="fas fa-exclamation-circle me-2"></i>
+        Profile data not found.
+      </div>
+    </div>
+  </div>
+</div>

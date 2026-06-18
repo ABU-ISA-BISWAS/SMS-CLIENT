@@ -13,15 +13,16 @@ import { HrBuSerializer } from '../serializers/hrm-bu-serializer';
 @Injectable({ providedIn: 'root' })
 export class AdmissionService extends ResourceService<StudentAdmission> {
   private BASE = `${environment.baseUrl}${environment.authApiUrl}`;
+  private BASE_STD_MGNT = `${environment.baseUrl}${environment.studentManagementApiUrl}`;
   private EP = `api/admission`;
 
-  private SAVE_URL = `${this.BASE}/${this.EP}/create`;
-  private UPDATE_URL = `${this.BASE}/${this.EP}/update`;
-  private UPDATE_STATUS_URL = `${this.BASE}/${this.EP}/update-status`;
-  private SINGLE_URL = `${this.BASE}/${this.EP}/find`;
-  private UPLOAD_PHOTO_URL = `${this.BASE}/${this.EP}/upload-photo`;
-  private UPLOAD_DOC_URL = `${this.BASE}/${this.EP}/upload-document`;
-  private DOCS_URL = `${this.BASE}/${this.EP}/documents`;
+  private SAVE_URL = `${this.BASE_STD_MGNT}/${this.EP}/create`;
+  private UPDATE_URL = `${this.BASE_STD_MGNT}/${this.EP}/update`;
+  private UPDATE_STATUS_URL = `${this.BASE_STD_MGNT}/${this.EP}/update-status`;
+  private SINGLE_URL = `${this.BASE_STD_MGNT}/${this.EP}/find`;
+  private UPLOAD_PHOTO_URL = `${this.BASE_STD_MGNT}/${this.EP}/upload-photo`;
+  private UPLOAD_DOC_URL = `${this.BASE_STD_MGNT}/${this.EP}/upload-document`;
+  private DOCS_URL = `${this.BASE_STD_MGNT}/${this.EP}/documents`;
 
   // Dropdown APIs
   private SESSIONS_URL = `${this.BASE}/api/session/all`;
@@ -35,6 +36,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private CATEGORIES_URL = `${this.BASE}/api/student-category/all`;
   private RELATIONS_URL = `${this.BASE}/api/guardian-relation/all`;
   private DOC_TYPES_URL = `${this.BASE}/api/lookup/doc-type/student`;
+  private FIND_STUDETN_PHOTO = `${this.BASE_STD_MGNT}/${this.EP}/find-student-photo`;
 
   constructor(
     private http: HttpClient,
@@ -52,9 +54,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   // ── CRUD ───────────────────────────────────────────────
   getSingle(id: any) {
     const params = new HttpParams().append('id', id);
-    return this.http
-      .get(this.SINGLE_URL, { params })
-      .pipe(map((d: any) => d.obj));
+    return this.http.get(this.SINGLE_URL, { params }).pipe(map((d: any) => d));
   }
 
   save(data: any) {
@@ -69,6 +69,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
     return this.http.put(this.UPDATE_STATUS_URL, data).pipe(map((d: any) => d));
   }
 
+  // admission.service.ts এ
   uploadPhoto(studentNo: number, file: File) {
     const fd = new FormData();
     fd.append('studentNo', String(studentNo));
@@ -134,5 +135,10 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
         params: new HttpParams().append('applicableFor', 'STUDENT'),
       })
       .pipe(map((d: any) => d.obj));
+  }
+
+  findStudentPhoto(data: any) {
+    const params = new HttpParams().append('studentNo', data);
+    return this.http.get<any>(this.FIND_STUDETN_PHOTO, { params });
   }
 }

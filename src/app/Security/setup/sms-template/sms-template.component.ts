@@ -78,7 +78,7 @@ export class SmsTemplateComponent implements OnInit, AfterViewInit {
     };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      class: 'modal-sm base-modal',
+      class: '',
     });
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result) {
@@ -106,7 +106,7 @@ export class SmsTemplateComponent implements OnInit, AfterViewInit {
     };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      class: 'modal-sm base-modal',
+      class: '',
     });
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result) {

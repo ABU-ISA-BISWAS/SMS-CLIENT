@@ -1,0 +1,361 @@
+/* ── Loading ─────────────────────────────────────────── */
+.profile-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* ── Top Section ─────────────────────────────────────── */
+.profile-top-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #e8e8e8;
+  flex-wrap: wrap;
+}
+
+/* ── Photo ───────────────────────────────────────────── */
+.profile-photo-wrap {
+  flex-shrink: 0;
+}
+
+.profile-photo-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+  background: #f0f0f0;
+}
+
+.profile-photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* ── Summary ─────────────────────────────────────────── */
+.profile-summary {
+  flex: 1;
+  min-width: 200px;
+}
+
+.profile-summary__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+
+.profile-summary__name-bn {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-left: 4px;
+}
+
+.profile-summary__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 11px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  color: #555;
+}
+
+/* ── Quick Stats ─────────────────────────────────────── */
+.profile-quick-stats {
+  display: flex;
+  gap: 1px;
+  background: #e0e0e0;
+  border: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.quick-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 18px;
+  background: #fff;
+  min-width: 90px;
+}
+
+.quick-stat__value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.quick-stat__label {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+/* ── Tab Nav ─────────────────────────────────────────── */
+.profile-tab-nav {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.profile-tab-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.profile-tab-nav__item:hover {
+  color: #555;
+  background: #f0f0f0;
+}
+
+.profile-tab-nav__item.active {
+  color: var(--bs-primary, #0d6efd);
+  border-bottom-color: var(--bs-primary, #0d6efd);
+  background: #fff;
+  font-weight: 600;
+}
+
+.doc-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--bs-primary, #0d6efd);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* ── Tab Body ─────────────────────────────────────────── */
+.profile-tab-body {
+  padding: 20px 24px;
+}
+
+/* ── Info Card ───────────────────────────────────────── */
+.info-card {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  height: 100%;
+}
+
+.info-card__title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  padding: 10px 14px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.info-card__body {
+  padding: 4px 0;
+}
+
+/* ── Info Row ────────────────────────────────────────── */
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 7px 14px;
+  border-bottom: 1px solid #f5f5f5;
+  gap: 8px;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row__label {
+  flex-shrink: 0;
+  width: 140px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding-top: 1px;
+}
+
+.info-row__value {
+  flex: 1;
+  font-size: 13px;
+  color: #333;
+  word-break: break-word;
+}
+
+/* ── Info Divider ────────────────────────────────────── */
+.info-divider {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #999;
+  padding: 8px 14px 4px;
+  border-top: 1px dashed #e8e8e8;
+  margin-top: 4px;
+}
+
+/* ── Status Badges ───────────────────────────────────── */
+.profile-status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.status-tc {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+.status-passed {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+.status-dropout {
+  background: #fff3e0;
+  color: #e65100;
+}
+.status-exp {
+  background: #fdecea;
+  color: #c62828;
+}
+
+/* ── Blood Group Badge ───────────────────────────────── */
+.blood-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  background: #fdecea;
+  color: #c62828;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 2px;
+}
+
+/* ── Document Cards ──────────────────────────────────── */
+.no-docs-msg {
+  text-align: center;
+  padding: 60px 20px;
+  color: #bbb;
+}
+
+.no-docs-msg i {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.no-docs-msg p {
+  font-size: 14px;
+}
+
+.doc-card {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.doc-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  font-size: 32px;
+}
+
+.doc-icon--pdf {
+  background: #fff5f5;
+  color: #e53935;
+}
+.doc-icon--img {
+  background: #f0f7ff;
+  color: #1565c0;
+}
+
+.doc-card__info {
+  padding: 10px 12px;
+  flex: 1;
+  border-top: 1px solid #f0f0f0;
+}
+
+.doc-card__type {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.doc-card__name {
+  font-size: 12px;
+  color: #333;
+  word-break: break-all;
+  margin-bottom: 4px;
+}
+
+.doc-card__size {
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.verified-badge--yes {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.verified-badge--no {
+  background: #fff8e1;
+  color: #f57f17;
+}
+
+.doc-card__actions {
+  padding: 8px 12px;
+  border-top: 1px solid #f0f0f0;
+}

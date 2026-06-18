@@ -76,7 +76,7 @@ export class SalaryGradeComponent implements OnInit, AfterViewInit {
     const initialState = { title: 'Do you want to Delete this Salary Grade?' };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      class: 'modal-md base-modal',
+      class: '',
     });
     this.bsModalRef.content.onClose.subscribe((r: boolean) => {
       if (r) {

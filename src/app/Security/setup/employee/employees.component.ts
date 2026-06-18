@@ -327,7 +327,7 @@ export class EmployeesComponent implements OnInit, AfterViewInit, OnDestroy {
     const initialState = { title: 'Do you want to Delete this Employee?' };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
-      class: 'modal-sm',
+      class: '',
     });
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result) {

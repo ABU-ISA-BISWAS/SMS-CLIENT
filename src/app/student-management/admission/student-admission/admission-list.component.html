@@ -11,13 +11,31 @@
         <h6 class="m-0 fw-bold base-txt-primary">Student Admission</h6>
 
         <div class="d-flex flex-wrap gap-2 align-items-center">
-          <button
-            type="button"
-            class="btn btn-sm base-btn-outline-orange fw-medium px-2"
-            (click)="changeStatus()"
-          >
-            <i class="fas fa-exchange-alt mr-1"></i>&nbsp;Change Status
-          </button>
+          <div class="dropdown">
+            <button
+              class="btn btn-sm btn-light border dropdown-toggle"
+              [disabled]="isStatusUpdating"
+              data-bs-toggle="dropdown"
+            >
+              <i class="fas fa-exchange-alt me-1"></i>
+              {{ isStatusUpdating ? "Updating..." : "Change Status" }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li *ngFor="let opt of statusOptions">
+                <a
+                  class="dropdown-item d-flex align-items-center gap-2 profile-status-badge {{
+                    opt.cls
+                  }}"
+                  href="javascript:void(0)"
+                  (click)="changeStatus(opt.value)"
+                >
+                  <span>
+                    {{ opt.label }}
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
 
           <button
             type="button"
@@ -249,8 +267,10 @@
                   <div class="adm-photo-box">
                     <img
                       *ngIf="photoPreview"
-                      [src]="photoPreview"
                       class="adm-photo-img"
+                      [src]="
+                        photoPreview || 'assets/images/profile-placeholder.jpg'
+                      "
                     />
                     <span *ngIf="!photoPreview" class="adm-photo-placeholder">
                       <i class="fas fa-camera"></i><br />Photo
@@ -586,7 +606,7 @@
                     >
                       <option [ngValue]="undefined">Select</option>
                       <option *ngFor="let r of relationList" [ngValue]="r.id">
-                        {{ r.relationName }}
+                        {{ r.name }}
                       </option>
                     </select>
                   </div>
