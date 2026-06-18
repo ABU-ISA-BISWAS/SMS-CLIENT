@@ -528,8 +528,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
         type: 'GET',
         data: (d: any) => {
           d.customSearch = d.search.value;
-          d.academicSessionNo = that.filterSessionNo || '';
-          d.classMasterNo = that.filterClassNo || '';
+          d.academicSession = that.filterSessionNo || '';
+          d.classMaster = that.filterClassNo || '';
           d.admissionStatus = that.filterAdmissionStatus || '';
           return d;
         },
