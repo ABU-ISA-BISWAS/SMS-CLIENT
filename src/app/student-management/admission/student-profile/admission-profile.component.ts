@@ -58,8 +58,26 @@ export class AdmissionProfileComponent implements OnInit {
 
   ngOnInit() {
     this.admissionNo = Number(this.route.snapshot.paramMap.get('id'));
+
     this.profileData = history.state.studentData;
     this.admissionData = history.state.admissionData;
+
+    if (
+      !this.profileData ||
+      !this.admissionData.student.studentNo ||
+      !this.profileData?.admissionNo
+    ) {
+      console.error('Profile/Admission data missing — cannot load documents', {
+        profileData: this.profileData,
+        admissionData: this.admissionData,
+      });
+      this.toastr.error(
+        'Profile/Admission data missing — cannot load documents',
+      );
+      this.isLoading = false;
+      return;
+    }
+
     this.loadPhoto();
   }
 
@@ -121,8 +139,13 @@ export class AdmissionProfileComponent implements OnInit {
         const enrichedList: any[] = [];
 
         metaList.forEach((doc: any) => {
+          const data = {
+            stdDocumentNo: doc.stdDocumentNo,
+            studentNo: this.admissionData?.student?.studentNo,
+            admissionNo: this.profileData?.admissionNo,
+          };
           // প্রতিটি doc এর BLOB আনুন
-          this.admissionService.findDocument(doc.stdDocumentNo).subscribe({
+          this.admissionService.findDocument(data).subscribe({
             next: (docRes: any) => {
               loadedCount++;
               const obj = docRes?.obj;

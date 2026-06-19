@@ -99,10 +99,9 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
       .pipe(map((d: any) => d));
   }
 
-  findDocument(stdDocumentNo: number) {
-    const params = new HttpParams().append('stdDocumentNo', stdDocumentNo);
+  findDocument(data: any) {
     return this.http
-      .get(this.FIND_DOCUMENT_URL, { params })
+      .post(this.FIND_DOCUMENT_URL, data)
       .pipe(map((d: any) => d));
   }
 
