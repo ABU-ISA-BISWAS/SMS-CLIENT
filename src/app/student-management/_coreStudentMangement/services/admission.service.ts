@@ -23,6 +23,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private UPLOAD_PHOTO_URL = `${this.BASE_STD_MGNT}/${this.EP}/upload-photo`;
   private UPLOAD_DOC_URL = `${this.BASE_STD_MGNT}/${this.EP}/upload-document`;
   private DOCS_URL = `${this.BASE_STD_MGNT}/${this.EP}/documents`;
+  private FIND_DOCUMENT_URL = `${this.BASE_STD_MGNT}/${this.EP}/find-document`;
 
   // Dropdown APIs
   private SESSIONS_URL = `${this.BASE}/api/session/all`;
@@ -91,11 +92,18 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
     return this.http.post(this.UPLOAD_DOC_URL, fd).pipe(map((d: any) => d));
   }
 
-  getDocuments(studentNo: number) {
+  getDocuments(studentNo: any) {
     const params = new HttpParams().append('studentNo', studentNo);
     return this.http
-      .get(this.DOCS_URL, { params })
-      .pipe(map((d: any) => d.obj));
+      .get<any>(this.DOCS_URL, { params })
+      .pipe(map((d: any) => d));
+  }
+
+  findDocument(stdDocumentNo: number) {
+    const params = new HttpParams().append('stdDocumentNo', stdDocumentNo);
+    return this.http
+      .get(this.FIND_DOCUMENT_URL, { params })
+      .pipe(map((d: any) => d));
   }
 
   // ── Dropdowns ──────────────────────────────────────────
@@ -134,7 +142,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
       .get(this.DOC_TYPES_URL, {
         params: new HttpParams().append('applicableFor', 'STUDENT'),
       })
-      .pipe(map((d: any) => d.obj));
+      .pipe(map((d: any) => d));
   }
 
   findStudentPhoto(data: any) {

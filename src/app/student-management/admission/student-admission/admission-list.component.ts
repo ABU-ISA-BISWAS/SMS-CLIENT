@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -82,15 +82,22 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   // ── Documents ─────────────────────────────────────────
   docEntries: {
     docTypeNo: number | null;
+    docTypeName: String | null;
     file: File | null;
     preview: string;
   }[] = [];
+
+  savedDocuments: any[] = [];
+  isDocumentsLoading = false;
 
   // ── State ─────────────────────────────────────────────
   isLoading = false;
   isSaving = false;
   savedStudentNo: number | null = null;
   savedAdmissionNo: number | null = null;
+
+  previewImageUrl: SafeResourceUrl | null = null;
+  previewImageName = '';
 
   isStatusUpdating = false;
 
@@ -153,7 +160,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           this.relationList = res.relations.items || [];
           this.shiftList = res.shifts.items || [];
           this.groupList = res.groups.items || [];
-          this.docTypeList = res.docTypes || [];
+          this.docTypeList = res.docTypes.items || [];
           this.sectionList = res.sections.items || [];
           this.initDocEntries();
         },
@@ -164,6 +171,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   initDocEntries() {
     this.docEntries = this.docTypeList.map((dt) => ({
       docTypeNo: dt.id,
+      docTypeName: dt.docTypeName,
       file: null,
       preview: '',
     }));
@@ -193,11 +201,11 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       this.admissionService.getSingle(this.admissionNo).subscribe({
         next: (res: any) => {
           if (res && res.obj) {
-            let studentNo = res.obj.student.studentNo;
-            if (studentNo != null && studentNo > 0) {
+            const studentNo = res.obj.student?.studentNo;
+            if (studentNo) {
               this.findStudentPhoto(studentNo);
+              this.loadSavedDocuments(studentNo);
             }
-            console.log('response:::::', res.obj);
             this.patchFormData(res.obj);
           }
         },
@@ -208,6 +216,82 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     if (this.admissionTableObj) {
       this.admissionTableObj.destroy();
       this.admissionTableObj = null;
+    }
+  }
+
+  loadSavedDocuments(studentNo: number) {
+    this.isDocumentsLoading = true;
+    this.savedDocuments = [];
+
+    // Step 1: Document metadata list আনুন
+    this.admissionService.getDocuments(studentNo).subscribe({
+      next: (res: any) => {
+        const docList: any[] = res?.items || [];
+
+        if (docList.length === 0) {
+          this.isDocumentsLoading = false;
+          return;
+        }
+
+        // Step 2: প্রতিটি document এর BLOB আনুন
+        let loadedCount = 0;
+        const enrichedDocs: any[] = [];
+
+        docList.forEach((doc: any) => {
+          this.admissionService.findDocument(doc.stdDocumentNo).subscribe({
+            next: (docRes: any) => {
+              loadedCount++;
+              const obj = docRes?.obj;
+              const mimeType = this.getMimeType(doc.fileType);
+
+              enrichedDocs.push({
+                ...doc,
+                base64: obj?.base64 || null,
+                mimeType: mimeType,
+                dataUrl: obj?.base64
+                  ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                      `data:${mimeType};base64,${obj.base64}`,
+                    )
+                  : null,
+              });
+
+              // সব load হলে sort করে assign করুন
+              if (loadedCount === docList.length) {
+                this.savedDocuments = enrichedDocs.sort(
+                  (a, b) => a.stdDocumentNo - b.stdDocumentNo,
+                );
+                this.isDocumentsLoading = false;
+              }
+            },
+            error: () => {
+              loadedCount++;
+              enrichedDocs.push({ ...doc, base64: null, dataUrl: null });
+              if (loadedCount === docList.length) {
+                this.savedDocuments = enrichedDocs;
+                this.isDocumentsLoading = false;
+              }
+            },
+          });
+        });
+      },
+      error: () => {
+        this.isDocumentsLoading = false;
+        this.toastr.error('Failed to load documents.');
+      },
+    });
+  }
+
+  getMimeType(fileType: string): string {
+    switch ((fileType || '').toUpperCase()) {
+      case 'PDF':
+        return 'application/pdf';
+      case 'JPG':
+      case 'JPEG':
+        return 'image/jpeg';
+      case 'PNG':
+        return 'image/png';
+      default:
+        return 'application/octet-stream';
     }
   }
 
@@ -225,11 +309,12 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     this.photoPreview = null;
     this.photoFile = null;
     this.docEntries = [];
+    this.savedDocuments = [];
+    this.isDocumentsLoading = false;
     this.savedStudentNo = null;
     this.savedAdmissionNo = null;
     this.currentStep = 1;
   }
-
   patchFormData(data: any) {
     // API response এ student / guardian / admission আলাদা object আসছে
     const s = data.student || {};
@@ -428,16 +513,15 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     req$.pipe(finalize(() => (this.isSaving = false))).subscribe({
       next: (res: any) => {
         if (res.success) {
-          this.savedStudentNo = res.id;
           this.savedAdmissionNo = res.obj?.admissionNo;
-          console.log('photo:::', this.photoFile);
-          console.log('savedAdmissionNo:::', this.savedAdmissionNo);
+          this.savedStudentNo = res.obj?.studentNo;
+
           if (this.photoFile && this.savedStudentNo) {
             this.admissionService
               .uploadPhoto(this.savedStudentNo, this.photoFile)
               .subscribe();
           }
-          // this.photoPreview = this.getPhotoUrl(this.savedStudentNo);
+
           this.currentStep = 4;
           this.toastr.success(res.message || 'Admission saved successfully!');
         } else {
@@ -450,10 +534,12 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
 
   finishAndClose() {
     const pendingDocs = this.docEntries.filter((d) => d.file && d.docTypeNo);
+
     if (pendingDocs.length === 0) {
       this.closeForm();
       return;
     }
+
     let uploaded = 0;
     pendingDocs.forEach((doc) => {
       this.admissionService
@@ -464,8 +550,19 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           doc.file!,
         )
         .subscribe({
-          next: () => {
+          next: (res: any) => {
             uploaded++;
+            // Upload হওয়া document saved list এ যোগ করুন
+            if (res.success && res.obj) {
+              this.savedDocuments.push({
+                stdDocumentNo: res.obj.stdDocumentNo,
+                docTypeName: doc.docTypeName || '',
+                fileName: doc.file!.name,
+                fileType: doc.file!.name.split('.').pop()?.toUpperCase(),
+                filePath: res.obj.filePath,
+                isVerified: 0,
+              });
+            }
             if (uploaded === pendingDocs.length) this.closeForm();
           },
           error: () => {
@@ -733,5 +830,17 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       EXPELLED: 'Expelled',
     };
     return map[status] || status;
+  }
+
+  // Image preview lightbox
+
+  previewImage(dataUrl: SafeResourceUrl, fileName: string) {
+    this.previewImageUrl = dataUrl;
+    this.previewImageName = fileName;
+  }
+
+  closePreview() {
+    this.previewImageUrl = null;
+    this.previewImageName = '';
   }
 }

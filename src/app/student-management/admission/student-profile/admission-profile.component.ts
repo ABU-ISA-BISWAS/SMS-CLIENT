@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../../environments/environment';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
 import { AdmissionService } from '../../_coreStudentMangement/services/admission.service';
 
@@ -24,6 +23,7 @@ export class AdmissionProfileComponent implements OnInit {
 
   isLoading = true;
   isStatusUpdating = false;
+  isDocumentsLoading = false;
 
   // Status change
   activeTab: 'info' | 'documents' = 'info';
@@ -42,6 +42,11 @@ export class AdmissionProfileComponent implements OnInit {
     RE_ADMISSION: 'Re-Admission',
   };
 
+  photoBase64: SafeResourceUrl | null = null;
+
+  previewImageUrl: SafeResourceUrl | null = null;
+  previewImageName = '';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -53,28 +58,29 @@ export class AdmissionProfileComponent implements OnInit {
 
   ngOnInit() {
     this.admissionNo = Number(this.route.snapshot.paramMap.get('id'));
-
     this.profileData = history.state.studentData;
     this.admissionData = history.state.admissionData;
-
-    console.log('profile data::::', this.profileData);
-    console.log('photoPreview data::::', this.photoPreview);
     this.loadPhoto();
-    this.loadDocuments();
   }
 
   loadPhoto() {
+    this.isLoading = true;
     if (this.admissionNo) {
       this.admissionService.getSingle(this.admissionNo).subscribe({
         next: (res: any) => {
           if (res && res.obj) {
+            this.isLoading = false;
             let studentNo = res.obj.student.studentNo;
-            if (studentNo != null && studentNo > 0) {
+            if (studentNo) {
               this.findStudentPhoto(studentNo);
+              this.loadDocuments(studentNo);
             }
           }
         },
-        error: () => this.toastr.error('Failed to load admission data.'),
+        error: () => {
+          this.isLoading = false;
+          this.toastr.error('Failed to load admission data.');
+        },
       });
     }
   }
@@ -97,28 +103,93 @@ export class AdmissionProfileComponent implements OnInit {
     );
   }
 
-  loadDocuments() {
-    if (!this.admissionData.student.studentNo) return;
-    this.admissionService
-      .getDocuments(this.admissionData.student.studentNo)
-      .subscribe({
-        next: (res: any) => {
-          this.isLoading = false;
-          if (res && res.obj) {
-            this.documentList = res?.obj || [];
-          }
-        },
-        error: () => {
-          this.isLoading = false;
-          this.toastr.error('Failed to load documents.');
-        },
-      });
+  // ── Load Documents (metadata + BLOB) ─────────────────
+  loadDocuments(studentNo: number) {
+    this.isDocumentsLoading = true;
+    this.documentList = [];
+
+    this.admissionService.getDocuments(studentNo).subscribe({
+      next: (res: any) => {
+        const metaList: any[] = res?.items || [];
+
+        if (metaList.length === 0) {
+          this.isDocumentsLoading = false;
+          return;
+        }
+
+        let loadedCount = 0;
+        const enrichedList: any[] = [];
+
+        metaList.forEach((doc: any) => {
+          // প্রতিটি doc এর BLOB আনুন
+          this.admissionService.findDocument(doc.stdDocumentNo).subscribe({
+            next: (docRes: any) => {
+              loadedCount++;
+              const obj = docRes?.obj;
+              const mimeType = this.getMimeType(doc.fileType);
+
+              enrichedList.push({
+                ...doc,
+                mimeType,
+                base64: obj?.base64 || null,
+                dataUrl: obj?.base64
+                  ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                      `data:${mimeType};base64,${obj.base64}`,
+                    )
+                  : null,
+              });
+
+              if (loadedCount === metaList.length) {
+                this.documentList = enrichedList.sort(
+                  (a, b) => a.stdDocumentNo - b.stdDocumentNo,
+                );
+                this.isDocumentsLoading = false;
+              }
+            },
+            error: () => {
+              loadedCount++;
+              enrichedList.push({ ...doc, base64: null, dataUrl: null });
+              if (loadedCount === metaList.length) {
+                this.documentList = enrichedList;
+                this.isDocumentsLoading = false;
+              }
+            },
+          });
+        });
+      },
+      error: () => {
+        this.isDocumentsLoading = false;
+        this.toastr.error('Failed to load documents.');
+      },
+    });
   }
 
-  getPhotoUrl(): string {
-    const studentNo = this.admissionData.student.studentNo;
-    if (!studentNo) return 'assets/images/profile-placeholder.jpg';
-    return `${environment.baseUrl}${environment.studentManagementApiUrl}/api/admission/photo/${studentNo}`;
+  // ── View Image (lightbox) ─────────────────────────────
+  viewImage(dataUrl: SafeResourceUrl, fileName: string) {
+    this.previewImageUrl = dataUrl;
+    this.previewImageName = fileName;
+  }
+
+  closePreview() {
+    this.previewImageUrl = null;
+    this.previewImageName = '';
+  }
+
+  // ── View PDF (new tab) ────────────────────────────────
+  viewPdf(base64: string, fileName: string) {
+    const byteChars = atob(base64);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteChars.length; offset += 512) {
+      const slice = byteChars.slice(offset, offset + 512);
+      const byteNums = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNums[i] = slice.charCodeAt(i);
+      }
+      byteArrays.push(new Uint8Array(byteNums));
+    }
+    const blob = new Blob(byteArrays, { type: 'application/pdf' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
   }
 
   getStatusClass(status: string): string {
@@ -207,15 +278,34 @@ export class AdmissionProfileComponent implements OnInit {
     });
   }
 
-  downloadDocument(stdDocumentNo: number, fileName: string) {
-    const url =
-      `${environment.baseUrl}${environment.authApiUrl}` +
-      `/api/admission/document/${stdDocumentNo}/download`;
+  // ── Download (Base64 → file) ──────────────────────────
+  downloadDocument(doc: any) {
+    if (!doc.base64) {
+      this.toastr.warning('File not available for download.');
+      return;
+    }
+
+    const byteChars = atob(doc.base64);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteChars.length; offset += 512) {
+      const slice = byteChars.slice(offset, offset + 512);
+      const byteNums = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNums[i] = slice.charCodeAt(i);
+      }
+      byteArrays.push(new Uint8Array(byteNums));
+    }
+
+    const blob = new Blob(byteArrays, { type: doc.mimeType });
+    const blobUrl = URL.createObjectURL(blob);
+
     const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-    a.target = '_blank';
+    a.href = blobUrl;
+    a.download = doc.fileName;
     a.click();
+
+    // Memory cleanup
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
   }
 
   get initials(): string {
@@ -229,5 +319,24 @@ export class AdmissionProfileComponent implements OnInit {
 
   closeForm() {
     this.router.navigate(['student-management/admission/admission-list']);
+  }
+
+  // ── Helpers ───────────────────────────────────────────
+  getMimeType(fileType: string): string {
+    switch ((fileType || '').toUpperCase()) {
+      case 'PDF':
+        return 'application/pdf';
+      case 'JPG':
+      case 'JPEG':
+        return 'image/jpeg';
+      case 'PNG':
+        return 'image/png';
+      default:
+        return 'application/octet-stream';
+    }
+  }
+
+  goBack() {
+    this.router.navigate(['/student/admission']);
   }
 }
