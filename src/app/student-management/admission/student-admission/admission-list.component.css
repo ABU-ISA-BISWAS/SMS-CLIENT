@@ -626,3 +626,12 @@
   background-color: #6a95b6 !important;
   color: white !important;
 }
+
+.tc-modal-box {
+  width: 420px;
+  max-width: 90vw;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+}

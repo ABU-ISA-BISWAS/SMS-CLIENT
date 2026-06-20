@@ -1127,3 +1127,64 @@
     </ng-container>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════════
+     TC STATUS MODAL
+════════════════════════════════════════════════════ -->
+<div class="img-preview-overlay" *ngIf="showTcModal" (click)="closeTcModal()">
+  <div class="img-preview-box tc-modal-box" (click)="$event.stopPropagation()">
+    <button class="img-preview-close" (click)="closeTcModal()">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h6 class="fw-bold base-txt-primary mb-3">
+      <i class="fas fa-file-export me-1"></i> TC Information
+    </h6>
+
+    <div class="row g-2">
+      <div class="col-md-12">
+        <div class="input-group input-group-sm required">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+          >
+            TC Date <span class="text-danger ms-1">*</span>
+          </span>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            [(ngModel)]="tcDate"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12 mt-2">
+        <div class="input-group input-group-sm required">
+          <span
+            class="input-group-text base-bg-subtle-primary base-txt-primary custom-width"
+          >
+            TC Reason <span class="text-danger ms-1">*</span>
+          </span>
+          <textarea
+            class="form-control form-control-sm"
+            rows="3"
+            [(ngModel)]="tcReason"
+            placeholder="TC reason লিখুন..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button class="btn btn-sm btn-light border px-3" (click)="closeTcModal()">
+        Cancel
+      </button>
+      <button
+        class="btn btn-sm base-btn-primary px-3"
+        [disabled]="!tcDate || !tcReason"
+        (click)="confirmTcModal()"
+      >
+        <i class="fas fa-check me-1"></i> Confirm
+      </button>
+    </div>
+  </div>
+</div>

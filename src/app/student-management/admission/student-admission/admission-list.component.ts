@@ -101,6 +101,12 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
 
   isStatusUpdating = false;
 
+  showTcModal = false;
+  pendingStatus = '';
+  tcDate: string = '';
+  tcReason: string = '';
+  private pendingTcStatus = '';
+
   statusOptions = [
     { value: 'ACTIVE', label: 'Active', cls: 'status-active' },
     { value: 'TC_ISSUED', label: 'TC Issued', cls: 'status-tc' },
@@ -819,15 +825,33 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openTcModal(status: string) {
-    const tcDate = window.prompt(
-      'Enter TC Date (YYYY-MM-DD):',
-      new Date().toISOString().split('T')[0],
-    );
-    if (!tcDate) return;
+  // openTcModal(status: string) {
+  //   const tcDate = window.prompt(
+  //     'Enter TC Date (YYYY-MM-DD):',
+  //     new Date().toISOString().split('T')[0],
+  //   );
+  //   if (!tcDate) return;
 
-    const tcReason = window.prompt('Enter TC Reason:') || '';
-    this.callUpdateStatus(status, tcDate, tcReason);
+  //   const tcReason = window.prompt('Enter TC Reason:') || '';
+  //   this.callUpdateStatus(status, tcDate, tcReason);
+  // }
+
+  openTcModal(status: string) {
+    this.pendingTcStatus = status;
+    this.tcDate = new Date().toISOString().split('T')[0];
+    this.tcReason = '';
+    this.showTcModal = true;
+  }
+
+  closeTcModal() {
+    this.showTcModal = false;
+    this.pendingTcStatus = '';
+  }
+
+  confirmTcModal() {
+    if (!this.tcDate || !this.tcReason) return;
+    this.callUpdateStatus(this.pendingTcStatus, this.tcDate, this.tcReason);
+    this.closeTcModal();
   }
 
   callUpdateStatus(
