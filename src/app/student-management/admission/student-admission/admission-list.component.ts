@@ -180,11 +180,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   // ── Form Open / Close ─────────────────────────────────
   openForm(mode: 'add' | 'edit') {
     if (mode === 'edit') {
-      this.admissionNo = this.selectedAdmission.admission.admissionNo;
-      console.log(
-        'response:::::',
-        this.selectedAdmission.admission.admissionNo,
-      );
+      this.admissionNo = this.selectedAdmission?.admission?.admissionNo;
+
       if (!this.selectedAdmission) {
         this.toastr.warning('Please select a record to Edit.');
         return;
@@ -227,7 +224,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     this.isDocumentsLoading = true;
     this.savedDocuments = [];
 
-    // Step 1: Document metadata list আনুন
     this.admissionService.getDocuments(studentNo).subscribe({
       next: (res: any) => {
         const docList: any[] = res?.items || [];
@@ -237,7 +233,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           return;
         }
 
-        // Step 2: প্রতিটি document এর BLOB আনুন
         let loadedCount = 0;
         const enrichedDocs: any[] = [];
 
@@ -264,7 +259,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
                   : null,
               });
 
-              // সব load হলে sort করে assign করুন
               if (loadedCount === docList.length) {
                 this.savedDocuments = enrichedDocs.sort(
                   (a, b) => a.stdDocumentNo - b.stdDocumentNo,
@@ -307,6 +301,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   closeForm() {
     this.isFormVisible = false;
     this.resetFormData();
+    this.selectedAdmission = null;
     // re-init grid
     setTimeout(() => this.initGrid(), 50);
   }
@@ -794,8 +789,16 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   }
 
   changeStatus(newStatus: string) {
-    const currentStatus = this.selectedAdmission?.admissionStatus;
-    if (newStatus === currentStatus) return;
+    if (!this.selectedAdmission) {
+      this.toastr.warning('Please select a record to Change Status.');
+      return;
+    }
+    const currentStatus = this.selectedAdmission?.admission?.admissionStatus;
+
+    if (newStatus === currentStatus) {
+      this.toastr.warning('Please select a different status.');
+      return;
+    }
 
     if (newStatus === 'TC_ISSUED') {
       this.openTcModal(newStatus);
@@ -817,8 +820,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   }
 
   openTcModal(status: string) {
-    // TC Issue এর জন্য date + reason একটা small modal এ নেব
-    // Simple approach: prompt দিয়ে করা যায় অথবা আলাদা modal
     const tcDate = window.prompt(
       'Enter TC Date (YYYY-MM-DD):',
       new Date().toISOString().split('T')[0],
@@ -849,6 +850,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           this.admissionTableObj?.draw();
         } else {
           this.toastr.warning(res.message || 'Failed to update status.');
+          this.isStatusUpdating = false;
         }
       },
       error: () => {
@@ -882,10 +884,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   }
 
   deleteDoc(doc: any) {
-    // confirmation modal চাইলে ConfirmationDialog ব্যবহার করতে পারেন,
-    // আপাতত simple confirm দিয়ে দেখাচ্ছি
-    // if (!confirm(`Delete document "${doc.docTypeName}"?`)) return;
-
     const initialState = { title: `Delete document "${doc.docTypeName}"?` };
     this.bsModalRef = this.modalService.show(ConfirmationDialog, {
       initialState,
