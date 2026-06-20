@@ -887,7 +887,7 @@
                 </div>
 
                 <div class="row g-2 mb-3">
-                  <div *ngFor="let doc of savedDocuments" class="col-md-4">
+                  <div *ngFor="let doc of savedDocuments" class="col-md-6">
                     <div class="saved-doc-card">
                       <!-- Preview -->
                       <div class="saved-doc-card__preview">
@@ -962,6 +962,15 @@
                           (click)="previewImage(doc.dataUrl, doc.fileName)"
                         >
                           <i class="fas fa-eye me-1"></i>View
+                        </button>
+
+                        <button
+                          *ngIf="doc.isVerified === 0"
+                          class="btn btn-sm btn-light border px-2 text-danger"
+                          style="font-size: 11px; margin-left: 5px"
+                          (click)="deleteDoc(doc)"
+                        >
+                          <i class="fas fa-times"></i>
                         </button>
                       </div>
                     </div>

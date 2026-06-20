@@ -1,4 +1,4 @@
-import { Resource } from "../../../auth/_model/resource.model"; 
+import { Resource } from '../../../auth/_model/resource.model';
 
 export class StudentMaster extends Resource {
   declare id: number;
@@ -16,7 +16,7 @@ export class StudentMaster extends Resource {
   nationality: string = 'Bangladeshi';
   birthCertNo!: string;
   nidNo!: string;
-  mobileNo!: string;
+  mobileNo: string | null = null;
   email!: string;
   presentAddress!: string;
   permanentAddress!: string;

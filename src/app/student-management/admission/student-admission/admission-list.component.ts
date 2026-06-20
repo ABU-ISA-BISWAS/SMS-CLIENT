@@ -202,9 +202,13 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
         next: (res: any) => {
           if (res && res.obj) {
             const studentNo = res.obj.student?.studentNo;
-            if (studentNo) {
+            const admissionNo = res.obj.admission?.admissionNo;
+            this.savedAdmissionNo = admissionNo;
+            this.savedStudentNo = studentNo;
+
+            if (studentNo && admissionNo) {
               this.findStudentPhoto(studentNo);
-              this.loadSavedDocuments(studentNo);
+              this.loadSavedDocuments(studentNo, admissionNo);
             }
             this.patchFormData(res.obj);
           }
@@ -219,7 +223,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  loadSavedDocuments(studentNo: number) {
+  loadSavedDocuments(studentNo: number, admissionNo: number) {
     this.isDocumentsLoading = true;
     this.savedDocuments = [];
 
@@ -238,7 +242,12 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
         const enrichedDocs: any[] = [];
 
         docList.forEach((doc: any) => {
-          this.admissionService.findDocument(doc.stdDocumentNo).subscribe({
+          const data = {
+            stdDocumentNo: doc.stdDocumentNo,
+            studentNo: studentNo,
+            admissionNo: admissionNo,
+          };
+          this.admissionService.findDocument(data).subscribe({
             next: (docRes: any) => {
               loadedCount++;
               const obj = docRes?.obj;
@@ -339,14 +348,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       email: s.email,
       presentAddress: s.presentAddress,
       permanentAddress: s.permanentAddress,
-      photoPath: s.photoPath,
     });
 
-    // if (s.photoPath) {
-    //   this.photoPreview = s.photoPath;
-    // }
-
-    // Guardian
     Object.assign(this.guardian, {
       guardianNo: g.guardianNo,
       studentNo: s.studentNo,
@@ -519,7 +522,30 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           if (this.photoFile && this.savedStudentNo) {
             this.admissionService
               .uploadPhoto(this.savedStudentNo, this.photoFile)
-              .subscribe();
+              .subscribe({
+                next: (res) => {
+                  if (!res) {
+                    this.toastr.error('Document upload failed.');
+                    return;
+                  }
+                  if (res.success) {
+                    this.toastr.success(
+                      res.message || 'Document uploaded successfully',
+                    );
+                  } else {
+                    this.toastr.warning(
+                      res.message || 'Document upload failed.',
+                    );
+                  }
+                },
+                error: (err) => {
+                  const message =
+                    err?.error?.message ||
+                    err?.error?.errorMessage ||
+                    'Photo upload failed';
+                  this.toastr.error(message);
+                },
+              });
           }
 
           this.currentStep = 4;
@@ -541,6 +567,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     }
 
     let uploaded = 0;
+    let failedCount = 0;
+
     pendingDocs.forEach((doc) => {
       this.admissionService
         .uploadDocument(
@@ -552,21 +580,35 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
         .subscribe({
           next: (res: any) => {
             uploaded++;
-            // Upload হওয়া document saved list এ যোগ করুন
             if (res.success && res.obj) {
               this.savedDocuments.push({
                 stdDocumentNo: res.obj.stdDocumentNo,
                 docTypeName: doc.docTypeName || '',
                 fileName: doc.file!.name,
                 fileType: doc.file!.name.split('.').pop()?.toUpperCase(),
-                filePath: res.obj.filePath,
                 isVerified: 0,
               });
+            } else {
+              failedCount++;
+              this.toastr.warning(
+                res.message || `Failed to upload "${doc.docTypeName}".`,
+              );
             }
-            if (uploaded === pendingDocs.length) this.closeForm();
+            if (uploaded === pendingDocs.length) {
+              if (failedCount === 0) {
+                this.toastr.success('All documents uploaded successfully!');
+              }
+              this.closeForm();
+            }
           },
-          error: () => {
+          error: (err) => {
             uploaded++;
+            failedCount++;
+            const message =
+              err?.error?.message ||
+              err?.error?.errorMessage ||
+              `Failed to upload "${doc.docTypeName}".`;
+            this.toastr.error(message);
             if (uploaded === pendingDocs.length) this.closeForm();
           },
         });
@@ -733,13 +775,8 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getPhotoUrl(studentNo: number | null): string {
-    if (!studentNo) return 'assets/images/profile-placeholder.jpg';
-    return `${environment.baseUrl}${environment.studentManagementApiUrl}/api/admission/photo/${studentNo}`;
-  }
-
-  findStudentPhoto(empNo: any) {
-    this.admissionService.findStudentPhoto(empNo).subscribe(
+  findStudentPhoto(studentNo: any) {
+    this.admissionService.findStudentPhoto(studentNo).subscribe(
       (res) => {
         if (res.success) {
           this.photoPreview =
@@ -842,5 +879,40 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
   closePreview() {
     this.previewImageUrl = null;
     this.previewImageName = '';
+  }
+
+  deleteDoc(doc: any) {
+    // confirmation modal চাইলে ConfirmationDialog ব্যবহার করতে পারেন,
+    // আপাতত simple confirm দিয়ে দেখাচ্ছি
+    // if (!confirm(`Delete document "${doc.docTypeName}"?`)) return;
+
+    const initialState = { title: `Delete document "${doc.docTypeName}"?` };
+    this.bsModalRef = this.modalService.show(ConfirmationDialog, {
+      initialState,
+      class: '',
+    });
+    this.bsModalRef.content.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.admissionService.deleteDocument(doc.stdDocumentNo).subscribe({
+          next: (res: any) => {
+            if (res.success) {
+              this.savedDocuments = this.savedDocuments.filter(
+                (d) => d.stdDocumentNo !== doc.stdDocumentNo,
+              );
+              this.toastr.success(res.message || 'Document deleted.');
+            } else {
+              this.toastr.warning(res.message || 'Failed to delete document.');
+            }
+          },
+          error: (err) => {
+            const message =
+              err?.error?.message ||
+              err?.error?.errorMessage ||
+              'Failed to delete document.';
+            this.toastr.error(message);
+          },
+        });
+      }
+    });
   }
 }

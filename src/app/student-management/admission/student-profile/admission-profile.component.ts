@@ -89,9 +89,10 @@ export class AdmissionProfileComponent implements OnInit {
           if (res && res.obj) {
             this.isLoading = false;
             let studentNo = res.obj.student.studentNo;
-            if (studentNo) {
+            let admissionNo = res.obj.admission.admissionNo;
+            if (studentNo && admissionNo) {
               this.findStudentPhoto(studentNo);
-              this.loadDocuments(studentNo);
+              this.loadDocuments(studentNo, admissionNo);
             }
           }
         },
@@ -122,7 +123,7 @@ export class AdmissionProfileComponent implements OnInit {
   }
 
   // ── Load Documents (metadata + BLOB) ─────────────────
-  loadDocuments(studentNo: number) {
+  loadDocuments(studentNo: number, admissionNo: number) {
     this.isDocumentsLoading = true;
     this.documentList = [];
 
@@ -141,8 +142,8 @@ export class AdmissionProfileComponent implements OnInit {
         metaList.forEach((doc: any) => {
           const data = {
             stdDocumentNo: doc.stdDocumentNo,
-            studentNo: this.admissionData?.student?.studentNo,
-            admissionNo: this.profileData?.admissionNo,
+            studentNo: studentNo,
+            admissionNo: admissionNo,
           };
           // প্রতিটি doc এর BLOB আনুন
           this.admissionService.findDocument(data).subscribe({

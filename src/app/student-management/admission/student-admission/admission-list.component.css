@@ -297,7 +297,7 @@
 }
 
 /* ─── Grid: Tags & Status ────────────────────────────── */
-.adm-tag {
+::ng-deep.adm-tag {
   display: inline-block;
   padding: 1px 7px;
   font-size: 10px;
@@ -306,20 +306,20 @@
   letter-spacing: 0.3px;
   border-radius: 2px;
 }
-.adm-tag-new {
+::ng-deep .adm-tag-new {
   background: #e3f2fd;
   color: #1565c0;
 }
-.adm-tag-tr {
+::ng-deep .adm-tag-tr {
   background: #fff3e0;
   color: #e65100;
 }
-.adm-tag-re {
+::ng-deep .adm-tag-re {
   background: #f3e5f5;
   color: #6a1b9a;
 }
 
-.adm-status {
+::ng-deep .adm-status {
   display: inline-block;
   padding: 2px 8px;
   font-size: 10px;
@@ -328,25 +328,34 @@
   letter-spacing: 0.3px;
   border-radius: 2px;
 }
-.adm-status-active {
+::ng-deep .adm-status-active {
   background: #e8f5e9;
   color: #2e7d32;
 }
-.adm-status-tc {
+::ng-deep .adm-status-tc {
   background: #e3f2fd;
   color: #1565c0;
 }
-.adm-status-passed {
+::ng-deep .adm-status-passed {
   background: #f3e5f5;
   color: #6a1b9a;
 }
-.adm-status-drop {
+::ng-deep .adm-status-drop {
   background: #fff3e0;
   color: #e65100;
 }
-.adm-status-exp {
+::ng-deep .adm-status-exp {
   background: #fdecea;
   color: #c62828;
+}
+::ng-deep .adm-status {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-radius: 2px;
 }
 
 .custom-width {

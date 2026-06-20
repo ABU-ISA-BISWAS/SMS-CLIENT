@@ -70,12 +70,17 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
     return this.http.put(this.UPDATE_STATUS_URL, data).pipe(map((d: any) => d));
   }
 
-  // admission.service.ts এ
   uploadPhoto(studentNo: number, file: File) {
     const fd = new FormData();
     fd.append('studentNo', String(studentNo));
     fd.append('photo', file);
     return this.http.post(this.UPLOAD_PHOTO_URL, fd).pipe(map((d: any) => d));
+  }
+
+  deleteDocument(stdDocumentNo: number) {
+    return this.http.delete(
+      `${this.BASE_STD_MGNT}/${this.EP}/delete-document/${stdDocumentNo}`,
+    );
   }
 
   uploadDocument(
