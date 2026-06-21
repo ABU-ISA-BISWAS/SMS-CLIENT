@@ -238,50 +238,28 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
           this.isDocumentsLoading = false;
           return;
         }
+        // -------------------------------
 
-        let loadedCount = 0;
-        const enrichedDocs: any[] = [];
+        const enrichedList: any[] = [];
 
         docList.forEach((doc: any) => {
-          const data = {
-            stdDocumentNo: doc.stdDocumentNo,
-            studentNo: studentNo,
-            admissionNo: admissionNo,
-          };
-          this.admissionService.findDocument(data).subscribe({
-            next: (docRes: any) => {
-              loadedCount++;
-              const obj = docRes?.obj;
-              const mimeType = this.getMimeType(doc.fileType);
+          const mimeType = this.getMimeType(doc.fileType);
 
-              enrichedDocs.push({
-                ...doc,
-                base64: obj?.base64 || null,
-                mimeType: mimeType,
-                dataUrl: obj?.base64
-                  ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                      `data:${mimeType};base64,${obj.base64}`,
-                    )
-                  : null,
-              });
-
-              if (loadedCount === docList.length) {
-                this.savedDocuments = enrichedDocs.sort(
-                  (a, b) => a.stdDocumentNo - b.stdDocumentNo,
-                );
-                this.isDocumentsLoading = false;
-              }
-            },
-            error: () => {
-              loadedCount++;
-              enrichedDocs.push({ ...doc, base64: null, dataUrl: null });
-              if (loadedCount === docList.length) {
-                this.savedDocuments = enrichedDocs;
-                this.isDocumentsLoading = false;
-              }
-            },
+          enrichedList.push({
+            ...doc,
+            mimeType,
+            base64: doc?.documentBase64 || null,
+            dataUrl: doc?.documentBase64
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  `data:${mimeType};base64,${doc.documentBase64}`,
+                )
+              : null,
           });
         });
+        this.savedDocuments = enrichedList;
+        this.isDocumentsLoading = false;
+
+        // ---------------------------------
       },
       error: () => {
         this.isDocumentsLoading = false;
@@ -326,19 +304,17 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     this.currentStep = 1;
   }
   patchFormData(data: any) {
-    // API response এ student / guardian / admission আলাদা object আসছে
     const s = data.student || {};
     const g = data.guardian || {};
     const a = data.admission || {};
 
-    // Student — numeric FK গুলো সরাসরি patch হবে
     Object.assign(this.student, {
       studentNo: s.studentNo,
       studentCode: s.studentCode,
       fullName: s.fullName,
       fullNameBn: s.fullNameBn,
       dateOfBirth: s.dateOfBirth,
-      genderNo: s.genderNo, // ← number → ng-select bind হবে
+      genderNo: s.genderNo,
       religionNo: s.religionNo, // ← number
       bloodGroupNo: s.bloodGroupNo, // ← number
       studentCategoryNo: s.studentCategoryNo, // ← number
@@ -354,7 +330,7 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     Object.assign(this.guardian, {
       guardianNo: g.guardianNo,
       studentNo: s.studentNo,
-      relationNo: g.relationNo, // ← number → ng-select bind হবে
+      relationNo: g.relationNo,
       guardianName: g.guardianName,
       guardianNameBn: g.guardianNameBn,
       occupation: g.occupation,
@@ -691,7 +667,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       order: [[0, 'desc']],
       columns: [
         { title: '#', data: 'admissionNo', width: '30px' },
-        // grid columns এ Employee cell এ photo URL ব্যবহার করুন
         // {title: 'Student Name', data: 'fullName',width: '150px',},
         // { title: 'Reg. No', data: 'admissionRegNo', width: '120px' },
         {
@@ -824,17 +799,6 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  // openTcModal(status: string) {
-  //   const tcDate = window.prompt(
-  //     'Enter TC Date (YYYY-MM-DD):',
-  //     new Date().toISOString().split('T')[0],
-  //   );
-  //   if (!tcDate) return;
-
-  //   const tcReason = window.prompt('Enter TC Reason:') || '';
-  //   this.callUpdateStatus(status, tcDate, tcReason);
-  // }
 
   openTcModal(status: string) {
     this.pendingTcStatus = status;

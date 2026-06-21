@@ -58,7 +58,6 @@ export class AdmissionProfileComponent implements OnInit {
 
   ngOnInit() {
     this.admissionNo = Number(this.route.snapshot.paramMap.get('id'));
-
     this.profileData = history.state.studentData;
     this.admissionData = history.state.admissionData;
 
@@ -129,57 +128,31 @@ export class AdmissionProfileComponent implements OnInit {
 
     this.admissionService.getDocuments(studentNo).subscribe({
       next: (res: any) => {
-        const metaList: any[] = res?.items || [];
+        const docList: any[] = res?.items || [];
 
-        if (metaList.length === 0) {
+        if (docList.length === 0) {
           this.isDocumentsLoading = false;
           return;
         }
 
-        let loadedCount = 0;
         const enrichedList: any[] = [];
 
-        metaList.forEach((doc: any) => {
-          const data = {
-            stdDocumentNo: doc.stdDocumentNo,
-            studentNo: studentNo,
-            admissionNo: admissionNo,
-          };
-          // প্রতিটি doc এর BLOB আনুন
-          this.admissionService.findDocument(data).subscribe({
-            next: (docRes: any) => {
-              loadedCount++;
-              const obj = docRes?.obj;
-              const mimeType = this.getMimeType(doc.fileType);
+        docList.forEach((doc: any) => {
+          const mimeType = this.getMimeType(doc.fileType);
 
-              enrichedList.push({
-                ...doc,
-                mimeType,
-                base64: obj?.base64 || null,
-                dataUrl: obj?.base64
-                  ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                      `data:${mimeType};base64,${obj.base64}`,
-                    )
-                  : null,
-              });
-
-              if (loadedCount === metaList.length) {
-                this.documentList = enrichedList.sort(
-                  (a, b) => a.stdDocumentNo - b.stdDocumentNo,
-                );
-                this.isDocumentsLoading = false;
-              }
-            },
-            error: () => {
-              loadedCount++;
-              enrichedList.push({ ...doc, base64: null, dataUrl: null });
-              if (loadedCount === metaList.length) {
-                this.documentList = enrichedList;
-                this.isDocumentsLoading = false;
-              }
-            },
+          enrichedList.push({
+            ...doc,
+            mimeType,
+            base64: doc?.documentBase64 || null,
+            dataUrl: doc?.documentBase64
+              ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                  `data:${mimeType};base64,${doc.documentBase64}`,
+                )
+              : null,
           });
         });
+        this.documentList = enrichedList;
+        this.isDocumentsLoading = false;
       },
       error: () => {
         this.isDocumentsLoading = false;
@@ -262,8 +235,6 @@ export class AdmissionProfileComponent implements OnInit {
   }
 
   openTcModal(status: string) {
-    // TC Issue এর জন্য date + reason একটা small modal এ নেব
-    // Simple approach: prompt দিয়ে করা যায় অথবা আলাদা modal
     const tcDate = window.prompt(
       'Enter TC Date (YYYY-MM-DD):',
       new Date().toISOString().split('T')[0],

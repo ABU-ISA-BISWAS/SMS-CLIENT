@@ -318,52 +318,53 @@
                       </div>
 
                       <!-- TC Info (only if TC issued) -->
-                      <!-- <ng-container
-                    *ngIf="profileData?.admissionStatus === 'TC_ISSUED'"
-                  >
-                    <div class="info-row">
-                      <span class="info-row__label">TC Date</span>
-                      <span class="info-row__value">
-                        {{ profileData?.tcDate || "—" }}
-                      </span>
-                    </div>
-                    <div class="info-row">
-                      <span class="info-row__label">TC Reason</span>
-                      <span class="info-row__value">
-                        {{ profileData?.tcReason || "—" }}
-                      </span>
-                    </div>
-                  </ng-container> -->
+                      <ng-container
+                        *ngIf="profileData?.admissionStatus === 'TC_ISSUED'"
+                      >
+                        <div class="info-row">
+                          <span class="info-row__label">TC Date</span>
+                          <span class="info-row__value">
+                            {{ admissionData?.admission?.tcDate || "—" }}
+                          </span>
+                        </div>
+                        <div class="info-row">
+                          <span class="info-row__label">TC Reason</span>
+                          <span class="info-row__value">
+                            {{ admissionData?.admission?.tcReason || "—" }}
+                          </span>
+                        </div>
+                      </ng-container>
 
-                      <!-- Transfer info -->
-                      <!-- <ng-container
-                    *ngIf="admissionData?.admissionType === 'TRANSFER'"
-                  >
-                    <div class="info-divider">Previous School</div>
-                    <div class="info-row">
-                      <span class="info-row__label">School Name</span>
-                      <span class="info-row__value">
-                        {{ admissionData?.prevSchool || "—" }}
-                      </span>
-                    </div>
-                    <div class="info-row">
-                      <span class="info-row__label">Previous Class</span>
-                      <span class="info-row__value">
-                        {{ admissionData?.prevClass || "—" }}
-                      </span>
-                    </div>
-                    <div class="info-row">
-                      <span class="info-row__label">Previous Roll</span>
-                      <span class="info-row__value">
-                        {{ admissionData?.prevRoll || "—" }}
-                      </span>
-                    </div>
-                  </ng-container> -->
+                      <ng-container
+                        *ngIf="
+                          admissionData?.admission?.admissionType === 'TRANSFER'
+                        "
+                      >
+                        <div class="info-divider">Previous School</div>
+                        <div class="info-row">
+                          <span class="info-row__label">School Name</span>
+                          <span class="info-row__value">
+                            {{ admissionData?.admission?.prevSchool || "—" }}
+                          </span>
+                        </div>
+                        <div class="info-row">
+                          <span class="info-row__label">Previous Class</span>
+                          <span class="info-row__value">
+                            {{ admissionData?.admission?.prevClass || "—" }}
+                          </span>
+                        </div>
+                        <div class="info-row">
+                          <span class="info-row__label">Previous Roll</span>
+                          <span class="info-row__value">
+                            {{ admissionData?.admission?.prevRoll || "—" }}
+                          </span>
+                        </div>
+                      </ng-container>
 
                       <div class="info-row" *ngIf="admissionData?.remarks">
                         <span class="info-row__label">Remarks</span>
                         <span class="info-row__value">
-                          {{ profileData?.remarks }}
+                          {{ profileData?.admission?.remarks }}
                         </span>
                       </div>
                     </div>
