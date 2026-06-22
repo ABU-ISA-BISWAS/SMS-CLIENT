@@ -901,4 +901,21 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  // ── View PDF (new tab) ────────────────────────────────
+  viewPdf(base64: string, fileName: string) {
+    const byteChars = atob(base64);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteChars.length; offset += 512) {
+      const slice = byteChars.slice(offset, offset + 512);
+      const byteNums = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNums[i] = slice.charCodeAt(i);
+      }
+      byteArrays.push(new Uint8Array(byteNums));
+    }
+    const blob = new Blob(byteArrays, { type: 'application/pdf' });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
 }

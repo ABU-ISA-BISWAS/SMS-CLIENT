@@ -947,11 +947,10 @@
                       <!-- View button — PDF inline, image popup -->
                       <div class="saved-doc-card__action" *ngIf="doc.dataUrl">
                         <a
-                          *ngIf="doc.fileType === 'PDF'"
-                          [href]="doc.dataUrl"
-                          target="_blank"
+                          *ngIf="doc.fileType === 'PDF' && doc.base64"
                           class="btn btn-sm btn-light border px-2"
                           style="font-size: 11px"
+                          (click)="viewPdf(doc.base64, doc.fileName)"
                         >
                           <i class="fas fa-eye me-1"></i>View
                         </a>
