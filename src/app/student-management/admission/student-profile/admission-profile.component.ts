@@ -25,8 +25,31 @@ export class AdmissionProfileComponent implements OnInit {
   isStatusUpdating = false;
   isDocumentsLoading = false;
 
-  // Status change
-  activeTab: 'info' | 'documents' = 'info';
+  activeTab: 'info' | 'documents' | 'attendance' = 'info';
+
+  // Calendar state
+  calendarMonth: number = new Date().getMonth() + 1;
+  calendarYear: number = new Date().getFullYear();
+  calendarData: any[] = [];
+  calendarDays: number[] = [];
+  isCalendarLoading = false;
+
+  months = [
+    { value: 1, label: 'January' },
+    { value: 2, label: 'February' },
+    { value: 3, label: 'March' },
+    { value: 4, label: 'April' },
+    { value: 5, label: 'May' },
+    { value: 6, label: 'June' },
+    { value: 7, label: 'July' },
+    { value: 8, label: 'August' },
+    { value: 9, label: 'September' },
+    { value: 10, label: 'October' },
+    { value: 11, label: 'November' },
+    { value: 12, label: 'December' },
+  ];
+
+  years: number[] = [];
 
   statusOptions = [
     { value: 'ACTIVE', label: 'Active', cls: 'status-active' },
@@ -46,6 +69,13 @@ export class AdmissionProfileComponent implements OnInit {
 
   previewImageUrl: SafeResourceUrl | null = null;
   previewImageName = '';
+
+  // ── Print state ───────────────────────────────────────────────
+  isStudentPrintModalOpen = false;
+  isStudentPrinting = false;
+  studentPrintType = 'MONTHLY'; // MONTHLY / YEARLY / DATE_RANGE
+  studentPrintFromDate = '';
+  studentPrintToDate = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -80,6 +110,13 @@ export class AdmissionProfileComponent implements OnInit {
     this.loadPhoto();
   }
 
+  generateYears() {
+    const current = new Date().getFullYear();
+    for (let y = current; y >= current - 5; y--) {
+      this.years.push(y);
+    }
+  }
+
   loadPhoto() {
     this.isLoading = true;
     if (this.admissionNo) {
@@ -92,6 +129,7 @@ export class AdmissionProfileComponent implements OnInit {
             if (studentNo && admissionNo) {
               this.findStudentPhoto(studentNo);
               this.loadDocuments(studentNo, admissionNo);
+              this.generateYears();
             }
           }
         },
@@ -159,6 +197,112 @@ export class AdmissionProfileComponent implements OnInit {
         this.toastr.error('Failed to load documents.');
       },
     });
+  }
+
+  // ── Attendance calendar load ───────────────────────────────────
+  loadAttendanceCalendar() {
+    const studentNo = this.admissionData.student.studentNo;
+    if (!studentNo) return;
+
+    this.isCalendarLoading = true;
+    this.calendarData = [];
+
+    // Days in selected month
+    const daysInMonth = new Date(
+      this.calendarYear,
+      this.calendarMonth,
+      0,
+    ).getDate();
+    this.calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    this.admissionService
+      .getStudentMonthly(studentNo, this.calendarMonth, this.calendarYear)
+      .subscribe({
+        next: (res: any) => {
+          this.isCalendarLoading = false;
+          this.calendarData = res?.obj || [];
+        },
+        error: () => {
+          this.isCalendarLoading = false;
+        },
+      });
+  }
+
+  // ── Tab switch এ attendance load ───────────────────────────────
+  onTabChange(tab: 'info' | 'documents' | 'attendance') {
+    this.activeTab = tab;
+    if (tab === 'attendance' && this.calendarData.length === 0) {
+      this.loadAttendanceCalendar();
+    }
+  }
+
+  // ── Calendar helpers ───────────────────────────────────────────
+  getStatusForDay(day: number): string {
+    const dateStr =
+      `${this.calendarYear}-` +
+      String(this.calendarMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+
+    const found = this.calendarData.find(
+      (d: any) => d.attendanceDate === dateStr,
+    );
+    return found?.status || '';
+  }
+
+  getDayClass(status: string): string {
+    const map: any = {
+      P: 'cal-day--present',
+      A: 'cal-day--absent',
+      L: 'cal-day--late',
+      E: 'cal-day--excused',
+      H: 'cal-day--holiday',
+    };
+    return map[status] || 'cal-day--empty';
+  }
+  getDayLabel(status: string): string {
+    const map: any = {
+      P: 'Present',
+      A: 'Absent',
+      L: 'Late',
+      E: 'Excused',
+      H: 'Holiday',
+    };
+    return map[status] || 'Not marked';
+  }
+
+  get selectedMonthLabel(): string {
+    return this.months.find((m) => m.value === this.calendarMonth)?.label || '';
+  }
+
+  // ── Attendance summary counts ──────────────────────────────────
+  get presentCount(): number {
+    return this.calendarData.filter((d: any) => d.status === 'P').length;
+  }
+  get absentCount(): number {
+    return this.calendarData.filter((d: any) => d.status === 'A').length;
+  }
+  get lateCount(): number {
+    return this.calendarData.filter((d: any) => d.status === 'L').length;
+  }
+
+  get attendancePct(): number {
+    const total = this.calendarData.filter((d: any) => d.status !== 'H').length;
+    if (total === 0) return 0;
+    const present = this.calendarData.filter(
+      (d: any) => d.status === 'P' || d.status === 'L',
+    ).length;
+    return Math.round((present / total) * 100);
+  }
+
+  getStartEmptyCells(): number[] {
+    // Month এর প্রথম দিন কোন weekday (0=Sun, 6=Sat)
+    const firstDay = new Date(
+      this.calendarYear,
+      this.calendarMonth - 1,
+      1,
+    ).getDay();
+    return Array(firstDay).fill(0);
   }
 
   // ── View Image (lightbox) ─────────────────────────────
@@ -333,5 +477,65 @@ export class AdmissionProfileComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/student/admission']);
+  }
+
+  openStudentPrintModal() {
+    // Default: current month
+    const firstDay = new Date(this.calendarYear, this.calendarMonth - 1, 1);
+    const lastDay = new Date(this.calendarYear, this.calendarMonth, 0);
+    this.studentPrintFromDate = firstDay.toISOString().split('T')[0];
+    this.studentPrintToDate = lastDay.toISOString().split('T')[0];
+    this.isStudentPrintModalOpen = true;
+  }
+
+  closeStudentPrintModal() {
+    this.isStudentPrintModalOpen = false;
+    this.isStudentPrinting = false;
+  }
+
+  onStudentPrintTypeChange() {
+    const now = new Date();
+    if (this.studentPrintType === 'MONTHLY') {
+      const first = new Date(this.calendarYear, this.calendarMonth - 1, 1);
+      const last = new Date(this.calendarYear, this.calendarMonth, 0);
+      this.studentPrintFromDate = first.toISOString().split('T')[0];
+      this.studentPrintToDate = last.toISOString().split('T')[0];
+    } else if (this.studentPrintType === 'YEARLY') {
+      this.studentPrintFromDate = `${this.calendarYear}-01-01`;
+      this.studentPrintToDate = `${this.calendarYear}-12-31`;
+    }
+    // DATE_RANGE → user manually set করবে
+  }
+
+  printStudentReport() {
+    const studentNo = this.admissionData.student.studentNo;
+    if (!studentNo) return;
+
+    if (!this.studentPrintFromDate || !this.studentPrintToDate) {
+      this.toastr.warning('Please select date range.');
+      return;
+    }
+
+    this.isStudentPrinting = true;
+
+    const params = {
+      studentNo: studentNo,
+      fromDate: this.studentPrintFromDate,
+      toDate: this.studentPrintToDate,
+    };
+
+    this.admissionService.printStudentAttendance(params).subscribe({
+      next: (blob: Blob) => {
+        this.isStudentPrinting = false;
+        this.closeStudentPrintModal();
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      },
+      error: () => {
+        this.isStudentPrinting = false;
+        this.toastr.error('Failed to generate report.');
+      },
+    });
   }
 }

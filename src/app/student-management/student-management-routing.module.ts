@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
 import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
 import { AdmissionProfileComponent } from './admission/student-profile/admission-profile.component';
+import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+import { AttendanceMarkingComponent } from './attendance/attendance-marking.component';
 
 const routes: Routes = [
   {
@@ -43,6 +45,26 @@ const routes: Routes = [
         ],
       },
     ],
+  },
+
+  {
+    path: 'admission/attendance-marking',
+    canActivate: [AuthGuard],
+    component: AttendanceMarkingComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Attendance Marking',
+    },
+  },
+
+  {
+    path: 'admission/attendance-report',
+    canActivate: [AuthGuard],
+    component: AttendanceReportComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Attendance Marking',
+    },
   },
 ];
 

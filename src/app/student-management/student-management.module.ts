@@ -12,10 +12,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 import { AdmissionListComponent } from './admission/student-admission/admission-list.component';
 import { AdmissionProfileComponent } from './admission/student-profile/admission-profile.component';
+import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+import { AttendanceMarkingComponent } from './attendance/attendance-marking.component';
 import { StudentManagementRoutingModule } from './student-management-routing.module';
 
 @NgModule({
-  declarations: [AdmissionListComponent, AdmissionProfileComponent],
+  declarations: [
+    AdmissionListComponent,
+    AdmissionProfileComponent,
+    AttendanceMarkingComponent,
+    AttendanceReportComponent,
+  ],
   imports: [
     SharedModule,
     CommonModule,

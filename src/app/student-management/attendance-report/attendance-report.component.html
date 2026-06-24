@@ -1,0 +1,631 @@
+<div class="container-fluid">
+  <div class="card">
+    <!-- ── Header ── -->
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
+      <h6 class="m-0 fw-bold base-txt-primary">
+        <i class="fas fa-chart-bar me-2"></i>Monthly Attendance Report
+      </h6>
+      <div class="d-flex align-items-center gap-2" *ngIf="isLoaded">
+        <!-- View Toggle -->
+        <div class="view-toggle">
+          <button
+            [class.active]="viewMode === 'summary'"
+            (click)="viewMode = 'summary'"
+          >
+            <i class="fas fa-list me-1"></i>Summary
+          </button>
+          <button
+            [class.active]="viewMode === 'calendar'"
+            (click)="viewMode = 'calendar'"
+          >
+            <i class="fas fa-calendar-alt me-1"></i>Day-wise
+          </button>
+        </div>
+
+        <button
+          *ngIf="isLoaded"
+          class="btn btn-sm btn-success fw-medium px-3 printBtn"
+          (click)="openPrintModal()"
+        >
+          <i class="fas fa-print me-1"></i> Print Report
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- ── Filter Bar ── -->
+      <!-- <div class="card border border-2 action-bar mb-3">
+        <div class="card-body py-2 px-3">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Session
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedSessionNo"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                    {{ s.sessionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Class
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedClassNo"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let c of classList" [ngValue]="c.id">
+                    {{ c.className }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Section
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedSectionNo"
+                >
+                  <option [ngValue]="null">All</option>
+                  <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                    {{ s.sectionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Month
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedMonth"
+                >
+                  <option *ngFor="let m of months" [ngValue]="m.value">
+                    {{ m.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Year
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedYear"
+                >
+                  <option *ngFor="let y of years" [ngValue]="y">{{ y }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-1">
+              <button
+                class="btn btn-sm base-btn-primary w-100"
+                (click)="loadReport()"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading"> Generate </span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Loading...
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- ── Filter Bar ── -->
+      <div class="card border border-2 action-bar mb-3">
+        <div class="card-body py-2 px-3">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-10">
+              <div class="row g-2 align-items-end">
+                <!-- Session -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Session
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedSessionNo"
+                    >
+                      <option [ngValue]="null">Select</option>
+                      <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                        {{ s.sessionName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Class -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Class
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedClassNo"
+                    >
+                      <option [ngValue]="null">Select</option>
+                      <option *ngFor="let c of classList" [ngValue]="c.id">
+                        {{ c.className }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Section -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Section
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedSectionNo"
+                    >
+                      <option [ngValue]="null">All</option>
+                      <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                        {{ s.sectionName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Shift  -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Shift
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedShiftNo"
+                    >
+                      <option [ngValue]="null">All</option>
+                      <option *ngFor="let s of shiftList" [ngValue]="s.id">
+                        {{ s.shiftName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Month -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Month
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedMonth"
+                    >
+                      <option *ngFor="let m of months" [ngValue]="m.value">
+                        {{ m.label }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Year -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 67px"
+                    >
+                      Year
+                    </span>
+                    <select
+                      class="form-select form-select-sm"
+                      [(ngModel)]="selectedYear"
+                    >
+                      <option *ngFor="let y of years" [ngValue]="y">
+                        {{ y }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <!-- Generate Button -->
+
+              <button
+                class="btn btn-sm base-btn-primary w-100"
+                style="height: 67px"
+                (click)="loadReport()"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading">
+                  <i class="fas fa-search me-1"></i>Generate
+                </span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Loading...
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ── Empty State ── -->
+      <div *ngIf="!isLoaded && !isLoading" class="att-empty-state">
+        <i class="fas fa-chart-bar"></i>
+        <p>Select filters and click <strong>Generate</strong></p>
+      </div>
+
+      <ng-container *ngIf="isLoaded">
+        <!-- ── Stats Cards ── -->
+        <div class="row g-2 mb-3">
+          <div class="col-md-3">
+            <div class="stat-card stat-card--blue">
+              <div class="stat-card__value">{{ reportList.length }}</div>
+              <div class="stat-card__label">Total Students</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card stat-card--green">
+              <div class="stat-card__value">{{ totalPresent }}</div>
+              <div class="stat-card__label">Total Present Days</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card stat-card--red">
+              <div class="stat-card__value">{{ totalAbsent }}</div>
+              <div class="stat-card__label">Total Absent Days</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card stat-card--orange">
+              <div class="stat-card__value">{{ avgAttendance }}%</div>
+              <div class="stat-card__label">Avg Attendance</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             VIEW 1: Summary Table
+        ══════════════════════════════════════ -->
+        <div *ngIf="viewMode === 'summary'">
+          <div class="report-title">
+            {{ selectedMonthLabel }} {{ selectedYear }} — Attendance Summary
+          </div>
+          <div class="report-table-wrap">
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Roll</th>
+                  <th>Student Name</th>
+                  <th class="text-center">Total Days</th>
+                  <th class="text-center">
+                    <span class="th-badge th-p">Present</span>
+                  </th>
+                  <th class="text-center">
+                    <span class="th-badge th-a">Absent</span>
+                  </th>
+                  <th class="text-center">
+                    <span class="th-badge th-l">Late</span>
+                  </th>
+                  <th class="text-center">
+                    <span class="th-badge th-e">Excused</span>
+                  </th>
+                  <th style="width: 160px">Attendance %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of reportList; let i = index">
+                  <td class="text-muted text-center" style="font-size: 11px">
+                    {{ i + 1 }}
+                  </td>
+                  <td class="fw-semibold text-center">
+                    {{ row.rollNo || "—" }}
+                  </td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500">
+                      {{ row.fullName }}
+                    </div>
+                    <div style="font-size: 11px; color: #888">
+                      {{ row.studentCode }}
+                    </div>
+                  </td>
+                  <td class="text-center fw-semibold">{{ row.totalDays }}</td>
+                  <td class="text-center">
+                    <span class="day-badge day-p">{{ row.presentDays }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="day-badge day-a">{{ row.absentDays }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="day-badge day-l">{{ row.lateDays }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="day-badge day-e">{{ row.excusedDays }}</span>
+                  </td>
+                  <td>
+                    <div class="pct-bar-wrap">
+                      <div class="pct-bar">
+                        <div
+                          class="pct-bar__fill {{
+                            getPctClass(row.attendancePct)
+                          }}"
+                          [style.width.%]="row.attendancePct"
+                        ></div>
+                      </div>
+                      <span
+                        class="pct-label {{ getPctClass(row.attendancePct) }}"
+                      >
+                        {{ row.attendancePct }}%
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             VIEW 2: Day-wise Calendar
+        ══════════════════════════════════════ -->
+        <div *ngIf="viewMode === 'calendar'">
+          <div class="report-title">
+            {{ selectedMonthLabel }} {{ selectedYear }} — Day-wise Attendance
+          </div>
+
+          <!-- Legend -->
+          <div class="cal-legend mb-2">
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-p"></span> Present
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-a"></span> Absent
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-l"></span> Late
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-e"></span> Excused
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-h"></span> Holiday
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-empty"></span> Not Marked
+            </span>
+          </div>
+
+          <div class="cal-table-wrap">
+            <table class="cal-table">
+              <colgroup>
+                <col class="col-sl" />
+                <col class="col-roll" />
+                <col class="col-name" />
+                <col *ngFor="let day of calendarDays" class="col-day" />
+                <col class="col-pct" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="text-center">Roll</th>
+                  <th>Student Name</th>
+                  <!-- Day columns -->
+                  <th *ngFor="let day of calendarDays" class="cal-day-th">
+                    {{ day }}
+                  </th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of reportList; let i = index">
+                  <td class="text-muted" style="font-size: 11px">
+                    {{ i + 1 }}
+                  </td>
+                  <td class="text-center fw-semibold" style="font-size: 12px">
+                    {{ row.rollNo || "—" }}
+                  </td>
+                  <td
+                    class="cal-name-cell"
+                    style="font-size: 12px; font-weight: 500"
+                  >
+                    {{ row.fullName }}
+                  </td>
+                  <!-- Day cells -->
+                  <td *ngFor="let day of calendarDays" class="cal-cell">
+                    <span
+                      class="cal-dot {{
+                        getDayClass(getDayStatus(row.studentNo, day))
+                      }}"
+                      [title]="getDayStatus(row.studentNo, day)"
+                    >
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <span
+                      class="pct-label {{ getPctClass(row.attendancePct) }}"
+                      style="font-size: 11px"
+                    >
+                      {{ row.attendancePct }}%
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Print Options Modal -->
+<div
+  class="modal fade"
+  id="printModal"
+  tabindex="-1"
+  [class.show]="isPrintModalOpen"
+  [style.display]="isPrintModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h6 class="modal-title fw-bold base-txt-primary">
+          <i class="fas fa-print me-2"></i>Print Attendance Report
+        </h6>
+        <button
+          type="button"
+          class="btn-close btn btn-sm btn-light"
+          (click)="closePrintModal()"
+        >
+          <span class="visually-hidden">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="border p-3">
+          <!-- Report Type -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+              style="min-width: 67px"
+            >
+              Report Type
+            </span>
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="printReportType"
+            >
+              <option value="SUMMARY">Summary Report</option>
+              <option value="DETAILED">Day-wise Detail</option>
+            </select>
+          </div>
+
+          <!-- Date Range -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+              style="min-width: 94px"
+            >
+              From Date
+            </span>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              [(ngModel)]="printFromDate"
+            />
+          </div>
+
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+              style="min-width: 94px"
+            >
+              To Date
+            </span>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              [(ngModel)]="printToDate"
+            />
+          </div>
+
+          <!-- Info -->
+          <div class="alert alert-info py-2 px-3 mb-0" style="font-size: 11px">
+            <i class="fas fa-info-circle me-1"></i>
+            Report for:
+            <strong>{{ getSelectedClassName() }}</strong>
+            <span *ngIf="selectedSectionNo">
+              — {{ getSelectedSectionName() }}
+            </span>
+            <span *ngIf="selectedShiftNo">
+              — {{ getSelectedShiftName() }}
+            </span>
+            <span *ngIf="!selectedSectionNo && !selectedShiftNo">
+              — All Sections & Shifts
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 bg-light">
+        <button
+          type="button"
+          class="btn btn-sm btn-light border px-3"
+          (click)="closePrintModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-success px-3"
+          (click)="printClassReport()"
+          [disabled]="isPrinting"
+        >
+          <span *ngIf="!isPrinting">
+            <i class="fas fa-print me-1"></i> Generate & Print
+          </span>
+          <span *ngIf="isPrinting">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Generating...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade show"
+  *ngIf="isPrintModalOpen"
+  (click)="closePrintModal()"
+></div>

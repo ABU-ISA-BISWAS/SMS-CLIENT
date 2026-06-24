@@ -1,0 +1,299 @@
+<div class="container-fluid">
+  <div class="card">
+    <!-- ── Header ── -->
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
+      <h6 class="m-0 fw-bold base-txt-primary">
+        <i class="fas fa-clipboard-check me-2"></i>Student Attendance Marking
+      </h6>
+      <div class="d-flex align-items-center gap-2" *ngIf="isLoaded">
+        <!-- Summary badges -->
+        <span class="att-summary-badge att-p">
+          <i class="fas fa-check-circle me-1"></i>
+          P: {{ countByStatus("P") }}
+        </span>
+        <span class="att-summary-badge att-a">
+          <i class="fas fa-times-circle me-1"></i>
+          A: {{ countByStatus("A") }}
+        </span>
+        <span class="att-summary-badge att-l">
+          <i class="fas fa-clock me-1"></i>
+          L: {{ countByStatus("L") }}
+        </span>
+        <span class="att-summary-badge att-e">
+          <i class="fas fa-clipboard me-1"></i>
+          E: {{ countByStatus("E") }}
+        </span>
+
+        <div class="vr"></div>
+
+        <button
+          class="btn btn-sm base-btn-primary px-3"
+          (click)="saveAttendance()"
+          [disabled]="isSaving"
+        >
+          <span *ngIf="!isSaving">
+            <i class="fas fa-save me-1"></i>
+            {{ isAlreadyMarked ? "Update" : "Save" }} Attendance
+          </span>
+          <span *ngIf="isSaving">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Saving...
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- ── Filter Bar ── -->
+      <div class="card border border-2 action-bar mb-3">
+        <div class="card-body py-2 px-3">
+          <div class="row g-2 align-items-end">
+            <!-- Date -->
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Date
+                </span>
+                <input
+                  type="date"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="selectedDate"
+                  (change)="onDateChange()"
+                />
+              </div>
+            </div>
+
+            <!-- Session -->
+            <div class="col-md-3">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Session
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedSessionNo"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                    {{ s.sessionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Class -->
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Class
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedClassNo"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let c of classList" [ngValue]="c.id">
+                    {{ c.className }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section -->
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Section
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedSectionNo"
+                >
+                  <option [ngValue]="null">All</option>
+                  <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                    {{ s.sectionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Shift -->
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Shift
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="selectedShiftNo"
+                >
+                  <option [ngValue]="null">All</option>
+                  <option *ngFor="let s of shiftList" [ngValue]="s.id">
+                    {{ s.shiftName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Load Button -->
+            <div class="col-md-1">
+              <button
+                class="btn btn-sm base-btn-primary w-100"
+                (click)="loadStudents()"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading">
+                  <i class="fas fa-search me-1"></i>
+                </span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Loading...
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Already Marked Notice ── -->
+      <div
+        *ngIf="isAlreadyMarked && isLoaded"
+        class="alert alert-info py-2 px-3 mb-2"
+        style="font-size: 12px"
+      >
+        <i class="fas fa-info-circle me-1"></i>
+        Attendance already marked for this date. You can update it below.
+      </div>
+
+      <!-- ── Mark All Bar ── -->
+      <div
+        *ngIf="isLoaded && attendanceList.length > 0"
+        class="att-mark-all-bar mb-2"
+      >
+        <span style="font-size: 12px; font-weight: 500; color: #555">
+          Mark All:
+        </span>
+        <button
+          *ngFor="let opt of statusOptions"
+          class="att-mark-all-btn {{ opt.cls }}"
+          (click)="markAll(opt.value)"
+        >
+          {{ opt.label }}
+        </button>
+        <span class="ms-auto" style="font-size: 12px; color: #888">
+          Total: <strong>{{ totalStudents }}</strong> students
+        </span>
+      </div>
+
+      <!-- ── Empty state ── -->
+      <div *ngIf="!isLoaded && !isLoading" class="att-empty-state">
+        <i class="fas fa-clipboard-list"></i>
+        <p>Select class and date, then click <strong>Load Students</strong></p>
+      </div>
+
+      <!-- ── Student Attendance Table ── -->
+      <div *ngIf="isLoaded && attendanceList.length > 0" class="att-table-wrap">
+        <table class="att-table">
+          <thead>
+            <tr>
+              <th style="width: 50px" class="text-center">#</th>
+              <th style="width: 90px" class="text-center">Roll</th>
+              <th style="width: 130px">Student ID</th>
+              <th>Student Name</th>
+              <th style="width: 280px">Status</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let entry of attendanceList; let i = index"
+              [class.row-absent]="entry.status === 'A'"
+              [class.row-late]="entry.status === 'L'"
+              [class.row-excused]="entry.status === 'E'"
+            >
+              <td class="text-center text-muted" style="font-size: 12px">
+                {{ i + 1 }}
+              </td>
+              <td class="text-center fw-semibold" style="font-size: 12px">
+                {{ entry.rollNo || "—" }}
+              </td>
+              <td style="font-size: 11px; color: #888">
+                {{ entry.studentCode }}
+              </td>
+              <td>
+                <div style="font-size: 12px; font-weight: 500">
+                  {{ entry.fullName }}
+                </div>
+                <div
+                  *ngIf="entry.fullNameBn"
+                  style="font-size: 11px; color: #888"
+                >
+                  {{ entry.fullNameBn }}
+                </div>
+              </td>
+
+              <!-- Status Buttons -->
+              <td>
+                <div class="att-status-group">
+                  <button
+                    *ngFor="let opt of statusOptions"
+                    class="att-status-btn {{ opt.cls }}"
+                    [class.active]="entry.status === opt.value"
+                    (click)="setStatus(entry, opt.value)"
+                  >
+                    {{ opt.label }}
+                  </button>
+                </div>
+              </td>
+
+              <!-- Remarks -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  style="font-size: 11px"
+                  [(ngModel)]="entry.remarks"
+                  [placeholder]="entry.status === 'A' ? 'Reason...' : ''"
+                  *ngIf="entry.status === 'A' || entry.status === 'E'"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── Bottom Save Button ── -->
+      <div
+        *ngIf="isLoaded && attendanceList.length > 0"
+        class="d-flex justify-content-end mt-3"
+      >
+        <button
+          class="btn btn-sm base-btn-primary px-4"
+          (click)="saveAttendance()"
+          [disabled]="isSaving"
+        >
+          <span *ngIf="!isSaving">
+            <i class="fas fa-save me-1"></i>
+            {{ isAlreadyMarked ? "Update" : "Save" }} Attendance
+          </span>
+          <span *ngIf="isSaving">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Saving...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

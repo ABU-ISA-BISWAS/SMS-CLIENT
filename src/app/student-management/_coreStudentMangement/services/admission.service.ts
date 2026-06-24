@@ -15,6 +15,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private BASE = `${environment.baseUrl}${environment.authApiUrl}`;
   private BASE_STD_MGNT = `${environment.baseUrl}${environment.studentManagementApiUrl}`;
   private EP = `api/admission`;
+  private EP_ATTENDANCE = `api/attendance`;
 
   private SAVE_URL = `${this.BASE_STD_MGNT}/${this.EP}/create`;
   private UPDATE_URL = `${this.BASE_STD_MGNT}/${this.EP}/update`;
@@ -24,6 +25,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private UPLOAD_DOC_URL = `${this.BASE_STD_MGNT}/${this.EP}/upload-document`;
   private DOCS_URL = `${this.BASE_STD_MGNT}/${this.EP}/documents`;
   private FIND_DOCUMENT_URL = `${this.BASE_STD_MGNT}/${this.EP}/find-document`;
+  private STUDENT_MONTHLY_URL = `${this.BASE_STD_MGNT}/${this.EP_ATTENDANCE}/student-monthly`;
 
   // Dropdown APIs
   private SESSIONS_URL = `${this.BASE}/api/session/all`;
@@ -38,6 +40,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private RELATIONS_URL = `${this.BASE}/api/guardian-relation/all`;
   private DOC_TYPES_URL = `${this.BASE}/api/lookup/doc-type/student`;
   private FIND_STUDETN_PHOTO = `${this.BASE_STD_MGNT}/${this.EP}/find-student-photo`;
+  private PRINT_STUDENT_ATT_URL = `${this.BASE_STD_MGNT}/api/attendance/print-student-report`;
 
   constructor(
     private http: HttpClient,
@@ -152,5 +155,27 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   findStudentPhoto(data: any) {
     const params = new HttpParams().append('studentNo', data);
     return this.http.get<any>(this.FIND_STUDETN_PHOTO, { params });
+  }
+
+  getStudentMonthly(studentNo: number, month: number, year: number) {
+    const params = new HttpParams()
+      .append('studentNo', studentNo)
+      .append('month', month)
+      .append('year', year);
+    return this.http
+      .get(this.STUDENT_MONTHLY_URL, { params })
+      .pipe(map((d: any) => d));
+  }
+
+  printStudentAttendance(params: any) {
+    const httpParams = new HttpParams()
+      .append('studentNo', params.studentNo)
+      .append('fromDate', params.fromDate)
+      .append('toDate', params.toDate);
+
+    return this.http.get(this.PRINT_STUDENT_ATT_URL, {
+      params: httpParams,
+      responseType: 'blob',
+    });
   }
 }

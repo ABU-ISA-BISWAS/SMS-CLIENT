@@ -118,6 +118,14 @@
           >
             <i class="fas fa-user me-1"></i> Student Info
           </div>
+
+          <div
+            class="profile-tab-nav__item"
+            [class.active]="activeTab === 'attendance'"
+            (click)="onTabChange('attendance')"
+          >
+            <i class="fas fa-calendar-check me-1"></i> Attendance
+          </div>
           <div
             class="profile-tab-nav__item"
             [class.active]="activeTab === 'documents'"
@@ -433,6 +441,164 @@
         </div>
 
         <!-- ══════════════════════════════════════
+     TAB: Attendance
+════════════════════════════════════════ -->
+        <div class="profile-tab-body" *ngIf="activeTab === 'attendance'">
+          <!-- ── Month/Year Filter ── -->
+          <div class="att-cal-filter">
+            <div class="input-group input-group-sm">
+              <span
+                class="input-group-text base-bg-subtle-primary base-txt-primary"
+              >
+                Month
+              </span>
+              <select
+                class="form-select form-select-sm"
+                [(ngModel)]="calendarMonth"
+                style="min-width: 120px"
+              >
+                <option *ngFor="let m of months" [ngValue]="m.value">
+                  {{ m.label }}
+                </option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm">
+              <span
+                class="input-group-text base-bg-subtle-primary base-txt-primary"
+              >
+                Year
+              </span>
+              <select
+                class="form-select form-select-sm"
+                [(ngModel)]="calendarYear"
+                style="min-width: 90px"
+              >
+                <option *ngFor="let y of years" [ngValue]="y">{{ y }}</option>
+              </select>
+            </div>
+
+            <button
+              class="btn btn-sm base-btn-primary px-3"
+              (click)="loadAttendanceCalendar()"
+              [disabled]="isCalendarLoading"
+            >
+              <span
+                *ngIf="!isCalendarLoading"
+                class="d-inline-flex align-items-center gap-1"
+              >
+                <i class="fas fa-search me-1"></i>View
+              </span>
+              <span *ngIf="isCalendarLoading">
+                <span class="spinner-border spinner-border-sm me-1"></span>
+                Loading...
+              </span>
+            </button>
+
+            <button
+              class="btn btn-sm btn-success fw-medium px-3"
+              *ngIf="calendarData.length > 0"
+              (click)="openStudentPrintModal()"
+            >
+              <i class="fas fa-print me-1"></i> Print
+            </button>
+          </div>
+
+          <!-- ── Calendar Title ── -->
+          <div class="att-cal-title" *ngIf="!isCalendarLoading">
+            {{ selectedMonthLabel }} {{ calendarYear }}
+          </div>
+
+          <!-- ── Loading ── -->
+          <div
+            *ngIf="isCalendarLoading"
+            class="text-center py-4 text-muted"
+            style="font-size: 13px"
+          >
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading attendance...
+          </div>
+
+          <!-- ── Body Wrap: Left (Calendar + Legend) | Right (Summary) ── -->
+          <div *ngIf="!isCalendarLoading" class="att-cal-body-wrap">
+            <!-- ── LEFT: Calendar Grid + Legend ── -->
+            <div class="att-cal-left">
+              <!-- Calendar Grid -->
+              <div class="att-calendar-grid">
+                <!-- Day headers: Sun Mon Tue ... -->
+                <div class="cal-header-cell">Sun</div>
+                <div class="cal-header-cell">Mon</div>
+                <div class="cal-header-cell">Tue</div>
+                <div class="cal-header-cell">Wed</div>
+                <div class="cal-header-cell">Thu</div>
+                <div class="cal-header-cell">Fri</div>
+                <div class="cal-header-cell">Sat</div>
+
+                <!-- Empty cells before month starts -->
+                <div
+                  *ngFor="let e of getStartEmptyCells()"
+                  class="cal-day-cell cal-day--empty-cell"
+                ></div>
+
+                <!-- Day cells -->
+                <div
+                  *ngFor="let day of calendarDays"
+                  class="cal-day-cell {{ getDayClass(getStatusForDay(day)) }}"
+                  [title]="getDayLabel(getStatusForDay(day))"
+                >
+                  <div class="cal-day-cell__num">{{ day }}</div>
+                  <div class="cal-day-cell__status">
+                    {{ getStatusForDay(day) }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Legend -->
+              <div class="att-cal-legend">
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--present"></span> Present
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--absent"></span> Absent
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--late"></span> Late
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--excused"></span> Excused
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--holiday"></span> Holiday
+                </span>
+                <span class="legend-item">
+                  <span class="legend-dot cal-day--empty"></span> Not Marked
+                </span>
+              </div>
+            </div>
+
+            <!-- ── RIGHT: Summary Stats (vertical) ── -->
+            <div class="att-cal-summary" *ngIf="calendarData.length > 0">
+              <div class="att-cal-stat att-cal-stat--green">
+                <div class="att-cal-stat__value">{{ presentCount }}</div>
+                <div class="att-cal-stat__label">Present</div>
+              </div>
+              <div class="att-cal-stat att-cal-stat--red">
+                <div class="att-cal-stat__value">{{ absentCount }}</div>
+                <div class="att-cal-stat__label">Absent</div>
+              </div>
+              <div class="att-cal-stat att-cal-stat--orange">
+                <div class="att-cal-stat__value">{{ lateCount }}</div>
+                <div class="att-cal-stat__label">Late</div>
+              </div>
+              <div class="att-cal-stat att-cal-stat--blue">
+                <div class="att-cal-stat__value">{{ attendancePct }}%</div>
+                <div class="att-cal-stat__label">Attendance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
              TAB: Documents
         ══════════════════════════════════════ -->
 
@@ -596,3 +762,117 @@
     </div>
   </div>
 </div>
+
+<!-- Student Attendance Print Modal -->
+<div
+  class="modal fade"
+  [class.show]="isStudentPrintModalOpen"
+  [style.display]="isStudentPrintModalOpen ? 'block' : 'none'"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h6 class="modal-title fw-bold base-txt-primary">
+          <i class="fas fa-print me-2"></i>Print Attendance Report
+        </h6>
+        <button
+          type="button"
+          class="btn-close btn btn-sm btn-light"
+          (click)="closeStudentPrintModal()"
+        >
+          <span class="visually-hidden">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="border p-3">
+          <!-- Student Info -->
+          <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 12px">
+            <i class="fas fa-user me-1"></i>
+            <strong>{{ studentData?.fullName }}</strong>
+            — {{ admissionData?.className }} (Roll:
+            {{ admissionData?.rollNo || "—" }})
+          </div>
+
+          <!-- Report Type -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+            >
+              Report Type
+            </span>
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="studentPrintType"
+              (change)="onStudentPrintTypeChange()"
+            >
+              <option value="MONTHLY">Monthly Report</option>
+              <option value="YEARLY">Yearly Report</option>
+              <option value="DATE_RANGE">Custom Date Range</option>
+            </select>
+          </div>
+
+          <!-- From Date -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+            >
+              From Date
+            </span>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              [(ngModel)]="studentPrintFromDate"
+              [readonly]="studentPrintType !== 'DATE_RANGE'"
+            />
+          </div>
+
+          <!-- To Date -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+            >
+              To Date
+            </span>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              [(ngModel)]="studentPrintToDate"
+              [readonly]="studentPrintType !== 'DATE_RANGE'"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 bg-light">
+        <button
+          type="button"
+          class="btn btn-sm btn-light border px-3"
+          (click)="closeStudentPrintModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-success px-3"
+          (click)="printStudentReport()"
+          [disabled]="isStudentPrinting"
+        >
+          <span *ngIf="!isStudentPrinting">
+            <i class="fas fa-print me-1"></i> Generate & Print
+          </span>
+          <span *ngIf="isStudentPrinting">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Generating...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade show"
+  *ngIf="isStudentPrintModalOpen"
+  (click)="closeStudentPrintModal()"
+></div>
