@@ -9,14 +9,15 @@ export class AttendanceService {
   private BASE = `${environment.baseUrl}${environment.studentManagementApiUrl}`;
   private LOOKUP_BASE = `${environment.baseUrl}${environment.authApiUrl}`;
   private EP = `api/attendance`;
+  private REPORT_EP = `api/attendance-report`;
 
   private SAVE_BULK_URL = `${this.BASE}/${this.EP}/save-bulk`;
   private GET_CLASS_LIST_URL = `${this.BASE}/${this.EP}/class-student-list`;
   private GET_DAY_STATUS_URL = `${this.BASE}/${this.EP}/day-status`;
   private REPORT_URL = `${this.BASE}/${this.EP}/monthly-report`;
 
-  private PRINT_CLASS_URL = `${this.BASE}/${this.EP}/print-class-report`;
-  private PRINT_STUDENT_URL = `${this.BASE}/${this.EP}/print-student-report`;
+  private PRINT_CLASS_URL = `${this.BASE}/${this.REPORT_EP}/print-class-report`;
+  private PRINT_STUDENT_URL = `${this.BASE}/${this.REPORT_EP}/print-student-report`;
 
   // Dropdown APIs
   private SESSIONS_URL = `${this.LOOKUP_BASE}/api/session/all`;
