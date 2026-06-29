@@ -24,6 +24,7 @@ import { StudentCategoryComponent } from './setup/student-category/student-categ
 import { SubjectMasterComponent } from './setup/subject-master/subject-master.component';
 import { SystemConfigComponent } from './setup/system-config/system-config.component';
 import { UsersComponent } from './setup/users/users.component';
+import { WeeklyOffSetupComponent } from './setup/weekly-off-setup/weekly-off-setup.component';
 
 const routes: Routes = [
   {
@@ -258,6 +259,16 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Salary Grade',
+    },
+  },
+
+  {
+    path: 'setup/weekly-off-setup',
+    canActivate: [AuthGuard],
+    component: WeeklyOffSetupComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Weekly Off Setup',
     },
   },
 ];

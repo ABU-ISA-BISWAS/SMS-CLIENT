@@ -186,3 +186,74 @@
   font-size: 14px;
   color: #999;
 }
+
+/* ── Holiday Checking ────────────────────────────────── */
+.att-holiday-checking {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: #888;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 8px;
+}
+
+/* ── Holiday Warning Banner ──────────────────────────── */
+.att-holiday-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #fff8e1;
+  border: 1.5px solid #ffe082;
+  border-left: 4px solid #f57c00;
+  margin-bottom: 10px;
+}
+
+.att-holiday-banner__icon {
+  font-size: 24px;
+  color: #f57c00;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.att-holiday-banner__info {
+  flex-shrink: 0;
+}
+
+.att-holiday-banner__title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #e65100;
+}
+
+.att-holiday-banner__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #bf360c;
+  margin-top: 2px;
+}
+
+.att-holiday-banner__msg {
+  flex: 1;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+  border-left: 1px solid #ffe082;
+  padding-left: 14px;
+}
+
+/* ── Working Day Banner ──────────────────────────────── */
+.att-working-banner {
+  display: flex;
+  align-items: center;
+  padding: 7px 14px;
+  font-size: 12px;
+  color: #2e7d32;
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  margin-bottom: 8px;
+}

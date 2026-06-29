@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="card">
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
+      <h6 class="m-0 fw-bold base-txt-primary">
+        <i class="fas fa-calendar-times me-2"></i>Weekly Off Setup
+      </h6>
+    </div>
+
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="woff-info-box mb-3">
+            <i class="fas fa-info-circle me-2 text-primary"></i>
+            Select which days are <strong>weekly holidays</strong>
+            for your institution. These days attendance marking will show a
+            warning.
+          </div>
+
+          <!-- Loading -->
+          <div *ngIf="isLoading" class="text-center py-3 text-muted">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading...
+          </div>
+
+          <!-- Day Cards -->
+          <div class="woff-day-grid" *ngIf="!isLoading">
+            <div
+              *ngFor="let day of weekDays"
+              class="woff-day-card"
+              [class.selected]="day.isOff"
+              (click)="day.isOff = !day.isOff"
+            >
+              <div class="woff-day-card__check">
+                <i
+                  class="fas"
+                  [class.fa-check-circle]="day.isOff"
+                  [class.fa-circle]="!day.isOff"
+                ></i>
+              </div>
+              <div class="woff-day-card__name">{{ day.dayName }}</div>
+              <div class="woff-day-card__badge" *ngIf="day.isOff">OFF</div>
+            </div>
+          </div>
+          <div class="checkbox-row">
+            <label class="checkbox-item">
+              <input
+                type="checkbox"
+                [(ngModel)]="academicSession.activeStatus"
+                class="checkbox-input"
+              />
+              <span class="checkbox-label">Active Status</span>
+            </label>
+          </div>
+
+          <!-- Summary -->
+          <div class="woff-summary mt-3" *ngIf="!isLoading">
+            <span
+              *ngIf="selectedCount === 0"
+              class="text-muted"
+              style="font-size: 12px"
+            >
+              No weekly off days selected
+            </span>
+            <span *ngIf="selectedCount > 0" style="font-size: 12px">
+              <strong>{{ selectedCount }}</strong> day(s) selected as weekly
+              off:
+              <strong class="text-danger">
+                {{ selectedDayNames }}
+              </strong>
+            </span>
+          </div>
+
+          <!-- Save Button -->
+          <div class="d-flex justify-content-end mt-3" *ngIf="!isLoading">
+            <button
+              class="btn btn-sm base-btn-primary px-4"
+              (click)="saveWeeklyOff()"
+              [disabled]="isSaving"
+            >
+              <span *ngIf="!isSaving">
+                <i class="fas fa-save me-1"></i>Save Weekly Off
+              </span>
+              <span *ngIf="isSaving">
+                <span class="spinner-border spinner-border-sm me-1"></span>
+                Saving...
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -59,6 +59,7 @@ export class AttendanceReportComponent implements OnInit {
   printToDate: string = '';
   shiftList: any[] = [];
   selectedShiftNo: number | null = null;
+  monthHolidays: Map<string, string> = new Map();
 
   constructor(
     private attendanceService: AttendanceService,
@@ -93,6 +94,57 @@ export class AttendanceReportComponent implements OnInit {
     });
   }
 
+  // loadReport() {
+  //   if (!this.selectedSessionNo || !this.selectedClassNo) {
+  //     this.toastr.warning('Please select Session and Class.');
+  //     return;
+  //   }
+
+  //   this.isLoading = true;
+  //   this.isLoaded = false;
+  //   this.reportList = [];
+  //   this.calendarData = {};
+
+  //   this.attendanceService
+  //     .getMonthlyReport(
+  //       this.selectedSessionNo,
+  //       this.selectedClassNo,
+  //       this.selectedSectionNo,
+  //       this.selectedShiftNo,
+  //       this.selectedMonth,
+  //       this.selectedYear,
+  //     )
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         this.isLoading = false;
+  //         if (res.success) {
+  //           this.reportList = res.obj?.summary || [];
+
+  //           // Calendar data build
+  //           const calRaw: any[] = res.obj?.calendar || [];
+  //           this.buildCalendarData(calRaw);
+
+  //           // Days in selected month
+  //           const daysInMonth = new Date(
+  //             this.selectedYear,
+  //             this.selectedMonth,
+  //             0,
+  //           ).getDate();
+  //           this.calendarDays = Array.from(
+  //             { length: daysInMonth },
+  //             (_, i) => i + 1,
+  //           );
+
+  //           this.isLoaded = true;
+  //         }
+  //       },
+  //       error: () => {
+  //         this.isLoading = false;
+  //         this.toastr.error('Failed to load report.');
+  //       },
+  //     });
+  // }
+
   loadReport() {
     if (!this.selectedSessionNo || !this.selectedClassNo) {
       this.toastr.warning('Please select Session and Class.');
@@ -101,47 +153,55 @@ export class AttendanceReportComponent implements OnInit {
 
     this.isLoading = true;
     this.isLoaded = false;
-    this.reportList = [];
-    this.calendarData = {};
+    this.monthHolidays.clear();
 
-    this.attendanceService
-      .getMonthlyReport(
+    // Report + Holiday একসাথে load করুন
+    forkJoin({
+      report: this.attendanceService.getMonthlyReport(
         this.selectedSessionNo,
         this.selectedClassNo,
         this.selectedSectionNo,
         this.selectedShiftNo,
         this.selectedMonth,
         this.selectedYear,
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.isLoading = false;
-          if (res.success) {
-            this.reportList = res.obj?.summary || [];
+      ),
+      holidays: this.attendanceService.getMonthHolidays(
+        this.selectedMonth,
+        this.selectedYear,
+      ),
+    }).subscribe({
+      next: (res: any) => {
+        this.isLoading = false;
 
-            // Calendar data build
-            const calRaw: any[] = res.obj?.calendar || [];
-            this.buildCalendarData(calRaw);
+        // ── Holiday map build করুন ────────────────────────
+        const holidayList: any[] = res.holidays?.obj || [];
+        holidayList.forEach((h: any) => {
+          this.monthHolidays.set(h.holidayDate, h.holidayName);
+        });
 
-            // Days in selected month
-            const daysInMonth = new Date(
-              this.selectedYear,
-              this.selectedMonth,
-              0,
-            ).getDate();
-            this.calendarDays = Array.from(
-              { length: daysInMonth },
-              (_, i) => i + 1,
-            );
+        // ── Report data ───────────────────────────────────
+        if (res.report?.success) {
+          this.reportList = res.report.obj?.summary || [];
+          const calRaw = res.report.obj?.calendar || [];
+          this.buildCalendarData(calRaw);
 
-            this.isLoaded = true;
-          }
-        },
-        error: () => {
-          this.isLoading = false;
-          this.toastr.error('Failed to load report.');
-        },
-      });
+          const daysInMonth = new Date(
+            this.selectedYear,
+            this.selectedMonth,
+            0,
+          ).getDate();
+          this.calendarDays = Array.from(
+            { length: daysInMonth },
+            (_, i) => i + 1,
+          );
+          this.isLoaded = true;
+        }
+      },
+      error: () => {
+        this.isLoading = false;
+        this.toastr.error('Failed to load report.');
+      },
+    });
   }
 
   buildCalendarData(calRaw: any[]) {
@@ -155,9 +215,44 @@ export class AttendanceReportComponent implements OnInit {
     });
   }
 
+  // getDayStatus(studentNo: number, day: number): string {
+  //   return this.calendarData[studentNo]?.[day] || '';
+  // }
+
   getDayStatus(studentNo: number, day: number): string {
-    return this.calendarData[studentNo]?.[day] || '';
+    const dateStr =
+      `${this.selectedYear}-` +
+      String(this.selectedMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+
+    // Priority 1: Attendance record আছে?
+    const marked = this.calendarData[studentNo]?.[day];
+    if (marked) return marked;
+
+    // Priority 2 & 3: Holiday setup থেকে
+    if (this.monthHolidays.has(dateStr)) return 'H';
+
+    // Priority 4: Future date?
+    const cellDate = new Date(dateStr);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (cellDate > today) return 'FUTURE';
+
+    // Priority 5: Past working day — not marked
+    return '';
   }
+
+  // getDayClass(status: string): string {
+  //   const map: any = {
+  //     P: 'cal-p',
+  //     A: 'cal-a',
+  //     L: 'cal-l',
+  //     E: 'cal-e',
+  //     H: 'cal-h',
+  //   };
+  //   return map[status] || 'cal-empty';
+  // }
 
   getDayClass(status: string): string {
     const map: any = {
@@ -166,8 +261,41 @@ export class AttendanceReportComponent implements OnInit {
       L: 'cal-l',
       E: 'cal-e',
       H: 'cal-h',
+      FUTURE: 'cal-future',
     };
     return map[status] || 'cal-empty';
+  }
+
+  getDayTooltip(studentNo: number, day: number): string {
+    const dateStr =
+      `${this.selectedYear}-` +
+      String(this.selectedMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+
+    const status = this.getDayStatus(studentNo, day);
+
+    if (status === 'H') {
+      return this.monthHolidays.get(dateStr) || 'Holiday';
+    }
+
+    const labels: any = {
+      P: 'Present',
+      A: 'Absent',
+      L: 'Late',
+      E: 'Excused',
+      FUTURE: 'Upcoming',
+    };
+    return labels[status] || 'Not Marked';
+  }
+
+  isHolidayColumn(day: number): boolean {
+    const dateStr =
+      `${this.selectedYear}-` +
+      String(this.selectedMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+    return this.monthHolidays.has(dateStr);
   }
 
   getDayLabel(status: string): string {

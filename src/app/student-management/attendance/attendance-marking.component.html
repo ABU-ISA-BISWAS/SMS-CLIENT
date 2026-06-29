@@ -167,6 +167,65 @@
         </div>
       </div>
 
+      <!-- Filter Bar এর নিচে এবং Mark All bar এর উপরে -->
+
+      <!-- ── Holiday Checking Indicator ── -->
+      <div *ngIf="isHolidayChecking" class="att-holiday-checking">
+        <span class="spinner-border spinner-border-sm me-2"></span>
+        Checking holiday status...
+      </div>
+
+      <!-- ── Holiday Warning Banner ── -->
+      <div
+        *ngIf="!isHolidayChecking && holidayInfo.isHoliday"
+        class="att-holiday-banner"
+      >
+        <div class="att-holiday-banner__icon">
+          <i
+            class="fas"
+            [class.fa-calendar-times]="holidayInfo.holidayType === 'WEEKLY_OFF'"
+            [class.fa-star-and-crescent]="
+              holidayInfo.holidayType === 'PUBLIC_HOLIDAY'
+            "
+          >
+          </i>
+        </div>
+
+        <div class="att-holiday-banner__info">
+          <div class="att-holiday-banner__title">
+            {{
+              holidayInfo.holidayType === "WEEKLY_OFF"
+                ? "Weekly Holiday"
+                : "Public Holiday"
+            }}
+          </div>
+          <div class="att-holiday-banner__name">
+            {{ holidayInfo.holidayName }}
+          </div>
+        </div>
+
+        <div class="att-holiday-banner__msg">
+          <span *ngIf="holidayInfo.holidayType === 'WEEKLY_OFF'">
+            This is a <strong>weekly off day</strong>. Students will be marked
+            <strong>H (Holiday)</strong> by default. You can override if a
+            special class is scheduled.
+          </span>
+          <span *ngIf="holidayInfo.holidayType === 'PUBLIC_HOLIDAY'">
+            This is a <strong>public holiday</strong>. Students will be marked
+            <strong>H (Holiday)</strong> by default. You can override if needed.
+          </span>
+        </div>
+      </div>
+
+      <!-- ── Working Day confirmation (optional green banner) ── -->
+      <div
+        *ngIf="!isHolidayChecking && !holidayInfo.isHoliday && selectedDate"
+        class="att-working-banner"
+      >
+        <i class="fas fa-check-circle me-2"></i>
+        <strong>Working Day</strong> — Regular attendance marking.
+      </div>
+
       <!-- ── Already Marked Notice ── -->
       <div
         *ngIf="isAlreadyMarked && isLoaded"

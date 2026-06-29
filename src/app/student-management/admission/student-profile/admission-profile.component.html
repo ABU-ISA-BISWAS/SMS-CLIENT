@@ -483,12 +483,7 @@
               (click)="loadAttendanceCalendar()"
               [disabled]="isCalendarLoading"
             >
-              <span
-                *ngIf="!isCalendarLoading"
-                class="d-inline-flex align-items-center gap-1"
-              >
-                <i class="fas fa-search me-1"></i>View
-              </span>
+              <span *ngIf="!isCalendarLoading"> View </span>
               <span *ngIf="isCalendarLoading">
                 <span class="spinner-border spinner-border-sm me-1"></span>
                 Loading...
@@ -497,10 +492,10 @@
 
             <button
               class="btn btn-sm btn-success fw-medium px-3"
-              *ngIf="calendarData.length > 0"
+              *ngIf="calendarData.length > 0 || monthHolidays.size > 0"
               (click)="openStudentPrintModal()"
             >
-              <i class="fas fa-print me-1"></i> Print
+              Print
             </button>
           </div>
 
@@ -524,8 +519,8 @@
             <!-- ── LEFT: Calendar Grid + Legend ── -->
             <div class="att-cal-left">
               <!-- Calendar Grid -->
-              <div class="att-calendar-grid">
-                <!-- Day headers: Sun Mon Tue ... -->
+              <div *ngIf="!isCalendarLoading" class="att-calendar-grid">
+                <!-- Day headers -->
                 <div class="cal-header-cell">Sun</div>
                 <div class="cal-header-cell">Mon</div>
                 <div class="cal-header-cell">Tue</div>
@@ -544,17 +539,21 @@
                 <div
                   *ngFor="let day of calendarDays"
                   class="cal-day-cell {{ getDayClass(getStatusForDay(day)) }}"
-                  [title]="getDayLabel(getStatusForDay(day))"
+                  [title]="getDayLabel(day)"
                 >
                   <div class="cal-day-cell__num">{{ day }}</div>
                   <div class="cal-day-cell__status">
-                    {{ getStatusForDay(day) }}
+                    {{
+                      getStatusForDay(day) === "FUTURE"
+                        ? ""
+                        : getStatusForDay(day)
+                    }}
                   </div>
                 </div>
               </div>
 
               <!-- Legend -->
-              <div class="att-cal-legend">
+              <div class="att-cal-legend" *ngIf="!isCalendarLoading">
                 <span class="legend-item">
                   <span class="legend-dot cal-day--present"></span> Present
                 </span>
@@ -571,13 +570,22 @@
                   <span class="legend-dot cal-day--holiday"></span> Holiday
                 </span>
                 <span class="legend-item">
+                  <span class="legend-dot cal-day--future"></span> Upcoming
+                </span>
+                <span class="legend-item">
                   <span class="legend-dot cal-day--empty"></span> Not Marked
                 </span>
               </div>
             </div>
 
             <!-- ── RIGHT: Summary Stats (vertical) ── -->
-            <div class="att-cal-summary" *ngIf="calendarData.length > 0">
+            <div
+              class="att-cal-summary"
+              *ngIf="
+                !isCalendarLoading &&
+                (calendarData.length > 0 || monthHolidays.size > 0)
+              "
+            >
               <div class="att-cal-stat att-cal-stat--green">
                 <div class="att-cal-stat__value">{{ presentCount }}</div>
                 <div class="att-cal-stat__label">Present</div>
@@ -589,6 +597,10 @@
               <div class="att-cal-stat att-cal-stat--orange">
                 <div class="att-cal-stat__value">{{ lateCount }}</div>
                 <div class="att-cal-stat__label">Late</div>
+              </div>
+              <div class="att-cal-stat att-cal-stat--purple">
+                <div class="att-cal-stat__value">{{ holidayCount }}</div>
+                <div class="att-cal-stat__label">Holiday</div>
               </div>
               <div class="att-cal-stat att-cal-stat--blue">
                 <div class="att-cal-stat__value">{{ attendancePct }}%</div>

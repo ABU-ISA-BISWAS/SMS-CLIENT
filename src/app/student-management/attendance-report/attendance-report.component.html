@@ -419,12 +419,12 @@
         <!-- ══════════════════════════════════════
              VIEW 2: Day-wise Calendar
         ══════════════════════════════════════ -->
-        <div *ngIf="viewMode === 'calendar'">
+        <!-- <div *ngIf="viewMode === 'calendar'">
           <div class="report-title">
             {{ selectedMonthLabel }} {{ selectedYear }} — Day-wise Attendance
           </div>
 
-          <!-- Legend -->
+     
           <div class="cal-legend mb-2">
             <span class="cal-legend-item">
               <span class="cal-dot cal-p"></span> Present
@@ -460,7 +460,7 @@
                   <th>#</th>
                   <th class="text-center">Roll</th>
                   <th>Student Name</th>
-                  <!-- Day columns -->
+
                   <th *ngFor="let day of calendarDays" class="cal-day-th">
                     {{ day }}
                   </th>
@@ -481,13 +481,126 @@
                   >
                     {{ row.fullName }}
                   </td>
-                  <!-- Day cells -->
+        
                   <td *ngFor="let day of calendarDays" class="cal-cell">
                     <span
                       class="cal-dot {{
                         getDayClass(getDayStatus(row.studentNo, day))
                       }}"
                       [title]="getDayStatus(row.studentNo, day)"
+                    >
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <span
+                      class="pct-label {{ getPctClass(row.attendancePct) }}"
+                      style="font-size: 11px"
+                    >
+                      {{ row.attendancePct }}%
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> -->
+
+        <div *ngIf="viewMode === 'calendar'">
+          <div class="report-title">
+            {{ selectedMonthLabel }} {{ selectedYear }} — Day-wise Attendance
+          </div>
+
+          <!-- Legend -->
+          <div class="cal-legend mb-2">
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-p"></span> Present
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-a"></span> Absent
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-l"></span> Late
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-e"></span> Excused
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-h"></span> Holiday
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-future"></span> Upcoming
+            </span>
+            <span class="cal-legend-item">
+              <span class="cal-dot cal-empty"></span> Not Marked
+            </span>
+          </div>
+
+          <div class="cal-table-wrap">
+            <table class="cal-table">
+              <colgroup>
+                <col class="col-sl" />
+                <col class="col-roll" />
+                <col class="col-name" />
+                <col *ngFor="let day of calendarDays" class="col-day" />
+                <col class="col-pct" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="text-center">Roll</th>
+                  <th>Student Name</th>
+                  <!-- Day headers — holiday হলে H background -->
+                  <th
+                    *ngFor="let day of calendarDays"
+                    class="cal-day-th"
+                    [class.cal-day-th--holiday]="isHolidayColumn(day)"
+                    [title]="
+                      isHolidayColumn(day)
+                        ? monthHolidays.get(
+                            selectedYear +
+                              '-' +
+                              (selectedMonth < 10 ? '0' : '') +
+                              selectedMonth +
+                              '-' +
+                              (day < 10 ? '0' : '') +
+                              day
+                          ) || 'Holiday'
+                        : ''
+                    "
+                  >
+                    {{ day }}
+                    <!-- Holiday indicator -->
+                    <!-- <span *ngIf="isHolidayColumn(day)" class="cal-day-th__h"
+                      >H</span> -->
+                  </th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of reportList; let i = index">
+                  <td class="text-muted" style="font-size: 11px">
+                    {{ i + 1 }}
+                  </td>
+                  <td class="text-center fw-semibold" style="font-size: 12px">
+                    {{ row.rollNo || "—" }}
+                  </td>
+                  <td
+                    class="cal-name-cell"
+                    style="font-size: 12px; font-weight: 500"
+                  >
+                    {{ row.fullName }}
+                  </td>
+                  <!-- Day cells -->
+                  <td
+                    *ngFor="let day of calendarDays"
+                    class="cal-cell"
+                    [class.cal-cell--holiday]="isHolidayColumn(day)"
+                  >
+                    <span
+                      class="cal-dot {{
+                        getDayClass(getDayStatus(row.studentNo, day))
+                      }}"
+                      [title]="getDayTooltip(row.studentNo, day)"
                     >
                     </span>
                   </td>

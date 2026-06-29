@@ -70,6 +70,7 @@ import { RoleFeaturesModalComponent } from './setup/users/role-features-modal/ro
 import { SubModuleRoleComponent } from './setup/users/sub-module-role/sub-module-role.component';
 import { SubModuleComponent } from './setup/users/sub-module/sub-module.component';
 import { UsersComponent } from './setup/users/users.component';
+import { WeeklyOffSetupComponent } from './setup/weekly-off-setup/weekly-off-setup.component';
 @NgModule({
   declarations: [
     SetupComponent,
@@ -130,6 +131,7 @@ import { UsersComponent } from './setup/users/users.component';
     RoomComponent,
     SalaryGradeComponent,
     AddSalaryGradeComponent,
+    WeeklyOffSetupComponent,
   ],
   imports: [
     SharedModule,

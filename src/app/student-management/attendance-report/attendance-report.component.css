@@ -385,3 +385,31 @@
   font-weight: 700;
   margin: 0 auto;
 } */
+
+/* ── Holiday column header ───────────────────────────── */
+.cal-day-th--holiday {
+  background: #fff3e0 !important;
+  color: #e65100 !important;
+  position: relative;
+}
+
+.cal-day-th__h {
+  display: block;
+  font-size: 8px;
+  font-weight: 700;
+  color: #f57c00;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* ── Holiday column cells ────────────────────────────── */
+.cal-cell--holiday {
+  background: #fff8f0 !important;
+}
+
+/* ── Future date dot ─────────────────────────────────── */
+.cal-future {
+  background: #f5f5f5 !important;
+  color: #ccc !important;
+  border: 1px dashed #e0e0e0 !important;
+}

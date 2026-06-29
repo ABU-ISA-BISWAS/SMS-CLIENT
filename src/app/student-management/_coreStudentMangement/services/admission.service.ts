@@ -40,7 +40,8 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private RELATIONS_URL = `${this.BASE}/api/guardian-relation/all`;
   private DOC_TYPES_URL = `${this.BASE}/api/lookup/doc-type/student`;
   private FIND_STUDETN_PHOTO = `${this.BASE_STD_MGNT}/${this.EP}/find-student-photo`;
-  private PRINT_STUDENT_ATT_URL = `${this.BASE_STD_MGNT}/api/attendance/print-student-report`;
+  private PRINT_STUDENT_ATT_URL = `${this.BASE_STD_MGNT}/api/attendance-report/print-student-report`;
+  private MONTH_HOLIDAYS_URL = `${this.BASE_STD_MGNT}/${this.EP_ATTENDANCE}/month-holidays`;
 
   constructor(
     private http: HttpClient,
@@ -55,6 +56,12 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
     );
   }
 
+  getMonthHolidays(month: number, year: number) {
+    const params = new HttpParams().append('month', month).append('year', year);
+    return this.http
+      .get(this.MONTH_HOLIDAYS_URL, { params })
+      .pipe(map((d: any) => d));
+  }
   // ── CRUD ───────────────────────────────────────────────
   getSingle(id: any) {
     const params = new HttpParams().append('id', id);

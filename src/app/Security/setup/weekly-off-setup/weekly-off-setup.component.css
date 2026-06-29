@@ -1,0 +1,111 @@
+/* ── Info Box ────────────────────────────────────────── */
+.woff-info-box {
+  background: #f0f7ff;
+  border: 1px solid #c8e0ff;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #444;
+  border-radius: 2px;
+}
+
+/* ── Day Grid ────────────────────────────────────────── */
+.woff-day-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.woff-day-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1.5px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.woff-day-card:hover {
+  border-color: #90caf9;
+  background: #f5faff;
+}
+
+.woff-day-card.selected {
+  border-color: #f44336;
+  background: #fff5f5;
+}
+
+.woff-day-card__check {
+  font-size: 16px;
+  color: #ccc;
+  flex-shrink: 0;
+}
+
+.woff-day-card.selected .woff-day-card__check {
+  color: #f44336;
+}
+
+.woff-day-card__name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.woff-day-card.selected .woff-day-card__name {
+  color: #c62828;
+}
+
+.woff-day-card__badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+
+/* ── Summary ─────────────────────────────────────────── */
+.woff-summary {
+  padding: 8px 12px;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+}
+
+/* ── Checkbox Row ───────────────────────────────── */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--bs-secondary-bg);
+  border: 1px solid var(--bs-border-color-translucent);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox-input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: var(--bs-primary);
+}
+
+.checkbox-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bs-body-color);
+  user-select: none;
+}

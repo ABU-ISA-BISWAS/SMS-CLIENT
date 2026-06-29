@@ -542,7 +542,7 @@
   background: #e0e0e0;
   border: 1px solid #e0e0e0;
   overflow: hidden;
-  width: 600px;
+  width: 500px;
   flex-shrink: 0;
 }
 
@@ -716,4 +716,16 @@
     width: 100%;
     flex-direction: row;
   }
+}
+
+/* ── Attendance Stats ────────────────────────────────── */
+.att-cal-stat--purple {
+  border-top: 3px solid #9c27b0;
+}
+
+/* ── Future date ─────────────────────────────────────── */
+.cal-day--future {
+  background: #f9f9f9;
+  color: #ccc;
+  border: 1px dashed #e8e8e8;
 }

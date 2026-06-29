@@ -3,6 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
 import { ConfirmationDialog } from '../../../shared/component/confirmation-dialog/confirmation-dialog';
 import { AdmissionService } from '../../_coreStudentMangement/services/admission.service';
 
@@ -76,6 +77,8 @@ export class AdmissionProfileComponent implements OnInit {
   studentPrintType = 'MONTHLY'; // MONTHLY / YEARLY / DATE_RANGE
   studentPrintFromDate = '';
   studentPrintToDate = '';
+
+  monthHolidays: Map<string, string> = new Map();
 
   constructor(
     private route: ActivatedRoute,
@@ -200,14 +203,42 @@ export class AdmissionProfileComponent implements OnInit {
   }
 
   // ── Attendance calendar load ───────────────────────────────────
+  // loadAttendanceCalendar() {
+  //   const studentNo = this.admissionData.student.studentNo;
+  //   if (!studentNo) return;
+
+  //   this.isCalendarLoading = true;
+  //   this.calendarData = [];
+
+  //   // Days in selected month
+  //   const daysInMonth = new Date(
+  //     this.calendarYear,
+  //     this.calendarMonth,
+  //     0,
+  //   ).getDate();
+  //   this.calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  //   this.admissionService
+  //     .getStudentMonthly(studentNo, this.calendarMonth, this.calendarYear)
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         this.isCalendarLoading = false;
+  //         this.calendarData = res?.obj || [];
+  //       },
+  //       error: () => {
+  //         this.isCalendarLoading = false;
+  //       },
+  //     });
+  // }
+
   loadAttendanceCalendar() {
     const studentNo = this.admissionData.student.studentNo;
     if (!studentNo) return;
 
     this.isCalendarLoading = true;
     this.calendarData = [];
+    this.monthHolidays.clear();
 
-    // Days in selected month
     const daysInMonth = new Date(
       this.calendarYear,
       this.calendarMonth,
@@ -215,17 +246,59 @@ export class AdmissionProfileComponent implements OnInit {
     ).getDate();
     this.calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
-    this.admissionService
-      .getStudentMonthly(studentNo, this.calendarMonth, this.calendarYear)
-      .subscribe({
-        next: (res: any) => {
-          this.isCalendarLoading = false;
-          this.calendarData = res?.obj || [];
-        },
-        error: () => {
-          this.isCalendarLoading = false;
-        },
-      });
+    // Student attendance + holidays একসাথে load
+    forkJoin({
+      attendance: this.admissionService.getStudentMonthly(
+        studentNo,
+        this.calendarMonth,
+        this.calendarYear,
+      ),
+      holidays: this.admissionService.getMonthHolidays(
+        this.calendarMonth,
+        this.calendarYear,
+      ),
+    }).subscribe({
+      next: (res: any) => {
+        this.isCalendarLoading = false;
+
+        // Holiday map
+        const holidayList: any[] = res.holidays?.obj || [];
+        holidayList.forEach((h: any) => {
+          this.monthHolidays.set(h.holidayDate, h.holidayName);
+        });
+
+        // Attendance data
+        this.calendarData = res.attendance?.obj || [];
+      },
+      error: () => {
+        this.isCalendarLoading = false;
+      },
+    });
+  }
+
+  getStatusForDay(day: number): string {
+    const dateStr =
+      `${this.calendarYear}-` +
+      String(this.calendarMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+
+    // Priority 1: Attendance record আছে?
+    const found = this.calendarData.find(
+      (d: any) => d.attendanceDate === dateStr,
+    );
+    if (found?.status) return found.status;
+
+    // Priority 2 & 3: Holiday setup থেকে
+    if (this.monthHolidays.has(dateStr)) return 'H';
+
+    // Priority 4: Future date?
+    const cellDate = new Date(dateStr);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (cellDate > today) return 'FUTURE';
+
+    return '';
   }
 
   // ── Tab switch এ attendance load ───────────────────────────────
@@ -237,18 +310,29 @@ export class AdmissionProfileComponent implements OnInit {
   }
 
   // ── Calendar helpers ───────────────────────────────────────────
-  getStatusForDay(day: number): string {
-    const dateStr =
-      `${this.calendarYear}-` +
-      String(this.calendarMonth).padStart(2, '0') +
-      '-' +
-      String(day).padStart(2, '0');
+  // getStatusForDay(day: number): string {
+  //   const dateStr =
+  //     `${this.calendarYear}-` +
+  //     String(this.calendarMonth).padStart(2, '0') +
+  //     '-' +
+  //     String(day).padStart(2, '0');
 
-    const found = this.calendarData.find(
-      (d: any) => d.attendanceDate === dateStr,
-    );
-    return found?.status || '';
-  }
+  //   const found = this.calendarData.find(
+  //     (d: any) => d.attendanceDate === dateStr,
+  //   );
+  //   return found?.status || '';
+  // }
+
+  // getDayClass(status: string): string {
+  //   const map: any = {
+  //     P: 'cal-day--present',
+  //     A: 'cal-day--absent',
+  //     L: 'cal-day--late',
+  //     E: 'cal-day--excused',
+  //     H: 'cal-day--holiday',
+  //   };
+  //   return map[status] || 'cal-day--empty';
+  // }
 
   getDayClass(status: string): string {
     const map: any = {
@@ -257,18 +341,66 @@ export class AdmissionProfileComponent implements OnInit {
       L: 'cal-day--late',
       E: 'cal-day--excused',
       H: 'cal-day--holiday',
+      FUTURE: 'cal-day--future',
     };
     return map[status] || 'cal-day--empty';
   }
-  getDayLabel(status: string): string {
-    const map: any = {
+  // getDayLabel(status: string): string {
+  //   const map: any = {
+  //     P: 'Present',
+  //     A: 'Absent',
+  //     L: 'Late',
+  //     E: 'Excused',
+  //     H: 'Holiday',
+  //   };
+  //   return map[status] || 'Not marked';
+  // }
+
+  getDayLabel(day: number): string {
+    const dateStr =
+      `${this.calendarYear}-` +
+      String(this.calendarMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+
+    const status = this.getStatusForDay(day);
+
+    if (status === 'H') {
+      return this.monthHolidays.get(dateStr) || 'Holiday';
+    }
+
+    const labels: any = {
       P: 'Present',
       A: 'Absent',
       L: 'Late',
       E: 'Excused',
-      H: 'Holiday',
+      FUTURE: 'Upcoming',
     };
-    return map[status] || 'Not marked';
+    return labels[status] || 'Not Marked';
+  }
+
+  // ── isHolidayDay() helper ─────────────────────────────
+  isHolidayDay(day: number): boolean {
+    const dateStr =
+      `${this.calendarYear}-` +
+      String(this.calendarMonth).padStart(2, '0') +
+      '-' +
+      String(day).padStart(2, '0');
+    return this.monthHolidays.has(dateStr);
+  }
+
+  // ── presentCount, absentCount শুধু working days count ─
+  get presentCount(): number {
+    // Attendance record এ P আছে
+    return this.calendarData.filter((d: any) => d.status === 'P').length;
+  }
+
+  get absentCount(): number {
+    return this.calendarData.filter((d: any) => d.status === 'A').length;
+  }
+
+  get lateCount(): number {
+    return this.calendarData.filter((d: any) => d.status === 'L').length;
   }
 
   get selectedMonthLabel(): string {
@@ -276,24 +408,60 @@ export class AdmissionProfileComponent implements OnInit {
   }
 
   // ── Attendance summary counts ──────────────────────────────────
-  get presentCount(): number {
-    return this.calendarData.filter((d: any) => d.status === 'P').length;
-  }
-  get absentCount(): number {
-    return this.calendarData.filter((d: any) => d.status === 'A').length;
-  }
-  get lateCount(): number {
-    return this.calendarData.filter((d: any) => d.status === 'L').length;
+  // get presentCount(): number {
+  //   return this.calendarData.filter((d: any) => d.status === 'P').length;
+  // }
+  // get absentCount(): number {
+  //   return this.calendarData.filter((d: any) => d.status === 'A').length;
+  // }
+  // get lateCount(): number {
+  //   return this.calendarData.filter((d: any) => d.status === 'L').length;
+  // }
+
+  get holidayCount(): number {
+    // Attendance record এ H + Holiday map থেকে auto H
+    const markedH = this.calendarData.filter(
+      (d: any) => d.status === 'H',
+    ).length;
+
+    // Auto holiday (not manually marked)
+    let autoH = 0;
+    this.calendarDays.forEach((day) => {
+      const dateStr =
+        `${this.calendarYear}-` +
+        String(this.calendarMonth).padStart(2, '0') +
+        '-' +
+        String(day).padStart(2, '0');
+      const hasRecord = this.calendarData.find(
+        (d: any) => d.attendanceDate === dateStr,
+      );
+      if (!hasRecord && this.monthHolidays.has(dateStr)) {
+        autoH++;
+      }
+    });
+
+    return markedH + autoH;
   }
 
   get attendancePct(): number {
-    const total = this.calendarData.filter((d: any) => d.status !== 'H').length;
-    if (total === 0) return 0;
+    const totalMarked = this.calendarData.filter(
+      (d: any) => d.status !== 'H',
+    ).length;
+    if (totalMarked === 0) return 0;
     const present = this.calendarData.filter(
       (d: any) => d.status === 'P' || d.status === 'L',
     ).length;
-    return Math.round((present / total) * 100);
+    return Math.round((present / totalMarked) * 100);
   }
+
+  // get attendancePct(): number {
+  //   const total = this.calendarData.filter((d: any) => d.status !== 'H').length;
+  //   if (total === 0) return 0;
+  //   const present = this.calendarData.filter(
+  //     (d: any) => d.status === 'P' || d.status === 'L',
+  //   ).length;
+  //   return Math.round((present / total) * 100);
+  // }
 
   getStartEmptyCells(): number[] {
     // Month এর প্রথম দিন কোন weekday (0=Sun, 6=Sat)

@@ -18,6 +18,8 @@ export class AttendanceService {
 
   private PRINT_CLASS_URL = `${this.BASE}/${this.REPORT_EP}/print-class-report`;
   private PRINT_STUDENT_URL = `${this.BASE}/${this.REPORT_EP}/print-student-report`;
+  private CHECK_HOLIDAY_URL = `${this.BASE}/${this.EP}/check-holiday`;
+  private MONTH_HOLIDAYS_URL = `${this.BASE}/${this.EP}/month-holidays`;
 
   // Dropdown APIs
   private SESSIONS_URL = `${this.LOOKUP_BASE}/api/session/all`;
@@ -29,6 +31,13 @@ export class AttendanceService {
     private http: HttpClient,
     private authService: AuthService,
   ) {}
+
+  getMonthHolidays(month: number, year: number) {
+    const params = new HttpParams().append('month', month).append('year', year);
+    return this.http
+      .get(this.MONTH_HOLIDAYS_URL, { params })
+      .pipe(map((d: any) => d));
+  }
 
   // ── Class student list with today's attendance status ──
   getClassStudentList(
@@ -69,6 +78,13 @@ export class AttendanceService {
   // ── Bulk save ─────────────────────────────────────────
   saveBulkAttendance(data: any) {
     return this.http.post(this.SAVE_BULK_URL, data).pipe(map((d: any) => d));
+  }
+
+  checkHoliday(date: string) {
+    const params = new HttpParams().append('date', date);
+    return this.http
+      .get(this.CHECK_HOLIDAY_URL, { params })
+      .pipe(map((d: any) => d));
   }
 
   // ── Monthly report ────────────────────────────────────

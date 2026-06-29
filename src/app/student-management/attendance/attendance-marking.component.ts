@@ -45,6 +45,14 @@ export class AttendanceMarkingComponent implements OnInit {
     { value: 'E', label: 'Excused', cls: 'status-e' },
   ];
 
+  holidayInfo: {
+    isHoliday: boolean;
+    holidayType: string;
+    holidayName: string;
+  } = { isHoliday: false, holidayType: 'NONE', holidayName: '' };
+
+  isHolidayChecking = false;
+
   constructor(
     private attendanceService: AttendanceService,
     private toastr: ToastrService,
@@ -53,6 +61,7 @@ export class AttendanceMarkingComponent implements OnInit {
 
   ngOnInit() {
     this.loadDropdowns();
+    this.checkHoliday();
   }
 
   loadDropdowns() {
@@ -105,7 +114,11 @@ export class AttendanceMarkingComponent implements OnInit {
               fullName: s.fullName,
               fullNameBn: s.fullNameBn,
               rollNo: s.rollNo,
-              status: s.status || 'P', // existing or default Present
+              status: s.status
+                ? s.status
+                : this.holidayInfo.isHoliday
+                  ? 'H'
+                  : 'P',
               remarks: s.remarks || '',
             }));
             this.isAlreadyMarked = res.obj?.some((s: any) => s.status);
@@ -176,8 +189,42 @@ export class AttendanceMarkingComponent implements OnInit {
       });
   }
 
+  // onDateChange() {
+  //   // Date বদলালে reload করুন
+  //   if (this.isLoaded) this.loadStudents();
+  // }
+
   onDateChange() {
-    // Date বদলালে reload করুন
-    if (this.isLoaded) this.loadStudents();
+    this.holidayInfo = {
+      isHoliday: false,
+      holidayType: 'NONE',
+      holidayName: '',
+    };
+    this.attendanceList = [];
+    this.isLoaded = false;
+
+    if (this.selectedDate) {
+      this.checkHoliday();
+    }
+  }
+
+  // ── Holiday check ─────────────────────────────────────
+  checkHoliday() {
+    this.isHolidayChecking = true;
+    this.attendanceService.checkHoliday(this.selectedDate).subscribe({
+      next: (res: any) => {
+        this.isHolidayChecking = false;
+        if (res.success && res.obj) {
+          this.holidayInfo = {
+            isHoliday: res.obj.isHoliday === 1,
+            holidayType: res.obj.holidayType || 'NONE',
+            holidayName: res.obj.holidayName || '',
+          };
+        }
+      },
+      error: () => {
+        this.isHolidayChecking = false;
+      },
+    });
   }
 }
