@@ -43,16 +43,6 @@
               <div class="woff-day-card__badge" *ngIf="day.isOff">OFF</div>
             </div>
           </div>
-          <div class="checkbox-row">
-            <label class="checkbox-item">
-              <input
-                type="checkbox"
-                [(ngModel)]="academicSession.activeStatus"
-                class="checkbox-input"
-              />
-              <span class="checkbox-label">Active Status</span>
-            </label>
-          </div>
 
           <!-- Summary -->
           <div class="woff-summary mt-3" *ngIf="!isLoading">
