@@ -784,38 +784,50 @@
 >
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-      <div class="modal-header border-0">
-        <h6 class="modal-title fw-bold base-txt-primary">
-          <i class="fas fa-print me-2"></i>Print Attendance Report
-        </h6>
+      <!-- Modal Header -->
+      <div class="modal-header border-0 pb-0">
+        <div class="d-flex align-items-center gap-2">
+          <div class="modal-header-icon">
+            <i class="ti ti-printer fs-16px" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">
+              Print Attendance Report
+            </h6>
+            <small class="text-body-secondary fs-11px"
+              >Generate a printable student report</small
+            >
+          </div>
+        </div>
         <button
           type="button"
-          class="btn-close btn btn-sm btn-light"
+          class="modal-close-btn btn btn-sm btn-light border"
+          aria-label="Close"
           (click)="closeStudentPrintModal()"
         >
-          <span class="visually-hidden">&times;</span>
+          <i class="ti ti-x fs-13px" aria-hidden="true"></i>
         </button>
       </div>
 
-      <div class="modal-body">
-        <div class="border p-3">
-          <!-- Student Info -->
-          <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 12px">
-            <i class="fas fa-user me-1"></i>
+      <!-- Modal Body -->
+      <div class="modal-body pt-3 pb-2">
+        <!-- Student Info -->
+        <div class="print-info-box mb-3">
+          <i class="ti ti-user fs-14px" aria-hidden="true"></i>
+          <span>
             <strong>{{ profileData?.fullName }}</strong>
-            — {{ admissionData?.className }} (Roll:
-            {{ admissionData?.rollNo || "—" }})
-          </div>
+            — {{ profileData?.className }} (Roll:
+            {{ profileData?.rollNo || "—" }})
+          </span>
+        </div>
 
-          <!-- Report Type -->
-          <div class="input-group input-group-sm mb-2">
-            <span
-              class="input-group-text base-bg-subtle-primary base-txt-primary"
-            >
-              Report Type
-            </span>
+        <!-- Report Type -->
+        <div class="field-group">
+          <label class="field-label">Report Type</label>
+          <div class="input-field-wrapper">
+            <i class="ti ti-file-text field-icon-left" aria-hidden="true"></i>
             <select
-              class="form-select form-select-sm"
+              class="form-select field-select"
               [(ngModel)]="studentPrintType"
               (change)="onStudentPrintTypeChange()"
             >
@@ -824,58 +836,64 @@
               <option value="DATE_RANGE">Custom Date Range</option>
             </select>
           </div>
+        </div>
 
-          <!-- From Date -->
-          <div class="input-group input-group-sm mb-2">
-            <span
-              class="input-group-text base-bg-subtle-primary base-txt-primary"
-            >
-              From Date
-            </span>
-            <input
-              type="date"
-              class="form-control form-control-sm"
-              [(ngModel)]="studentPrintFromDate"
-              [readonly]="studentPrintType !== 'DATE_RANGE'"
-            />
+        <!-- Date Range -->
+        <div class="print-date-grid">
+          <div class="field-group">
+            <label class="field-label">From Date</label>
+            <div class="input-field-wrapper">
+              <i
+                class="ti ti-calendar-plus field-icon-left"
+                aria-hidden="true"
+              ></i>
+              <input
+                type="date"
+                class="form-control field-input"
+                [(ngModel)]="studentPrintFromDate"
+                [readonly]="studentPrintType !== 'DATE_RANGE'"
+              />
+            </div>
           </div>
-
-          <!-- To Date -->
-          <div class="input-group input-group-sm mb-2">
-            <span
-              class="input-group-text base-bg-subtle-primary base-txt-primary"
-            >
-              To Date
-            </span>
-            <input
-              type="date"
-              class="form-control form-control-sm"
-              [(ngModel)]="studentPrintToDate"
-              [readonly]="studentPrintType !== 'DATE_RANGE'"
-            />
+          <div class="field-group">
+            <label class="field-label">To Date</label>
+            <div class="input-field-wrapper">
+              <i
+                class="ti ti-calendar-minus field-icon-left"
+                aria-hidden="true"
+              ></i>
+              <input
+                type="date"
+                class="form-control field-input"
+                [(ngModel)]="studentPrintToDate"
+                [readonly]="studentPrintType !== 'DATE_RANGE'"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="modal-footer border-0 bg-light">
+      <!-- Modal Footer -->
+      <div class="modal-footer border-0 modal-footer-custom">
         <button
           type="button"
-          class="btn btn-sm btn-light border px-3"
+          class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
           (click)="closeStudentPrintModal()"
         >
           Cancel
         </button>
         <button
           type="button"
-          class="btn btn-sm btn-success px-3"
+          class="btn btn-sm base-btn-primary fw-medium px-4"
           (click)="printStudentReport()"
           [disabled]="isStudentPrinting"
         >
           <span *ngIf="!isStudentPrinting">
-            <i class="fas fa-print me-1"></i> Generate & Print
+            <i class="ti ti-printer fs-13px me-1" aria-hidden="true"></i>
+            Generate & Print
           </span>
           <span *ngIf="isStudentPrinting">
-            <span class="spinner-border spinner-border-sm me-1"></span>
+            <i class="ti ti-loader-2 spin me-1 fs-13px" aria-hidden="true"></i>
             Generating...
           </span>
         </button>
