@@ -42,6 +42,7 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
   private FIND_STUDETN_PHOTO = `${this.BASE_STD_MGNT}/${this.EP}/find-student-photo`;
   private PRINT_STUDENT_ATT_URL = `${this.BASE_STD_MGNT}/api/attendance-report/print-student-report`;
   private MONTH_HOLIDAYS_URL = `${this.BASE_STD_MGNT}/${this.EP_ATTENDANCE}/month-holidays`;
+  private PRINT_ID_CARD_URL = `${this.BASE_STD_MGNT}/api/id-card/print`;
 
   constructor(
     private http: HttpClient,
@@ -182,6 +183,14 @@ export class AdmissionService extends ResourceService<StudentAdmission> {
 
     return this.http.get(this.PRINT_STUDENT_ATT_URL, {
       params: httpParams,
+      responseType: 'blob',
+    });
+  }
+
+  printIdCard(studentNo: number) {
+    const params = new HttpParams().append('studentNo', studentNo);
+    return this.http.get(this.PRINT_ID_CARD_URL, {
+      params,
       responseType: 'blob',
     });
   }

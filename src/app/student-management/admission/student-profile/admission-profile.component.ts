@@ -706,4 +706,18 @@ export class AdmissionProfileComponent implements OnInit {
       },
     });
   }
+
+  printIdCard() {
+    const studentNo = this.admissionData.student.studentNo;
+    if (!studentNo) return;
+
+    this.admissionService.printIdCard(studentNo).subscribe({
+      next: (blob: Blob) => {
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      },
+      error: () => this.toastr.error('Failed to generate ID Card.'),
+    });
+  }
 }

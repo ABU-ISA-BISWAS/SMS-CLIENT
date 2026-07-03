@@ -918,4 +918,26 @@ export class AdmissionListComponent implements OnInit, AfterViewInit {
     const blobUrl = URL.createObjectURL(blob);
     window.open(blobUrl, '_blank');
   }
+
+  printIdCard() {
+    if (!this.selectedAdmission) {
+      this.toastr.warning('Please select a student first.');
+      return;
+    }
+
+    const studentNo = this.selectedAdmission?.student?.studentNo;
+    if (!studentNo) {
+      this.toastr.warning('Student not found.');
+      return;
+    }
+
+    this.admissionService.printIdCard(studentNo).subscribe({
+      next: (blob: Blob) => {
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      },
+      error: () => this.toastr.error('Failed to generate ID Card.'),
+    });
+  }
 }
