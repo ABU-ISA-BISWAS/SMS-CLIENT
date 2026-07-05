@@ -1,0 +1,87 @@
+/* ── Status Badges ───────────────────────────────────── */
+.exam-status {
+  display: inline-block;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.st-draft {
+  background: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+}
+.st-published {
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+.st-ongoing {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+.st-completed {
+  background: #f3e5f5;
+  color: #6a1b9a;
+  border: 1px solid #ce93d8;
+}
+
+/* ── Routine Table ───────────────────────────────────── */
+.routine-table-wrap {
+  overflow-x: auto;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.routine-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 1100px;
+}
+
+.routine-table thead tr {
+  background: #f5f5f5;
+  border-bottom: 2px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.routine-table th {
+  padding: 8px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.routine-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.routine-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* ── Routine Inputs ──────────────────────────────────── */
+.routine-input {
+  font-size: 11px !important;
+  padding: 3px 6px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+}
+
+/* ── DataTable Selected ──────────────────────────────── */
+::ng-deep table.dataTable tbody tr.selected-row > td {
+  background-color: #6a95b6 !important;
+  color: white !important;
+}

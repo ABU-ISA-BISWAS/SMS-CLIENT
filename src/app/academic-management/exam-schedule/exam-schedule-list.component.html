@@ -1,0 +1,570 @@
+<div class="container-fluid">
+  <div class="card">
+    <!-- ════════════════════════════════════════
+         LIST VIEW
+    ════════════════════════════════════════ -->
+    <ng-container *ngIf="!isFormVisible">
+      <!-- Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <h6 class="m-0 fw-bold base-txt-primary">
+          <i class="fas fa-calendar-alt me-2"></i>Exam Schedule
+        </h6>
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+          <!-- Status change dropdown -->
+          <div class="dropdown" *ngIf="selectedRow">
+            <button
+              class="btn btn-sm btn-light border dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <i class="fas fa-exchange-alt me-1"></i>Status
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li *ngFor="let opt of statusOptions">
+                <a
+                  class="dropdown-item"
+                  href="javascript:void(0)"
+                  (click)="changeStatus(opt.value)"
+                >
+                  <span class="exam-status {{ opt.cls }} me-2">
+                    {{ opt.label }}
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Routine button -->
+          <button
+            *ngIf="selectedRow"
+            class="btn btn-sm base-btn-outline-skyblue fw-medium px-2"
+            (click)="openRoutineForm(selectedRow)"
+          >
+            <i class="fas fa-list-ol me-1"></i>Routine
+          </button>
+
+          <div class="vr"></div>
+
+          <button
+            class="btn btn-sm base-btn-primary fw-medium px-3"
+            (click)="openForm('add')"
+          >
+            <i class="fas fa-plus-circle me-1"></i>Add
+          </button>
+          <button
+            class="btn btn-sm btn-warning fw-medium px-3"
+            (click)="openForm('edit')"
+          >
+            <i class="fas fa-edit me-1"></i>Edit
+          </button>
+          <button
+            class="btn btn-sm btn-danger fw-medium px-2"
+            (click)="deleteSchedule()"
+          >
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Filter Bar -->
+        <div class="card border border-2 action-bar mb-2">
+          <div class="card-body py-1">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Session
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterSessionNo"
+                    (change)="examTableObj?.draw()"
+                  >
+                    <option [ngValue]="null">All Sessions</option>
+                    <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                      {{ s.sessionName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Class
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterClassNo"
+                    (change)="examTableObj?.draw()"
+                  >
+                    <option [ngValue]="null">All Classes</option>
+                    <option *ngFor="let c of classList" [ngValue]="c.id">
+                      {{ c.className }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="input-group input-group-sm">
+                  <span
+                    class="input-group-text base-bg-subtle-primary base-txt-primary"
+                  >
+                    Exam Type
+                  </span>
+                  <select
+                    class="form-select form-select-sm"
+                    [(ngModel)]="filterExamTypeNo"
+                    (change)="examTableObj?.draw()"
+                  >
+                    <option [ngValue]="null">All Types</option>
+                    <option *ngFor="let e of examTypeList" [ngValue]="e.id">
+                      {{ e.examTypeName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DataTable -->
+        <div class="table-responsive">
+          <table #examGrid class="row-border hover table table-sm"></table>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- ════════════════════════════════════════
+         FORM VIEW
+    ════════════════════════════════════════ -->
+    <ng-container *ngIf="isFormVisible">
+      <!-- Form Header -->
+      <div
+        class="card-header py-2 d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-light border" (click)="closeForm()">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h6 class="m-0 fw-bold base-txt-primary">
+            <ng-container *ngIf="formMode === 'add'">
+              Add Exam Schedule
+            </ng-container>
+            <ng-container *ngIf="formMode === 'edit'">
+              Edit Exam Schedule
+            </ng-container>
+            <ng-container *ngIf="formMode === 'routine'">
+              Exam Routine —
+              <span class="text-muted fw-normal" style="font-size: 13px">
+                {{
+                  selectedSchedule?.examScheduleName ||
+                    schedule.examScheduleName
+                }}
+              </span>
+            </ng-container>
+          </h6>
+        </div>
+        <button class="btn btn-sm btn-light border" (click)="closeForm()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- ── Schedule Form (add/edit) ── -->
+      <div class="card-body" *ngIf="formMode === 'add' || formMode === 'edit'">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="border p-3">
+              <div class="row g-2">
+                <!-- Exam Name -->
+                <div class="col-md-12">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Exam Name <span class="text-danger ms-1">*</span>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      placeholder="e.g. Annual Examination 2025"
+                      [(ngModel)]="schedule.examScheduleName"
+                    />
+                  </div>
+                </div>
+
+                <!-- Exam Type -->
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Exam Type <span class="text-danger ms-1">*</span>
+                    </span>
+                    <ng-select
+                      class="form-control p-0"
+                      [items]="examTypeList"
+                      placeholder="Select Exam Type"
+                      bindLabel="examTypeName"
+                      bindValue="id"
+                      [(ngModel)]="schedule.examTypeNo"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+
+                <!-- Session -->
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Session <span class="text-danger ms-1">*</span>
+                    </span>
+                    <ng-select
+                      class="form-control p-0"
+                      [items]="sessionList"
+                      placeholder="Select Session"
+                      bindLabel="sessionName"
+                      bindValue="id"
+                      [(ngModel)]="schedule.academicSessionNo"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+
+                <!-- Class -->
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Class <span class="text-danger ms-1">*</span>
+                    </span>
+                    <ng-select
+                      class="form-control p-0"
+                      [items]="classList"
+                      placeholder="Select Class"
+                      bindLabel="className"
+                      bindValue="id"
+                      [(ngModel)]="schedule.classMasterNo"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+
+                <!-- Total Marks -->
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Total Marks
+                    </span>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="schedule.totalMarks"
+                    />
+                  </div>
+                </div>
+
+                <!-- Pass Marks -->
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Pass Marks
+                    </span>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="schedule.passMarks"
+                    />
+                  </div>
+                </div>
+
+                <!-- Exam Start Date -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Start Date <span class="text-danger ms-1">*</span>
+                    </span>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="schedule.examStartDate"
+                    />
+                  </div>
+                </div>
+
+                <!-- Exam End Date -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      End Date <span class="text-danger ms-1">*</span>
+                    </span>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="schedule.examEndDate"
+                    />
+                  </div>
+                </div>
+
+                <!-- Result Publish Date -->
+                <div class="col-md-4">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Result Date
+                    </span>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="schedule.resultPublishDate"
+                    />
+                  </div>
+                </div>
+
+                <!-- Remarks -->
+                <div class="col-md-12">
+                  <div class="input-group input-group-sm">
+                    <span
+                      class="input-group-text base-bg-subtle-primary base-txt-primary"
+                      style="min-width: 140px"
+                    >
+                      Remarks
+                    </span>
+                    <textarea
+                      class="form-control form-control-sm"
+                      rows="2"
+                      style="resize: none"
+                      [(ngModel)]="schedule.remarks"
+                    >
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="d-flex justify-content-end gap-2 mt-3">
+              <button
+                class="btn btn-sm btn-light border px-3"
+                (click)="closeForm()"
+              >
+                Cancel
+              </button>
+              <button
+                class="btn btn-sm base-btn-primary px-4"
+                (click)="saveSchedule()"
+                [disabled]="isSaving"
+              >
+                <span *ngIf="!isSaving">
+                  <i class="fas fa-save me-1"></i>
+                  {{ formMode === "add" ? "Save & Add Routine" : "Update" }}
+                </span>
+                <span *ngIf="isSaving">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Saving...
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Routine Form ── -->
+      <div class="card-body p-0" *ngIf="formMode === 'routine'">
+        <!-- Loading -->
+        <div
+          *ngIf="isRoutineLoading"
+          class="text-center py-4 text-muted"
+          style="font-size: 13px"
+        >
+          <span class="spinner-border spinner-border-sm me-2"></span>
+          Loading subjects...
+        </div>
+
+        <!-- Routine Table -->
+        <div *ngIf="!isRoutineLoading">
+          <div class="routine-table-wrap">
+            <table class="routine-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Subject</th>
+                  <th>Exam Date <span class="text-danger">*</span></th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Duration (min)</th>
+                  <th>Room</th>
+                  <th>Full Marks</th>
+                  <th>Pass Marks</th>
+                  <th>MCQ</th>
+                  <th>Written</th>
+                  <th>Practical</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of routineList; let i = index">
+                  <td class="text-muted text-center" style="font-size: 11px">
+                    {{ i + 1 }}
+                  </td>
+
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500">
+                      {{ row.subjectName }}
+                    </div>
+                    <div style="font-size: 11px; color: #888">
+                      {{ row.subjectCode }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input
+                      type="date"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.examDate"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="time"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.startTime"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="time"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.endTime"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.durationMinutes"
+                      style="width: 80px"
+                    />
+                  </td>
+                  <td>
+                    <select
+                      class="form-select form-select-sm routine-input"
+                      [(ngModel)]="row.roomNo"
+                      style="min-width: 100px"
+                    >
+                      <option [ngValue]="null">—</option>
+                      <option *ngFor="let r of roomList" [ngValue]="r.id">
+                        {{ r.roomName }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.fullMarks"
+                      style="width: 70px"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.passMarks"
+                      style="width: 70px"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.mcqMarks"
+                      style="width: 70px"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.writtenMarks"
+                      style="width: 70px"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm routine-input"
+                      [(ngModel)]="row.practicalMarks"
+                      style="width: 70px"
+                    />
+                  </td>
+                </tr>
+
+                <!-- Empty state -->
+                <tr *ngIf="routineList.length === 0">
+                  <td
+                    colspan="12"
+                    class="text-center text-muted py-4"
+                    style="font-size: 13px"
+                  >
+                    No subjects found for this class.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Footer -->
+          <div class="d-flex justify-content-end gap-2 p-3 border-top bg-light">
+            <button
+              class="btn btn-sm btn-light border px-3"
+              (click)="closeForm()"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-sm base-btn-primary px-4"
+              (click)="saveRoutine()"
+              [disabled]="isRoutineSaving"
+            >
+              <span *ngIf="!isRoutineSaving">
+                <i class="fas fa-save me-1"></i>Save Routine
+              </span>
+              <span *ngIf="isRoutineSaving">
+                <span class="spinner-border spinner-border-sm me-1"></span>
+                Saving...
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

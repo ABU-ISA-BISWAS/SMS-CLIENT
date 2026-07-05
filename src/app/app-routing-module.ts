@@ -39,7 +39,18 @@ const routes: Routes = [
         path: 'student-management',
         canActivate: [AuthGuard],
         loadChildren: () =>
-          import('./student-management/student-management.module').then((m) => m.StudentManagementModule),
+          import('./student-management/student-management.module').then(
+            (m) => m.StudentManagementModule,
+          ),
+      },
+
+      {
+        path: 'academic-management',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./academic-management/academic-management.module').then(
+            (m) => m.AcademicManagementModule,
+          ),
       },
     ],
   },
