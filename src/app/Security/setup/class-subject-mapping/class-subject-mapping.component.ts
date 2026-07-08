@@ -180,6 +180,8 @@ export class ClassSubjectMappingComponent implements OnInit, AfterViewInit {
         { title: 'Group / Version', data: 'groupVersionName' },
         { title: 'Subject Code', data: 'subjectCode', className: 'dt-left' },
         { title: 'Subject Name', data: 'subjectName' },
+        { title: 'Full Marks', data: 'fullMarks' },
+        { title: 'Pass Marks', data: 'passMarks' },
         {
           title: 'Optional',
           data: 'isOptional',

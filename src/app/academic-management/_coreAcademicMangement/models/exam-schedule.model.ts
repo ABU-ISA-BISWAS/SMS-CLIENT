@@ -9,14 +9,14 @@ export class ExamScheduleModel {
   resultPublishDate: string = '';
   totalMarks: number = 100;
   passMarks: number = 33;
-  remarks: string = '';
+  remarks!: string;
   status: string = 'DRAFT';
 }
 
 export class ExamRoutineModel {
   examRoutineNo: number | null = null;
   examScheduleNo: number | null = null;
-  subjectNo: number | null = null;
+  subjectMasterNo: number | null = null;
   subjectName: string = '';
   subjectCode: string = '';
   examDate: string = '';

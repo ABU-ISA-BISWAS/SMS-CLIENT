@@ -15,6 +15,7 @@ export class ExamScheduleService {
   private EXAM_TYPES_URL = `${this.BASE}/api/lookup/exam-type/all`;
   private SUBJECTS_URL = `${this.BASE}/api/subject/all`;
   private ROOMS_URL = `${this.BASE}/api/room/all`;
+  private PRINT_ROUTINE_URL = `${this.BASE_AM}/api/exam-schedule/routine/print-routine`;
 
   private GRID_URL = `${this.BASE_AM}/${this.EP}/gridList`;
   private SAVE_URL = `${this.BASE_AM}/${this.EP}/create`;
@@ -25,8 +26,18 @@ export class ExamScheduleService {
   private ROUTINE_URL = `${this.BASE_AM}/${this.EP}/save-routine`;
   private ROUTINE_LIST_URL = `${this.BASE_AM}/${this.EP}/routine-list`;
   private SUBJECTS_BY_CLASS_URL = `${this.BASE_AM}/api/exam-schedule/subject/by-class`;
+  private PRINT_ADMIT_URL = `${this.BASE_AM}/api/exam-schedule/admitCard/print-admit-card`;
+  private SECTIONS_URL = `${this.BASE}/api/section/all`;
 
   constructor(private http: HttpClient) {}
+
+  printRoutine(examScheduleNo: number) {
+    const params = new HttpParams().append('examScheduleNo', examScheduleNo);
+    return this.http.get(this.PRINT_ROUTINE_URL, {
+      params,
+      responseType: 'blob',
+    });
+  }
 
   // ── Dropdowns ─────────────────────────────────────────
   getAllSessions() {
@@ -40,6 +51,10 @@ export class ExamScheduleService {
   }
   getAllRooms() {
     return this.http.get(this.ROOMS_URL).pipe(map((d: any) => d));
+  }
+
+  getAllSections() {
+    return this.http.get(this.SECTIONS_URL).pipe(map((d: any) => d));
   }
 
   getSubjectsByClass(classNo: number) {
@@ -84,5 +99,21 @@ export class ExamScheduleService {
     return this.http
       .get(this.ROUTINE_LIST_URL, { params })
       .pipe(map((d: any) => d));
+  }
+
+  printAdmitCard(params: any) {
+    let httpParams = new HttpParams()
+      .append('examScheduleNo', params.examScheduleNo)
+      .append('classNo', params.classNo);
+
+    if (params.sectionNo)
+      httpParams = httpParams.append('sectionNo', params.sectionNo);
+    if (params.studentNo)
+      httpParams = httpParams.append('studentNo', params.studentNo);
+
+    return this.http.get(this.PRINT_ADMIT_URL, {
+      params: httpParams,
+      responseType: 'blob',
+    });
   }
 }

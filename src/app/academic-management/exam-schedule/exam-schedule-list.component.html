@@ -13,7 +13,7 @@
         </h6>
         <div class="d-flex gap-2 align-items-center flex-wrap">
           <!-- Status change dropdown -->
-          <div class="dropdown" *ngIf="selectedRow">
+          <div class="dropdown">
             <button
               class="btn btn-sm btn-light border dropdown-toggle"
               data-bs-toggle="dropdown"
@@ -37,11 +37,25 @@
 
           <!-- Routine button -->
           <button
-            *ngIf="selectedRow"
             class="btn btn-sm base-btn-outline-skyblue fw-medium px-2"
             (click)="openRoutineForm(selectedRow)"
           >
             <i class="fas fa-list-ol me-1"></i>Routine
+          </button>
+
+          <!-- card-header এ existing buttons এর সাথে যোগ করুন -->
+          <button
+            class="btn btn-sm btn-success fw-medium px-2"
+            (click)="printRoutine()"
+          >
+            <i class="fas fa-print me-1"></i>Print Routine
+          </button>
+
+          <button
+            class="btn btn-sm btn-warning fw-medium px-2"
+            (click)="openAdmitModal()"
+          >
+            <i class="fas fa-id-card me-1"></i>Admit Card
           </button>
 
           <div class="vr"></div>
@@ -180,15 +194,14 @@
       <!-- ── Schedule Form (add/edit) ── -->
       <div class="card-body" *ngIf="formMode === 'add' || formMode === 'edit'">
         <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-10">
             <div class="border p-3">
               <div class="row g-2">
                 <!-- Exam Name -->
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Exam Name <span class="text-danger ms-1">*</span>
                     </span>
@@ -206,7 +219,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Exam Type <span class="text-danger ms-1">*</span>
                     </span>
@@ -227,7 +239,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Session <span class="text-danger ms-1">*</span>
                     </span>
@@ -248,7 +259,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Class <span class="text-danger ms-1">*</span>
                     </span>
@@ -265,11 +275,10 @@
                 </div>
 
                 <!-- Total Marks -->
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Total Marks
                     </span>
@@ -282,11 +291,10 @@
                 </div>
 
                 <!-- Pass Marks -->
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Pass Marks
                     </span>
@@ -303,7 +311,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Start Date <span class="text-danger ms-1">*</span>
                     </span>
@@ -320,7 +327,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       End Date <span class="text-danger ms-1">*</span>
                     </span>
@@ -337,7 +343,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Result Date
                     </span>
@@ -354,7 +359,6 @@
                   <div class="input-group input-group-sm">
                     <span
                       class="input-group-text base-bg-subtle-primary base-txt-primary"
-                      style="min-width: 140px"
                     >
                       Remarks
                     </span>
@@ -474,16 +478,47 @@
                     />
                   </td>
                   <td>
-                    <select
+                    <!-- <select
                       class="form-select form-select-sm routine-input"
                       [(ngModel)]="row.roomNo"
-                      style="min-width: 100px"
+                      style="min-width: 130px"
                     >
                       <option [ngValue]="null">—</option>
                       <option *ngFor="let r of roomList" [ngValue]="r.id">
                         {{ r.roomName }}
+                        <small class="text-muted">
+                          {{ r.building.buildingName }}
+                        </small>
                       </option>
-                    </select>
+                    </select> -->
+
+                    <ng-select
+                      [(ngModel)]="row.roomNo"
+                      [items]="roomList"
+                      bindValue="id"
+                      placeholder="—"
+                      class="routine-input"
+                      appendTo="body"
+                      style="
+                        min-width: 130px;
+                        border: var(--bs-border-width) solid
+                          var(--bs-border-color);
+                      "
+                    >
+                      <ng-template ng-option-tmp let-item="item">
+                        <div class="room-option">
+                          <div class="room-name">{{ item.roomName }}</div>
+                          <div class="building-name">
+                            {{ item.building.buildingName }}
+                          </div>
+                        </div>
+                      </ng-template>
+
+                      <!-- selected value দেখানোর জন্য (dropdown বন্ধ থাকা অবস্থায়) -->
+                      <ng-template ng-label-tmp let-item="item">
+                        {{ item.roomName }}
+                      </ng-template>
+                    </ng-select>
                   </td>
                   <td>
                     <input
@@ -568,3 +603,125 @@
     </ng-container>
   </div>
 </div>
+
+<!-- ── Admit Card Modal ── -->
+<div
+  class="modal fade"
+  [class.show]="isAdmitModalOpen"
+  [style.display]="isAdmitModalOpen ? 'block' : 'none'"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h6 class="modal-title fw-bold base-txt-primary">
+          <i class="fas fa-id-card me-2"></i>Print Admit Card
+        </h6>
+        <button
+          type="button"
+          class="btn btn-sm btn-light border"
+          (click)="closeAdmitModal()"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="border p-3">
+          <!-- Exam Info -->
+          <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 12px">
+            <i class="fas fa-info-circle me-1"></i>
+            <strong>{{ selectedRow?.examScheduleName }}</strong>
+            — {{ selectedRow?.className }}
+          </div>
+
+          <!-- Print Mode -->
+          <div class="id-mode-toggle mb-3">
+            <button
+              [class.active]="admitPrintMode === 'CLASS'"
+              (click)="admitPrintMode = 'CLASS'"
+            >
+              <i class="fas fa-users me-1"></i>All Students
+            </button>
+            <button
+              [class.active]="admitPrintMode === 'SINGLE'"
+              (click)="admitPrintMode = 'SINGLE'"
+            >
+              <i class="fas fa-user me-1"></i>Single Student
+            </button>
+          </div>
+
+          <!-- Section Filter -->
+          <div class="input-group input-group-sm mb-2">
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+            >
+              Section
+            </span>
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="admitSectionNo"
+            >
+              <option [ngValue]="null">All Sections</option>
+              <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                {{ s.sectionName }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Student No (Single mode) -->
+          <div
+            class="input-group input-group-sm mb-2"
+            *ngIf="admitPrintMode === 'SINGLE'"
+          >
+            <span
+              class="input-group-text base-bg-subtle-primary base-txt-primary"
+            >
+              Student ID <span class="text-danger ms-1">*</span>
+            </span>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="admitStudentID"
+              placeholder="Enter Student No or Reg. No"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 bg-light">
+        <button
+          type="button"
+          class="btn btn-sm btn-light border px-3"
+          (click)="closeAdmitModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-warning px-3"
+          (click)="printAdmitCard()"
+          [disabled]="isAdmitPrinting"
+        >
+          <span *ngIf="!isAdmitPrinting">
+            <i class="fas fa-print me-1"></i>
+            {{
+              admitPrintMode === "CLASS"
+                ? "Print All Admit Cards"
+                : "Print Admit Card"
+            }}
+          </span>
+          <span *ngIf="isAdmitPrinting">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Generating...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade show"
+  *ngIf="isAdmitModalOpen"
+  (click)="closeAdmitModal()"
+></div>

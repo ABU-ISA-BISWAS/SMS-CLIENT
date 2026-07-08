@@ -6,6 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
@@ -37,6 +38,7 @@ export class ExamScheduleListComponent
 
   // ── Dropdowns ─────────────────────────────────────────
   sessionList: any[] = [];
+  sectionList: any[] = [];
   classList: any[] = [];
   examTypeList: any[] = [];
   subjectList: any[] = [];
@@ -63,6 +65,13 @@ export class ExamScheduleListComponent
 
   // ── Selected row ──────────────────────────────────────
   selectedRow: any = null;
+
+  isAdmitModalOpen = false;
+  admitClassNo: number | null = null;
+  admitSectionNo: number | null = null;
+  admitPrintMode: 'CLASS' | 'SINGLE' = 'CLASS';
+  admitStudentID: string = '';
+  isAdmitPrinting = false;
 
   statusOptions = [
     { value: 'DRAFT', label: 'Draft', cls: 'st-draft' },
@@ -92,6 +101,7 @@ export class ExamScheduleListComponent
       classes: this.examService.getAllClasses(),
       examTypes: this.examService.getAllExamTypes(),
       rooms: this.examService.getAllRooms(),
+      sections: this.examService.getAllSections(),
     }).subscribe({
       next: (res: any) => {
         console.log('res::::', res);
@@ -99,6 +109,7 @@ export class ExamScheduleListComponent
         this.classList = res.classes.items || [];
         this.examTypeList = res.examTypes.items || [];
         this.roomList = res.rooms.items || [];
+        this.sectionList = res.sections.items || [];
       },
     });
 
@@ -136,6 +147,7 @@ export class ExamScheduleListComponent
 
   closeForm() {
     this.isFormVisible = false;
+    this.selectedRow = null;
     this.formMode = 'add';
     this.schedule = new ExamScheduleModel();
     this.routineList = [];
@@ -193,10 +205,19 @@ export class ExamScheduleListComponent
 
   // ── Routine Form ──────────────────────────────────────
   openRoutineForm(row: any) {
+    if (!this.selectedRow) {
+      this.toastr.warning('Please select a record to see routine.');
+      return;
+    }
+    console.log('Row:::-', row);
     this.selectedSchedule = row;
+    this.isFormVisible = true;
+
     this.formMode = 'routine';
     this.routineList = [];
     this.savedRoutineList = [];
+
+    console.log('form mode:::-', this.formMode);
 
     if (!row.classMasterNo && !this.schedule.classMasterNo) return;
 
@@ -212,19 +233,20 @@ export class ExamScheduleListComponent
     }).subscribe({
       next: (res: any) => {
         this.isRoutineLoading = false;
-        this.subjectList = res.subjects || [];
-        this.savedRoutineList = res.routine || [];
-
+        this.subjectList = res.subjects.items || [];
+        this.savedRoutineList = res.routine.items || [];
+        console.log('savedRoutineList::::-', this.savedRoutineList);
+        console.log('subjectList::::-', this.subjectList);
         // Subject list থেকে routine rows তৈরি করুন
         this.routineList = this.subjectList.map((sub: any) => {
           // Already saved routine আছে কিনা check করুন
           const saved = this.savedRoutineList.find(
-            (r: any) => r.subjectNo === sub.id,
+            (r: any) => r.subjectMasterNo === sub.id,
           );
           const entry = new ExamRoutineModel();
           entry.examScheduleNo =
             row.examScheduleNo || this.schedule.examScheduleNo;
-          entry.subjectNo = sub.id;
+          entry.subjectMasterNo = sub.id;
           entry.subjectName = sub.subjectName;
           entry.subjectCode = sub.subjectCode;
           if (saved) {
@@ -243,6 +265,8 @@ export class ExamScheduleListComponent
           }
           return entry;
         });
+
+        console.log('routineList::::-', this.routineList);
       },
       error: () => {
         this.isRoutineLoading = false;
@@ -264,7 +288,7 @@ export class ExamScheduleListComponent
     const routineData = this.routineList
       .filter((r) => r.examDate) // date set আছে এমনগুলোই save হবে
       .map((r) => ({
-        subjectNo: r.subjectNo,
+        subjectNo: r.subjectMasterNo,
         examDate: r.examDate,
         startTime: r.startTime,
         endTime: r.endTime,
@@ -410,6 +434,7 @@ export class ExamScheduleListComponent
           '/api/exam-schedule/gridList',
         type: 'GET',
         data: function (d: any) {
+          d.customSearch = d.search.value;
           d.sessionNo = that.filterSessionNo || '';
           d.classNo = that.filterClassNo || '';
           d.examTypeNo = that.filterExamTypeNo || '';
@@ -437,18 +462,40 @@ export class ExamScheduleListComponent
             `<div style="font-size:12px;font-weight:500">${row.examScheduleName}</div>
              <div style="font-size:11px;color:#888">${row.examTypeCode || ''}</div>`,
         },
-        { title: 'Session', data: 'sessionName', width: '120px' },
-        { title: 'Class', data: 'className', width: '100px' },
+        { title: 'Session', data: 'sessionName', width: '150px' },
+        { title: 'Class', data: 'className', width: '180px' },
+
+        // {
+        //   title: 'Exam Period',
+        //   data: 'examStartDate',
+        //   width: '160px',
+        //   render: (_: any, __: any, row: any) =>
+        //     `<span style="font-size:11px">
+        //        ${row.examStartDate || '—'}
+        //        &nbsp;→&nbsp;
+        //        ${row.examEndDate || '—'}
+        //      </span>`,
+        // },
+
         {
           title: 'Exam Period',
           data: 'examStartDate',
-          width: '160px',
-          render: (_: any, __: any, row: any) =>
-            `<span style="font-size:11px">
-               ${row.examStartDate || '—'}
-               &nbsp;→&nbsp;
-               ${row.examEndDate || '—'}
-             </span>`,
+          width: '220px',
+          render: (_: any, __: any, row: any) => {
+            const start = row.examStartDate
+              ? moment(row.examStartDate).format('DD-MM-YYYY')
+              : '—';
+
+            const end = row.examEndDate
+              ? moment(row.examEndDate).format('DD-MM-YYYY')
+              : '—';
+
+            return `
+      <span style="font-size:11px">
+        ${start} &nbsp;→&nbsp; ${end}
+      </span>
+    `;
+          },
         },
         {
           title: 'Status',
@@ -476,6 +523,80 @@ export class ExamScheduleListComponent
             }
           });
         return row;
+      },
+    });
+  }
+
+  // selectedRow আছে এমন অবস্থায় print button কাজ করবে
+  printRoutine() {
+    if (!this.selectedRow) {
+      this.toastr.warning('Please select an exam schedule.');
+      return;
+    }
+
+    const examScheduleNo = this.selectedRow.examScheduleNo;
+    this.examService.printRoutine(examScheduleNo).subscribe({
+      next: (blob: Blob) => {
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      },
+      error: () => this.toastr.error('Failed to generate routine.'),
+    });
+  }
+
+  openAdmitModal() {
+    if (!this.selectedRow) {
+      this.toastr.warning('Please select an exam schedule.');
+      return;
+    }
+    // Selected row থেকে class auto-fill
+    this.admitClassNo = this.selectedRow.classMasterNo || null;
+    this.admitSectionNo = null;
+    this.admitPrintMode = 'CLASS';
+    this.admitStudentID = '';
+    this.isAdmitModalOpen = true;
+  }
+
+  closeAdmitModal() {
+    this.isAdmitModalOpen = false;
+    this.isAdmitPrinting = false;
+  }
+
+  printAdmitCard() {
+    if (!this.selectedRow?.examScheduleNo) {
+      this.toastr.warning('Exam schedule not found.');
+      return;
+    }
+    if (!this.admitClassNo) {
+      this.toastr.warning('Please select Class.');
+      return;
+    }
+    if (this.admitPrintMode === 'SINGLE' && !this.admitStudentID) {
+      this.toastr.warning('Please enter Student No.');
+      return;
+    }
+
+    this.isAdmitPrinting = true;
+
+    const params: any = {
+      examScheduleNo: this.selectedRow.examScheduleNo,
+      classNo: this.admitClassNo,
+      sectionNo: this.admitSectionNo || null,
+      studentID: this.admitPrintMode === 'SINGLE' ? this.admitStudentID : null,
+    };
+
+    this.examService.printAdmitCard(params).subscribe({
+      next: (blob: Blob) => {
+        this.isAdmitPrinting = false;
+        this.closeAdmitModal();
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      },
+      error: () => {
+        this.isAdmitPrinting = false;
+        this.toastr.error('Failed to generate Admit Card.');
       },
     });
   }

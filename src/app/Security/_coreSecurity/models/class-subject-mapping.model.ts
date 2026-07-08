@@ -12,5 +12,7 @@ export class ClassSubjectMapping extends Resource {
   isOptional: number = 0;
   sortOrder!: number;
   activeStatus: number = 1;
+  fullMarks!: number;
+  passMarks!: number;
   companyNo!: number;
 }

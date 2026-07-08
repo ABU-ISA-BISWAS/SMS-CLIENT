@@ -100,6 +100,42 @@
       </div>
     </div>
 
+    <!-- Subject -->
+    <div class="field-group">
+      <label class="field-label">Full Marks</label>
+      <div class="input-field-wrapper">
+        <i
+          class="ti ti-sort-ascending-numbers field-icon-left"
+          aria-hidden="true"
+        ></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter Full Marks"
+          [(ngModel)]="mapping.fullMarks"
+          min="0"
+        />
+      </div>
+    </div>
+
+    <!-- Sort Order -->
+    <div class="field-group">
+      <label class="field-label">Pass Marks</label>
+      <div class="input-field-wrapper">
+        <i
+          class="ti ti-sort-ascending-numbers field-icon-left"
+          aria-hidden="true"
+        ></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          placeholder="Enter Pass Marks"
+          [(ngModel)]="mapping.passMarks"
+          min="0"
+        />
+      </div>
+    </div>
+
     <!-- Checkboxes -->
     <div class="field-group mapping-col-full">
       <div class="checkbox-row">
