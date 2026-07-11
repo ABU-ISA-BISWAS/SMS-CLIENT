@@ -1,0 +1,348 @@
+<div class="container-fluid">
+  <div class="card">
+    <!-- ── Header ── -->
+    <div
+      class="card-header py-2 d-flex justify-content-between align-items-center"
+    >
+      <h6 class="m-0 fw-bold base-txt-primary">
+        <i class="fas fa-clock me-2"></i>Class Routine / Timetable
+      </h6>
+      <div class="d-flex gap-2 align-items-center" *ngIf="isLoaded">
+        <button
+          class="btn btn-sm btn-success fw-medium px-3"
+          (click)="printRoutine()"
+          [disabled]="isPrinting"
+        >
+          <span *ngIf="!isPrinting">
+            <i class="fas fa-print me-1"></i>Print
+          </span>
+          <span *ngIf="isPrinting">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Printing...
+          </span>
+        </button>
+        <button
+          class="btn btn-sm base-btn-primary fw-medium px-3"
+          (click)="saveRoutine()"
+          [disabled]="isSaving"
+        >
+          <span *ngIf="!isSaving">
+            <i class="fas fa-save me-1"></i>Save Routine
+          </span>
+          <span *ngIf="isSaving">
+            <span class="spinner-border spinner-border-sm me-1"></span>
+            Saving...
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- ── Filter Bar ── -->
+      <div class="card border border-2 action-bar mb-3">
+        <div class="card-body py-2 px-3">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-3">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Session <span class="text-danger ms-1">*</span>
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filter.academicSessionNo"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let s of sessionList" [ngValue]="s.id">
+                    {{ s.sessionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Class <span class="text-danger ms-1">*</span>
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filter.classMasterNo"
+                  (change)="onClassChange()"
+                >
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let c of classList" [ngValue]="c.id">
+                    {{ c.className }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Section
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filter.sectionMasterNo"
+                >
+                  <option [ngValue]="null">All</option>
+                  <option *ngFor="let s of sectionList" [ngValue]="s.id">
+                    {{ s.sectionName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <span
+                  class="input-group-text base-bg-subtle-primary base-txt-primary"
+                >
+                  Shift
+                </span>
+                <select
+                  class="form-select form-select-sm"
+                  [(ngModel)]="filter.shiftMasterNo"
+                  (change)="onShiftChange()"
+                >
+                  <option [ngValue]="null">All</option>
+                  <option *ngFor="let s of shiftList" [ngValue]="s.id">
+                    {{ s.shiftName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <button
+                class="btn btn-sm base-btn-primary w-100"
+                (click)="loadRoutine()"
+                [disabled]="isLoading"
+              >
+                <span *ngIf="!isLoading">
+                  <i class="fas fa-search me-1"></i>Load
+                </span>
+                <span *ngIf="isLoading">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Loading...
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Empty state ── -->
+      <div *ngIf="!isLoaded && !isLoading" class="routine-empty-state">
+        <i class="fas fa-clock"></i>
+        <p>Select Session, Class and click <strong>Load</strong></p>
+      </div>
+
+      <!-- ── Timetable Grid ── -->
+      <div *ngIf="isLoaded" class="routine-grid-wrap">
+        <table class="routine-grid-table">
+          <thead>
+            <tr>
+              <th class="period-col">Period / Time</th>
+              <th
+                *ngFor="let day of days"
+                class="day-col"
+                [class.weekly-off-col]="day.code === 6"
+              >
+                {{ day.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let period of periodList">
+              <!-- Period label -->
+              <td
+                class="period-label-cell"
+                [class.break-period]="isBreakPeriod(period)"
+              >
+                <div class="period-name">{{ period.periodName }}</div>
+                <div class="period-time">
+                  {{ period.startTime }} — {{ period.endTime }}
+                </div>
+              </td>
+
+              <!-- Day cells -->
+              <td
+                *ngFor="let day of days"
+                class="routine-cell"
+                [class.break-cell]="isBreakPeriod(period)"
+                [class.has-subject]="!!getCell(period.periodNo, day.code)"
+                [class.weekly-off-col]="day.code === 6"
+                (click)="!isBreakPeriod(period) && openCellModal(period, day)"
+              >
+                <!-- Break period -->
+                <div *ngIf="isBreakPeriod(period)" class="break-label">
+                  {{ period.periodName }}
+                </div>
+
+                <!-- Empty cell -->
+                <div
+                  *ngIf="
+                    !isBreakPeriod(period) &&
+                    !getCell(period.periodNo, day.code)
+                  "
+                  class="empty-cell-hint"
+                >
+                  <i class="fas fa-plus"></i>
+                </div>
+
+                <!-- Filled cell -->
+                <div
+                  *ngIf="
+                    !isBreakPeriod(period) && getCell(period.periodNo, day.code)
+                  "
+                  class="routine-cell-content"
+                >
+                  <div class="cell-subject">
+                    {{ getCell(period.periodNo, day.code)?.subjectName }}
+                  </div>
+                  <div
+                    class="cell-teacher"
+                    *ngIf="getCell(period.periodNo, day.code)?.teacherName"
+                  >
+                    <i class="fas fa-user-tie me-1"></i>
+                    {{ getCell(period.periodNo, day.code)?.teacherName }}
+                  </div>
+                  <!-- Clear button -->
+                  <button
+                    class="cell-clear-btn"
+                    (click)="clearCell(period.periodNo, day.code, $event)"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Cell Edit Modal ── -->
+<div
+  class="modal fade"
+  [class.show]="isCellModalOpen"
+  [style.display]="isCellModalOpen ? 'block' : 'none'"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h6 class="modal-title fw-bold base-txt-primary">
+          <i class="fas fa-edit me-2"></i>
+          Assign Subject
+          <span class="text-muted fw-normal" style="font-size: 12px">
+            — {{ editingCell.dayName }} | Period {{ editingCell.periodNo }}
+          </span>
+        </h6>
+        <button class="btn btn-sm btn-light border" (click)="closeCellModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row g-2">
+          <!-- Subject -->
+          <div class="col-12">
+            <div class="input-group input-group-sm">
+              <span
+                class="input-group-text base-bg-subtle-primary base-txt-primary"
+              >
+                Subject
+              </span>
+              <ng-select
+                class="form-control p-0"
+                [items]="subjectList"
+                placeholder="Select Subject"
+                bindLabel="subjectName"
+                bindValue="id"
+                [(ngModel)]="editingCell.subjectMasterNo"
+              >
+              </ng-select>
+            </div>
+          </div>
+
+          <!-- Teacher -->
+          <div class="col-12">
+            <div class="input-group input-group-sm">
+              <span
+                class="input-group-text base-bg-subtle-primary base-txt-primary"
+              >
+                Teacher
+              </span>
+              <ng-select
+                class="form-control p-0"
+                [items]="teacherList"
+                placeholder="Select Teacher"
+                bindLabel="fname"
+                bindValue="id"
+                [(ngModel)]="editingCell.employeeNo"
+              >
+              </ng-select>
+            </div>
+          </div>
+
+          <!-- Room -->
+          <div class="col-12">
+            <div class="input-group input-group-sm">
+              <span
+                class="input-group-text base-bg-subtle-primary base-txt-primary"
+              >
+                Room
+              </span>
+              <ng-select
+                class="form-control p-0"
+                [items]="roomList"
+                placeholder="Select Room"
+                bindLabel="roomName"
+                bindValue="id"
+                [(ngModel)]="editingCell.roomNo"
+              >
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 bg-light">
+        <button
+          class="btn btn-sm btn-light border px-3"
+          (click)="closeCellModal()"
+        >
+          Cancel
+        </button>
+        <button
+          class="btn btn-sm btn-danger px-3 me-auto"
+          (click)="editingCell.subjectMasterNo = null; saveCellEdit()"
+        >
+          <i class="fas fa-trash-alt me-1"></i>Clear
+        </button>
+        <button
+          class="btn btn-sm base-btn-primary px-4"
+          (click)="saveCellEdit()"
+        >
+          <i class="fas fa-check me-1"></i>Apply
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade show"
+  *ngIf="isCellModalOpen"
+  (click)="closeCellModal()"
+></div>

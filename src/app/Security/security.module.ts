@@ -49,6 +49,8 @@ import { AddHolidayComponent } from './setup/holiday/add-holiday/add-holiday.com
 import { HolidayComponent } from './setup/holiday/holiday.component';
 import { AddModuleComponent } from './setup/modules/add-module/add-module.component';
 import { ModulesComponent } from './setup/modules/modules.component';
+import { AddPeriodComponent } from './setup/period/add-period/add-period.component';
+import { PeriodComponent } from './setup/period/period.component';
 import { AddRoleNewComponent } from './setup/role-management/add-role-new/add-role-new.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { AddRoomComponent } from './setup/room/add-room/add-room.component';
@@ -132,6 +134,8 @@ import { WeeklyOffSetupComponent } from './setup/weekly-off-setup/weekly-off-set
     SalaryGradeComponent,
     AddSalaryGradeComponent,
     WeeklyOffSetupComponent,
+    AddPeriodComponent,
+    PeriodComponent,
   ],
   imports: [
     SharedModule,

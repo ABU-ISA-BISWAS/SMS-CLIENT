@@ -1,0 +1,174 @@
+<!-- Modal Header -->
+<div class="modal-header border-0 pb-0">
+  <div class="d-flex align-items-center gap-2">
+    <div class="modal-header-icon">
+      <i class="ti ti-door fs-16px" aria-hidden="true"></i>
+    </div>
+    <div>
+      <h6 class="modal-title m-0 fw-bold base-txt-primary lh-1">{{ title }}</h6>
+      <small class="text-body-secondary fs-11px"
+        >Manage period information</small
+      >
+    </div>
+  </div>
+  <button
+    type="button"
+    class="modal-close-btn btn btn-sm btn-light border"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <i class="ti ti-x fs-13px" aria-hidden="true"></i>
+  </button>
+</div>
+
+<!-- Modal Body -->
+<div class="modal-body pt-3 pb-2">
+  <div class="period-form-grid">
+    <!-- Shift -->
+    <div class="field-group">
+      <label class="field-label"
+        >Shift <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-shift field-icon-left" aria-hidden="true"></i>
+        <select class="form-select field-select" [(ngModel)]="period.shiftNo">
+          <option [ngValue]="undefined">-- Select Shift --</option>
+          <option *ngFor="let b of shiftList" [value]="b.id">
+            {{ b.shiftName }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Period Name -->
+    <div class="field-group">
+      <label class="field-label"
+        >Period Name <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. First Period"
+          [(ngModel)]="period.periodName"
+          [disabled]="!!period.id"
+        />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label"
+        >Period Order <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-hash field-icon-left" aria-hidden="true"></i>
+        <input
+          type="text"
+          class="form-control field-input"
+          placeholder="e.g. 01"
+          [(ngModel)]="period.periodOrder"
+          [disabled]="!!period.id"
+        />
+      </div>
+    </div>
+
+    <!-- Period Type -->
+    <div class="field-group">
+      <label class="field-label"
+        >Period Type <span class="text-danger">*</span></label
+      >
+      <div class="input-field-wrapper">
+        <i class="ti ti-tag field-icon-left" aria-hidden="true"></i>
+        <select
+          class="form-select field-select"
+          [(ngModel)]="period.periodType"
+        >
+          <option *ngFor="let t of periodTypes" [value]="t.value">
+            {{ t.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Start & End Time -->
+    <div class="shift-time-grid">
+      <div class="field-group">
+        <label class="field-label">Start Time</label>
+        <div class="input-field-wrapper">
+          <i class="ti ti-player-play field-icon-left" aria-hidden="true"></i>
+          <input
+            type="time"
+            class="form-control field-input"
+            [(ngModel)]="period.startTime"
+            (ngModelChange)="calculateDuration()"
+          />
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">End Time</label>
+        <div class="input-field-wrapper">
+          <i class="ti ti-player-stop field-icon-left" aria-hidden="true"></i>
+          <input
+            type="time"
+            class="form-control field-input"
+            [(ngModel)]="period.endTime"
+            (ngModelChange)="calculateDuration()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration Minutes -->
+    <div class="field-group">
+      <label class="field-label">Duration (Minutes)</label>
+      <div class="input-field-wrapper">
+        <i class="ti ti-clock field-icon-left" aria-hidden="true"></i>
+        <input
+          type="number"
+          class="form-control field-input"
+          [(ngModel)]="period.duratonMinutes"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="field-group period-col-full">
+      <div class="checkbox-row">
+        <label class="checkbox-item">
+          <input
+            type="checkbox"
+            [(ngModel)]="period.activeStatus"
+            class="checkbox-input"
+          />
+          <span class="checkbox-label">Active Status</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Footer -->
+<div class="modal-footer border-0 modal-footer-custom">
+  <button
+    type="button"
+    class="btn btn-sm btn-light border fw-medium px-4 fixed-width-btn"
+    (click)="bsModalRef.hide()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm base-btn-primary fw-medium px-4 fixed-width-btn"
+    (click)="savePeriod()"
+    [disabled]="isSaving"
+  >
+    <i
+      *ngIf="isSaving"
+      class="ti ti-loader-2 spin me-1 fs-13px"
+      aria-hidden="true"
+    ></i>
+    {{ isSaving ? "Saving..." : "Save" }}
+  </button>
+</div>

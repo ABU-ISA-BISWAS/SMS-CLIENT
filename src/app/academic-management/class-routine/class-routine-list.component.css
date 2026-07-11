@@ -1,0 +1,178 @@
+/* ── Empty State ─────────────────────────────────────── */
+.routine-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #ccc;
+}
+.routine-empty-state i {
+  font-size: 52px;
+  display: block;
+  margin-bottom: 12px;
+}
+.routine-empty-state p {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ── Grid Wrap ───────────────────────────────────────── */
+.routine-grid-wrap {
+  overflow-x: auto;
+}
+
+.routine-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+  font-size: 12px;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.routine-grid-table thead tr {
+  background: #f5f5f5;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.routine-grid-table th {
+  padding: 8px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #555;
+  white-space: nowrap;
+  border: 1px solid #e8e8e8;
+}
+
+.period-col {
+  min-width: 120px;
+  width: 120px;
+}
+.day-col {
+  min-width: 120px;
+  text-align: center;
+}
+
+/* ── Period Label Cell ───────────────────────────────── */
+.period-label-cell {
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  padding: 6px 8px;
+  vertical-align: middle;
+}
+
+.period-label-cell.break-period {
+  background: #fff8e1;
+}
+
+.period-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+}
+
+.period-time {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ── Routine Cell ────────────────────────────────────── */
+.routine-cell {
+  border: 1px solid #e8e8e8;
+  padding: 4px;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  min-height: 60px;
+  height: 60px;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.routine-cell:not(.break-cell):hover {
+  background: #f0f7ff;
+}
+
+.routine-cell.has-subject {
+  background: #f0f9f0;
+}
+
+.routine-cell.has-subject:hover {
+  background: #e3f5e3;
+}
+
+.weekly-off-col {
+  background: #fff5f0 !important;
+}
+
+.break-cell {
+  cursor: default;
+  background: #fff8e1 !important;
+}
+
+/* ── Break Label ─────────────────────────────────────── */
+.break-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #f57c00;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ── Empty Cell Hint ─────────────────────────────────── */
+.empty-cell-hint {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.routine-cell:hover .empty-cell-hint {
+  color: #90caf9;
+}
+
+/* ── Filled Cell Content ─────────────────────────────── */
+.routine-cell-content {
+  position: relative;
+  padding: 2px;
+}
+
+.cell-subject {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1565c0;
+  line-height: 1.3;
+}
+
+.cell-teacher {
+  font-size: 10px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* ── Clear Button ────────────────────────────────────── */
+.cell-clear-btn {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  background: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.routine-cell:hover .cell-clear-btn {
+  display: flex;
+}
+
+/* ── DataTable Selected ──────────────────────────────── */
+::ng-deep table.dataTable tbody tr.selected-row > td {
+  background-color: #6a95b6 !important;
+  color: white !important;
+}

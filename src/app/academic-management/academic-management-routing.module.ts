@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/_guard/auth-guard';
+import { ClassRoutineListComponent } from './class-routine/class-routine-list.component';
 import { ExamScheduleListComponent } from './exam-schedule/exam-schedule-list.component';
 
 const routes: Routes = [
@@ -17,6 +18,16 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Exam Schedule',
+    },
+  },
+
+  {
+    path: 'class-routine',
+    canActivate: [AuthGuard],
+    component: ClassRoutineListComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Class Routine',
     },
   },
 ];

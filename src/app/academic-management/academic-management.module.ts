@@ -12,10 +12,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from '../shared/shared-module';
 
 import { AcademicManagementRoutingModule } from './academic-management-routing.module';
+import { ClassRoutineListComponent } from './class-routine/class-routine-list.component';
 import { ExamScheduleListComponent } from './exam-schedule/exam-schedule-list.component';
 
 @NgModule({
-  declarations: [ExamScheduleListComponent],
+  declarations: [ExamScheduleListComponent, ClassRoutineListComponent],
   imports: [
     SharedModule,
     CommonModule,

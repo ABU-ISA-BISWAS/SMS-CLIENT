@@ -16,6 +16,7 @@ import { GroupVersionComponent } from './setup/group-version/group-version.compo
 import { GuardianRelationComponent } from './setup/guardian-relation/guardian-relation.component';
 import { HolidayComponent } from './setup/holiday/holiday.component';
 import { ModulesComponent } from './setup/modules/modules.component';
+import { PeriodComponent } from './setup/period/period.component';
 import { RoleManagementComponent } from './setup/role-management/role-management.component';
 import { RoomComponent } from './setup/room/room.component';
 import { SalaryGradeComponent } from './setup/salary-grade/salary-grade.component';
@@ -269,6 +270,16 @@ const routes: Routes = [
     data: {
       featureId: 'SAS013',
       title: 'Weekly Off Setup',
+    },
+  },
+
+  {
+    path: 'setup/period-setup',
+    canActivate: [AuthGuard],
+    component: PeriodComponent,
+    data: {
+      featureId: 'SAS013',
+      title: 'Period Setup',
     },
   },
 ];
