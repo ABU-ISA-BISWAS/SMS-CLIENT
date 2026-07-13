@@ -5,6 +5,7 @@ export class ClassRoutineEntry {
   periodNo: number | null = null;
   subjectMasterNo: number | null = null;
   subjectName: string = '';
+  subjectCode: string = '';
   employeeNo: number | null = null;
   teacherName: string = '';
   roomNo: number | null = null;

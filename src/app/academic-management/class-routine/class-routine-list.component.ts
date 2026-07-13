@@ -119,10 +119,14 @@ export class ClassRoutineListComponent implements OnInit {
     forkJoin({
       routine: this.routineService.getRoutine(this.filter),
       periods: this.routineService.getPeriods(this.filter.shiftMasterNo),
+      subjects: this.routineService.getSubjectsByClass(
+        this.filter.classMasterNo!,
+      ),
     }).subscribe({
       next: (res: any) => {
         this.isLoading = false;
         this.periodList = res.periods?.items || [];
+        this.subjectList = res.subjects?.items || [];
         this.buildEmptyGrid();
 
         // Fill grid with existing data
@@ -162,17 +166,19 @@ export class ClassRoutineListComponent implements OnInit {
 
   // ── Cell Click → Open Edit Modal ─────────────────────
   openCellModal(period: any, day: any) {
-    this.editingPeriodNo = period.periodNo;
+    this.editingPeriodNo = period.id;
     this.editingDayCode = day.code;
 
-    const existing = this.getCell(period.periodNo, day.code);
+    const existing = this.getCell(period.id, day.code);
+
     if (existing) {
       this.editingCell = { ...existing };
     } else {
       this.editingCell = new ClassRoutineEntry();
-      this.editingCell.periodNo = period.periodNo;
+      this.editingCell.periodNo = period.id;
       this.editingCell.dayCode = day.code;
       this.editingCell.dayName = day.name;
+      console.log('existing cell from get cell::', this.editingCell);
     }
     this.isCellModalOpen = true;
   }
@@ -183,14 +189,48 @@ export class ClassRoutineListComponent implements OnInit {
   }
 
   saveCellEdit() {
+    const key = `${this.editingPeriodNo}_${this.editingDayCode}`;
+
     if (!this.editingCell.subjectMasterNo) {
-      // Subject না থাকলে cell clear করুন
-      const key = `${this.editingPeriodNo}_${this.editingDayCode}`;
       delete this.routineGrid[key];
-    } else {
-      const key = `${this.editingPeriodNo}_${this.editingDayCode}`;
-      this.routineGrid[key] = { ...this.editingCell };
+      this.closeCellModal();
+      return;
     }
+
+    // ── subjectName lookup ─────────────────────────────────
+    const selectedSubject = this.subjectList.find(
+      (s: any) => s.id === this.editingCell.subjectMasterNo,
+    );
+    if (selectedSubject) {
+      this.editingCell.subjectName = selectedSubject.subjectName;
+      this.editingCell.subjectCode = selectedSubject.subjectCode;
+    }
+
+    // ── teacherName lookup ────────────────────────────────
+    if (this.editingCell.employeeNo) {
+      const selectedTeacher = this.teacherList.find(
+        (t: any) => t.id === this.editingCell.employeeNo,
+      );
+      if (selectedTeacher) {
+        this.editingCell.teacherName = selectedTeacher.fname;
+      }
+    } else {
+      this.editingCell.teacherName = '';
+    }
+
+    // ── roomName lookup ───────────────────────────────────
+    if (this.editingCell.roomNo) {
+      const selectedRoom = this.roomList.find(
+        (r: any) => r.id === this.editingCell.roomNo,
+      );
+      if (selectedRoom) {
+        this.editingCell.roomName = selectedRoom.roomName;
+      }
+    } else {
+      this.editingCell.roomName = '';
+    }
+
+    this.routineGrid[key] = { ...this.editingCell };
     this.closeCellModal();
   }
 

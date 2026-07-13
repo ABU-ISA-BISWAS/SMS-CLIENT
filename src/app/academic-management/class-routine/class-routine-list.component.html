@@ -178,7 +178,7 @@
                 *ngFor="let day of days"
                 class="routine-cell"
                 [class.break-cell]="isBreakPeriod(period)"
-                [class.has-subject]="!!getCell(period.periodNo, day.code)"
+                [class.has-subject]="!!getCell(period.id, day.code)"
                 [class.weekly-off-col]="day.code === 6"
                 (click)="!isBreakPeriod(period) && openCellModal(period, day)"
               >
@@ -190,8 +190,7 @@
                 <!-- Empty cell -->
                 <div
                   *ngIf="
-                    !isBreakPeriod(period) &&
-                    !getCell(period.periodNo, day.code)
+                    !isBreakPeriod(period) && !getCell(period.id, day.code)
                   "
                   class="empty-cell-hint"
                 >
@@ -200,25 +199,23 @@
 
                 <!-- Filled cell -->
                 <div
-                  *ngIf="
-                    !isBreakPeriod(period) && getCell(period.periodNo, day.code)
-                  "
+                  *ngIf="!isBreakPeriod(period) && getCell(period.id, day.code)"
                   class="routine-cell-content"
                 >
                   <div class="cell-subject">
-                    {{ getCell(period.periodNo, day.code)?.subjectName }}
+                    {{ getCell(period.id, day.code)?.subjectName }}
                   </div>
                   <div
                     class="cell-teacher"
-                    *ngIf="getCell(period.periodNo, day.code)?.teacherName"
+                    *ngIf="getCell(period.id, day.code)?.teacherName"
                   >
                     <i class="fas fa-user-tie me-1"></i>
-                    {{ getCell(period.periodNo, day.code)?.teacherName }}
+                    {{ getCell(period.id, day.code)?.teacherName }}
                   </div>
                   <!-- Clear button -->
                   <button
                     class="cell-clear-btn"
-                    (click)="clearCell(period.periodNo, day.code, $event)"
+                    (click)="clearCell(period.id, day.code, $event)"
                   >
                     <i class="fas fa-times"></i>
                   </button>
