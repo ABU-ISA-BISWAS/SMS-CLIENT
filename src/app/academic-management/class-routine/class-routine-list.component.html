@@ -112,7 +112,7 @@
                   [(ngModel)]="filter.shiftMasterNo"
                   (change)="onShiftChange()"
                 >
-                  <option [ngValue]="null">All</option>
+                  <option [ngValue]="null">Select</option>
                   <option *ngFor="let s of shiftList" [ngValue]="s.id">
                     {{ s.shiftName }}
                   </option>

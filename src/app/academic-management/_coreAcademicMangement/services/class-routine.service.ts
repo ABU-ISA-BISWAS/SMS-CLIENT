@@ -21,6 +21,7 @@ export class ClassRoutineService {
   private ROUTINE_GET_URL = `${this.BASE_AM}/api/class-routine/get`;
   private ROUTINE_SAVE_URL = `${this.BASE_AM}/api/class-routine/save`;
   private PRINT_URL = `${this.BASE_AM}/api/class-routine/print`;
+  private DELETE_URL = `${this.BASE_AM}/api/class-routine/delete`;
 
   constructor(private http: HttpClient) {}
 
@@ -54,8 +55,12 @@ export class ClassRoutineService {
 
   getPeriods(shiftNo?: number | null) {
     let params = new HttpParams();
-    if (shiftNo) params = params.append('shiftNo', shiftNo);
-    return this.http.get(this.PERIODS_URL, { params }).pipe(map((d: any) => d));
+
+    if (shiftNo !== null && shiftNo !== undefined) {
+      params = params.append('shiftNo', shiftNo.toString());
+    }
+
+    return this.http.get(this.PERIODS_URL, { params });
   }
 
   getRoutine(filter: any) {
@@ -87,5 +92,12 @@ export class ClassRoutineService {
       params,
       responseType: 'blob',
     });
+  }
+
+  delete(id: number) {
+    const params = new HttpParams().append('id', id);
+    return this.http
+      .delete(this.DELETE_URL, { params })
+      .pipe(map((d: any) => d));
   }
 }

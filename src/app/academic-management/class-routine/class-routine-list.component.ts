@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { ConfirmationDialog } from '../../shared/component/confirmation-dialog/confirmation-dialog';
 import {
   ClassRoutineEntry,
   ClassRoutineFilter,
@@ -54,10 +56,11 @@ export class ClassRoutineListComponent implements OnInit {
   editingCell: ClassRoutineEntry = new ClassRoutineEntry();
   editingPeriodNo: number | null = null;
   editingDayCode: number | null = null;
-
+  bsModalRef!: BsModalRef;
   constructor(
     private routineService: ClassRoutineService,
     private toastr: ToastrService,
+    private modalService: BsModalService,
   ) {}
 
   ngOnInit() {
@@ -97,18 +100,24 @@ export class ClassRoutineListComponent implements OnInit {
   }
 
   onShiftChange() {
-    this.routineService.getPeriods(this.filter.shiftMasterNo).subscribe({
-      next: (res: any) => {
-        this.periodList = res?.items || [];
-        this.buildEmptyGrid();
-      },
-    });
+    if (this.filter.shiftMasterNo != null) {
+      this.routineService.getPeriods(this.filter.shiftMasterNo).subscribe({
+        next: (res: any) => {
+          this.periodList = res?.items || [];
+          this.buildEmptyGrid();
+        },
+      });
+    }
   }
 
   // ── Load Routine ──────────────────────────────────────
   loadRoutine() {
-    if (!this.filter.academicSessionNo || !this.filter.classMasterNo) {
-      this.toastr.warning('Please select Session and Class.');
+    if (
+      !this.filter.academicSessionNo ||
+      !this.filter.classMasterNo ||
+      !this.filter.shiftMasterNo
+    ) {
+      this.toastr.warning('Please select Session, Class and Shift.');
       return;
     }
 
@@ -130,7 +139,7 @@ export class ClassRoutineListComponent implements OnInit {
         this.buildEmptyGrid();
 
         // Fill grid with existing data
-        const existingList: any[] = res.routine?.items || [];
+        const existingList: any[] = res.routine?.obj || [];
         existingList.forEach((item: any) => {
           const key = `${item.periodNo}_${item.dayCode}`;
           const entry = new ClassRoutineEntry();
@@ -237,7 +246,33 @@ export class ClassRoutineListComponent implements OnInit {
   clearCell(periodNo: number, dayCode: number, event: Event) {
     event.stopPropagation();
     const key = `${periodNo}_${dayCode}`;
+    let classRoutineNo = this.getCell(periodNo, dayCode)?.classRoutineNo;
+    this.delete(classRoutineNo);
     delete this.routineGrid[key];
+  }
+
+  delete(classRoutineNo: any): void {
+    console.log('routine no::::', classRoutineNo);
+    if (!classRoutineNo) {
+      this.toastr.warning('Routine not found.');
+    } else {
+      const initialState = { title: 'Do you want to Delete?' };
+      this.bsModalRef = this.modalService.show(ConfirmationDialog, {
+        initialState,
+        class: 'modal-md base-modal',
+      });
+      this.bsModalRef.content.onClose.subscribe((result: any) => {
+        if (result) {
+          this.routineService
+            .delete(classRoutineNo)
+            .subscribe((res: { message: string | undefined }) => {
+              res.message
+                ? this.toastr.success(res.message)
+                : this.toastr.warning(res.message);
+            });
+        }
+      });
+    }
   }
 
   // ── Save All ──────────────────────────────────────────
